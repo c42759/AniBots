@@ -1,0 +1,222 @@
+[gd_scene load_steps=2 format=3 uid="uid://parts_shop_01"]
+
+[ext_resource type="Script" path="res://src/scenes/ui/PartsShop.gd" id="1_script"]
+
+[node name="PartsShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="DimBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.09, 0.88)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(1000, 580)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderHBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="ShopTitle" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/HeaderHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "★ ANIBOT WORKSHOP LAB - PARTS & REPAIRS ★"
+
+[node name="Spacer" type="Control" parent="CenterContainer/MainPanel/Margin/VBox/HeaderHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ShopCreditsLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/HeaderHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 15
+text = "Credits: 500 C"
+
+[node name="ShopScrapLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/HeaderHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+text = "Scrap: 25"
+
+[node name="ShopCloseButton" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/HeaderHBox"]
+custom_minimum_size = Vector2(90, 36)
+layout_mode = 2
+text = "Exit Lab"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MainPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="FilterHBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="FilterLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+layout_mode = 2
+text = "Filter Slot:"
+
+[node name="FilterAllBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+text = "All"
+
+[node name="FilterHeadBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+text = "Heads"
+
+[node name="FilterTorsoBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+text = "Torsos"
+
+[node name="FilterArmsBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+text = "Arms"
+
+[node name="FilterLegsBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+text = "Legs"
+
+[node name="Spacer2" type="Control" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RepairAllButton" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/FilterHBox"]
+custom_minimum_size = Vector2(180, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "🔧 Repair All Parts (5 Scrap)"
+
+[node name="ContentHBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="CatalogPanel" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/CatalogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="Scroll" type="ScrollContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/CatalogPanel/Margin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ShopCatalogContainer" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/CatalogPanel/Margin/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="ShopPreviewPanel" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 12
+
+[node name="V" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PreviewNameLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Pulsar Rifle"
+
+[node name="PreviewSlotLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 12
+text = "Hardware Slot: Right Arm | Brand New"
+
+[node name="PreviewDescLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "Affinity: SPEED | High durability modular component."
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V"]
+layout_mode = 2
+
+[node name="PreviewGrid" type="GridContainer" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="PreviewHPLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V/PreviewGrid"]
+layout_mode = 2
+text = "Base Integrity: 60 HP"
+
+[node name="PreviewPowerLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V/PreviewGrid"]
+layout_mode = 2
+text = "Payload Power: 38"
+
+[node name="PreviewLatencyLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V/PreviewGrid"]
+layout_mode = 2
+text = "Latency: 2.8s"
+
+[node name="PreviewWeightLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V/PreviewGrid"]
+layout_mode = 2
+text = "Weight: 12"
+
+[node name="Spacer" type="Control" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BuyButton" type="Button" parent="CenterContainer/MainPanel/Margin/VBox/ContentHBox/ShopPreviewPanel/M/V"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Purchase for 380 Credits"
+
+[node name="ShopStatusToast" type="Label" parent="CenterContainer/MainPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "Welcome to the Workshop Lab! Select a component to inspect."
+horizontal_alignment = 1

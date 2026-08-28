@@ -1,0 +1,121 @@
+[gd_scene load_steps=4 format=3 uid="uid://main_menu_01"]
+
+[ext_resource type="Script" path="res://src/scenes/ui/MainMenu.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://save_slot_selector_01" path="res://src/scenes/ui/SaveSlotSelector.tscn" id="2_save_slots"]
+[ext_resource type="PackedScene" uid="uid://settings_menu_01" path="res://src/scenes/ui/SettingsMenu.tscn" id="3_settings"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06, 0.08, 0.14, 1)
+
+[node name="AccentDecor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 380.0
+grow_vertical = 2
+color = Color(0.09, 0.12, 0.2, 0.8)
+
+[node name="MainLayout" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainLayout"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="MenuVBox" type="VBoxContainer" parent="MainLayout/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="TitleBox" type="VBoxContainer" parent="MainLayout/HBoxContainer/MenuVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="MainLayout/HBoxContainer/MenuVBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "AniBots"
+
+[node name="SubtitleLabel" type="Label" parent="MainLayout/HBoxContainer/MenuVBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+text = "Tactical Modular Relay RPG"
+
+[node name="HSeparator" type="HSeparator" parent="MainLayout/HBoxContainer/MenuVBox"]
+layout_mode = 2
+
+[node name="NewGameButton" type="Button" parent="MainLayout/HBoxContainer/MenuVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="MainLayout/HBoxContainer/MenuVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Continue Game"
+
+[node name="SettingsButton" type="Button" parent="MainLayout/HBoxContainer/MenuVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MainLayout/HBoxContainer/MenuVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Quit"
+
+[node name="RightSideInfo" type="VBoxContainer" parent="MainLayout/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="VersionLabel" type="Label" parent="MainLayout/HBoxContainer/RightSideInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.5, 0.6, 1)
+text = "v0.1.0 Prototype  |  Godot 4.x"
+horizontal_alignment = 2
+
+[node name="SaveSlotSelector" parent="." instance=ExtResource("2_save_slots")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_settings")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1

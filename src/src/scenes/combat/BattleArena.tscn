@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://battle_arena_01"]
+
+[ext_resource type="Script" path="res://src/scenes/combat/BattleArena.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://combat_unit_01" path="res://src/scenes/combat/CombatUnit.tscn" id="2_unit"]
+[ext_resource type="PackedScene" uid="uid://combat_ui_01" path="res://src/scenes/combat/CombatUI.tscn" id="3_combat_ui"]
+
+[node name="BattleArena" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="PlayerUnit" parent="." instance=ExtResource("2_unit")]
+unique_name_in_owner = true
+position = Vector2(220, 380)
+
+[node name="EnemyUnit" parent="." instance=ExtResource("2_unit")]
+unique_name_in_owner = true
+position = Vector2(1060, 380)
+is_player = false
+
+[node name="CombatUI" parent="." instance=ExtResource("3_combat_ui")]
+unique_name_in_owner = true
+offset_right = 1280.0
+offset_bottom = 720.0

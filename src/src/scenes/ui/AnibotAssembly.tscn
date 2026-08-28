@@ -1,0 +1,421 @@
+[gd_scene load_steps=2 format=3 uid="uid://anibot_assembly_01"]
+
+[ext_resource type="Script" path="res://src/scenes/ui/AnibotAssembly.gd" id="1_script"]
+
+[node name="AnibotAssembly" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="DimBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.05, 0.09, 0.9)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainPanel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(1100, 620)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxMain" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderHBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/HeaderHBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "ANIBOT ASSEMBLY & WORKSHOP GARAGE"
+
+[node name="Spacer" type="Control" parent="CenterContainer/MainPanel/Margin/VBoxMain/HeaderHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AffinityBadge" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/HeaderHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0, 1)
+text = "Affinity Active (+10% Bonus)"
+
+[node name="CloseButton" type="Button" parent="CenterContainer/MainPanel/Margin/VBoxMain/HeaderHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+text = "Close"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MainPanel/Margin/VBoxMain"]
+layout_mode = 2
+
+[node name="ContentHBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="LeftSummaryPanel" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BotNameLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Genesis-1"
+
+[node name="ChipInfoLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.85, 1)
+theme_override_font_sizes/font_size = 13
+text = "Chip: Artificer Chip\nAffinity: Trap"
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="TotalHPLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Total Integrity: 450 HP"
+
+[node name="WeightLoadoutLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Weight Loadout: 27 / 35"
+
+[node name="CoolingLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Cooling: 1.5x recovery"
+
+[node name="OverweightWarning" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/LeftSummaryPanel/Margin/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+text = "WARNING: OVERWEIGHT!\nCooldown penalized by 50%!"
+autowrap_mode = 2
+
+[node name="CenterSlotsPanel" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SlotsTitle" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "EQUIPPED HARDWARE SLOTS"
+
+[node name="HeadCard" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/HeadCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/HeadCard/M"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/HeadCard/M/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeadNameLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/HeadCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+text = "[Head] Logic Bomb"
+
+[node name="HeadStatsLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/HeadCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Cond: 100% | HP: 70 | Pwr: 40"
+
+[node name="SelectHeadBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/HeadCard/M/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 32)
+layout_mode = 2
+text = "Select"
+
+[node name="TorsoCard" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/TorsoCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/TorsoCard/M"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/TorsoCard/M/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TorsoNameLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/TorsoCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+text = "[Torso] Genesis Chassis"
+
+[node name="TorsoStatsLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/TorsoCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Cond: 100% | HP: 180 | MaxLoad: 35"
+
+[node name="SelectTorsoBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/TorsoCard/M/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 32)
+layout_mode = 2
+text = "Select"
+
+[node name="LArmCard" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LArmCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LArmCard/M"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LArmCard/M/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LArmNameLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LArmCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+text = "[L-Arm] Ratchet Wrench"
+
+[node name="LArmStatsLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LArmCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Cond: 100% | HP: 65 | Pwr: 28"
+
+[node name="SelectLArmBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LArmCard/M/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 32)
+layout_mode = 2
+text = "Select"
+
+[node name="RArmCard" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/RArmCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/RArmCard/M"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/RArmCard/M/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RArmNameLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/RArmCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+text = "[R-Arm] Heavy Ratchet"
+
+[node name="RArmStatsLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/RArmCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Cond: 100% | HP: 65 | Pwr: 32"
+
+[node name="SelectRArmBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/RArmCard/M/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 32)
+layout_mode = 2
+text = "Select"
+
+[node name="LegsCard" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LegsCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="HBox" type="HBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LegsCard/M"]
+layout_mode = 2
+
+[node name="V" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LegsCard/M/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LegsNameLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LegsCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+text = "[Legs] Steady-Tread"
+
+[node name="LegsStatsLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LegsCard/M/HBox/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Cond: 100% | HP: 110 | Spd: 1.4"
+
+[node name="SelectLegsBtn" type="Button" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/CenterSlotsPanel/Margin/VBox/LegsCard/M/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(70, 32)
+layout_mode = 2
+text = "Select"
+
+[node name="RightInventoryPanel" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="InvTitleLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "AVAILABLE SPARE PARTS"
+
+[node name="Scroll" type="ScrollContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InvPartsContainer" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="ComparisonPanel" type="PanelContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="M" type="MarginContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="V" type="VBoxContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="CompTitleLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M/V"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "COMPARISON PREVIEW"
+
+[node name="Grid" type="GridContainer" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M/V"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+columns = 2
+
+[node name="CompHPLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M/V/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Integrity: 65 -> 60 (-5)"
+
+[node name="CompPowerLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M/V/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Payload: 28 -> 38 (+10)"
+
+[node name="CompLatencyLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M/V/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Latency: 2.8s -> 4.8s (+2.0s)"
+
+[node name="CompWeightLabel" type="Label" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M/V/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Weight: 8 -> 12 (+4)"
+
+[node name="EquipButton" type="Button" parent="CenterContainer/MainPanel/Margin/VBoxMain/ContentHBox/RightInventoryPanel/Margin/VBox/ComparisonPanel/M/V"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Equip Part"
