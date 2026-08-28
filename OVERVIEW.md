@@ -35,23 +35,25 @@ At its core, an Anibot is just a collection of inert hardware—motors, servos, 
 
 It is a highly advanced, indestructible solid-state memory drive that functions as both the central operating system and the autonomous "soul" of the Anibot.
 
-#### 1. The Hardware Design
+### 1. The Hardware Design
+
 Physically, an Anima Chip looks like a ruggedized, futuristic SD card or a classic ROM cartridge. It features a hardened metallic casing with exposed gold connector pins. The center of the chip houses a glowing, holographic diode that changes color depending on the Series (Historical, Kinetic, or Astral) and pulses rhythmically like a heartbeat when the Anibot is powered on.
 
 To bring an Anibot online, the pilot (known as a "Handler") simply slots the Anima Chip into the secure port located on the back of the Anibot's central skeleton.
 
 ### 2. The Software (The "Soul")
+
 The Anima Chip contains a highly sophisticated, containerized AI environment. When slotted in, it immediately runs a boot sequence that abstracts the physical hardware (the arms, legs, and head) and assumes total control.
 
 This AI is not a blank slate. Because of how they are manufactured, every Anima Chip is pre-programmed with a distinct personality engram. An "Orion" chip will always boot up with a stoic, calculating demeanor, while a "Spark" chip will act hyperactive and restless. The chip dictates how the robot sounds, acts, and reacts to the player's commands.
 
 ### 3. The Combat Pipeline and Growth
+
 In battle, the Anima Chip is the central processor. It receives the Handler's tactical commands and pipelines them to the physical weapons.
 
 More importantly, Anima Chips are dynamic learning engines. As an Anibot battles, the chip continuously logs combat data, opponent tactics, and optimization algorithms. When you "Level Up" after winning a match, you are actually pushing a new version update to the Anima Chip's internal repository. This allows the AI to unlock new ultimate abilities and calculate attacks faster, regardless of what physical parts it is currently wearing.
 
 ## Anima Chips Series
-
 
 ### Antiquity Series
 
@@ -220,7 +222,7 @@ These are your peripheral devices—the tools that execute commands.
   "execution_time": 4.5,
   "latency": 9.2,
   "weight": 18,
-  "cache": -1 
+  "cache": -1
 }
 ```
 
@@ -244,10 +246,9 @@ The Torso acts as the motherboard. It doesn't have its own attacks; instead, it 
   "integrity": 500,
   "max_loadout": 35,
   "firewall": 15,
-  "cooling": 2.0 
+  "cooling": 2.0
 }
 ```
-
 
 ### 3. The Legs (Routing & Mobility)
 
@@ -275,11 +276,12 @@ Legs are all about movement, evasion, and adapting to the physical environment.
   "direct_connect": -5,
   "remote_uplink": 20,
   "packet_loss": 15,
-  "protocol": "BIPEDAL" 
+  "protocol": "BIPEDAL"
 }
 ```
 
 ### 4. The Anima Chip (The Kernel)
+
 The Chip ties the hardware together and provides the "soul" of the machine.
 
 - **Personality Matrix:** Dictates the AI's autonomous behavior (if you let it auto-battle) and its voice lines.
@@ -299,7 +301,7 @@ By routing everything through the Torso's "Max Loadout" and "Cooling" stats, for
   "base_stats": {
     "target_accuracy": 70,
     "evasion": 10,
-    "compatibility_bonus": "MELEE" 
+    "compatibility_bonus": "MELEE"
   },
   "ultimate_abilities": [
     {
@@ -342,6 +344,7 @@ Instead of a simple "Aim" stat, every Anima Chip has a hardcoded Priority Matrix
 - **Phalanx Chip (Defender):** Prioritizes enemies that are actively targeting its allies, attempting to draw aggro naturally.
 
 ### 2. Target Caching (When the lock happens)
+
 Just like in Medabots, the type of hardware used dictates when the targeting script is executed. This makes combat beautifully unpredictable.
 
 - **Precision Payloads (Sniper/Laser Arms):** The targeting script runs the exact moment the Anibot finishes its Wait Phase. It securely "caches" that specific enemy's ID into memory and runs to the center line to shoot them, no matter what else changes on the battlefield.
@@ -349,6 +352,7 @@ Just like in Medabots, the type of hardware used dictates when the targeting scr
 - **Scatter/Brawler Payloads (Shotguns/Swords):** The targeting script does not run until the Anibot physically reaches the center line. Because other robots might have moved during its Run Phase, the AI recalculates the battlefield state at the last second, meaning the target can suddenly change.
 
 ### 3. Track Exposure (Proximity)
+
 The State Machine we discussed earlier ties perfectly into targeting. An Anibot sitting at the start line (Wait Phase) is relatively safe. However, the moment an Anibot enters the Run Phase or Cooldown Phase, it is exposed in the center of the arena.
 
 - The targeting algorithm applies a massive multiplier to any enemy currently in transit.
@@ -356,12 +360,12 @@ The State Machine we discussed earlier ties perfectly into targeting. An Anibot 
 - This creates an amazing tactical layer: if you equip heavy weapons with terrible Latency, your Anibot will be stuck slowly returning to the start line, acting as a giant magnet for enemy AI targeting.
 
 ### 4. The Override Protocol (Interception)
+
 Even with perfect AI logic, a Handler can use defensive hardware to force an interrupt.
 
 - If you command an Anibot to use a Shield/Guard part, it rushes the center line and broadcasts an "Override" signal.
 
 - At the engine level, this temporarily forces the enemy's targeting variables to re-route entirely to the defending Anibot, completely bypassing the Anima Chip's desired algorithm. The defender soaks the Integrity damage to save a fragile teammate.
-
 
 ## Rewards
 
@@ -372,6 +376,7 @@ The 85% cap on field repairs is an especially smart design choice. It prevents p
 Here is how we can structure this Hardware Degradation System to make it fun and balanced:
 
 ### 1. The Loot System (Salvage)
+
 When a Handler wins a match, they immediately secure one random part from the defeated Anibot, and it goes straight into their inventory, ready to be equipped.
 
 - **The Condition Transfer:** The part retains the exact Condition percentage it had at the start of the battle.
@@ -381,6 +386,7 @@ When a Handler wins a match, they immediately secure one random part from the de
 - **Bonus Loot:** Alongside the part, players will occasionally receive generic Scrap material drops, making every victory feel slightly more rewarding even if they loot a duplicate part.
 
 ### 2. Condition vs. Integrity (In-Battle HP)
+
 You will need to separate the part's base health from its long-term condition.
 
 - **Integrity (In-Battle HP):** This is the health of the part during a specific match (e.g., 50/50 HP).
@@ -390,6 +396,7 @@ You will need to separate the part's base health from its long-term condition.
 - **The Math:** A part's max in-battle Integrity is scaled by its Condition. If a Revolver Arm has a base Integrity of 100 HP, but its Condition is degraded to 85%, it will enter the next battle with only 85 HP. If the Condition hits 0%, the part is "Bricked" and cannot be equipped at all until repaired.
 
 ### 3. Taking Damage (The Penalty)
+
 Anibots are built tough. Simply engaging in combat, firing weapons, or taking minor damage does not degrade the hardware.
 
 - A part only loses its permanent Condition percentage if its Integrity hits 0 HP and it completely shuts down during a match.
@@ -399,6 +406,7 @@ Anibots are built tough. Simply engaging in combat, firing weapons, or taking mi
 - **The Break Penalty:** If a part hits 0 Integrity during a battle and explodes, it suffers a massive Condition penalty (e.g., -10% or -15%). This means even if you win the match, letting your parts get destroyed has long-term economic consequences.
 
 ### 4. The Repair Economy
+
 Giving players two distinct ways to fix their gear creates excellent risk/reward gameplay.
 
 - **Field-Patch Kits (The Consumable):** These are items you carry in your inventory. You can use them between battles for instant repairs. However, because you are just using duct tape and quick-solder in the field, a kit can only restore a part up to 85% Condition.
@@ -408,7 +416,6 @@ Giving players two distinct ways to fix their gear creates excellent risk/reward
 - **Real-Time Timers:** Dropping a part at the Workshop removes it from your usable inventory for a real-world duration (e.g., 3 hours for a slightly damaged Torso, or up to 24 hours for a severely bricked Head part).
 
 - **Loadout Shuffling:** This is a fantastic mechanic for a cross-platform game. It naturally forces the player to swap their loadout, try new Anima Chips, and experiment with different parts while their favorite weapons are in the shop. They can set a part to repair on their PC before bed, and it will be ready to equip when they boot up the game the next day.
-
 
 ## Scraps
 
@@ -429,6 +436,7 @@ When players accumulate enough Scrap (e.g., 50 units), they can approach the Wor
 - **The Catch:** Because it was cobbled together from junk, it initializes at exactly 40% Condition.
 
 ### 2. The 40% "Test Drive"
+
 This is where the mechanic shines. The player now owns the part and can equip it immediately, but using a 40% Condition part in the field is highly dangerous.
 
 - Because Condition dictates in-battle Integrity (HP), a 40% part will have less than half of its maximum health.
