@@ -58,6 +58,7 @@ res://
 ## 2. Core Singletons & Architecture
 
 ### 2.1 Autoload List (`project.godot`)
+
 1. `SignalBus` (`res://src/core/SignalBus.gd`): Global decoupled event broker.
 2. `AudioManager` (`res://src/autoload/AudioManager.gd`): Audio buses, volume interpolation, SFX pooling.
 3. `SaveManager` (`res://src/autoload/SaveManager.gd`): Multi-slot save/load pipeline and inventory manager.
@@ -65,6 +66,7 @@ res://
 5. `SceneRouter` (`res://src/autoload/SceneRouter.gd`): Scene transitions with screen fade.
 
 ### 2.2 Global Event Bus (`SignalBus.gd`)
+
 ```gdscript
 extends Node
 
@@ -105,6 +107,7 @@ signal combat_ended(player_won: bool, rewards: Dictionary)
 ## 3. Start Menu & System Settings
 
 ### 3.1 Flow & State Diagram
+
 ```mermaid
 graph TD
     A[Start Menu: MainMenu.tscn] --> B[New Game]
@@ -123,11 +126,13 @@ graph TD
 ```
 
 ### 3.2 5-Slot Save System (`SaveManager.gd`)
+
 - Tracks active slot index (`current_slot_id: int` from `1` to `5`).
 - Save files stored at `user://saves/slot_1.json` through `user://saves/slot_5.json` (or SQLite `slot_X.db`).
 - Save slot metadata preview displays: Player Name, Starter Chip, Playtime (`HH:MM`), Last Saved timestamp, Credits, and Scrap.
 
 ### 3.3 Audio Settings System (`AudioManager.gd` & `SettingsMenu.tscn`)
+
 - Godot Audio Bus Layout:
   - Bus 0: `Master`
   - Bus 1: `Music` (routed to Master)
@@ -140,6 +145,7 @@ graph TD
 ## 4. Character Customization System
 
 ### 4.1 Customization Categories & Options
+
 1. **Hair Style:** `hair_01` (Spiky Punk), `hair_02` (Side Part), `hair_03` (Ponytail), `hair_04` (Buzz Cut), `hair_05` (Messy Anime).
 2. **Hair Color:** 7 rich palette swatches (Midnight Black `#1A1A1A`, Chestnut Brown `#5D4037`, Golden Blonde `#FBC02D`, Crimson Red `#D32F2F`, Neon Cyan `#00BCD4`, Electric Purple `#7B1FA2`, Silver Ash `#CFD8DC`).
 3. **Skin Color:** 6 tone swatches (Fair `#FFDFC4`, Peach `#F0D5BE`, Warm Sand `#E0AC69`, Bronze `#C68642`, Deep Mocha `#8D5524`, Espresso `#3D2314`).
@@ -148,7 +154,9 @@ graph TD
 6. **Shoes:** Styles (`shoes_sneakers`, `shoes_boots`, `shoes_sandals`) + Color swatches.
 
 ### 4.2 Composite Layered Sprite Architecture (`CompositeCharacter.gd`)
+
 **Chibi Aesthetic (Pokémon Brilliant Diamond / BDSP Inspired)**:
+
 - **Proportions:** Large rounded chibi head (1:1.5 ratio with body), chubby cheeks with soft blush, and compact torso.
 - **Expressive Eyes:** Big anime vertical oval eyes with iris gradient and dual white shine sparkles.
 - **Dynamic Chibi Walk Cycle:** Bouncy step oscillations (`sin(walk_time)`), leg swing, chubby arm swing, and scaling drop shadow.
@@ -159,12 +167,14 @@ graph TD
 ## 5. Starter City (Overworld)
 
 ### 5.1 Visual Environment Design (Sinnoh / BDSP Palette)
+
 - **Ground & Pathways:** Saturated emerald green grass with checkerboard tile accents, soft cobblestone cream streets, and central circular plaza with fountain water pool.
 - **Nature Decor:** Layered puffy cartoon trees with drop shadows, vibrant multi-colored flower patches (red, yellow, cyan, violet petals).
 - **Buildings:** Miniature workshop with bright cyan pitched roof, wooden signplate, and glowing windows.
 - **Sparring Ring:** Southeast neon-lit arena platform with corner energy posts.
 
 ### 5.2 Scene Tree & World Hierarchy (`StarterCity.tscn`)
+
 ```
 StarterCity (Node2D)
 ├── Boundaries (StaticBody2D with WorldBoundary collision walls)
@@ -182,6 +192,7 @@ StarterCity (Node2D)
 ```
 
 ### 5.2 Top-Down Player Controller (`Player.gd`)
+
 - Movement: 8-directional top-down movement with diagonal speed normalization (`move_left`, `move_right`, `move_up`, `move_down`).
 - Interaction Probe: `RayCast2D` rotating in facing direction, detecting direct or parent interactable nodes.
 - Control Lock: Disables movement automatically during dialogues, menus, or scene transitions.
@@ -191,6 +202,7 @@ StarterCity (Node2D)
 ## 6. Combat Test NPC & Arena Integration
 
 ### 6.1 Sparring NPC Setup (`SparringNPC.tscn`)
+
 - **NPC:** "Bolt" (Sparring Coordinator).
 - **Proximity:** When player approaches, displays animated `[E] Talk` prompt bubble.
 - **Input:** Pressing `E` or `Space` in range opens branching dialogue:
@@ -199,6 +211,7 @@ StarterCity (Node2D)
   3. *Maybe later.* $\rightarrow$ Closes dialogue.
 
 ### 6.2 3-Phase ATB Battle Arena (`BattleArena.tscn`)
+
 - **Relay Track:** Player Base Line `(220px)` $\leftrightarrow$ Center Combat Line `(640px)` $\leftrightarrow$ Enemy Base Line `(1060px)`.
 - **Phase Loop:**
   1. `WAIT`: Leg clock speed fills Action Bar at base line.
@@ -226,11 +239,13 @@ graph TD
 ```
 
 ### 7.1 HUD Access & Shortcuts
+
 - **Overworld HUD Button:** Top bar features an **"AniBots / Garage"** button.
 - **Keyboard Shortcuts:** Pressing `Tab` or `I` toggles the Anibot Assembly modal.
 - **Game Freeze:** Opening the assembly modal safely pauses player overworld movement.
 
 ### 7.2 Assembly Scene Hierarchy (`AnibotAssembly.tscn`)
+
 ```
 AnibotAssembly (Control - CanvasLayer)
 ├── DimBackground (ColorRect)
@@ -362,33 +377,39 @@ CREATE TABLE IF NOT EXISTS assembled_anibots (
 ## 9. Implementation Roadmap
 
 ### Phase 1: Core Foundation & UI Frame [COMPLETED]
+
 - [x] Configure `project.godot` (Input maps, autoloads, screen resolution).
 - [x] Configure Audio Buses (`Master`, `Music`, `SFX`) in `default_bus_layout.tres`.
 - [x] Implement singletons: `SignalBus.gd`, `AudioManager.gd`, `SaveManager.gd`, `GameManager.gd`, `SceneRouter.gd`.
 - [x] Implement `MainMenu.tscn`, `SaveSlotSelector.tscn` (5 slots), and `SettingsMenu.tscn`.
 
 ### Phase 2: Character Customizer Pipeline [COMPLETED]
+
 - [x] Create procedural composite avatar renderer `CompositeCharacter.gd`.
 - [x] Implement `CharacterCustomizer.tscn` with interactive palette swatches and live preview.
 - [x] Wire save logic to store customizer dictionary into active save slot.
 
 ### Phase 3: Starter City & Sparring NPC [COMPLETED]
+
 - [x] Create 2D map `StarterCity.tscn` (roads, buildings, plaza, sparring ring, boundary walls).
 - [x] Implement `Player.tscn` with 8-direction movement and interaction probe.
 - [x] Implement `SparringNPC.tscn` with proximity prompt bubble and dialogue choices.
 
 ### Phase 4: 3-Phase ATB Combat Prototype [COMPLETED]
+
 - [x] Implement `CombatUnit.tscn` with 3-Phase ATB relay state machine (`WAIT`, `COMMAND`, `RUN`, `COOLDOWN`).
 - [x] Implement `CombatUI.tscn` with action command menu, part HP bars, and combat announcer.
 - [x] Implement `BattleArena.tscn` sparring battle against training drone with victory scrap rewards.
 
 ### Phase 5: AniBot Assembly & Part Swapping (Garage UI) [COMPLETED]
+
 - [x] Implement `AnibotAssembly.tscn` & `AnibotAssembly.gd` (HUD garage modal).
 - [x] Bind Overworld HUD "AniBots" button and `Tab` / `I` keyboard shortcuts.
 - [x] Implement slot-filtered inventory part selection and stat comparison card.
 - [x] Implement part swap transactions (unequip $\rightarrow$ inventory, equip $\rightarrow$ bot) and save sync.
 
 ### Phase 6: Workshop Interior & Parts Shopkeeper NPC [COMPLETED]
+
 - [x] Create `WorkshopInterior.tscn` (chibi lab map with workbenches, Anibot pod, and exit door warp).
 - [x] Implement `ShopkeeperNPC.tscn` ("Clara - Master Artificer" with shop & repair dialogues).
 - [x] Implement `PartsShop.tscn` & `PartsShop.gd` (slot filter, part stat inspect, buy with Credits, repair all with Scrap).
