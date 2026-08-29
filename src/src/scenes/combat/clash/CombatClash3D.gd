@@ -169,7 +169,9 @@ func _apply_damage_and_resolve() -> Dictionary:
 	
 	var session = GameManager.active_battle_session
 	var def_key = "enemy" if is_attacker_player else "player"
+	var att_key = "player" if is_attacker_player else "enemy"
 	var def_state = session.get(def_key, {})
+	var att_state = session.get(att_key, {})
 	var def_integrities: Dictionary = def_state.get("part_integrities", {})
 	if def_integrities.is_empty():
 		def_integrities = def_state.get("integrities", {})
@@ -190,6 +192,23 @@ func _apply_damage_and_resolve() -> Dictionary:
 	def_integrities[target_slot] = new_hp
 	def_state["part_integrities"] = def_integrities
 	def_state["integrities"] = def_integrities
+
+	# Attacker Overclock Gauge charge (or reset if ultimate used)
+	if is_ult:
+		att_state["overclock_gauge"] = 0.0
+	else:
+		var att_chip = att_state.get("config", {}).get("chip_id", att_state.get("chip_id", ""))
+		var att_mult = 2.0 if att_chip == "chip_draco" else 1.0
+		var cur_att_gauge = att_state.get("overclock_gauge", 0.0)
+		att_state["overclock_gauge"] = clampf(cur_att_gauge + (20.0 * att_mult), 0.0, 100.0)
+
+	# Defender Overclock Gauge charge on damage taken
+	var def_chip = def_state.get("config", {}).get("chip_id", def_state.get("chip_id", ""))
+	var def_mult = 2.0 if def_chip == "chip_draco" else 1.0
+	var cur_def_gauge = def_state.get("overclock_gauge", 0.0)
+	def_state["overclock_gauge"] = clampf(cur_def_gauge + (25.0 * def_mult), 0.0, 100.0)
+
+	session[att_key] = att_state
 	session[def_key] = def_state
 	
 	var head_hp = def_integrities.get(Types.PartSlot.HEAD, def_integrities.get(str(Types.PartSlot.HEAD), 60))

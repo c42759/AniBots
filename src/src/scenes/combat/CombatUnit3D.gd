@@ -228,7 +228,8 @@ func take_damage(incoming_payload: int, target_slot: int = -1) -> Dictionary:
 	part_integrities[target_slot] = max(0, part_integrities[target_slot] - damage)
 	part_damaged.emit(self, target_slot, part_integrities[target_slot], part_max_integrities[target_slot])
 	
-	overclock_gauge = clampf(overclock_gauge + 20.0, 0.0, 100.0)
+	var mult = 2.0 if chip_id == "chip_draco" else 1.0
+	overclock_gauge = clampf(overclock_gauge + (25.0 * mult), 0.0, 100.0)
 	
 	var is_destroyed = (part_integrities[target_slot] <= 0)
 	var is_head_destroyed = (part_integrities[Types.PartSlot.HEAD] <= 0)

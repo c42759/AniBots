@@ -184,7 +184,8 @@ func take_damage(incoming_payload: int, target_slot: int = -1) -> Dictionary:
 	part_damaged.emit(self, target_slot, part_integrities[target_slot], part_max_integrities[target_slot])
 	
 	# Charge Overclock gauge on damage taken
-	overclock_gauge = clampf(overclock_gauge + 20.0, 0.0, 100.0)
+	var mult = 2.0 if chip_id == "chip_draco" else 1.0
+	overclock_gauge = clampf(overclock_gauge + (25.0 * mult), 0.0, 100.0)
 	
 	# Check Win/Loss conditions:
 	# If Head reaches 0 -> System Failure!
