@@ -165,16 +165,27 @@ func _on_enemy_command_ready(unit: CombatUnit3D) -> void:
 	if is_battle_over:
 		return
 		
-	# Training Drone AI
+	# Check if Enemy Overclock gauge is full
+	if unit.overclock_gauge >= 100.0:
+		unit.assign_command(Types.PartSlot.HEAD, true)
+		combat_ui.set_combat_log("%s UNLEASHES OVERCLOCK ULTIMATE!" % unit.unit_name)
+		return
+
 	var possible_slots = []
-	if unit.part_integrities[Types.PartSlot.LEFT_ARM] > 0:
-		possible_slots.append(Types.PartSlot.LEFT_ARM)
-	if unit.part_integrities[Types.PartSlot.RIGHT_ARM] > 0:
-		possible_slots.append(Types.PartSlot.RIGHT_ARM)
-	if unit.part_integrities[Types.PartSlot.HEAD] > 0 and unit.head_cache_remaining > 0:
+	if unit.part_integrities.get(Types.PartSlot.HEAD, 0) > 0 and unit.head_cache_remaining > 0:
 		possible_slots.append(Types.PartSlot.HEAD)
-		
-	var chosen_slot = possible_slots[randi() % possible_slots.size()] if possible_slots.size() > 0 else Types.PartSlot.TORSO
+	if unit.part_integrities.get(Types.PartSlot.LEFT_ARM, 0) > 0:
+		possible_slots.append(Types.PartSlot.LEFT_ARM)
+	if unit.part_integrities.get(Types.PartSlot.RIGHT_ARM, 0) > 0:
+		possible_slots.append(Types.PartSlot.RIGHT_ARM)
+
+	var chosen_slot: int = Types.PartSlot.TORSO
+	if possible_slots.size() > 0:
+		if unit.chip_id == "chip_artificer" and Types.PartSlot.HEAD in possible_slots:
+			chosen_slot = Types.PartSlot.HEAD
+		else:
+			chosen_slot = possible_slots[randi() % possible_slots.size()]
+
 	unit.assign_command(chosen_slot, false)
 	combat_ui.set_combat_log("%s charges to Center Line with %s!" % [unit.unit_name, unit.selected_action_part.get("name", "Attack")])
 
