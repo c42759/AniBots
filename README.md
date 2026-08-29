@@ -40,11 +40,30 @@ Combat utilizes a dynamic action bar with distinct phases (Wait, Run, Cooldown).
 
 To bridge the gap between RPG and management games, parts suffer permanent **Condition** degradation if destroyed in combat. Players collect **Scrap** from defeated enemies to synthesize new parts (which start at 40% condition as a "test drive") and must balance using field patches versus real-time Workshop repairs.
 
-## 🚀 Getting Involved
+## 🚀 Getting Started
 
-We are building a highly tactical, system-driven RPG and need contributors passionate about game design, Godot development, and AI logic! 
+Follow these steps to set up the AniBots project locally:
 
-To get a full understanding of the lore, all Anima Chip series, and the deep math behind the combat and economy systems, please read our comprehensive design document:
-👉 **[OVERVIEW.md](./OVERVIEW.md)**
+1. **Install Godot Engine**: Download and install Godot (available via [Steam](https://store.steampowered.com/app/404790/Godot_Engine/) or the official [Godot website](https://godotengine.org/)).
+2. **Open Godot**: Launch Godot Engine.
+3. **Import Project**:
+   - In the Godot Project Manager, click **Import**.
+   - Browse to the repository and select the `src/` folder (or select `project.godot` inside `src/`).
+   - Click **Import & Edit** to open the project.
 
-*(Setup instructions, Godot version requirements, and contribution guidelines will be added here soon.)*
+## 🤝 Contributing
+
+We are building a highly tactical, system-driven RPG and actively welcome contributors across multiple disciplines!
+
+### Open Roles & Skillsets Needed
+
+- **Game Designers**: Balance core combat formulas, scrap economy, part statistics, and Anima Chip behavioral weights.
+- **Game Developers**: Build and optimize GDScript systems, SQLite integration, AI utility algorithms, and UI flow in Godot.
+- **Brainstormers**: Propose constructive gameplay mechanics, lore expansion, mission structures, and Anima Chip personality concepts.
+- **2D & 3D Modelers / Artists**: Create modular robot chassis parts, Anima Chip illustrations, battlefield UI assets, and combat VFX/animations.
+
+### How to Get Started
+
+1. Read our comprehensive design document: 👉 **[OVERVIEW.md](./OVERVIEW.md)** to understand the lore, mechanics, and design philosophy.
+2. Check existing Issues or open a new Discussion/Issue with your ideas or proposed changes.
+3. Fork the repository, create your feature branch, and submit a Pull Request.
