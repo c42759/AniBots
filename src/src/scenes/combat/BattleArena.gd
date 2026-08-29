@@ -45,7 +45,8 @@ func _init_arena_combatants() -> void:
 	var opponent_config = GameManager.active_combat_opponent
 	if opponent_config.is_empty():
 		opponent_config = {
-			"bot_name": "Training Drone",
+			"bot_name": "Metabee (KBT)",
+			"bot_model": "metabee",
 			"chip_id": "chip_dummy",
 			"parts": {
 				"head": {"part_id": "part_head_dummy", "condition": 100.0, "current_cache": 2},
@@ -121,6 +122,12 @@ func _init_arena_combatants() -> void:
 		_on_enemy_defeated(enemy_unit)
 	elif player_unit.part_integrities.get(Types.PartSlot.HEAD, 60) <= 0:
 		_on_player_defeated(player_unit)
+	else:
+		# If either combatant was awaiting command selection, re-open command menu
+		if player_unit.current_phase == Types.CombatPhase.COMMAND:
+			_on_player_command_ready(player_unit)
+		elif enemy_unit.current_phase == Types.CombatPhase.COMMAND:
+			_on_enemy_command_ready(enemy_unit)
 
 func _process(delta: float) -> void:
 	if is_battle_over:

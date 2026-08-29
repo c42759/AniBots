@@ -70,11 +70,12 @@ func _on_choice_made(choice_idx: int) -> void:
 			if dialogue_box:
 				dialogue_box.close_dialogue()
 			var opponent_data = {
-				"name": "Training Drone MK-1",
+				"bot_name": "Metabee (KBT)",
+				"bot_model": "metabee",
 				"chip_id": "chip_dummy",
-				"bot_id": "bot_dummy_01",
+				"bot_id": "bot_metabee_01",
 				"parts": {
-					"head": {"part_id": "part_head_dummy", "condition": 100.0, "current_cache": 2},
+					"head": {"part_id": "part_head_dummy", "condition": 100.0, "current_cache": 3},
 					"left_arm": {"part_id": "part_arm_l_dummy_blunt", "condition": 100.0},
 					"right_arm": {"part_id": "part_arm_r_dummy_blaster", "condition": 100.0},
 					"torso": {"part_id": "part_torso_dummy", "condition": 100.0},
