@@ -1,8 +1,8 @@
 # StarterCity.gd
-# Manages overworld city environment, HUD, and player positioning
-extends Node2D
+# Manages 3D overworld city environment, HUD, and player positioning
+extends Node3D
 
-@onready var player: Player = %Player
+@onready var player: Player3D = %Player
 @onready var dialogue_box = %DialogueBox
 @onready var scrap_label: Label = %ScrapLabel
 @onready var credits_label: Label = %CreditsLabel
@@ -16,7 +16,7 @@ extends Node2D
 @onready var toast_label: Label = %ToastLabel
 @onready var anibot_assembly: Control = %AnibotAssembly
 @onready var garage_btn: Button = %GarageButton
-@onready var door_area: Area2D = %WorkshopDoorArea
+@onready var door_area: Area3D = %WorkshopDoorArea
 @onready var door_prompt: PanelContainer = %DoorPrompt
 
 var player_at_workshop_door: bool = false
@@ -29,8 +29,15 @@ func _ready() -> void:
 	if save_toast: save_toast.hide()
 	if door_prompt: door_prompt.hide()
 	
-	# Position player from last saved location
-	player.global_position = GameManager.saved_overworld_position
+	# Position player from last saved location (handling Vector2 or Vector3)
+	var saved_pos = GameManager.saved_overworld_position
+	if saved_pos is Vector3:
+		player.global_position = saved_pos
+	elif saved_pos is Vector2:
+		# Convert legacy 2D pixel coordinates (e.g. 600, 410) to 3D world meters
+		var x_3d = (saved_pos.x - 600.0) * 0.03
+		var z_3d = (saved_pos.y - 410.0) * 0.03
+		player.global_position = Vector3(x_3d, 0.0, z_3d)
 	
 	_update_hud()
 	resume_btn.pressed.connect(_on_resume_pressed)
@@ -46,13 +53,13 @@ func _ready() -> void:
 		door_area.body_entered.connect(_on_door_entered)
 		door_area.body_exited.connect(_on_door_exited)
 
-func _on_door_entered(body: Node2D) -> void:
-	if body is Player:
+func _on_door_entered(body: Node3D) -> void:
+	if body is Player3D:
 		player_at_workshop_door = true
 		if door_prompt: door_prompt.show()
 
-func _on_door_exited(body: Node2D) -> void:
-	if body is Player:
+func _on_door_exited(body: Node3D) -> void:
+	if body is Player3D:
 		player_at_workshop_door = false
 		if door_prompt: door_prompt.hide()
 
@@ -129,7 +136,8 @@ func _on_save_game_pressed() -> void:
 	if SaveManager.is_game_loaded:
 		SaveManager.active_save_data["player"]["position"] = {
 			"x": player.global_position.x,
-			"y": player.global_position.y
+			"y": player.global_position.y,
+			"z": player.global_position.z
 		}
 		var success = SaveManager.save_active_game()
 		if success:
@@ -158,7 +166,8 @@ func _on_save_quit_pressed() -> void:
 	if SaveManager.is_game_loaded:
 		SaveManager.active_save_data["player"]["position"] = {
 			"x": player.global_position.x,
-			"y": player.global_position.y
+			"y": player.global_position.y,
+			"z": player.global_position.z
 		}
 		SaveManager.save_active_game()
 	GameManager.return_to_main_menu()
@@ -166,99 +175,3 @@ func _on_save_quit_pressed() -> void:
 func _on_quit_pressed() -> void:
 	SignalBus.play_sfx_requested.emit("click")
 	GameManager.return_to_main_menu()
-
-func _draw() -> void:
-	# 1. Lush Green Emerald Ground (BDSP Sinnoh Palette)
-	draw_rect(Rect2(-300, -300, 1800, 1400), Color("#43A047")) # Base lush meadow
-	draw_rect(Rect2(0, 0, 1200, 800), Color("#4CAF50")) # Town boundary
-	
-	# Checkerboard Grass Pattern (BDSP Style)
-	for gx in range(0, 1200, 80):
-		for gy in range(0, 800, 80):
-			if (gx / 80 + gy / 80) % 2 == 0:
-				draw_rect(Rect2(gx, gy, 80, 80), Color("#43A047", 0.35))
-	
-	# 2. Warm Cobblestone Paved Roads & Plaza
-	var road_col = Color("#D7CCC8") # Soft cobblestone cream
-	var road_border_col = Color("#BCAAA4")
-	
-	# North-South Main Street
-	draw_rect(Rect2(420, 20, 360, 760), road_border_col)
-	draw_rect(Rect2(428, 20, 344, 760), road_col)
-	
-	# East-West Main Street
-	draw_rect(Rect2(20, 320, 1160, 180), road_border_col)
-	draw_rect(Rect2(20, 328, 1160, 164), road_col)
-	
-	# Center Circular Plaza with Fountain/Tile Inset
-	draw_circle(Vector2(600, 410), 130.0, road_border_col)
-	draw_circle(Vector2(600, 410), 122.0, road_col)
-	draw_circle(Vector2(600, 410), 80.0, Color("#80DEEA")) # Plaza Water Fountain / Pool
-	draw_circle(Vector2(600, 410), 74.0, Color("#00BCD4")) # Inner water
-	draw_circle(Vector2(600, 410), 30.0, Color("#B2EBF2")) # Center fountain spray
-	draw_circle(Vector2(600, 410), 12.0, Color("#E0F7FA"))
-	
-	# Cobblestone Tile Pavers Texture
-	for px in range(440, 760, 40):
-		for py in range(40, 760, 40):
-			if Vector2(px, py).distance_to(Vector2(600, 410)) > 90:
-				draw_rect(Rect2(px, py, 36, 36), Color(0, 0, 0, 0.04), false, 1.5)
-
-	# 3. Sparring Combat Ring (Southeast zone)
-	draw_rect(Rect2(820, 500, 340, 260), Color("#263238")) # Raised Ring base
-	draw_rect(Rect2(830, 510, 320, 240), Color("#37474F")) # Ring mat
-	draw_rect(Rect2(830, 510, 320, 240), Color("#00E5FF"), false, 4.0) # Glowing neon border
-	draw_line(Vector2(990, 510), Vector2(990, 750), Color("#FFD600"), 3.0) # Center line
-	draw_circle(Vector2(990, 630), 28.0, Color(1, 0.84, 0, 0.2)) # Center ring badge
-	
-	# Corner Turnbuckles / Energy Posts
-	draw_circle(Vector2(830, 510), 8.0, Color("#00E5FF"))
-	draw_circle(Vector2(1150, 510), 8.0, Color("#FF1744"))
-	draw_circle(Vector2(830, 750), 8.0, Color("#00E5FF"))
-	draw_circle(Vector2(1150, 750), 8.0, Color("#FF1744"))
-
-	# 4. Cute Cartoon Trees & Flower Patches
-	_draw_chibi_flower_patch(Vector2(120, 80))
-	_draw_chibi_flower_patch(Vector2(240, 260))
-	_draw_chibi_flower_patch(Vector2(920, 100))
-	_draw_chibi_flower_patch(Vector2(1040, 260))
-	_draw_chibi_flower_patch(Vector2(120, 620))
-	_draw_chibi_flower_patch(Vector2(260, 700))
-	
-	# Cartoon Puffy Trees with Shadows
-	_draw_chibi_tree(Vector2(80, 240))
-	_draw_chibi_tree(Vector2(320, 100))
-	_draw_chibi_tree(Vector2(880, 80))
-	_draw_chibi_tree(Vector2(1100, 220))
-	_draw_chibi_tree(Vector2(80, 520))
-	_draw_chibi_tree(Vector2(320, 720))
-
-func _draw_chibi_tree(pos: Vector2) -> void:
-	# Shadow
-	draw_circle(pos + Vector2(0, 14), 22.0, Color(0, 0, 0, 0.22))
-	# Trunk (Chubby wooden stump)
-	draw_rect(Rect2(pos.x - 7, pos.y - 4, 14, 18), Color("#795548"))
-	draw_rect(Rect2(pos.x - 5, pos.y - 2, 10, 16), Color("#8D6E63"))
-	# Puffy Canopy (Multiple overlapping bright green circles)
-	draw_circle(pos + Vector2(0, -22), 26.0, Color("#2E7D32")) # Back shadow leaf
-	draw_circle(pos + Vector2(-14, -18), 20.0, Color("#388E3C"))
-	draw_circle(pos + Vector2(14, -18), 20.0, Color("#388E3C"))
-	draw_circle(pos + Vector2(0, -26), 22.0, Color("#4CAF50")) # Main bright top
-	draw_circle(pos + Vector2(-6, -30), 8.0, Color("#81C784")) # Sun highlight
-
-func _draw_chibi_flower_patch(pos: Vector2) -> void:
-	# Small dirt mound
-	draw_circle(pos, 22.0, Color("#66BB6A", 0.7))
-	# Colorful chibi flower blossoms
-	var flower_colors = [Color("#FF5252"), Color("#FFEB3B"), Color("#40C4FF"), Color("#FFFFFF"), Color("#E040FB")]
-	var offsets = [Vector2(-10, -8), Vector2(8, -10), Vector2(-6, 8), Vector2(10, 6), Vector2(0, -1)]
-	for i in range(5):
-		var f_pos = pos + offsets[i]
-		draw_circle(f_pos, 4.0, flower_colors[i])
-		draw_circle(f_pos, 1.8, Color("#FFF59D")) # Flower center
-	
-	# Road divider lines
-	for y in range(60, 760, 60):
-		draw_rect(Rect2(596, y, 8, 30), Color("#ECEFF1"))
-	for x in range(60, 1140, 60):
-		draw_rect(Rect2(x, 406, 30, 8), Color("#ECEFF1"))

@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://combat_ui_01"]
+[gd_scene load_steps=3 format=3 uid="uid://combat_ui_01"]
 
 [ext_resource type="Script" path="res://src/scenes/combat/CombatUI.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmd_panel"]
+bg_color = Color(0.0627451, 0.0823529, 0.137255, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.898039, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 8
 
 [node name="CombatUI" type="Control"]
 layout_mode = 3
@@ -277,19 +291,20 @@ show_percentage = false
 
 [node name="CommandPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(680, 120)
+custom_minimum_size = Vector2(720, 130)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -340.0
-offset_top = -140.0
-offset_right = 340.0
+offset_left = -360.0
+offset_top = -150.0
+offset_right = 360.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cmd_panel")
 
 [node name="Margin" type="MarginContainer" parent="CommandPanel"]
 layout_mode = 2
@@ -306,27 +321,31 @@ columns = 2
 
 [node name="HeadButton" type="Button" parent="CommandPanel/Margin/Grid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(310, 42)
+custom_minimum_size = Vector2(330, 46)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 text = "[Head] Logic Bomb (Cache: 3)"
 
 [node name="LArmButton" type="Button" parent="CommandPanel/Margin/Grid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(310, 42)
+custom_minimum_size = Vector2(330, 46)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 text = "[L-Arm] Ratchet Wrench"
 
 [node name="RArmButton" type="Button" parent="CommandPanel/Margin/Grid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(310, 42)
+custom_minimum_size = Vector2(330, 46)
 layout_mode = 2
+theme_override_font_sizes/font_size = 15
 text = "[R-Arm] Heavy Ratchet"
 
 [node name="OverclockButton" type="Button" parent="CommandPanel/Margin/Grid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(310, 42)
+custom_minimum_size = Vector2(330, 46)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 15
 text = "[ULTIMATE] Overclock Blitz"
 
 [node name="ResultModal" type="PanelContainer" parent="."]

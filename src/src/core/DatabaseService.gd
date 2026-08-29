@@ -166,7 +166,7 @@ static func create_initial_save_data(player_name: String, appearance: Dictionary
 		"player": {
 			"name": player_name if not player_name.is_empty() else "Handler",
 			"appearance": appearance,
-			"position": {"x": 320.0, "y": 240.0},
+			"position": {"x": 0.0, "y": 0.0, "z": 3.0},
 			"current_map": "StarterCity"
 		},
 		"economy": {

@@ -1,8 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://main_menu_01"]
+[gd_scene load_steps=12 format=3 uid="uid://main_menu_01"]
 
 [ext_resource type="Script" path="res://src/scenes/ui/MainMenu.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://save_slot_selector_01" path="res://src/scenes/ui/SaveSlotSelector.tscn" id="2_save_slots"]
 [ext_resource type="PackedScene" uid="uid://settings_menu_01" path="res://src/scenes/ui/SettingsMenu.tscn" id="3_settings"]
+[ext_resource type="Script" path="res://src/scenes/combat/clash/AniBotModel3D.gd" id="4_model"]
+
+[sub_resource type="Environment" id="Environment_menu"]
+background_mode = 1
+background_color = Color(0.0509804, 0.0705882, 0.117647, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.2, 0.3, 0.45, 1)
+ambient_light_energy = 1.0
+glow_enabled = true
+glow_intensity = 0.8
+glow_bloom = 0.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_menu_floor"]
+size = Vector2(20, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.0705882, 0.0901961, 0.141176, 1)
+metallic = 0.85
+roughness = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_podium"]
+top_radius = 2.0
+bottom_radius = 2.2
+height = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_podium"]
+albedo_color = Color(0.12, 0.16, 0.24, 1)
+metallic = 0.8
+roughness = 0.3
+emission_enabled = true
+emission = Color(0, 0.898039, 1, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+inner_radius = 1.95
+outer_radius = 2.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ring"]
+albedo_color = Color(0, 0.898039, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.898039, 1, 1)
+emission_energy_multiplier = 3.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -13,22 +55,65 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.06, 0.08, 0.14, 1)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_menu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 3, 6, 4)
+light_color = Color(0.8, 0.9, 1, 1)
+light_energy = 1.2
+
+[node name="SpotOmniLight" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 3, 0)
+light_color = Color(0, 0.898039, 1, 1)
+light_energy = 3.0
+omni_range = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.6, 1.6, 4.2)
+current = true
+fov = 45.0
+
+[node name="Floor" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+mesh = SubResource("PlaneMesh_menu_floor")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="Podium" type="MeshInstance3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.175, 0)
+mesh = SubResource("CylinderMesh_podium")
+surface_material_override/0 = SubResource("StandardMaterial3D_podium")
+
+[node name="NeonRing" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Podium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
+mesh = SubResource("TorusMesh_ring")
+surface_material_override/0 = SubResource("StandardMaterial3D_ring")
+
+[node name="ShowroomBot" type="Node3D" parent="SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 0.35, 0)
+script = ExtResource("4_model")
 
 [node name="AccentDecor" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 380.0
+offset_right = 420.0
 grow_vertical = 2
-color = Color(0.09, 0.12, 0.2, 0.8)
+color = Color(0.05, 0.07, 0.12, 0.78)
 
 [node name="MainLayout" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -47,7 +132,7 @@ layout_mode = 2
 theme_override_constants/separation = 48
 
 [node name="MenuVBox" type="VBoxContainer" parent="MainLayout/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
@@ -58,15 +143,15 @@ theme_override_constants/separation = 6
 
 [node name="TitleLabel" type="Label" parent="MainLayout/HBoxContainer/MenuVBox/TitleBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 0.75, 1, 1)
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "AniBots"
 
 [node name="SubtitleLabel" type="Label" parent="MainLayout/HBoxContainer/MenuVBox/TitleBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.65, 0.7, 0.8, 1)
+theme_override_colors/font_color = Color(0.65, 0.75, 0.9, 1)
 theme_override_font_sizes/font_size = 16
-text = "Tactical Modular Relay RPG"
+text = "3D Tactical Modular Relay RPG"
 
 [node name="HSeparator" type="HSeparator" parent="MainLayout/HBoxContainer/MenuVBox"]
 layout_mode = 2
@@ -106,8 +191,8 @@ alignment = 2
 
 [node name="VersionLabel" type="Label" parent="MainLayout/HBoxContainer/RightSideInfo"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.45, 0.5, 0.6, 1)
-text = "v0.1.0 Prototype  |  Godot 4.x"
+theme_override_colors/font_color = Color(0.45, 0.55, 0.7, 1)
+text = "v0.2.0 Full 3D Edition  |  Godot 4.x"
 horizontal_alignment = 2
 
 [node name="SaveSlotSelector" parent="." instance=ExtResource("2_save_slots")]

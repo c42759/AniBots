@@ -1,169 +1,149 @@
-[gd_scene load_steps=9 format=3 uid="uid://starter_city_01"]
+[gd_scene load_steps=22 format=3 uid="uid://starter_city_3d_01"]
 
 [ext_resource type="Script" path="res://src/scenes/overworld/StarterCity.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://player_scene_01" path="res://src/scenes/overworld/Player.tscn" id="2_player"]
-[ext_resource type="PackedScene" uid="uid://sparring_npc_01" path="res://src/scenes/overworld/npc/SparringNPC.tscn" id="3_npc"]
+[ext_resource type="PackedScene" uid="uid://player_3d_01" path="res://src/scenes/overworld/Player3D.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://sparring_npc_3d_01" path="res://src/scenes/overworld/npc/SparringNPC3D.tscn" id="3_npc"]
 [ext_resource type="PackedScene" uid="uid://dialogue_box_01" path="res://src/scenes/ui/DialogueBox.tscn" id="4_dialogue"]
 [ext_resource type="PackedScene" uid="uid://anibot_assembly_01" path="res://src/scenes/ui/AnibotAssembly.tscn" id="5_assembly"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_North"]
-normal = Vector2(0, 1)
+[sub_resource type="Environment" id="Environment_city"]
+background_mode = 1
+background_color = Color(0.529412, 0.807843, 0.980392, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.7, 0.8, 0.9, 1)
+ambient_light_energy = 0.9
+glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.1
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_South"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_grass"]
+size = Vector2(50, 50)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_West"]
-normal = Vector2(1, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass"]
+albedo_color = Color(0.298039, 0.686275, 0.313726, 1)
+roughness = 0.8
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_East"]
-normal = Vector2(-1, 0)
+[sub_resource type="BoxMesh" id="BoxMesh_road_ns"]
+size = Vector3(7, 0.04, 38)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_Workshop"]
-size = Vector2(240, 180)
+[sub_resource type="BoxMesh" id="BoxMesh_road_ew"]
+size = Vector3(38, 0.04, 6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_Door"]
-size = Vector2(60, 40)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_road"]
+albedo_color = Color(0.843137, 0.8, 0.784314, 1)
+roughness = 0.6
 
-[node name="StarterCity" type="Node2D"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_fountain_rim"]
+top_radius = 3.5
+bottom_radius = 3.5
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fountain_rim"]
+albedo_color = Color(0.737255, 0.666667, 0.643137, 1)
+roughness = 0.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_water"]
+top_radius = 3.2
+bottom_radius = 3.2
+height = 0.36
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_water"]
+albedo_color = Color(0, 0.737255, 0.831373, 0.85)
+emission_enabled = true
+emission = Color(0, 0.831373, 0.937255, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_workshop"]
+size = Vector3(8, 4.5, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_workshop_walls"]
+size = Vector3(8, 4.5, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_workshop_walls"]
+albedo_color = Color(0.96, 0.94, 0.9, 1)
+roughness = 0.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_workshop_roof"]
+size = Vector3(8.5, 1.2, 6.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_workshop_roof"]
+albedo_color = Color(0.0980392, 0.462745, 0.823529, 1)
+roughness = 0.4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(2.5, 2.2, 1.8)
+
+[node name="StarterCity" type="Node3D"]
 script = ExtResource("1_script")
 
-[node name="Boundaries" type="StaticBody2D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_city")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819152, -0.40558, 0.40558, 0, 0.707107, 0.707107, -0.573576, -0.579228, 0.579228, 10, 15, 10)
+light_color = Color(1, 0.98, 0.94, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="GroundPlane" type="MeshInstance3D" parent="Terrain"]
+mesh = SubResource("PlaneMesh_grass")
+surface_material_override/0 = SubResource("StandardMaterial3D_grass")
+
+[node name="Road_NS" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_road_ns")
+surface_material_override/0 = SubResource("StandardMaterial3D_road")
+
+[node name="Road_EW" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_road_ew")
+surface_material_override/0 = SubResource("StandardMaterial3D_road")
+
+[node name="FountainRim" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("CylinderMesh_fountain_rim")
+surface_material_override/0 = SubResource("StandardMaterial3D_fountain_rim")
+
+[node name="FountainWater" type="MeshInstance3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+mesh = SubResource("CylinderMesh_water")
+surface_material_override/0 = SubResource("StandardMaterial3D_water")
+
+[node name="WorkshopBuilding" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -8)
+collision_layer = 1
 collision_mask = 2
 
-[node name="NorthWall" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(600, 20)
-shape = SubResource("WorldBoundaryShape2D_North")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorkshopBuilding"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+shape = SubResource("BoxShape3D_workshop")
 
-[node name="SouthWall" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(600, 780)
-shape = SubResource("WorldBoundaryShape2D_South")
+[node name="WallsMesh" type="MeshInstance3D" parent="WorkshopBuilding"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
+mesh = SubResource("BoxMesh_workshop_walls")
+surface_material_override/0 = SubResource("StandardMaterial3D_workshop_walls")
 
-[node name="WestWall" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(20, 400)
-shape = SubResource("WorldBoundaryShape2D_West")
+[node name="RoofMesh" type="MeshInstance3D" parent="WorkshopBuilding"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8, 0)
+mesh = SubResource("BoxMesh_workshop_roof")
+surface_material_override/0 = SubResource("StandardMaterial3D_workshop_roof")
 
-[node name="EastWall" type="CollisionShape2D" parent="Boundaries"]
-position = Vector2(1180, 400)
-shape = SubResource("WorldBoundaryShape2D_East")
-
-[node name="WorkshopBuilding" type="StaticBody2D" parent="."]
-position = Vector2(160, 160)
+[node name="WorkshopDoorArea" type="Area3D" parent="WorkshopBuilding"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 3.2)
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkshopBuilding"]
-shape = SubResource("RectangleShape2D_Workshop")
+[node name="DoorShape" type="CollisionShape3D" parent="WorkshopBuilding/WorkshopDoorArea"]
+shape = SubResource("BoxShape3D_door")
 
-[node name="VisualPanel" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = -120.0
-offset_top = -90.0
-offset_right = 120.0
-offset_bottom = 90.0
-color = Color(0.96, 0.94, 0.9, 1)
+[node name="SparringNPC" parent="." instance=ExtResource("3_npc")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 9.5, 0, 7.5)
 
-[node name="WallTrim" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = -120.0
-offset_top = 70.0
-offset_right = 120.0
-offset_bottom = 90.0
-color = Color(0.85, 0.75, 0.65, 1)
-
-[node name="RoofPanel" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = -126.0
-offset_top = -96.0
-offset_right = 126.0
-offset_bottom = -50.0
-color = Color(0.12, 0.53, 0.9, 1)
-
-[node name="RoofShingle" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = -126.0
-offset_top = -54.0
-offset_right = 126.0
-offset_bottom = -48.0
-color = Color(0.08, 0.38, 0.7, 1)
-
-[node name="SignPlate" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = -95.0
-offset_top = -42.0
-offset_right = 95.0
-offset_bottom = -16.0
-color = Color(0.35, 0.22, 0.12, 1)
-
-[node name="SignLabel" type="Label" parent="WorkshopBuilding"]
-offset_left = -90.0
-offset_top = -40.0
-offset_right = 90.0
-offset_bottom = -18.0
-theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
-theme_override_font_sizes/font_size = 12
-text = "★ ANIBOT WORKSHOP ★"
-horizontal_alignment = 1
-
-[node name="WindowLeft" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = -90.0
-offset_top = 0.0
-offset_right = -50.0
-offset_bottom = 40.0
-color = Color(0.5, 0.85, 1, 1)
-
-[node name="WindowRight" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = 50.0
-offset_top = 0.0
-offset_right = 90.0
-offset_bottom = 40.0
-color = Color(0.5, 0.85, 1, 1)
-
-[node name="Door" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = -22.0
-offset_top = 20.0
-offset_right = 22.0
-offset_bottom = 90.0
-color = Color(0.45, 0.28, 0.16, 1)
-
-[node name="DoorKnob" type="ColorRect" parent="WorkshopBuilding"]
-offset_left = 12.0
-offset_top = 54.0
-offset_right = 16.0
-offset_bottom = 60.0
-color = Color(1, 0.84, 0, 1)
-
-[node name="WorkshopDoorArea" type="Area2D" parent="WorkshopBuilding"]
+[node name="Player" parent="." instance=ExtResource("2_player")]
 unique_name_in_owner = true
-position = Vector2(0, 75)
-collision_mask = 2
-
-[node name="DoorShape" type="CollisionShape2D" parent="WorkshopBuilding/WorkshopDoorArea"]
-shape = SubResource("RectangleShape2D_Door")
-
-[node name="DoorPrompt" type="PanelContainer" parent="WorkshopBuilding/WorkshopDoorArea"]
-unique_name_in_owner = true
-visible = false
-offset_left = -50.0
-offset_top = -60.0
-offset_right = 50.0
-offset_bottom = -30.0
-
-[node name="Margin" type="MarginContainer" parent="WorkshopBuilding/WorkshopDoorArea/DoorPrompt"]
-layout_mode = 2
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 2
-
-[node name="Label" type="Label" parent="WorkshopBuilding/WorkshopDoorArea/DoorPrompt/Margin"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
-theme_override_font_sizes/font_size = 12
-text = "[E] Enter Lab"
-horizontal_alignment = 1
-
-[node name="YSortRoot" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="SparringNPC" parent="YSortRoot" instance=ExtResource("3_npc")]
-position = Vector2(980, 560)
-
-[node name="Player" parent="YSortRoot" instance=ExtResource("2_player")]
-unique_name_in_owner = true
-position = Vector2(600, 410)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -193,7 +173,7 @@ theme_override_constants/margin_bottom = 6
 [node name="LocationLabel" type="Label" parent="HUD/TopBar/HBox/CityBadge/Margin"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
-text = "Circuit City - Sector 0"
+text = "Circuit City - 3D Sector 0"
 
 [node name="BotBadge" type="PanelContainer" parent="HUD/TopBar/HBox"]
 layout_mode = 2
@@ -251,6 +231,34 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(80, 36)
 layout_mode = 2
 text = "Menu"
+
+[node name="DoorPrompt" type="PanelContainer" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 60.0
+offset_right = 60.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/DoorPrompt"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="HUD/DoorPrompt/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+text = "[E] Enter Lab"
+horizontal_alignment = 1
 
 [node name="DialogueBox" parent="HUD" instance=ExtResource("4_dialogue")]
 unique_name_in_owner = true

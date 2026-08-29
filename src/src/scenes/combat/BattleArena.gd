@@ -1,15 +1,15 @@
 # BattleArena.gd
-# Orchestrates 3-Phase ATB Relay combat arena between Player and Opponent
-extends Node2D
+# Orchestrates 3-Phase ATB Relay combat arena between Player and Opponent in full 3D
+extends Node3D
 
-@onready var player_unit: CombatUnit = %PlayerUnit
-@onready var enemy_unit: CombatUnit = %EnemyUnit
+@onready var player_unit: CombatUnit3D = %PlayerUnit
+@onready var enemy_unit: CombatUnit3D = %EnemyUnit
 @onready var combat_ui = %CombatUI
 
 var is_battle_over: bool = false
-var arena_center_x: float = 640.0
-var player_base_x: float = 220.0
-var enemy_base_x: float = 1060.0
+var arena_center_x: float = 0.0
+var player_base_x: float = -7.5
+var enemy_base_x: float = 7.5
 
 func _ready() -> void:
 	_init_arena_combatants()
@@ -26,9 +26,10 @@ func _ready() -> void:
 	combat_ui.return_to_overworld_requested.connect(_on_return_to_overworld)
 
 func _init_arena_combatants() -> void:
+	var session = GameManager.active_battle_session
+	
 	var player_bot_config = SaveManager.get_active_anibot()
 	if player_bot_config.is_empty():
-		# Fallback starter
 		player_bot_config = {
 			"bot_name": "Genesis-1",
 			"chip_id": "chip_artificer",
@@ -56,14 +57,70 @@ func _init_arena_combatants() -> void:
 		}
 	
 	player_unit.base_line_x = player_base_x
-	player_unit.center_line_x = arena_center_x - 40.0
+	player_unit.center_line_x = -1.2
 	player_unit.setup_unit(player_bot_config, true)
 	
 	enemy_unit.base_line_x = enemy_base_x
-	enemy_unit.center_line_x = arena_center_x + 40.0
+	enemy_unit.center_line_x = 1.2
 	enemy_unit.setup_unit(opponent_config, false)
 	
+	if session.is_empty() or not session.get("is_active", false):
+		# Brand new battle session
+		GameManager.active_battle_session = {
+			"is_active": true,
+			"player": {
+				"config": player_bot_config,
+				"integrities": player_unit.part_integrities.duplicate(),
+				"part_max_integrities": player_unit.part_max_integrities.duplicate(),
+				"head_cache_remaining": player_unit.head_cache_remaining,
+				"overclock_gauge": player_unit.overclock_gauge,
+				"action_bar": player_unit.action_bar,
+				"current_phase": Types.CombatPhase.WAIT,
+				"track_progress": 0.0,
+				"position_x": player_base_x
+			},
+			"enemy": {
+				"config": opponent_config,
+				"integrities": enemy_unit.part_integrities.duplicate(),
+				"part_max_integrities": enemy_unit.part_max_integrities.duplicate(),
+				"head_cache_remaining": enemy_unit.head_cache_remaining,
+				"action_bar": enemy_unit.action_bar,
+				"current_phase": Types.CombatPhase.WAIT,
+				"track_progress": 0.0,
+				"position_x": enemy_base_x
+			},
+			"last_clash": {},
+			"combat_log": "Sparring encounter initiated! Ready your Anibot!"
+		}
+	else:
+		# Restoring session state after returning from a clash cutscene
+		var p_state = session.get("player", {})
+		var e_state = session.get("enemy", {})
+		var last_clash = session.get("last_clash", {})
+		var attacker_is_player = last_clash.get("attacker_is_player", true)
+		
+		player_unit.restore_state(p_state)
+		enemy_unit.restore_state(e_state)
+		
+		# Set attacking unit to return back (COOLDOWN)
+		if attacker_is_player:
+			player_unit.current_phase = Types.CombatPhase.COOLDOWN
+			player_unit.track_progress = 1.0
+			player_unit.position.x = player_unit.center_line_x
+		else:
+			enemy_unit.current_phase = Types.CombatPhase.COOLDOWN
+			enemy_unit.track_progress = 1.0
+			enemy_unit.position.x = enemy_unit.center_line_x
+	
 	combat_ui.setup_hud(player_unit, enemy_unit)
+	if session.has("combat_log"):
+		combat_ui.set_combat_log(session["combat_log"])
+		
+	# Check immediate win/loss condition
+	if enemy_unit.part_integrities.get(Types.PartSlot.HEAD, 60) <= 0:
+		_on_enemy_defeated(enemy_unit)
+	elif player_unit.part_integrities.get(Types.PartSlot.HEAD, 60) <= 0:
+		_on_player_defeated(player_unit)
 
 func _process(delta: float) -> void:
 	if is_battle_over:
@@ -73,7 +130,11 @@ func _process(delta: float) -> void:
 	enemy_unit.update_combat_tick(delta)
 	combat_ui.update_bars(player_unit, enemy_unit)
 
-func _on_player_command_ready(unit: CombatUnit) -> void:
+func _save_session_state() -> void:
+	GameManager.active_battle_session["player"] = player_unit.export_state()
+	GameManager.active_battle_session["enemy"] = enemy_unit.export_state()
+
+func _on_player_command_ready(unit: CombatUnit3D) -> void:
 	if is_battle_over:
 		return
 	combat_ui.open_command_menu(unit)
@@ -84,43 +145,20 @@ func _on_player_action_chosen(slot: int, is_overclock: bool) -> void:
 	var act_name = player_unit.selected_action_part.get("name", "Attack")
 	combat_ui.set_combat_log("%s selected %s! Sprinting to Center Line..." % [player_unit.unit_name, act_name])
 
-func _on_player_reached_center(unit: CombatUnit) -> void:
+func _on_player_reached_center(unit: CombatUnit3D) -> void:
 	if is_battle_over:
 		return
 	
+	_save_session_state()
 	var part = unit.selected_action_part
-	var pwr = part.get("payload", 30)
 	var is_ult = part.get("is_ult", false)
-	
-	SignalBus.play_sfx_requested.emit("laser" if is_ult else "attack_hit")
-	
-	var hit_result = enemy_unit.take_damage(pwr)
-	combat_ui.update_unit_damage(enemy_unit)
-	
-	var slot_name = _slot_name_str(hit_result["slot_hit"])
-	var log_msg = "%s strikes with %s! Dealt %d damage to %s's %s!" % [
-		unit.unit_name,
-		part.get("name", "Attack"),
-		hit_result["damage"],
-		enemy_unit.unit_name,
-		slot_name
-	]
-	
-	if hit_result["destroyed"]:
-		log_msg += " [%s DISABLED!]" % slot_name
-	if hit_result["head_destroyed"]:
-		log_msg += " [CRITICAL: HEAD DESTROYED!]"
-		
-	combat_ui.set_combat_log(log_msg)
-	
-	# Unit starts returning back to base
-	unit.current_phase = Types.CombatPhase.COOLDOWN
+	GameManager.trigger_clash(true, part, is_ult)
 
-func _on_enemy_command_ready(unit: CombatUnit) -> void:
+func _on_enemy_command_ready(unit: CombatUnit3D) -> void:
 	if is_battle_over:
 		return
 		
-	# Simple Training Drone AI: Choose a working arm or head
+	# Training Drone AI
 	var possible_slots = []
 	if unit.part_integrities[Types.PartSlot.LEFT_ARM] > 0:
 		possible_slots.append(Types.PartSlot.LEFT_ARM)
@@ -133,42 +171,23 @@ func _on_enemy_command_ready(unit: CombatUnit) -> void:
 	unit.assign_command(chosen_slot, false)
 	combat_ui.set_combat_log("%s charges to Center Line with %s!" % [unit.unit_name, unit.selected_action_part.get("name", "Attack")])
 
-func _on_enemy_reached_center(unit: CombatUnit) -> void:
+func _on_enemy_reached_center(unit: CombatUnit3D) -> void:
 	if is_battle_over:
 		return
 		
+	_save_session_state()
 	var part = unit.selected_action_part
-	var pwr = part.get("payload", 20)
-	
-	SignalBus.play_sfx_requested.emit("attack_hit")
-	
-	var hit_result = player_unit.take_damage(pwr)
-	combat_ui.update_unit_damage(player_unit)
-	
-	var slot_name = _slot_name_str(hit_result["slot_hit"])
-	var log_msg = "%s hits with %s! Dealt %d damage to your %s!" % [
-		unit.unit_name,
-		part.get("name", "Attack"),
-		hit_result["damage"],
-		slot_name
-	]
-	
-	if hit_result["destroyed"]:
-		log_msg += " [PART BROKEN!]"
-	if hit_result["head_destroyed"]:
-		log_msg += " [SYSTEM FAILURE DETECTED!]"
-		
-	combat_ui.set_combat_log(log_msg)
-	unit.current_phase = Types.CombatPhase.COOLDOWN
+	var is_ult = part.get("is_ult", false)
+	GameManager.trigger_clash(false, part, is_ult)
 
-func _on_enemy_defeated(_unit: CombatUnit) -> void:
+func _on_enemy_defeated(_unit: CombatUnit3D) -> void:
 	if is_battle_over:
 		return
 	is_battle_over = true
 	SignalBus.play_sfx_requested.emit("explosion")
 	combat_ui.show_battle_results(true, {"scrap": 20})
 
-func _on_player_defeated(_unit: CombatUnit) -> void:
+func _on_player_defeated(_unit: CombatUnit3D) -> void:
 	if is_battle_over:
 		return
 	is_battle_over = true
@@ -187,27 +206,3 @@ func _slot_name_str(slot: int) -> String:
 		Types.PartSlot.RIGHT_ARM: return "Right Arm"
 		Types.PartSlot.LEGS: return "Legs"
 	return "Part"
-
-func _draw() -> void:
-	# Draw High-Tech Battle Arena Floor
-	draw_rect(Rect2(0, 0, 1280, 720), Color("#101520")) # Dark background
-	
-	# Track Lanes
-	draw_rect(Rect2(120, 300, 1040, 160), Color("#182030"))
-	draw_rect(Rect2(120, 300, 1040, 160), Color("#263248"), false, 2.0)
-	
-	# Grid markings on track
-	for x in range(160, 1120, 80):
-		draw_line(Vector2(x, 300), Vector2(x, 460), Color(0.2, 0.28, 0.4, 0.4), 1.0)
-		
-	# Player Base Line (Left)
-	draw_line(Vector2(player_base_x, 280), Vector2(player_base_x, 480), Color("#00E5FF"), 3.0)
-	draw_circle(Vector2(player_base_x, 380), 6.0, Color("#00E5FF"))
-	
-	# Enemy Base Line (Right)
-	draw_line(Vector2(enemy_base_x, 280), Vector2(enemy_base_x, 480), Color("#FF1744"), 3.0)
-	draw_circle(Vector2(enemy_base_x, 380), 6.0, Color("#FF1744"))
-	
-	# Center Combat Engagement Line (Center)
-	draw_line(Vector2(arena_center_x, 260), Vector2(arena_center_x, 500), Color("#FFD600"), 4.0)
-	draw_rect(Rect2(arena_center_x - 30, 320, 60, 120), Color(1.0, 0.84, 0.0, 0.12))

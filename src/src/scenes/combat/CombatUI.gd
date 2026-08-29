@@ -50,7 +50,7 @@ func _ready() -> void:
 	overclock_btn.pressed.connect(func(): _on_command_selected(Types.PartSlot.HEAD, true))
 	result_return_btn.pressed.connect(_on_return_pressed)
 
-func setup_hud(player_unit: CombatUnit, enemy_unit: CombatUnit) -> void:
+func setup_hud(player_unit: CombatUnit3D, enemy_unit: CombatUnit3D) -> void:
 	p_name_label.text = player_unit.unit_name
 	e_name_label.text = enemy_unit.unit_name
 	
@@ -58,12 +58,12 @@ func setup_hud(player_unit: CombatUnit, enemy_unit: CombatUnit) -> void:
 	_update_unit_hp(enemy_unit, false)
 	set_combat_log("Sparring encounter initiated! Ready your Anibot!")
 
-func update_bars(player_unit: CombatUnit, enemy_unit: CombatUnit) -> void:
+func update_bars(player_unit: CombatUnit3D, enemy_unit: CombatUnit3D) -> void:
 	p_atb_bar.value = player_unit.action_bar
 	e_atb_bar.value = enemy_unit.action_bar
 	p_overclock_bar.value = player_unit.overclock_gauge
 
-func open_command_menu(player_unit: CombatUnit) -> void:
+func open_command_menu(player_unit: CombatUnit3D) -> void:
 	var head_entry = player_unit._get_part_catalog(Types.PartSlot.HEAD)
 	var l_arm_entry = player_unit._get_part_catalog(Types.PartSlot.LEFT_ARM)
 	var r_arm_entry = player_unit._get_part_catalog(Types.PartSlot.RIGHT_ARM)
@@ -90,40 +90,46 @@ func _on_command_selected(slot: int, is_overclock: bool) -> void:
 	close_command_menu()
 	command_chosen.emit(slot, is_overclock)
 
-func update_unit_damage(unit: CombatUnit) -> void:
+func update_unit_damage(unit: CombatUnit3D) -> void:
 	_update_unit_hp(unit, unit.is_player)
 
-func _update_unit_hp(unit: CombatUnit, is_player_side: bool) -> void:
+func _update_unit_hp(unit: CombatUnit3D, is_player_side: bool) -> void:
+	var head_max = unit.part_max_integrities.get(Types.PartSlot.HEAD, 60)
+	var head_cur = unit.part_integrities.get(Types.PartSlot.HEAD, 60)
+	var torso_max = unit.part_max_integrities.get(Types.PartSlot.TORSO, 150)
+	var torso_cur = unit.part_integrities.get(Types.PartSlot.TORSO, 150)
+	var l_arm_max = unit.part_max_integrities.get(Types.PartSlot.LEFT_ARM, 50)
+	var l_arm_cur = unit.part_integrities.get(Types.PartSlot.LEFT_ARM, 50)
+	var r_arm_max = unit.part_max_integrities.get(Types.PartSlot.RIGHT_ARM, 50)
+	var r_arm_cur = unit.part_integrities.get(Types.PartSlot.RIGHT_ARM, 50)
+	var legs_max = unit.part_max_integrities.get(Types.PartSlot.LEGS, 90)
+	var legs_cur = unit.part_integrities.get(Types.PartSlot.LEGS, 90)
+
 	if is_player_side:
-		p_head_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.HEAD, 60)
-		p_head_bar.value = unit.part_integrities.get(Types.PartSlot.HEAD, 60)
-		
-		p_torso_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.TORSO, 150)
-		p_torso_bar.value = unit.part_integrities.get(Types.PartSlot.TORSO, 150)
-		
-		p_l_arm_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.LEFT_ARM, 50)
-		p_l_arm_bar.value = unit.part_integrities.get(Types.PartSlot.LEFT_ARM, 50)
-		
-		p_r_arm_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.RIGHT_ARM, 50)
-		p_r_arm_bar.value = unit.part_integrities.get(Types.PartSlot.RIGHT_ARM, 50)
-		
-		p_legs_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.LEGS, 90)
-		p_legs_bar.value = unit.part_integrities.get(Types.PartSlot.LEGS, 90)
+		_set_bar_value_and_color(p_head_bar, head_cur, head_max, true)
+		_set_bar_value_and_color(p_torso_bar, torso_cur, torso_max, true)
+		_set_bar_value_and_color(p_l_arm_bar, l_arm_cur, l_arm_max, true)
+		_set_bar_value_and_color(p_r_arm_bar, r_arm_cur, r_arm_max, true)
+		_set_bar_value_and_color(p_legs_bar, legs_cur, legs_max, true)
 	else:
-		e_head_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.HEAD, 60)
-		e_head_bar.value = unit.part_integrities.get(Types.PartSlot.HEAD, 60)
-		
-		e_torso_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.TORSO, 150)
-		e_torso_bar.value = unit.part_integrities.get(Types.PartSlot.TORSO, 150)
-		
-		e_l_arm_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.LEFT_ARM, 50)
-		e_l_arm_bar.value = unit.part_integrities.get(Types.PartSlot.LEFT_ARM, 50)
-		
-		e_r_arm_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.RIGHT_ARM, 50)
-		e_r_arm_bar.value = unit.part_integrities.get(Types.PartSlot.RIGHT_ARM, 50)
-		
-		e_legs_bar.max_value = unit.part_max_integrities.get(Types.PartSlot.LEGS, 90)
-		e_legs_bar.value = unit.part_integrities.get(Types.PartSlot.LEGS, 90)
+		_set_bar_value_and_color(e_head_bar, head_cur, head_max, false)
+		_set_bar_value_and_color(e_torso_bar, torso_cur, torso_max, false)
+		_set_bar_value_and_color(e_l_arm_bar, l_arm_cur, l_arm_max, false)
+		_set_bar_value_and_color(e_r_arm_bar, r_arm_cur, r_arm_max, false)
+		_set_bar_value_and_color(e_legs_bar, legs_cur, legs_max, false)
+
+func _set_bar_value_and_color(bar: ProgressBar, current_hp: int, max_hp: int, is_player_side: bool) -> void:
+	bar.max_value = max(max_hp, 1)
+	bar.value = clamp(current_hp, 0, max_hp)
+	var ratio = float(current_hp) / float(max(max_hp, 1))
+	if current_hp <= 0:
+		bar.modulate = Color(0.35, 0.35, 0.35, 0.6) # disabled dark gray
+	elif ratio < 0.3:
+		bar.modulate = Color(1.0, 0.2, 0.2) # critical red
+	elif ratio < 0.6:
+		bar.modulate = Color(1.0, 0.75, 0.2) # warning amber
+	else:
+		bar.modulate = Color(0.2, 0.85, 1.0) if is_player_side else Color(1.0, 0.45, 0.45)
 
 func set_combat_log(msg: String) -> void:
 	combat_log_label.text = msg

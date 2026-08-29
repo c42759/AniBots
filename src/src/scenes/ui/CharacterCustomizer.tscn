@@ -1,7 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://character_customizer_01"]
+[gd_scene load_steps=8 format=3 uid="uid://character_customizer_01"]
 
 [ext_resource type="Script" path="res://src/scenes/ui/CharacterCustomizer.gd" id="1_script"]
-[ext_resource type="Script" path="res://src/scenes/overworld/CompositeCharacter.gd" id="2_character"]
+[ext_resource type="Script" path="res://src/scenes/overworld/CompositeCharacter3D.gd" id="2_character_3d"]
+
+[sub_resource type="Environment" id="Environment_customizer"]
+background_mode = 1
+background_color = Color(0.0627451, 0.0823529, 0.12549, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.5, 0.6, 0.7, 1)
+ambient_light_energy = 0.9
+glow_enabled = true
+glow_intensity = 0.6
+glow_bloom = 0.15
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_podium"]
+top_radius = 1.4
+bottom_radius = 1.6
+height = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_podium"]
+albedo_color = Color(0.12, 0.16, 0.24, 1)
+metallic = 0.8
+roughness = 0.3
+emission_enabled = true
+emission = Color(0, 0.898039, 1, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+inner_radius = 1.35
+outer_radius = 1.45
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ring"]
+albedo_color = Color(0, 0.898039, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.898039, 1, 1)
+emission_energy_multiplier = 3.0
 
 [node name="CharacterCustomizer" type="Control"]
 layout_mode = 3
@@ -43,18 +76,18 @@ theme_override_constants/margin_bottom = 32
 
 [node name="VBox" type="VBoxContainer" parent="MainLayout/LeftPreviewPanel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 
 [node name="Title" type="Label" parent="MainLayout/LeftPreviewPanel/Margin/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.3, 0.75, 1, 1)
-theme_override_font_sizes/font_size = 28
-text = "HANDLER REGISTRATION"
+theme_override_font_sizes/font_size = 26
+text = "HANDLER REGISTRATION (3D)"
 horizontal_alignment = 1
 
 [node name="NameContainer" type="VBoxContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 4
 
 [node name="NameLabel" type="Label" parent="MainLayout/LeftPreviewPanel/Margin/VBox/NameContainer"]
 layout_mode = 2
@@ -62,31 +95,76 @@ text = "Handler Name:"
 
 [node name="NameInput" type="LineEdit" parent="MainLayout/LeftPreviewPanel/Margin/VBox/NameContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 placeholder_text = "Enter handler name..."
 text = "Handler"
 max_length = 16
 
-[node name="PreviewViewportBox" type="CenterContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox"]
-custom_minimum_size = Vector2(0, 320)
+[node name="PreviewViewportBox" type="PanelContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 310)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PreviewBackground" type="ColorRect" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox"]
-custom_minimum_size = Vector2(260, 260)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox"]
 layout_mode = 2
-color = Color(0.09, 0.12, 0.18, 1)
+stretch = true
 
-[node name="PreviewCharacterNode" type="Control" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox"]
-layout_mode = 2
+[node name="SubViewport" type="SubViewport" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(396, 310)
+render_target_update_mode = 4
 
-[node name="PreviewCharacter" type="Node2D" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/PreviewCharacterNode"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_customizer")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 2, 4, 3)
+light_color = Color(1, 0.95, 0.9, 1)
+light_energy = 1.3
+
+[node name="SpotOmniLight" type="OmniLight3D" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 1.2)
+light_color = Color(0, 0.898039, 1, 1)
+light_energy = 2.5
+omni_range = 6.0
+
+[node name="Camera3D" type="Camera3D" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0.85, 2.4)
+current = true
+fov = 38.0
+
+[node name="Podium" type="MeshInstance3D" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+mesh = SubResource("CylinderMesh_podium")
+surface_material_override/0 = SubResource("StandardMaterial3D_podium")
+
+[node name="NeonRing" type="MeshInstance3D" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer/SubViewport/Podium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+mesh = SubResource("TorusMesh_ring")
+surface_material_override/0 = SubResource("StandardMaterial3D_ring")
+
+[node name="PreviewCharacter3D" type="Node3D" parent="MainLayout/LeftPreviewPanel/Margin/VBox/PreviewViewportBox/SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
-position = Vector2(0, 40)
-script = ExtResource("2_character")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+script = ExtResource("2_character_3d")
 is_preview_mode = true
-preview_scale = 5.0
+
+[node name="TurntableControls" type="HBoxContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="RotateLeftBtn" type="Button" parent="MainLayout/LeftPreviewPanel/Margin/VBox/TurntableControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "⟲ Rotate L"
+
+[node name="RotateRightBtn" type="Button" parent="MainLayout/LeftPreviewPanel/Margin/VBox/TurntableControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+text = "Rotate R ⟳"
 
 [node name="StarterBox" type="PanelContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox"]
 layout_mode = 2
@@ -94,13 +172,13 @@ layout_mode = 2
 [node name="StarterMargin" type="MarginContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox/StarterBox"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 10
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_bottom = 8
 
 [node name="StarterVBox" type="VBoxContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox/StarterBox/StarterMargin"]
 layout_mode = 2
-theme_override_constants/separation = 6
+theme_override_constants/separation = 4
 
 [node name="ChipNavHBox" type="HBoxContainer" parent="MainLayout/LeftPreviewPanel/Margin/VBox/StarterBox/StarterMargin/StarterVBox"]
 layout_mode = 2
@@ -108,7 +186,7 @@ alignment = 1
 
 [node name="ChipPrevBtn" type="Button" parent="MainLayout/LeftPreviewPanel/Margin/VBox/StarterBox/StarterMargin/StarterVBox/ChipNavHBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(36, 32)
+custom_minimum_size = Vector2(36, 28)
 layout_mode = 2
 text = "<"
 
@@ -122,7 +200,7 @@ horizontal_alignment = 1
 
 [node name="ChipNextBtn" type="Button" parent="MainLayout/LeftPreviewPanel/Margin/VBox/StarterBox/StarterMargin/StarterVBox/ChipNavHBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(36, 32)
+custom_minimum_size = Vector2(36, 28)
 layout_mode = 2
 text = ">"
 
@@ -346,5 +424,4 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 text = "Start Adventure"

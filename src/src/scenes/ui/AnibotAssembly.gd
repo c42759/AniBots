@@ -1,5 +1,5 @@
 # AnibotAssembly.gd
-# Medabots-style Anibot Loadout Assembly and Part Swapping Garage UI
+# Medabots-style Anibot Loadout Assembly and Part Swapping 3D Garage UI
 extends Control
 
 signal closed
@@ -41,6 +41,8 @@ signal closed
 @onready var select_r_arm_btn: Button = find_child("SelectRArmBtn", true, false)
 @onready var select_legs_btn: Button = find_child("SelectLegsBtn", true, false)
 
+@onready var hangar_bot: AniBotModel3D = %HangarBot3D
+
 var active_slot_selected: int = Types.PartSlot.HEAD
 var selected_inventory_part: Dictionary = {}
 
@@ -63,6 +65,10 @@ func _ready() -> void:
 		select_r_arm_btn.pressed.connect(_select_slot_r_arm)
 	if select_legs_btn and not select_legs_btn.pressed.is_connected(_select_slot_legs):
 		select_legs_btn.pressed.connect(_select_slot_legs)
+
+func _process(delta: float) -> void:
+	if visible and hangar_bot:
+		hangar_bot.rotation.y += delta * 0.5
 
 func _select_slot_head() -> void: _select_slot(Types.PartSlot.HEAD)
 func _select_slot_torso() -> void: _select_slot(Types.PartSlot.TORSO)
@@ -210,6 +216,10 @@ func refresh_all_views() -> void:
 		overweight_warning.hide()
 		weight_loadout_label.modulate = Color(0.4, 0.9, 0.4)
 
+	# Update 3D Hangar Bot
+	if hangar_bot:
+		hangar_bot.setup_model(bot_data, true)
+
 	_refresh_inventory_list()
 
 func _select_slot(slot: int) -> void:
@@ -308,7 +318,7 @@ func _on_inspect_part(item: Dictionary) -> void:
 	var new_lat = item.get("latency", 2.0)
 	var diff_lat = new_lat - cur_lat
 	comp_latency_label.text = "Cooldown Latency: %.1fs -> %.1fs (%s%.1fs)" % [cur_lat, new_lat, "+" if diff_lat > 0 else "", diff_lat]
-	comp_latency_label.modulate = Color(1.0, 0.4, 0.4) if diff_lat > 0 else Color(0.4, 1.0, 0.4) # lower latency is better
+	comp_latency_label.modulate = Color(1.0, 0.4, 0.4) if diff_lat > 0 else Color(0.4, 1.0, 0.4)
 	
 	# Weight Diff
 	var cur_wt = cur_cat.get("weight", 0)

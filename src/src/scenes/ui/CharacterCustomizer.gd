@@ -1,7 +1,8 @@
 # CharacterCustomizer.gd
+# 3D Handler Character Customization Stage Controller
 extends Control
 
-@onready var preview_character: CompositeCharacter = %PreviewCharacter
+@onready var preview_character: CompositeCharacter3D = %PreviewCharacter3D
 @onready var name_input: LineEdit = %NameInput
 
 # Category Style Buttons & Labels
@@ -36,6 +37,7 @@ var selected_shoe_color: Color = Color("#FAFAFA")
 
 var starter_chips = ["chip_artificer", "chip_spark", "chip_orion"]
 var starter_chip_idx: int = 0
+var turntable_rot_speed: float = 0.0
 
 func _ready() -> void:
 	_setup_color_palettes()
@@ -45,6 +47,15 @@ func _ready() -> void:
 	randomize_btn.pressed.connect(_on_randomize_pressed)
 	back_btn.pressed.connect(_on_back_pressed)
 	start_game_btn.pressed.connect(_on_start_game_pressed)
+	
+	if has_node("%RotateLeftBtn"):
+		%RotateLeftBtn.pressed.connect(func(): preview_character.rotation.y -= 0.5)
+	if has_node("%RotateRightBtn"):
+		%RotateRightBtn.pressed.connect(func(): preview_character.rotation.y += 0.5)
+
+func _process(delta: float) -> void:
+	if preview_character and turntable_rot_speed != 0.0:
+		preview_character.rotation.y += turntable_rot_speed * delta
 
 func _setup_color_palettes() -> void:
 	# Hair Colors
@@ -191,7 +202,8 @@ func _update_preview() -> void:
 		"shoe_style": shoe_entry["id"],
 		"shoe_color": selected_shoe_color
 	}
-	preview_character.apply_appearance(data)
+	if preview_character:
+		preview_character.apply_appearance(data)
 
 func _on_randomize_pressed() -> void:
 	SignalBus.play_sfx_requested.emit("click")

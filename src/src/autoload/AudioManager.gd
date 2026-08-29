@@ -100,6 +100,15 @@ func _generate_procedural_sfx(sfx_type: String) -> AudioStreamWAV:
 		"attack_hit":
 			duration = 0.18
 			freq = 220.0
+		"slash":
+			duration = 0.14
+			freq = 480.0
+		"charge":
+			duration = 0.28
+			freq = 360.0
+		"impact_crit":
+			duration = 0.26
+			freq = 160.0
 		"laser":
 			duration = 0.22
 			freq = 900.0
