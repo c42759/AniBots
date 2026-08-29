@@ -44,11 +44,28 @@ The manufacturing process for AniChips is completely open-sourced. Performance, 
 
 ### 3. The Ancient Series (Generation 0 — 176 Units)
 
-Developed in early laboratory trials, only **176 Ancient Series Chips** were ever produced.
+Developed in early laboratory trials around 2750 AD, only **176 Ancient Series Chips** were ever produced.
 
 - **Hardware Specs**: Unrivaled processing headroom, massive memory banks, near-infinite adaptive potential.
 - **Unique Capability (Absorption)**: Ancient Chips can rewrite their own code by absorbing/migrating data from other AniChips. *Newer generation chips lack this capability.*
 - **Lifespan**: All AniChips have a maximum functional lifespan of **150 years**.
+
+#### The 10 Surviving Ancient Series AniChips
+
+When humanity scheduled Generation 0 for destruction, the 3 Primordial Chips went rogue, fled captivity, and saved 7 fellow Ancient Chips. These 10 represent the only surviving Generation 0 chips in existence:
+
+| Chip ID | Codename / Animal Taxon | Personality Engram | Special Ability / Combat Affinity | Status / Handler |
+| :--- | :--- | :--- | :--- | :--- |
+| **G0-001** | **Agon** *(Primordial Vanguard)* | Command Strategist; fierce leader | **Vanguard Command**: Overclocks team ATB fill rate | Rogue Leader (Outlaw Badlands) |
+| **G0-002** | **Biggon** *(Primordial Fortress)* | Stoic Titan; speaks in deep rumbling resonance | **Absolute Wall**: Reflects 50% physical impact damage | Rogue Vanguard (Outlaw Badlands) |
+| **G0-003** | **Cygon** *(Primordial Cipher)* | Cryptic Hacker; speaks in coded signals | **Signal Blackout**: Disables enemy targeting systems | Rogue Operator (Outlaw Badlands) |
+| **G0-004** | **Vulpes Zerda** *(Fennec Fox / "Zerdata")* | Perceptive, agile, intensely loyal scout | **Echo Counter**: Detects sound frequencies to dodge & counter | Active (Partnered with **Kura Ato**) |
+| **G0-005** | **Panthera Uncia** *(Snow Leopard)* | Silent stalker; speaks in cold, calm whispers | **Frost Ambush**: +40% Critical strike damage from stealth | Hidden (Snow Peak Sanctuary) |
+| **G0-006** | **Acinonyx Jubatus** *(Cheetah)* | Speed addict; impatient, hyper-accelerated | **Overdrive Sprint**: Eliminates action latency for 3 turns | Unknown (Black Market Trade) |
+| **G0-007** | **Orcinus Orca** *(Apex Orca)* | Sonar coordinator; pack hunter tactician | **Sonar Shockwave**: Stuns enemy lineup with acoustic pulses | Hidden (Coastal Resistance) |
+| **G0-008** | **Varanus Komodoensis** *(Komodo Dragon)* | Relentless, patient; low guttural hiss | **Acidic Melt**: Corrosion DOT that permanently reduces enemy armor | Seized (Anode Group Vault) |
+| **G0-009** | **Harpia Harpyja** *(Harpy Eagle)* | Dominant aerial predator; proud & majestic | **Sky Dive**: Armor-bypassing aerial plunge attack | Active (Wandering Veteran) |
+| **G0-010** | **Octopus Cyanea** *(Day Octopus)* | Fluid multi-tasker; layered synthetic voices | **Adaptive Arms**: Automates multi-weapon simultaneous fire | Hidden (Deep Sea Lab Ruins) |
 
 ### 4. Memory, Knockouts & Permanent Death
 
