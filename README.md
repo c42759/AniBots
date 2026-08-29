@@ -89,3 +89,9 @@ We are building a highly tactical, system-driven RPG and actively welcome contri
 1. Read our comprehensive design document: 👉 **[OVERVIEW.md](./OVERVIEW.md)** to understand the lore, mechanics, and design philosophy.
 2. Check existing Issues or open a new Discussion/Issue with your ideas or proposed changes.
 3. Fork the repository, create your feature branch, and submit a Pull Request.
+
+---
+
+## 🤖 AI Usage Disclaimer
+
+AI tool usage is permitted within this project. We deeply respect all artists and creative creators. Utilizing AI tools enables us to accelerate game development and build an engaging experience for the community to enjoy. All human contributors will be honored and credited for their contributions.
