@@ -89,63 +89,60 @@ export const AniBotDetailModal: React.FC<AniBotDetailModalProps> = ({
 
         {/* Modal Scrollable Body */}
         <div className="p-6 overflow-y-auto space-y-6">
-          {/* Main Visual Image & Overview Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            {/* Dedicated Hero Image Display Slot */}
-            <div className="md:col-span-5">
-              <ItemImage
-                src={bot.image}
-                defaultPath={`/images/anibots/${bot.id}.png`}
-                alt={bot.name}
-                type="anibot"
-                aspectRatio="aspect-square"
-                size="lg"
-              />
+          {/* Full-Width Hero Image Display */}
+          <div className="w-full">
+            <ItemImage
+              id={bot.id}
+              name={bot.name}
+              src={bot.image}
+              alt={bot.name}
+              type="anibot"
+              aspectRatio="aspect-video sm:aspect-[16/9]"
+              objectFit="contain"
+              size="lg"
+            />
+          </div>
+
+          {/* Archetype & Description Overview */}
+          <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-2">
+            <div className="text-xs font-mono text-amber-400 font-semibold uppercase tracking-wider">
+              ARCHETYPE: {bot.archetype}
+            </div>
+            <p className="text-sm text-slate-200 leading-relaxed">{bot.description}</p>
+          </div>
+
+          {/* Affinity Synergy & Preferred Chip */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Affinity Synergy */}
+            <div className="bg-gradient-to-br from-amber-950/30 to-slate-900 p-4 rounded-xl border border-amber-900/40">
+              <div className="text-xs font-mono font-bold text-amber-400 mb-1 flex items-center gap-1.5">
+                <span>⚡ AFFINITY SYNERGY</span>
+              </div>
+              <p className="text-xs text-amber-200/90 leading-normal">
+                {bot.affinity_synergy_bonus}
+              </p>
             </div>
 
-            {/* Archetype & Description Column */}
-            <div className="md:col-span-7 space-y-4">
-              <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 space-y-2">
-                <div className="text-xs font-mono text-amber-400 font-semibold uppercase tracking-wider">
-                  ARCHETYPE: {bot.archetype}
+            {/* Preferred Core Chip Link */}
+            <div className="bg-gradient-to-br from-cyan-950/30 to-slate-900 p-4 rounded-xl border border-cyan-900/40 flex flex-col justify-between">
+              <div>
+                <div className="text-xs font-mono font-bold text-cyan-400 mb-1 flex items-center gap-1.5">
+                  <span>💾 PREFERRED ANIMA CHIP</span>
                 </div>
-                <p className="text-sm text-slate-200 leading-relaxed">{bot.description}</p>
+                <p className="text-xs text-slate-300 font-mono">
+                  {bot.preferred_chip ? bot.preferred_chip.toUpperCase() : 'NONE DESIGNATED'}
+                </p>
               </div>
 
-              {/* Affinity Synergy & Preferred Chip */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {/* Affinity Synergy */}
-                <div className="bg-gradient-to-br from-amber-950/30 to-slate-900 p-3.5 rounded-xl border border-amber-900/40">
-                  <div className="text-xs font-mono font-bold text-amber-400 mb-1 flex items-center gap-1.5">
-                    <span>⚡ SYNERGY</span>
-                  </div>
-                  <p className="text-xs text-amber-200/90 leading-normal">
-                    {bot.affinity_synergy_bonus}
-                  </p>
-                </div>
-
-                {/* Preferred Core Chip Link */}
-                <div className="bg-gradient-to-br from-cyan-950/30 to-slate-900 p-3.5 rounded-xl border border-cyan-900/40 flex flex-col justify-between">
-                  <div>
-                    <div className="text-xs font-mono font-bold text-cyan-400 mb-1 flex items-center gap-1.5">
-                      <span>💾 CORE CHIP</span>
-                    </div>
-                    <p className="text-xs text-slate-300 font-mono">
-                      {bot.preferred_chip ? bot.preferred_chip.toUpperCase() : 'NONE'}
-                    </p>
-                  </div>
-
-                  {bot.preferred_chip && (
-                    <button
-                      onClick={handleChipNavigation}
-                      className="mt-2 w-full py-1.5 px-2 rounded-lg bg-cyan-950 hover:bg-cyan-900 text-cyan-300 border border-cyan-700/60 text-xs font-mono font-bold transition-all flex items-center justify-center gap-1"
-                    >
-                      <span>VIEW SPECS</span>
-                      <span>→</span>
-                    </button>
-                  )}
-                </div>
-              </div>
+              {bot.preferred_chip && (
+                <button
+                  onClick={handleChipNavigation}
+                  className="mt-3 w-full py-2 px-3 rounded-lg bg-cyan-950 hover:bg-cyan-900 text-cyan-300 border border-cyan-700/60 text-xs font-mono font-bold transition-all flex items-center justify-center gap-2"
+                >
+                  <span>VIEW {bot.preferred_chip.toUpperCase()} SPECS</span>
+                  <span>→</span>
+                </button>
+              )}
             </div>
           </div>
 

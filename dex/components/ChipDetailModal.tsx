@@ -85,59 +85,52 @@ export const ChipDetailModal: React.FC<ChipDetailModalProps> = ({
 
         {/* Modal Scrollable Body */}
         <div className="p-6 overflow-y-auto space-y-6">
-          {/* Main Visual Image & Overview Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            {/* Dedicated Hero Chip Core Image Slot */}
-            <div className="md:col-span-5">
-              <ItemImage
-                src={chip.image}
-                defaultPath={`/images/chips/${chip.id}.png`}
-                alt={chip.name}
-                type="chip"
-                diodeColor={diodeColor}
-                aspectRatio="aspect-square"
-                size="lg"
-              />
+          {/* Full-Width Hero Chip Core Image */}
+          <div className="w-full">
+            <ItemImage
+              id={chip.id}
+              name={chip.name}
+              src={chip.image}
+              alt={chip.name}
+              type="chip"
+              diodeColor={diodeColor}
+              aspectRatio="aspect-video sm:aspect-[16/9]"
+              objectFit="contain"
+              size="lg"
+            />
+          </div>
+
+          {/* Quote & Personality Block */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-2 bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-3">
+              <div className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">
+                PERSONALITY &amp; VOICE ENGRAM
+              </div>
+              <p className="text-sm text-slate-200">{chip.personality}</p>
+
+              {chip.quote && (
+                <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 italic text-cyan-200 text-xs leading-relaxed">
+                  "{chip.quote}"
+                </div>
+              )}
             </div>
 
-            {/* Quote & Personality Column */}
-            <div className="md:col-span-7 space-y-4">
-              <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-3">
-                <div className="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">
-                  PERSONALITY &amp; VOICE ENGRAM
-                </div>
-                <p className="text-sm text-slate-200">{chip.personality}</p>
-
-                {chip.quote && (
-                  <div className="p-3 rounded-lg bg-slate-900 border border-slate-800 italic text-cyan-200 text-xs leading-relaxed">
-                    "{chip.quote}"
-                  </div>
-                )}
+            {/* Core Specs Box */}
+            <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-2 font-mono text-xs">
+              <div className="text-slate-400">DIODE SPECTRUM:</div>
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-4 h-4 rounded border border-white/20"
+                  style={{ backgroundColor: diodeColor }}
+                ></span>
+                <span className="font-bold text-slate-100">{diodeColor}</span>
               </div>
 
-              {/* Core Specs Box */}
-              <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800 space-y-2 font-mono text-xs grid grid-cols-2 gap-2">
-                <div>
-                  <div className="text-slate-400">DIODE SPECTRUM:</div>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span
-                      className="w-4 h-4 rounded border border-white/20"
-                      style={{ backgroundColor: diodeColor }}
-                    ></span>
-                    <span className="font-bold text-slate-100">{diodeColor}</span>
-                  </div>
-                </div>
+              <div className="pt-2 text-slate-400">TARGET PRIORITY:</div>
+              <div className="text-amber-400 font-semibold">{chip.target_priority}</div>
 
-                <div>
-                  <div className="text-slate-400">TARGET PRIORITY:</div>
-                  <div className="text-amber-400 font-semibold mt-1">{chip.target_priority}</div>
-                </div>
-
-                <div className="col-span-2 pt-1 border-t border-slate-800/80">
-                  <span className="text-slate-400">VOICE STYLE: </span>
-                  <span className="text-slate-200 font-sans">{chip.voice_style}</span>
-                </div>
-              </div>
+              <div className="pt-2 border-t border-slate-800/80 text-slate-400">VOICE STYLE:</div>
+              <div className="text-slate-200 font-sans">{chip.voice_style}</div>
             </div>
           </div>
 
