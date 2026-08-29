@@ -40,6 +40,28 @@ Combat utilizes a dynamic action bar with distinct phases (Wait, Run, Cooldown).
 
 To bridge the gap between RPG and management games, parts suffer permanent **Condition** degradation if destroyed in combat. Players collect **Scrap** from defeated enemies to synthesize new parts (which start at 40% condition as a "test drive") and must balance using field patches versus real-time Workshop repairs.
 
+## 📱 AniDex Web App
+
+The repository includes **AniDex**, a Next.js Pokédex-style web application located in the [`./dex`](./dex) directory for exploring, searching, and analyzing all AniBots (robot frames) and Anima Chips (AI cores).
+
+![Anima Dex](./AnimaDex.png)
+
+### Features
+
+- **Item Databank:** Browse 36 AniBots and 36 Anima Chips with live search and multi-faceted filtering (Series, Affinity, Stats).
+- **5-Part Schematics:** Detailed breakdown for Head, Torso, Left/Right Arms, and Legs (Integrity, Payload, Precision, Clock Speed, Latency, Weight).
+- **AI Core Specs:** View personality engrams, quote haikus, base stat gauges, passive traits, and ultimate abilities.
+- **Cross-Linking:** Quick navigation between AniBots and their preferred Anima Chips.
+
+### Running AniDex Locally
+
+```bash
+cd dex
+pnpm dev   # or npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser. For complete documentation, see [`./dex/README.md`](./dex/README.md).
+
 ## 🚀 Getting Started
 
 Follow these steps to set up the AniBots project locally:
