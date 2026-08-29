@@ -1,0 +1,401 @@
+[gd_scene load_steps=3 format=3 uid="uid://combat_ui_01"]
+
+[ext_resource type="Script" path="res://src/scenes/combat/CombatUI.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmd_panel"]
+bg_color = Color(0.0627451, 0.0823529, 0.137255, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.898039, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 8
+
+[node name="CombatUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="TopStatusContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 24
+
+[node name="HBox" type="HBoxContainer" parent="TopStatusContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="PlayerStatusPanel" type="PanelContainer" parent="TopStatusContainer/HBox"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="TopStatusContainer/HBox/PlayerStatusPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PNameLabel" type="Label" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Player Anibot"
+
+[node name="PATBHBox" type="HBoxContainer" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Lbl" type="Label" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/PATBHBox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "ATB:"
+
+[node name="PATBBar" type="ProgressBar" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/PATBHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+show_percentage = false
+
+[node name="POverclockBar" type="ProgressBar" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox"]
+unique_name_in_owner = true
+modulate = Color(1, 0.8, 0.2, 1)
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+show_percentage = false
+
+[node name="Grid" type="GridContainer" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 2
+columns = 4
+
+[node name="HHead" type="Label" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "HD:"
+
+[node name="PHeadBar" type="ProgressBar" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HTorso" type="Label" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "TR:"
+
+[node name="PTorsoBar" type="ProgressBar" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HLArm" type="Label" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "LA:"
+
+[node name="PLArmBar" type="ProgressBar" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HRArm" type="Label" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "RA:"
+
+[node name="PRArmBar" type="ProgressBar" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HLegs" type="Label" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "LG:"
+
+[node name="PLegsBar" type="ProgressBar" parent="TopStatusContainer/HBox/PlayerStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="CenterCombatLogPanel" type="PanelContainer" parent="TopStatusContainer/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="TopStatusContainer/HBox/CenterCombatLogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="CombatLogLabel" type="Label" parent="TopStatusContainer/HBox/CenterCombatLogPanel/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = "Combat simulation initialized."
+autowrap_mode = 2
+
+[node name="EnemyStatusPanel" type="PanelContainer" parent="TopStatusContainer/HBox"]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="TopStatusContainer/HBox/EnemyStatusPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ENameLabel" type="Label" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 16
+text = "Training Drone"
+horizontal_alignment = 2
+
+[node name="EATBHBox" type="HBoxContainer" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Lbl" type="Label" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/EATBHBox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "ATB:"
+
+[node name="EATBBar" type="ProgressBar" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/EATBHBox"]
+unique_name_in_owner = true
+modulate = Color(1, 0.4, 0.4, 1)
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+show_percentage = false
+
+[node name="Grid" type="GridContainer" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 2
+columns = 4
+
+[node name="HHead" type="Label" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "HD:"
+
+[node name="EHeadBar" type="ProgressBar" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HTorso" type="Label" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "TR:"
+
+[node name="ETorsoBar" type="ProgressBar" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HLArm" type="Label" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "LA:"
+
+[node name="ELArmBar" type="ProgressBar" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HRArm" type="Label" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "RA:"
+
+[node name="ERArmBar" type="ProgressBar" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="HLegs" type="Label" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "LG:"
+
+[node name="ELegsBar" type="ProgressBar" parent="TopStatusContainer/HBox/EnemyStatusPanel/Margin/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 10)
+layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
+show_percentage = false
+
+[node name="CommandPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(720, 130)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -360.0
+offset_top = -150.0
+offset_right = 360.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cmd_panel")
+
+[node name="Margin" type="MarginContainer" parent="CommandPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="Grid" type="GridContainer" parent="CommandPanel/Margin"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="HeadButton" type="Button" parent="CommandPanel/Margin/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "[Head] Logic Bomb (Cache: 3)"
+
+[node name="LArmButton" type="Button" parent="CommandPanel/Margin/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "[L-Arm] Ratchet Wrench"
+
+[node name="RArmButton" type="Button" parent="CommandPanel/Margin/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "[R-Arm] Heavy Ratchet"
+
+[node name="OverclockButton" type="Button" parent="CommandPanel/Margin/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(330, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "[ULTIMATE] Overclock Blitz"
+
+[node name="ResultModal" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(440, 240)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -120.0
+offset_right = 220.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="ResultModal"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="ResultModal/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ResultTitleLabel" type="Label" parent="ResultModal/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SYSTEM VICTORY!"
+horizontal_alignment = 1
+
+[node name="ResultDescLabel" type="Label" parent="ResultModal/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 14
+text = "Combat resolved."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ResultReturnButton" type="Button" parent="ResultModal/Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to City"

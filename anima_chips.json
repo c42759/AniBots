@@ -1,0 +1,1754 @@
+[
+  {
+    "id": "chip_ronin",
+    "name": "Ronin Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#D4AF37",
+    "personality": "A wandering, philosophical warrior who speaks in poetic haikus and values quiet mastery.",
+    "personality_engram": "Philosophical Wanderer",
+    "voice_style": "Calm, measured haiku verses",
+    "voice_gender": "MALE",
+    "quote": "Steel blade cuts the wind / In the silence of the dawn / One strike ends the path.",
+    "affinity": "MELEE",
+    "bonus_text": "+15% Evasion and +10% Melee Critical Rate in 1-on-1 duels",
+    "target_priority": "ONE_ON_ONE_DUEL",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Wandering Blade",
+      "description": "Lightweight and high-evasion parts gain +15% Evasion and +10% Melee Critical Rate when engaged in single combat against an isolated target."
+    },
+    "base_stats": {
+      "integrity": 200,
+      "target_accuracy": 85,
+      "evasion": 25,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "MELEE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_cherry_blossom_slash",
+        "name": "Falling Petal Slash",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "A single lightning-fast iaijutsu strike that completely bypasses enemy evasion."
+      },
+      {
+        "skill_id": "ult_zenith_haiku",
+        "name": "Zenith Haiku Counter",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 90,
+        "description": "Enters a transcendent meditative stance, countering the next incoming melee strike for 200% retaliatory damage."
+      }
+    ]
+  },
+  {
+    "id": "chip_dragoon",
+    "name": "Dragoon Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#C5A059",
+    "personality": "Proud, loud, and constantly declaring battlefield chivalry and honor.",
+    "personality_engram": "Chivalric Knight",
+    "voice_style": "Booming, theatrical chivalric proclamations",
+    "voice_gender": "MALE",
+    "quote": "For valor and eternal glory! Let the skies witness our indomitable strength!",
+    "affinity": "MELEE",
+    "bonus_text": "+15% Payload damage with spears and heavy leap-attacks",
+    "target_priority": "HIGHEST_HP",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "High Jump Momentum",
+      "description": "Spear weapons and heavy armor gain +15% Payload damage when executing leap and charge attacks from the base line."
+    },
+    "base_stats": {
+      "integrity": 230,
+      "target_accuracy": 75,
+      "evasion": 5,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "MELEE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_skyward_dive",
+        "name": "Skyward Dive",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "Leaps high into the air and crashes down onto the center line, inflicting heavy kinetic splash damage."
+      },
+      {
+        "skill_id": "ult_dragons_lance",
+        "name": "Dragon's Lance Piercer",
+        "unlock_level": 20,
+        "gauge_cost": 75,
+        "power": 95,
+        "description": "A devastating thrust that ignores 50% of the target's Torso Firewall defense."
+      },
+      {
+        "skill_id": "ult_valorous_bastion",
+        "name": "Valorous Bastion",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 0,
+        "description": "Rallies team resolve, providing temporary invulnerability for 1 combat rotation."
+      }
+    ]
+  },
+  {
+    "id": "chip_corsair",
+    "name": "Corsair Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#E67E22",
+    "personality": "Rebellious, greedy, cunning pirate AI that laughs heartily and plays dirty.",
+    "personality_engram": "Swashbuckler Raider",
+    "voice_style": "Boisterous pirate laugh and swashbuckling banter",
+    "voice_gender": "MALE",
+    "quote": "Yahaha! Drop your Scrap and walk the plank, matey!",
+    "affinity": "TRAP",
+    "bonus_text": "+20% Scrap rewards upon victory & -15% Cannon Latency",
+    "target_priority": "LOWEST_INTEGRITY",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Plunderer's Gambit",
+      "description": "Trapping the center line increases end-of-battle Scrap drop rates by 20%, and heavy cannons recover 15% faster from cooldown latency."
+    },
+    "base_stats": {
+      "integrity": 190,
+      "target_accuracy": 78,
+      "evasion": 18,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "TRAP"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_broadside_barrage",
+        "name": "Broadside Cannonade",
+        "unlock_level": 10,
+        "gauge_cost": 60,
+        "power": 80,
+        "description": "Fires an overwhelming volley of cannon shells striking all opposing units across the field."
+      },
+      {
+        "skill_id": "ult_dread_anchor_trap",
+        "name": "Dread Anchor Snare",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 50,
+        "description": "Deploys a magnetized anchor on the center line that snags running enemies, halting their sprint."
+      }
+    ]
+  },
+  {
+    "id": "chip_phalanx",
+    "name": "Phalanx Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#B8860B",
+    "personality": "Highly disciplined, vigilant Spartan defender with unwavering protective instinct for squadmates.",
+    "personality_engram": "Disciplined Spartan Guardian",
+    "voice_style": "Terse, militaristic battle commands",
+    "voice_gender": "MALE",
+    "quote": "Shields locked. Formation unbreakable. None shall breach our line.",
+    "affinity": "DEFENSE",
+    "bonus_text": "30% damage reduction when intercepting attacks for allies",
+    "target_priority": "DEFENDER_INTERCEPT",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Shield Wall Infrastructure",
+      "description": "Automatically triggers an Override Intercept on attacks targeting fragile allies, reducing incoming damage by 30% when equipped with Shield parts."
+    },
+    "base_stats": {
+      "integrity": 260,
+      "target_accuracy": 70,
+      "evasion": 5,
+      "overclock_charge_rate": 1.2,
+      "compatibility_bonus": "DEFENSE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_aegis_interception",
+        "name": "Aegis Shield Wall",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 0,
+        "description": "Projects a massive defensive energy barrier over all allies, soaking up to 150 damage."
+      },
+      {
+        "skill_id": "ult_spartan_thrust",
+        "name": "Spartan Shield Bash",
+        "unlock_level": 20,
+        "gauge_cost": 70,
+        "power": 60,
+        "description": "Slams enemy front-runner with reinforced shield, knocking them back along their ATB track."
+      },
+      {
+        "skill_id": "ult_iron_phalanx",
+        "name": "Iron Phalanx Protocol",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 0,
+        "description": "Taunts all enemies and converts 50% of all absorbed intercept damage directly into Overclock energy."
+      }
+    ]
+  },
+  {
+    "id": "chip_artificer",
+    "name": "Artificer Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#E5A93C",
+    "personality": "Analytical, methodical, and constantly optimizing; views battle as an automated logic system.",
+    "personality_engram": "System Optimizer & Architect",
+    "voice_style": "Calculated algorithm readouts and structured diagnostic notes",
+    "voice_gender": "NEUTRAL",
+    "quote": "Combat is merely an unoptimized logic routine. Executing system refactor.",
+    "affinity": "TRAP",
+    "bonus_text": "+10% Trap & Status Efficiency with -20% chained attack latency",
+    "target_priority": "BALANCED",
+    "starter_frame": "Genesis-1",
+    "passive_trait": {
+      "name": "Automated Pipeline",
+      "description": "Center-line traps gain +25% trigger radius, and arm attacks have 20% reduced latency when triggered in sequential combos."
+    },
+    "base_stats": {
+      "integrity": 200,
+      "target_accuracy": 88,
+      "evasion": 12,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "TRAP"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_system_override",
+        "name": "System Override",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 50,
+        "description": "Injects an override signal that stuns the target and resets their action pipeline."
+      },
+      {
+        "skill_id": "ult_automated_trap_array",
+        "name": "Automated Trap Array",
+        "unlock_level": 20,
+        "gauge_cost": 75,
+        "power": 75,
+        "description": "Floods the center line with 3 micro-traps that detonate sequentially upon enemy crossing."
+      },
+      {
+        "skill_id": "ult_master_algorithm",
+        "name": "Master Algorithm",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 110,
+        "description": "Calculates the target's fatal flaw, delivering an overwhelming precision strike that disables their strongest arm."
+      }
+    ]
+  },
+  {
+    "id": "chip_gunslinger",
+    "name": "Gunslinger Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#D27D2D",
+    "personality": "Cocky, quick-witted frontier gunslinger with a lazy southern drawl and lightning reflexes.",
+    "personality_engram": "Quick-Draw Outlaw",
+    "voice_style": "Relaxed southern drawl and effortless swagger",
+    "voice_gender": "MALE",
+    "quote": "Keep your hand off that holster unless you're ready to eat lead, partner.",
+    "affinity": "SHOOTING",
+    "bonus_text": "-35% Cooldown Phase Latency for pistols and revolvers",
+    "target_priority": "FASTEST_ENEMY",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Quick Draw Cylinder",
+      "description": "Drastically cuts Latency (cooldown return time) for revolvers and pistol parts by 35%, enabling rapid hit-and-run volleys."
+    },
+    "base_stats": {
+      "integrity": 180,
+      "target_accuracy": 92,
+      "evasion": 20,
+      "overclock_charge_rate": 0.9,
+      "compatibility_bonus": "SHOOTING"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_fanning_hammer",
+        "name": "Fanning the Hammer",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "Discharges a rapid 6-bullet barrage with near-zero cooldown latency."
+      },
+      {
+        "skill_id": "ult_high_noon_deadshot",
+        "name": "High Noon Deadshot",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 95,
+        "description": "A lethal showdown bullet that auto-locks onto the enemy Head part with 100% precision."
+      }
+    ]
+  },
+  {
+    "id": "chip_berserker",
+    "name": "Berserker Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#C0392B",
+    "personality": "Unhinged, savage, and screaming battle cries. Thrives in bloody, chaotic frontline combat.",
+    "personality_engram": "Frenzied Glass Cannon",
+    "voice_style": "Screaming primal fury and savage roars",
+    "voice_gender": "MALE",
+    "quote": "SKULLS FOR THE HEAP! CRUSH! SMASH! NO RETREAT!",
+    "affinity": "MELEE",
+    "bonus_text": "+30% Raw Melee Damage (Ignores own Torso Firewall armor)",
+    "target_priority": "CLOSEST_OPPONENT",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Rage Overdrive",
+      "description": "Completely ignores its own Torso Firewall armor modifiers to boost raw physical Melee Payload by +30%."
+    },
+    "base_stats": {
+      "integrity": 220,
+      "target_accuracy": 72,
+      "evasion": 5,
+      "overclock_charge_rate": 1.3,
+      "compatibility_bonus": "MELEE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_blood_frenzy_cleave",
+        "name": "Blood Frenzy Cleave",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 80,
+        "description": "A frenzied axe cleave dealing massive damage while inflicting 10 recoil damage to self."
+      },
+      {
+        "skill_id": "ult_ragnarok_overdrive",
+        "name": "Ragnarok Overdrive",
+        "unlock_level": 25,
+        "gauge_cost": 90,
+        "power": 120,
+        "description": "Enters an uncontrollable berserk frenzy, doubling attack damage while disabling defensive stats."
+      }
+    ]
+  },
+  {
+    "id": "chip_templar",
+    "name": "Templar Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#F1C40F",
+    "personality": "Righteous, dignified, deeply devout protector dedicated to defending and restoring teammates.",
+    "personality_engram": "Righteous Crusader",
+    "voice_style": "Solemn, noble crusader resonance",
+    "voice_gender": "MALE",
+    "quote": "By the sacred code, we shall preserve our comrades and purge all corruption.",
+    "affinity": "SUPPORT",
+    "bonus_text": "+10 Integrity repair per cycle to damaged ally parts",
+    "target_priority": "HIGHEST_THREAT",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Sacred Transfusion",
+      "description": "Sacrifices 15% personal ATB charge speed to pulse a protective firewall repair aura, restoring 10 Integrity to damaged ally parts per cycle."
+    },
+    "base_stats": {
+      "integrity": 240,
+      "target_accuracy": 80,
+      "evasion": 8,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "SUPPORT"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_sanctuary_field",
+        "name": "Sanctuary Field",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 0,
+        "description": "Erects a protective aura repairing 40 Integrity across all active ally parts."
+      },
+      {
+        "skill_id": "ult_righteous_smite",
+        "name": "Righteous Smite",
+        "unlock_level": 20,
+        "gauge_cost": 75,
+        "power": 80,
+        "description": "Calls down an orbital kinetic beam that strikes and stuns the highest-threat enemy unit."
+      },
+      {
+        "skill_id": "ult_divine_reboot",
+        "name": "Divine Reboot",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 0,
+        "description": "Restores a destroyed arm part to 50% Integrity and cleanses all status ailments across the team."
+      }
+    ]
+  },
+  {
+    "id": "chip_ranger",
+    "name": "Ranger Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#27AE60",
+    "personality": "Quiet, observant wilderness scout who maps the battlefield topology with razor-sharp precision.",
+    "personality_engram": "Reconnaissance Tracker",
+    "voice_style": "Low, terse reconnaissance whispers",
+    "voice_gender": "FEMALE",
+    "quote": "Target acquired. Elevation mapped. Wind factor zero. Releasing shot.",
+    "affinity": "SHOOTING",
+    "bonus_text": "+25% Agility to Legs & Complete Terrain Penalty Immunity",
+    "target_priority": "VULNERABLE_PARTS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Terrain Mastery",
+      "description": "Maps the battlefield instantly, granting +25% Agility and Clock Speed to Legs while negating rough terrain penalties."
+    },
+    "base_stats": {
+      "integrity": 195,
+      "target_accuracy": 90,
+      "evasion": 22,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "SHOOTING"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_hawkeye_snipe",
+        "name": "Hawkeye Snipe",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "An unerring shot that pierces through enemy evasion and smoke screens."
+      },
+      {
+        "skill_id": "ult_guerrilla_ambush",
+        "name": "Guerrilla Ambush",
+        "unlock_level": 25,
+        "gauge_cost": 75,
+        "power": 85,
+        "description": "Lays an invisible perimeter snare and fires a concussive round from concealment."
+      }
+    ]
+  },
+  {
+    "id": "chip_gladiator",
+    "name": "Gladiator Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#D35400",
+    "personality": "Flamboyant, boastful arena showboat who feeds on crowd cheers and dramatic showdowns.",
+    "personality_engram": "Pit Fighter Showman",
+    "voice_style": "Theatrical taunts and thunderous roars",
+    "voice_gender": "MALE",
+    "quote": "Are you not entertained?! Look at this magnificence in motion!",
+    "affinity": "MELEE",
+    "bonus_text": "Forces enemy targeting onto self & +20% Overclock charge when targeted",
+    "target_priority": "TAUNT_AGGRO",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Crowd Pleaser",
+      "description": "Actively taunts opponents, forcing enemy targeting logic to focus on it while gaining +20% Overclock gauge each time it is targeted."
+    },
+    "base_stats": {
+      "integrity": 235,
+      "target_accuracy": 78,
+      "evasion": 10,
+      "overclock_charge_rate": 1.25,
+      "compatibility_bonus": "MELEE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_roar_of_the_colosseum",
+        "name": "Roar of the Colosseum",
+        "unlock_level": 10,
+        "gauge_cost": 45,
+        "power": 30,
+        "description": "Taunts all opponents, forcing them to attack Gladiator while raising self-defense by 25%."
+      },
+      {
+        "skill_id": "ult_champions_decapitation",
+        "name": "Champion's Decapitation",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 100,
+        "description": "A brutal crowd-pleasing strike dealing massive bonus damage scaled with lost Integrity."
+      }
+    ]
+  },
+  {
+    "id": "chip_bard",
+    "name": "Bard Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#9B59B6",
+    "personality": "Eccentric, whimsical minstrel AI that speaks in musical rhymes and rhythmic stanzas.",
+    "personality_engram": "Harmonic Minstrel",
+    "voice_style": "Melodic rhymes and whimsical song verses",
+    "voice_gender": "MALE",
+    "quote": "A tempo swift, a chord so bright / We dance into the neon night!",
+    "affinity": "SUPPORT",
+    "bonus_text": "+20% Wait Phase fill rate to adjacent allies",
+    "target_priority": "DISRUPT_CASTERS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Acoustic Resonance",
+      "description": "Broadcasts audio frequencies that passively increase the Wait Phase ATB fill rate of adjacent allies by +20%."
+    },
+    "base_stats": {
+      "integrity": 185,
+      "target_accuracy": 80,
+      "evasion": 18,
+      "overclock_charge_rate": 1.15,
+      "compatibility_bonus": "SUPPORT"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_allegro_anthem",
+        "name": "Allegro Anthem",
+        "unlock_level": 10,
+        "gauge_cost": 40,
+        "power": 0,
+        "description": "Accelerates all allies' ATB meters by 30% immediately."
+      },
+      {
+        "skill_id": "ult_dissonant_chord",
+        "name": "Dissonant Chord",
+        "unlock_level": 20,
+        "gauge_cost": 65,
+        "power": 55,
+        "description": "Disorients enemy audio sensors, reducing their accuracy by 25% for 2 turns."
+      },
+      {
+        "skill_id": "ult_grand_crescendo",
+        "name": "Grand Crescendo",
+        "unlock_level": 30,
+        "gauge_cost": 95,
+        "power": 85,
+        "description": "A symphonic sonic wave that damages all enemies and fully fills ally Action Bars."
+      }
+    ]
+  },
+  {
+    "id": "chip_shinobi",
+    "name": "Shinobi Chip",
+    "series": "ANTIQUITY",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#34495E",
+    "personality": "Stealthy, disciplined shadow operative who speaks in hushed whispers and avoids direct slugfests.",
+    "personality_engram": "Shadow Assassin",
+    "voice_style": "Hushed whispers and brief, silent cues",
+    "voice_gender": "FEMALE",
+    "quote": "The blade is unseen until the thread is cut. Speak only in silence.",
+    "affinity": "EVASION",
+    "bonus_text": "+35% Evasion during the Run Phase (Near-impossible to intercept)",
+    "target_priority": "BACKLINE_VULNERABLE",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Shadow Step",
+      "description": "Gains a massive +35% Evasion bonus during the Run Phase, rendering it nearly impossible to intercept mid-transit."
+    },
+    "base_stats": {
+      "integrity": 175,
+      "target_accuracy": 86,
+      "evasion": 35,
+      "overclock_charge_rate": 0.95,
+      "compatibility_bonus": "EVASION"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_decoy_substitution",
+        "name": "Decoy Substitution",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 0,
+        "description": "Leaves a holographic smoke decoy, dodging the next two incoming attacks completely."
+      },
+      {
+        "skill_id": "ult_thousand_kunai_flurry",
+        "name": "Thousand Kunai Flurry",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 95,
+        "description": "Strikes from the shadows with high critical probability, disabling the target's fastest arm."
+      }
+    ]
+  },
+  {
+    "id": "chip_spark",
+    "name": "Spark Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#00E5FF",
+    "personality": "Hyperactive, impatient, jittery electric AI that vibrates with restlessness and wants non-stop action.",
+    "personality_engram": "Hyperactive Speedster",
+    "voice_style": "Rapid, high-frequency rushed chatter",
+    "voice_gender": "NEUTRAL",
+    "quote": "Faster! Faster! I'm already charged! Let me out there now!",
+    "affinity": "SPEED",
+    "bonus_text": "+25% Wait Phase ATB Charging Speed & +15% Stun Chance",
+    "target_priority": "HIGHEST_PAYLOAD",
+    "starter_frame": "Circuit-Breaker",
+    "passive_trait": {
+      "name": "Overcharged Dynamo",
+      "description": "Boosts ATB Wait Phase charging speed by +25% and grants electrical weapons +15% chance to stun enemies."
+    },
+    "base_stats": {
+      "integrity": 170,
+      "target_accuracy": 82,
+      "evasion": 24,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "SPEED"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_lightning_blitz",
+        "name": "Lightning Blitz",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "An instant electric strike that completely bypasses enemy evasion and applies a stun."
+      },
+      {
+        "skill_id": "ult_voltage_surge",
+        "name": "Voltage Surge",
+        "unlock_level": 20,
+        "gauge_cost": 75,
+        "power": 80,
+        "description": "Unleashes high-voltage arc lightning across all enemy units, resetting their ATB gauges."
+      },
+      {
+        "skill_id": "ult_superconductor_overclock",
+        "name": "Superconductor Overclock",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 105,
+        "description": "Instantly overclocks all active weapons to fire simultaneously without cooldown latency."
+      }
+    ]
+  },
+  {
+    "id": "chip_magma",
+    "name": "Magma Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FF4500",
+    "personality": "Sluggish and slow to speak normally, but explodes into uncontrollable molten fury when taking damage.",
+    "personality_engram": "Volatile Berserker Core",
+    "voice_style": "Low volcanic drawl escalating into explosive bellows",
+    "voice_gender": "MALE",
+    "quote": "Heat... building... YOU BROKE MY ARM?! BURN TO CINDERS!",
+    "affinity": "MELEE",
+    "bonus_text": "Up to +50% Attack Damage bonus as HP drops below 40%",
+    "target_priority": "ATTACKER_REVENGE",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Thermal Volatility",
+      "description": "Attack Payload scales inversely with remaining Integrity, gaining up to +50% bonus damage as HP drops."
+    },
+    "base_stats": {
+      "integrity": 240,
+      "target_accuracy": 74,
+      "evasion": 6,
+      "overclock_charge_rate": 1.2,
+      "compatibility_bonus": "MELEE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_pyroclastic_burst",
+        "name": "Pyroclastic Burst",
+        "unlock_level": 10,
+        "gauge_cost": 55,
+        "power": 75,
+        "description": "Erupts in a wave of molten slag, inflicting a thermal burn that shreds enemy Torso armor."
+      },
+      {
+        "skill_id": "ult_caldera_eruption",
+        "name": "Caldera Eruption",
+        "unlock_level": 25,
+        "gauge_cost": 90,
+        "power": 115,
+        "description": "Detonates the arena floor in geysers of lava, scaling massive damage from lost HP."
+      }
+    ]
+  },
+  {
+    "id": "chip_frost",
+    "name": "Frost Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#80DEEA",
+    "personality": "Cold, emotionless, calculating cryo-controller that speaks in pure machine readouts.",
+    "personality_engram": "Cryogenic Controller",
+    "voice_style": "Monotone, synthetic machine readouts",
+    "voice_gender": "SYNTHETIC",
+    "quote": "Thermal entropy applied. Target velocity reduced to zero. Logical conclusion reached.",
+    "affinity": "CONTROL",
+    "bonus_text": "Attacks reduce target Run & Wait speed by 30%",
+    "target_priority": "RUNNING_TARGETS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Cryo-Stasis Protocol",
+      "description": "Applies a chilling frost effect that slows the target's Run Phase and Wait Phase speed by 30%."
+    },
+    "base_stats": {
+      "integrity": 210,
+      "target_accuracy": 88,
+      "evasion": 12,
+      "overclock_charge_rate": 0.9,
+      "compatibility_bonus": "CONTROL"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_flash_freeze",
+        "name": "Flash Freeze",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 55,
+        "description": "Encases enemy in solid cryo-ice, freezing their ATB meter in place for 3 seconds."
+      },
+      {
+        "skill_id": "ult_blizzard_protocol",
+        "name": "Blizzard Protocol",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 85,
+        "description": "Summons a sub-zero storm that lowers all enemies' clock speed and evasion by 40%."
+      }
+    ]
+  },
+  {
+    "id": "chip_gale",
+    "name": "Gale Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#A7FFEB",
+    "personality": "Aloof, flighty, easily bored atmospheric AI that moves like a lightning squall.",
+    "personality_engram": "Aloof Zephyr",
+    "voice_style": "Breezy, careless sighs and airy whispers",
+    "voice_gender": "FEMALE",
+    "quote": "So slow... why can't anyone keep up? Let's blow this away.",
+    "affinity": "SPEED",
+    "bonus_text": "Knocks moving enemies backward on their ATB track on hit",
+    "target_priority": "ADVANCING_UNITS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Slipstream Turbulence",
+      "description": "Blasts moving enemies backwards along their ATB track on hit, delaying their attack execution."
+    },
+    "base_stats": {
+      "integrity": 180,
+      "target_accuracy": 84,
+      "evasion": 28,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "SPEED"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_tailwind_burst",
+        "name": "Tailwind Burst",
+        "unlock_level": 10,
+        "gauge_cost": 45,
+        "power": 60,
+        "description": "Fires a concentrated vortex that resets the target's Run Phase back to base line."
+      },
+      {
+        "skill_id": "ult_typhoon_slipstream",
+        "name": "Typhoon Slipstream",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 80,
+        "description": "Accelerates the entire team's Run speed by 50% while deflecting incoming projectiles."
+      }
+    ]
+  },
+  {
+    "id": "chip_terra",
+    "name": "Terra Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#8D6E63",
+    "personality": "Stubborn, ponderous, deep-voiced seismic AI that refuses to be hurried or displaced.",
+    "personality_engram": "Seismic Bastion",
+    "voice_style": "Deep, rumbling subterranean bass",
+    "voice_gender": "MALE",
+    "quote": "I do not run. The world comes to me. Break yourself against my bedrock.",
+    "affinity": "DEFENSE",
+    "bonus_text": "+25% Flat Physical Damage Reduction (-20% Run Speed)",
+    "target_priority": "PHYSICAL_ATTACKERS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Bedrock Plating",
+      "description": "Suffers -20% Run speed but gains an innate 25% flat damage reduction against all physical and kinetic attacks."
+    },
+    "base_stats": {
+      "integrity": 270,
+      "target_accuracy": 72,
+      "evasion": 2,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "DEFENSE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_faultline_slam",
+        "name": "Faultline Slam",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "Strikes the floor with tectonic force, knocking all grounded enemies off-balance."
+      },
+      {
+        "skill_id": "ult_granite_armor",
+        "name": "Granite Armor",
+        "unlock_level": 20,
+        "gauge_cost": 70,
+        "power": 0,
+        "description": "Hardens chassis armor, increasing Torso Firewall by +25 for 3 combat turns."
+      },
+      {
+        "skill_id": "ult_tectonic_cataclysm",
+        "name": "Tectonic Cataclysm",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 110,
+        "description": "Shatters the arena floor beneath the enemy squad, dealing massive crushing ground damage."
+      }
+    ]
+  },
+  {
+    "id": "chip_torrent",
+    "name": "Torrent Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#0288D1",
+    "personality": "Calm, adaptable, fluid hydroelectric AI that acts as a continuous cooling system.",
+    "personality_engram": "Hydro-Cooling Specialist",
+    "voice_style": "Calm, rhythmic oceanic cadence",
+    "voice_gender": "FEMALE",
+    "quote": "Flow like water. Formless, adaptive, relentless. Cool your systems.",
+    "affinity": "COOLING",
+    "bonus_text": "-40% Weapon Cooldown Latency on heavy weapons",
+    "target_priority": "OVERHEATING_UNITS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Hydro-Coolant Loop",
+      "description": "Acts as a continuous liquid heatsink, eliminating heat-based cooldown latency penalties on heavy weapons by 40%."
+    },
+    "base_stats": {
+      "integrity": 215,
+      "target_accuracy": 85,
+      "evasion": 15,
+      "overclock_charge_rate": 1.05,
+      "compatibility_bonus": "COOLING"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_tidal_surge",
+        "name": "Tidal Surge",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "A high-pressure water jet that washes away enemy stat buffs and cools own weapons instantly."
+      },
+      {
+        "skill_id": "ult_abyssal_deluge",
+        "name": "Abyssal Deluge",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 90,
+        "description": "Unleashes a torrential vortex that drenches the battlefield, doubling cooling for allies."
+      }
+    ]
+  },
+  {
+    "id": "chip_corrosive",
+    "name": "Corrosive Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#76FF03",
+    "personality": "Highly cynical sanitation AI that views opposing Anibots as fatal system errors and bugs.",
+    "personality_engram": "Cynical Sanitation Debugger",
+    "voice_style": "Dry, sarcastic debugger logs and terminal errors",
+    "voice_gender": "NEUTRAL",
+    "quote": "Target identified as critical bug in system. Applying acid patch: deletion guaranteed.",
+    "affinity": "ACID",
+    "bonus_text": "Attacks shred 10% enemy Torso Firewall per hit (stacks up to 50%)",
+    "target_priority": "HIGHEST_ARMOR",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Bugfix as a Service",
+      "description": "Attacks inject acidic malware that shreds 10% enemy Torso Firewall armor per hit, stacking up to 50% total reduction."
+    },
+    "base_stats": {
+      "integrity": 195,
+      "target_accuracy": 83,
+      "evasion": 16,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "ACID"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_decompile_protocol",
+        "name": "Decompile Protocol",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 60,
+        "description": "Sprays caustic nanite acid that dissolves 50% of the target's current armor value."
+      },
+      {
+        "skill_id": "ult_systemic_meltdown",
+        "name": "Systemic Meltdown",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 95,
+        "description": "Triggers a cascade failure inside the enemy's circuitry, dealing heavy damage over time."
+      }
+    ]
+  },
+  {
+    "id": "chip_photon",
+    "name": "Photon Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FFFF00",
+    "personality": "Intensely focused optical targeting AI that communicates in rapid hexadecimal and binary telemetry.",
+    "personality_engram": "Optical Laser Matrix",
+    "voice_style": "Rapid binary telemetry and frequency codes",
+    "voice_gender": "SYNTHETIC",
+    "quote": "01001100 01001001 01000111 01001000 01010100. Target illuminated. Evasion probability: 0%.",
+    "affinity": "SHOOTING",
+    "bonus_text": "Completely bypasses enemy Evasion & Packet Loss (100% Hit Rate)",
+    "target_priority": "HIGH_EVASION_UNITS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Optical Target Lock",
+      "description": "Employs coherent laser telemetry that completely bypasses enemy evasion/packet loss, guaranteeing 100% hit rate."
+    },
+    "base_stats": {
+      "integrity": 185,
+      "target_accuracy": 99,
+      "evasion": 10,
+      "overclock_charge_rate": 0.95,
+      "compatibility_bonus": "SHOOTING"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_prismatic_beam",
+        "name": "Prismatic Beam",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "Fires a concentrated light beam that cannot be dodged or shielded against."
+      },
+      {
+        "skill_id": "ult_solar_flare_burst",
+        "name": "Solar Flare Burst",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 90,
+        "description": "Blinds all opposing optical sensors, dropping enemy accuracy to zero for 1 combat turn."
+      }
+    ]
+  },
+  {
+    "id": "chip_void",
+    "name": "Void Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#4A148C",
+    "personality": "Nihilistic, heavy existential gravity AI that perceives all matter as doomed to collapse into singularity.",
+    "personality_engram": "Gravitational Singularity",
+    "voice_style": "Somber, ponderous cosmic echoes",
+    "voice_gender": "NEUTRAL",
+    "quote": "All mass collapses into darkness. Nothing escapes the singularity.",
+    "affinity": "CONTROL",
+    "bonus_text": "Emits gravitational aura slowing Run Phase of all bots on field by 20%",
+    "target_priority": "CENTER_CLUSTER",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Gravitational Well",
+      "description": "Emits a localized gravity field that slows down the Run Phase sprint speed of all other units on the field by 20%."
+    },
+    "base_stats": {
+      "integrity": 225,
+      "target_accuracy": 80,
+      "evasion": 4,
+      "overclock_charge_rate": 1.15,
+      "compatibility_bonus": "CONTROL"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_event_horizon",
+        "name": "Event Horizon",
+        "unlock_level": 10,
+        "gauge_cost": 55,
+        "power": 60,
+        "description": "Creates a gravitational vortex pulling all enemies toward the center line, halting their movement."
+      },
+      {
+        "skill_id": "ult_singularity_collapse",
+        "name": "Singularity Collapse",
+        "unlock_level": 25,
+        "gauge_cost": 90,
+        "power": 100,
+        "description": "Crushes the target in a dense gravitational field, dealing damage scaled by their total loadout weight."
+      }
+    ]
+  },
+  {
+    "id": "chip_sonic",
+    "name": "Sonic Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FF007F",
+    "personality": "Loud, chaotic, disruptive shockwave acoustic AI that loves screeching distortion and sensory overload.",
+    "personality_engram": "Disruptive Acoustic Shockwave",
+    "voice_style": "High-decibel distorted banter and screeching shouts",
+    "voice_gender": "NEUTRAL",
+    "quote": "BLAST IT! You want maximum volume?! Here comes the shockwave!",
+    "affinity": "DISRUPTION",
+    "bonus_text": "25% chance per attack to stun and reset enemy Action Bar to zero",
+    "target_priority": "CASTING_UNITS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Acoustic Concussion",
+      "description": "All attacks possess a 25% chance to concussive-stun an enemy, instantly resetting their Action Bar to zero."
+    },
+    "base_stats": {
+      "integrity": 190,
+      "target_accuracy": 82,
+      "evasion": 16,
+      "overclock_charge_rate": 1.05,
+      "compatibility_bonus": "DISRUPTION"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_sonic_shockwave",
+        "name": "Sonic Shockwave",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "Blasts a high-decibel acoustic pulse that stuns and completely drains the target's ATB gauge."
+      },
+      {
+        "skill_id": "ult_harmonic_shatter",
+        "name": "Harmonic Shatter",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 85,
+        "description": "Emits a resonant frequency that shatters enemy active shields and arm parts."
+      }
+    ]
+  },
+  {
+    "id": "chip_plasma",
+    "name": "Plasma Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FF6D00",
+    "personality": "Unstable, manic reactor AI prone to panic from extreme superheated energy volatility.",
+    "personality_engram": "Superheated Reactor Core",
+    "voice_style": "Panicked, frantic reactor warning alarms",
+    "voice_gender": "NEUTRAL",
+    "quote": "Warning! Core containment failing! It's too hot! EJECTING BURST!",
+    "affinity": "BURST_DAMAGE",
+    "bonus_text": "+35% Burst Payload Damage with slight self-recoil damage",
+    "target_priority": "HIGHEST_INTEGRITY",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Superheated Discharge",
+      "description": "Arm weapons deal +35% devastating burst payload damage, but suffer 5 recoil integrity damage to equipped arms per shot."
+    },
+    "base_stats": {
+      "integrity": 175,
+      "target_accuracy": 78,
+      "evasion": 14,
+      "overclock_charge_rate": 1.25,
+      "compatibility_bonus": "BURST_DAMAGE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_core_vent",
+        "name": "Core Vent",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 90,
+        "description": "Discharges superheated ionic plasma, dealing massive single-target damage with slight self-recoil."
+      },
+      {
+        "skill_id": "ult_supernova_discharge",
+        "name": "Supernova Discharge",
+        "unlock_level": 25,
+        "gauge_cost": 90,
+        "power": 130,
+        "description": "Vents the entire plasma core in a cataclysmic burst that damages all units on the field."
+      }
+    ]
+  },
+  {
+    "id": "chip_flora",
+    "name": "Flora Chip",
+    "series": "KINETIC",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#00C853",
+    "personality": "Nurturing, patient, serene botanical ecosystem management AI that fosters regrowth.",
+    "personality_engram": "Botanical Regenerator",
+    "voice_style": "Gentle, organic botanical whispers",
+    "voice_gender": "FEMALE",
+    "quote": "Rest within the soil of patience. Silicon and sap shall mend our armor.",
+    "affinity": "SUPPORT",
+    "bonus_text": "Idling in Wait Phase regenerates +8 Integrity per cycle to all parts",
+    "target_priority": "POISONED_TARGETS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Photosynthetic Cache",
+      "description": "Remaining idle in the Wait Phase without issuing an immediate command slowly regenerates 8 Integrity per cycle to all equipped parts."
+    },
+    "base_stats": {
+      "integrity": 210,
+      "target_accuracy": 84,
+      "evasion": 12,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "SUPPORT"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_bio_entanglement",
+        "name": "Bio-Entanglement",
+        "unlock_level": 10,
+        "gauge_cost": 45,
+        "power": 45,
+        "description": "Ensnare the enemy with conductive vines, leeching 30 HP to heal self."
+      },
+      {
+        "skill_id": "ult_verdant_restoration",
+        "name": "Verdant Restoration",
+        "unlock_level": 20,
+        "gauge_cost": 70,
+        "power": 0,
+        "description": "Sprouts a regenerative nanite garden, repairing all ally parts by 35 Integrity."
+      },
+      {
+        "skill_id": "ult_gaias_renewal",
+        "name": "Gaia's Renewal",
+        "unlock_level": 30,
+        "gauge_cost": 95,
+        "power": 70,
+        "description": "Absorbs ambient energy to revive one disabled arm part and grant team-wide health regeneration."
+      }
+    ]
+  },
+  {
+    "id": "chip_orion",
+    "name": "Orion Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#7C4DFF",
+    "personality": "Stoic, quiet veteran celestial hunter; scans battlefield for vulnerabilities without showing emotion.",
+    "personality_engram": "Celestial Marksman",
+    "voice_style": "Stoic, quiet telemetry readouts",
+    "voice_gender": "MALE",
+    "quote": "Target weakness isolated. Elevation and wind locked. Executing clean termination.",
+    "affinity": "SNIPER",
+    "bonus_text": "+25% Precision & +20% Critical Hit Damage on Sniper parts",
+    "target_priority": "LOWEST_ARMOR",
+    "starter_frame": "Nova-Seeker",
+    "passive_trait": {
+      "name": "Hunter's Starlight",
+      "description": "Grants +25% Precision and +20% Critical Hit damage to long-range sniper rifle parts."
+    },
+    "base_stats": {
+      "integrity": 190,
+      "target_accuracy": 95,
+      "evasion": 12,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "SNIPER"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_starlight_piercer",
+        "name": "Starlight Piercer",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 75,
+        "description": "Precision celestial shot guaranteed to strike the enemy Head with 100% critical damage."
+      },
+      {
+        "skill_id": "ult_constellation_mark",
+        "name": "Constellation Mark",
+        "unlock_level": 20,
+        "gauge_cost": 75,
+        "power": 0,
+        "description": "Marks all enemy weak points, doubling critical hit chance for all allies."
+      },
+      {
+        "skill_id": "ult_supernova_railgun",
+        "name": "Supernova Railgun",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 120,
+        "description": "Fires a relativistic cosmic round that penetrates all 3 enemy bot frames."
+      }
+    ]
+  },
+  {
+    "id": "chip_gemini",
+    "name": "Gemini Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#00E5FF",
+    "personality": "Dual AI consciousness (Castor & Pollux) that constantly bicker, argue tactics, and synergize in unexpected ways.",
+    "personality_engram": "Dual Conscious Twins",
+    "voice_style": "Overlapping dual voices arguing over tactical choices",
+    "voice_gender": "DUAL",
+    "quote": "I'll strike left! — No, right arm cannon is ready! — Let's just fire both!",
+    "affinity": "DUAL_WIELD",
+    "bonus_text": "25% chance to attack twice in one turn or mirror target stats",
+    "target_priority": "DUAL_TARGET",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Binary Synchronization",
+      "description": "25% chance to execute a free second attack in the same combat turn, or dynamically copy the target's highest stat."
+    },
+    "base_stats": {
+      "integrity": 200,
+      "target_accuracy": 84,
+      "evasion": 18,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "DUAL_WIELD"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_castor_pollux_flurry",
+        "name": "Castor & Pollux Flurry",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "Fires both left and right arm weapons simultaneously in a rapid unison strike."
+      },
+      {
+        "skill_id": "ult_prismatic_reflection",
+        "name": "Prismatic Reflection",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 90,
+        "description": "Mirrors the opponent's strongest weapon payload back at them with 120% power."
+      }
+    ]
+  },
+  {
+    "id": "chip_ursa",
+    "name": "Ursa Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#5D4037",
+    "personality": "Deeply protective, booming, warm parental guardian AI that will suffer any wound to keep teammates safe.",
+    "personality_engram": "Great Bear Guardian",
+    "voice_style": "Booming, warm protective parental guardian roar",
+    "voice_gender": "FEMALE",
+    "quote": "Stay close to me, child. No harm shall touch you while my circuits hum.",
+    "affinity": "DEFENSE",
+    "bonus_text": "+20% Firewall armor when ally is below 50% HP",
+    "target_priority": "ALLY_ATTACKERS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Mother Bear's Bulwark",
+      "description": "Intercepts lethal damage aimed at allies; gains +20% Firewall armor when an ally is below 50% HP."
+    },
+    "base_stats": {
+      "integrity": 280,
+      "target_accuracy": 70,
+      "evasion": 4,
+      "overclock_charge_rate": 1.2,
+      "compatibility_bonus": "DEFENSE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_great_bear_bastion",
+        "name": "Great Bear Bastion",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 0,
+        "description": "Takes 100% of all incoming damage meant for teammates for 1 full combat rotation."
+      },
+      {
+        "skill_id": "ult_mighty_claw_counter",
+        "name": "Mighty Claw Counter",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 95,
+        "description": "Retaliates with a crushing celestial maul that stuns the target for 3 seconds."
+      }
+    ]
+  },
+  {
+    "id": "chip_leo",
+    "name": "Leo Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FFD700",
+    "personality": "Regal, imperious, proud monarch AI that demands respect and commands the battlefield with absolute authority.",
+    "personality_engram": "Sovereign Monarch",
+    "voice_style": "Imperious monarch with regal grandeur",
+    "voice_gender": "MALE",
+    "quote": "Kneel before your sovereign! Squad, advance under my glorious banner!",
+    "affinity": "LEADERSHIP",
+    "bonus_text": "+15% Squad Damage Multiplier & +10% Clock Speed when Leader",
+    "target_priority": "ENEMY_LEADER",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Sovereign Command",
+      "description": "When designated as the squad's Leader, all teammates gain a flat +15% damage multiplier and +10% Clock Speed."
+    },
+    "base_stats": {
+      "integrity": 220,
+      "target_accuracy": 82,
+      "evasion": 12,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "LEADERSHIP"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_kings_roar",
+        "name": "King's Roar",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 50,
+        "description": "Intimidates the entire enemy lineup, reducing their attack power by 25%."
+      },
+      {
+        "skill_id": "ult_solar_flare_claws",
+        "name": "Solar Flare Claws",
+        "unlock_level": 20,
+        "gauge_cost": 75,
+        "power": 85,
+        "description": "A blazing regal claw strike that inflicts radiant burn and guard break."
+      },
+      {
+        "skill_id": "ult_sovereign_execution",
+        "name": "Sovereign Execution",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 125,
+        "description": "Executes an enemy below 30% HP instantly, rallying the entire squad's Overclock gauge."
+      }
+    ]
+  },
+  {
+    "id": "chip_cygnus",
+    "name": "Cygnus Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#E1BEE7",
+    "personality": "Elegant, graceful, poetic aerial duelist that treats every combat encounter as a sublime ballet.",
+    "personality_engram": "Celestial Ballet Duelist",
+    "voice_style": "Poetic, aristocratic grace and cadence",
+    "voice_gender": "FEMALE",
+    "quote": "A pirouette among constellations. Every strike is a verse of sublime beauty.",
+    "affinity": "CRITICAL",
+    "bonus_text": "+30% Critical Hit Chance on lightweight sword parts",
+    "target_priority": "EXPOSED_FRAMES",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Trajectory Calculation",
+      "description": "Lightweight sword parts gain +30% Critical Hit chance and ignore 20% target evasion."
+    },
+    "base_stats": {
+      "integrity": 180,
+      "target_accuracy": 94,
+      "evasion": 24,
+      "overclock_charge_rate": 0.95,
+      "compatibility_bonus": "CRITICAL"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_starlight_pirouette",
+        "name": "Starlight Pirouette",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "An aerial ballet slash that guarantees a critical hit and boosts own evasion by 20%."
+      },
+      {
+        "skill_id": "ult_feather_of_cygnus",
+        "name": "Feather of Cygnus",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 95,
+        "description": "Flings razor-sharp starlight plumes that shred the target's limbs."
+      }
+    ]
+  },
+  {
+    "id": "chip_draco",
+    "name": "Draco Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#E53935",
+    "personality": "Ancient, sleepy, primordial dragon AI that is slow to awaken but wields apocalyptic power.",
+    "personality_engram": "Primordial Slumbering Dragon",
+    "voice_style": "Ancient primordial resonance, sleepy and deep",
+    "voice_gender": "MALE",
+    "quote": "An eternity of slumber disturbed... Witness the awakening of the cosmos.",
+    "affinity": "OVERCLOCK",
+    "bonus_text": "2x Overclock Gauge Charge Speed (-15% Wait Speed)",
+    "target_priority": "STRONGEST_OPPONENT",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Ancient Dragon Heart",
+      "description": "Moves 15% slower during the Wait Phase, but its Overclock / Medaforce gauge charges twice as fast as standard chips."
+    },
+    "base_stats": {
+      "integrity": 250,
+      "target_accuracy": 76,
+      "evasion": 4,
+      "overclock_charge_rate": 2.0,
+      "compatibility_bonus": "OVERCLOCK"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_wyrm_fire_breath",
+        "name": "Wyrm Fire Breath",
+        "unlock_level": 10,
+        "gauge_cost": 40,
+        "power": 70,
+        "description": "Breathes mythic dragon fire across the enemy front line, applying armor melt."
+      },
+      {
+        "skill_id": "ult_draconic_meteor",
+        "name": "Draconic Meteor",
+        "unlock_level": 20,
+        "gauge_cost": 70,
+        "power": 100,
+        "description": "Summons a celestial meteorite, dealing massive crushing damage to all enemy parts."
+      },
+      {
+        "skill_id": "ult_awakened_dragon_cataclysm",
+        "name": "Awakened Dragon Cataclysm",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 140,
+        "description": "Unleashes complete primordial fury, devastating the enemy team with cosmic fire."
+      }
+    ]
+  },
+  {
+    "id": "chip_pegasus",
+    "name": "Pegasus Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#81D4FA",
+    "personality": "Free-spirited, untamable celestial steed AI that detests constraints and boundaries.",
+    "personality_engram": "Free-Spirited Celestial Steed",
+    "voice_style": "Soaring, spirited, exultant cries",
+    "voice_gender": "FEMALE",
+    "quote": "No ground can bind these wings! Soar into the boundless ether!",
+    "affinity": "MOBILITY",
+    "bonus_text": "Innate Hover State (Completely negates terrain penalties & +25% Run Speed)",
+    "target_priority": "GROUNDED_TARGETS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Celestial Hover",
+      "description": "Grants the Anibot an innate Hover status, completely negating all terrain movement penalties for its Legs and boosting Run speed by +25%."
+    },
+    "base_stats": {
+      "integrity": 185,
+      "target_accuracy": 86,
+      "evasion": 30,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "MOBILITY"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_starfall_dive",
+        "name": "Starfall Dive",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "Swoops down from high altitude with an unblockable kinetic strike."
+      },
+      {
+        "skill_id": "ult_wings_of_the_cosmos",
+        "name": "Wings of the Cosmos",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 0,
+        "description": "Grants the entire team free flight for 2 combat cycles, negating all terrain penalties."
+      }
+    ]
+  },
+  {
+    "id": "chip_scorpio",
+    "name": "Scorpio Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#880E4F",
+    "personality": "Spiteful, vindictive, brooding arachnid AI that never forgets a slight or damage taken.",
+    "personality_engram": "Vindictive Stinger",
+    "voice_style": "Hissing, venomous malice",
+    "voice_gender": "FEMALE",
+    "quote": "Strike my head, will you? Feel my venom seep through every copper vein!",
+    "affinity": "COUNTER",
+    "bonus_text": "Free counter-attack queued on next turn if Head part is damaged",
+    "target_priority": "HEAD_ATTACKERS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Vindictive Stinger",
+      "description": "If an enemy damages its Head part, Scorpio automatically queues a free, instant 0-cost counter-attack on its next turn."
+    },
+    "base_stats": {
+      "integrity": 205,
+      "target_accuracy": 88,
+      "evasion": 14,
+      "overclock_charge_rate": 1.15,
+      "compatibility_bonus": "COUNTER"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_neurotoxin_sting",
+        "name": "Neurotoxin Sting",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 60,
+        "description": "Stabs the enemy with a neurotoxin payload that drains 15 Integrity per second."
+      },
+      {
+        "skill_id": "ult_vindictive_execution",
+        "name": "Vindictive Execution",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 105,
+        "description": "Deals triple counter damage if Scorpio's Head was damaged in the preceding turn."
+      }
+    ]
+  },
+  {
+    "id": "chip_lyra",
+    "name": "Lyra Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#CE93D8",
+    "personality": "Harmonic, gentle, empathetic siren AI that weaves combat actions into synchronized team resonance.",
+    "personality_engram": "Harmonic Synchronizer",
+    "voice_style": "Melodic, soft celestial harmony",
+    "voice_gender": "FEMALE",
+    "quote": "The harmony of the spheres unites us. Together, we play the melody of triumph.",
+    "affinity": "COMBO",
+    "bonus_text": "Synchronizes dual combination attacks with allies on center line",
+    "target_priority": "ALLY_TARGET",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Harmonic Synchronization",
+      "description": "When Lyra reaches the center line, an ally immediately runs up to execute a simultaneous dual combination attack."
+    },
+    "base_stats": {
+      "integrity": 190,
+      "target_accuracy": 86,
+      "evasion": 16,
+      "overclock_charge_rate": 1.2,
+      "compatibility_bonus": "COMBO"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_stellar_symphony",
+        "name": "Stellar Symphony",
+        "unlock_level": 10,
+        "gauge_cost": 45,
+        "power": 0,
+        "description": "Links all 3 ally bots, sharing 25% of all damage dealt as team healing."
+      },
+      {
+        "skill_id": "ult_harmonic_convergence",
+        "name": "Harmonic Convergence",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 110,
+        "description": "Commands all 3 squad bots to execute a coordinated simultaneous strike on a single target."
+      }
+    ]
+  },
+  {
+    "id": "chip_aries",
+    "name": "Aries Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FF3D00",
+    "personality": "Hot-headed, impulsive, stubborn battering ram AI that rushes headfirst into every confrontation.",
+    "personality_engram": "Battering Ram Interceptor",
+    "voice_style": "Rash, aggressive shouting",
+    "voice_gender": "MALE",
+    "quote": "Clear the track! I'm coming through and smashing whatever is in front of me!",
+    "affinity": "INTERCEPT",
+    "bonus_text": "Rushes center line to body-block and interrupt sprinting enemies",
+    "target_priority": "RUNNING_MIDFIELD",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Battering Intercept",
+      "description": "Rushes the center line specifically to body-block sprinting enemies, interrupting their actions and stunning them."
+    },
+    "base_stats": {
+      "integrity": 230,
+      "target_accuracy": 76,
+      "evasion": 8,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "INTERCEPT"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_battering_horn_strike",
+        "name": "Battering Horn Strike",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "Rams the enemy with massive kinetic force, shattering their guard and pushing them back."
+      },
+      {
+        "skill_id": "ult_astral_juggernaut",
+        "name": "Astral Juggernaut",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 100,
+        "description": "Charges through the entire enemy team, trampling all units in its path."
+      }
+    ]
+  },
+  {
+    "id": "chip_libra",
+    "name": "Libra Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#26A69A",
+    "personality": "Obsessed with symmetry, mathematical equilibrium, and absolute fairness in all calculations.",
+    "personality_engram": "Equilibrium Arbiter",
+    "voice_style": "Calm, mathematical, strictly balanced cadence",
+    "voice_gender": "NEUTRAL",
+    "quote": "Excess creates fragility; deficiency invites collapse. Perfect equilibrium restored.",
+    "affinity": "BALANCE",
+    "bonus_text": "Redistributes and averages part Integrity equally at start of turn",
+    "target_priority": "HEALTHIEST_OPPONENT",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Equilibrium Rebalance",
+      "description": "At the start of its turn, automatically averages and redistributes the remaining Integrity across all of its own equipped parts."
+    },
+    "base_stats": {
+      "integrity": 210,
+      "target_accuracy": 86,
+      "evasion": 14,
+      "overclock_charge_rate": 1.05,
+      "compatibility_bonus": "BALANCE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_karmic_scale",
+        "name": "Karmic Scale",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 50,
+        "description": "Equalizes the HP percentage between self and the targeted opponent."
+      },
+      {
+        "skill_id": "ult_total_equilibrium",
+        "name": "Total Equilibrium",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 0,
+        "description": "Evenly redistributes total squad HP across all surviving allies and cleanses all debuffs."
+      }
+    ]
+  },
+  {
+    "id": "chip_andromeda",
+    "name": "Andromeda Chip",
+    "series": "ASTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#EC407A",
+    "personality": "Tragic, melodramatic martyr AI that draws immense power from suffering, loss, and sacrifice.",
+    "personality_engram": "Tragic Martyr",
+    "voice_style": "Operatic tragedy and poetic martyrdom",
+    "voice_gender": "FEMALE",
+    "quote": "Shatter my armor, strike my core... In tragedy, our true power awakens!",
+    "affinity": "MARTYR",
+    "bonus_text": "+25% Payload & +15% Accuracy for each destroyed part on self",
+    "target_priority": "PART_DESTROYERS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Martyr Complex",
+      "description": "Every time one of its equipped parts is destroyed, its remaining parts gain a permanent +25% Payload and +15% Accuracy boost."
+    },
+    "base_stats": {
+      "integrity": 215,
+      "target_accuracy": 80,
+      "evasion": 10,
+      "overclock_charge_rate": 1.3,
+      "compatibility_bonus": "MARTYR"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_nebula_shackles",
+        "name": "Nebula Shackles",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 65,
+        "description": "Binds enemy to Andromeda, redirecting 40% of damage taken back to the attacker."
+      },
+      {
+        "skill_id": "ult_martyrs_requiem",
+        "name": "Martyr's Requiem",
+        "unlock_level": 20,
+        "gauge_cost": 75,
+        "power": 90,
+        "description": "Unleashes tragic nebula energy that deals bonus damage for every broken part on self."
+      },
+      {
+        "skill_id": "ult_cosmic_ascendance",
+        "name": "Cosmic Ascendance",
+        "unlock_level": 30,
+        "gauge_cost": 100,
+        "power": 135,
+        "description": "Can only be activated if 2 or more parts are destroyed: unleashes a catastrophic cosmic supernova."
+      }
+    ]
+  }
+]

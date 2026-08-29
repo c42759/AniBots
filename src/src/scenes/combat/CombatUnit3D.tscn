@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://combat_unit_3d_01"]
+
+[ext_resource type="Script" path="res://src/scenes/combat/CombatUnit3D.gd" id="1_unit_script"]
+[ext_resource type="Script" path="res://src/scenes/combat/clash/AniBotModel3D.gd" id="2_anibot_model"]
+
+[node name="CombatUnit3D" type="Node3D"]
+script = ExtResource("1_unit_script")
+
+[node name="AniBotModel3D" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_anibot_model")

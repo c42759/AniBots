@@ -1,0 +1,338 @@
+[gd_scene load_steps=22 format=3 uid="uid://workshop_interior_3d_01"]
+
+[ext_resource type="Script" path="res://src/scenes/overworld/WorkshopInterior.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://player_3d_01" path="res://src/scenes/overworld/Player3D.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://shopkeeper_npc_3d_01" path="res://src/scenes/overworld/npc/ShopkeeperNPC3D.tscn" id="3_shopkeeper"]
+[ext_resource type="PackedScene" uid="uid://parts_shop_01" path="res://src/scenes/ui/PartsShop.tscn" id="4_shop"]
+[ext_resource type="PackedScene" uid="uid://anibot_assembly_01" path="res://src/scenes/ui/AnibotAssembly.tscn" id="5_assembly"]
+[ext_resource type="PackedScene" uid="uid://dialogue_box_01" path="res://src/scenes/ui/DialogueBox.tscn" id="6_dialogue"]
+
+[sub_resource type="Environment" id="Environment_workshop"]
+background_mode = 1
+background_color = Color(0.101961, 0.101961, 0.141176, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.85, 0.8, 0.75, 1)
+ambient_light_energy = 0.85
+glow_enabled = true
+glow_intensity = 0.4
+glow_bloom = 0.15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_room"]
+size = Vector3(16, 4, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(16, 0.1, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_floor"]
+albedo_color = Color(0.843137, 0.8, 0.784314, 1)
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_back_wall"]
+size = Vector3(16, 4, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wall"]
+albedo_color = Color(0.364706, 0.25098, 0.215686, 1)
+roughness = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pod_base"]
+top_radius = 1.4
+bottom_radius = 1.4
+height = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pod_base"]
+albedo_color = Color(0.215686, 0.278431, 0.309804, 1)
+metallic = 0.7
+roughness = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pod_glass"]
+top_radius = 1.2
+bottom_radius = 1.2
+height = 2.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pod_glass"]
+transparency = 1
+albedo_color = Color(0, 0.898039, 1, 0.35)
+emission_enabled = true
+emission = Color(0, 0.898039, 1, 1)
+emission_energy_multiplier = 1.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_workbench"]
+size = Vector3(4.5, 0.9, 1.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_workbench"]
+albedo_color = Color(0.427451, 0.298039, 0.254902, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_exit_mat"]
+size = Vector3(2.4, 0.04, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exit_mat"]
+albedo_color = Color(0.717647, 0.109804, 0.109804, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_exit_door"]
+size = Vector3(2.5, 2.0, 1.5)
+
+[node name="WorkshopInterior" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_workshop")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 5, 8, 4)
+light_color = Color(1, 0.95, 0.88, 1)
+light_energy = 0.9
+shadow_enabled = true
+
+[node name="SpotOmniLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+light_color = Color(1, 0.92, 0.8, 1)
+light_energy = 1.8
+omni_range = 14.0
+
+[node name="Room" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 2
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Room"]
+mesh = SubResource("BoxMesh_floor")
+surface_material_override/0 = SubResource("StandardMaterial3D_floor")
+
+[node name="BackWallMesh" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+mesh = SubResource("BoxMesh_back_wall")
+surface_material_override/0 = SubResource("StandardMaterial3D_wall")
+
+[node name="RepairPod" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -3.5)
+
+[node name="PodBase" type="MeshInstance3D" parent="RepairPod"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
+mesh = SubResource("CylinderMesh_pod_base")
+surface_material_override/0 = SubResource("StandardMaterial3D_pod_base")
+
+[node name="PodGlass" type="MeshInstance3D" parent="RepairPod"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+mesh = SubResource("CylinderMesh_pod_glass")
+surface_material_override/0 = SubResource("StandardMaterial3D_pod_glass")
+
+[node name="Workbench" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -4.5)
+collision_layer = 1
+collision_mask = 2
+
+[node name="WorkbenchMesh" type="MeshInstance3D" parent="Workbench"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+mesh = SubResource("BoxMesh_workbench")
+surface_material_override/0 = SubResource("StandardMaterial3D_workbench")
+
+[node name="ShopkeeperNPC" parent="." instance=ExtResource("3_shopkeeper")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -3.2)
+
+[node name="ExitDoorArea" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 5.0)
+collision_mask = 2
+
+[node name="ExitMatMesh" type="MeshInstance3D" parent="ExitDoorArea"]
+mesh = SubResource("BoxMesh_exit_mat")
+surface_material_override/0 = SubResource("StandardMaterial3D_exit_mat")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitDoorArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_exit_door")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.8)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="MarginContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+
+[node name="HBox" type="HBoxContainer" parent="HUD/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LocationBadge" type="PanelContainer" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/TopBar/HBox/LocationBadge"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="LocationLabel" type="Label" parent="HUD/TopBar/HBox/LocationBadge/Margin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+text = "AniBot Workshop & Lab (3D)"
+
+[node name="BotBadge" type="PanelContainer" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/TopBar/HBox/BotBadge"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="BotNameLabel" type="Label" parent="HUD/TopBar/HBox/BotBadge/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bot: Genesis-1"
+
+[node name="Spacer" type="Control" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EconomyPanel" type="PanelContainer" parent="HUD/TopBar/HBox"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/TopBar/HBox/EconomyPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="EcoHBox" type="HBoxContainer" parent="HUD/TopBar/HBox/EconomyPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="ScrapLabel" type="Label" parent="HUD/TopBar/HBox/EconomyPanel/Margin/EcoHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.3, 1)
+text = "Scrap: 25"
+
+[node name="CreditsLabel" type="Label" parent="HUD/TopBar/HBox/EconomyPanel/Margin/EcoHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+text = "Credits: 500"
+
+[node name="GarageButton" type="Button" parent="HUD/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 36)
+layout_mode = 2
+text = "[TAB] AniBots"
+
+[node name="MenuButton" type="Button" parent="HUD/TopBar/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 36)
+layout_mode = 2
+text = "Menu"
+
+[node name="DialogueBox" parent="HUD" instance=ExtResource("6_dialogue")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PartsShop" parent="HUD" instance=ExtResource("4_shop")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="AnibotAssembly" parent="HUD" instance=ExtResource("5_assembly")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PauseModal" type="PanelContainer" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(300, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/PauseModal"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="HUD/PauseModal/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="HUD/PauseModal/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="HUD/PauseModal/Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Resume"
+
+[node name="SaveGameButton" type="Button" parent="HUD/PauseModal/Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+text = "💾 Save Game"
+
+[node name="SaveQuitButton" type="Button" parent="HUD/PauseModal/Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "Save & Main Menu"
+
+[node name="QuitButton" type="Button" parent="HUD/PauseModal/Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.5, 0.5, 1)
+text = "Quit to Main Menu"
+
+[node name="SaveToast" type="PanelContainer" parent="HUD"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(260, 44)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_top = 80.0
+offset_right = 130.0
+offset_bottom = 124.0
+grow_horizontal = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/SaveToast"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="ToastLabel" type="Label" parent="HUD/SaveToast/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_font_sizes/font_size = 14
+text = "✓ Game Saved to Slot 1!"
+horizontal_alignment = 1

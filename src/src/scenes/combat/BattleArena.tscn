@@ -1,0 +1,117 @@
+[gd_scene load_steps=14 format=3 uid="uid://battle_arena_3d_01"]
+
+[ext_resource type="Script" path="res://src/scenes/combat/BattleArena.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://combat_unit_3d_01" path="res://src/scenes/combat/CombatUnit3D.tscn" id="2_unit_3d"]
+[ext_resource type="PackedScene" uid="uid://combat_ui_01" path="res://src/scenes/combat/CombatUI.tscn" id="3_combat_ui"]
+
+[sub_resource type="Environment" id="Environment_arena"]
+background_mode = 1
+background_color = Color(0.0627451, 0.0823529, 0.12549, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.3, 0.4, 0.55, 1)
+ambient_light_energy = 1.0
+glow_enabled = true
+glow_intensity = 0.8
+glow_bloom = 0.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_arena_floor"]
+size = Vector2(28, 16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arena_floor"]
+albedo_color = Color(0.0627451, 0.0823529, 0.12549, 1)
+metallic = 0.8
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_track_lane"]
+size = Vector3(20, 0.04, 3.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_track_lane"]
+albedo_color = Color(0.0941176, 0.12549, 0.188235, 1)
+metallic = 0.6
+roughness = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_center_line"]
+size = Vector3(0.2, 0.06, 3.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_center_line"]
+albedo_color = Color(1, 0.839216, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.839216, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_p_base_line"]
+size = Vector3(0.15, 0.06, 3.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p_base"]
+albedo_color = Color(0, 0.898039, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.898039, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e_base"]
+albedo_color = Color(1, 0.0901961, 0.266667, 1)
+emission_enabled = true
+emission = Color(1, 0.0901961, 0.266667, 1)
+emission_energy_multiplier = 2.0
+
+[node name="BattleArena" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_arena")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 10, 8)
+light_color = Color(0.85, 0.92, 1, 1)
+light_energy = 1.2
+shadow_enabled = true
+
+[node name="SpotOmniLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 2)
+light_color = Color(0, 0.898039, 1, 1)
+light_energy = 2.0
+omni_range = 16.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.2, 8.8)
+current = true
+fov = 42.0
+
+[node name="ArenaFloor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_arena_floor")
+surface_material_override/0 = SubResource("StandardMaterial3D_arena_floor")
+
+[node name="TrackLane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_track_lane")
+surface_material_override/0 = SubResource("StandardMaterial3D_track_lane")
+
+[node name="CenterLine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+mesh = SubResource("BoxMesh_center_line")
+surface_material_override/0 = SubResource("StandardMaterial3D_center_line")
+
+[node name="PlayerBaseLine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.04, 0)
+mesh = SubResource("BoxMesh_p_base_line")
+surface_material_override/0 = SubResource("StandardMaterial3D_p_base")
+
+[node name="EnemyBaseLine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.04, 0)
+mesh = SubResource("BoxMesh_p_base_line")
+surface_material_override/0 = SubResource("StandardMaterial3D_e_base")
+
+[node name="PlayerUnit" parent="." instance=ExtResource("2_unit_3d")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
+
+[node name="EnemyUnit" parent="." instance=ExtResource("2_unit_3d")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
+is_player = false
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="CombatUI" parent="HUDLayer" instance=ExtResource("3_combat_ui")]
+unique_name_in_owner = true
