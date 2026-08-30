@@ -2842,5 +2842,84 @@
         "description": "Drifting anti-grav hover skirts trailing stellar particles."
       }
     }
+  },
+  {
+    "id": "anibot_iron_jaw",
+    "model_code": "HYD-01",
+    "name": "Iron-Jaw",
+    "series": "KINETIC",
+    "archetype": "Hydraulic Dredge Excavator",
+    "description": "Heavy industrial mining AniBot equipped with high-pressure hydraulic dismantling gear and ultra-dense salvaging clamps.",
+    "preferred_chip": "chip_torrent",
+    "affinity": "COOLING",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Torrent Chip",
+    "parts": {
+      "head": {
+        "id": "part_head_sonar_dredge",
+        "name": "Hydrometric Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 70,
+        "payload": 0,
+        "precision": 88,
+        "execution_time": 1.6,
+        "latency": 2.5,
+        "weight": 8,
+        "cache": 3,
+        "description": "Sub-pressure geological scanner that highlights critical structural weaknesses in target frames."
+      },
+      "torso": {
+        "id": "part_torso_hydro_pressure_chassis",
+        "name": "Hydro-Pressure Carapace",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 210,
+        "max_loadout": 38,
+        "firewall": 14,
+        "cooling": 2.8,
+        "description": "Reinforced heavy industrial torso designed for deep trench excavation and extreme hydrostatic pressure resistance."
+      },
+      "left_arm": {
+        "id": "part_arm_l_titan_jaw_hydros",
+        "name": "Titan-Jaw Hydros",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 85,
+        "payload": 52,
+        "precision": 80,
+        "execution_time": 2.2,
+        "latency": 3.2,
+        "weight": 14,
+        "cache": -1,
+        "description": "Rare heavy hydraulic vice arm engineered for crushing bedrock and precision armor dismantling."
+      },
+      "right_arm": {
+        "id": "part_arm_r_trench_jackhammer",
+        "name": "Trenching Jackhammer",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 78,
+        "payload": 44,
+        "precision": 76,
+        "execution_time": 2.4,
+        "latency": 3.6,
+        "weight": 12,
+        "cache": -1,
+        "description": "Pneumatic rock-breaking piston arm delivering devastating impact force against hardened hulls."
+      },
+      "legs": {
+        "id": "part_legs_dredger_crawlers",
+        "name": "Dredger Crawler Treads",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 135,
+        "clock_speed": 1.2,
+        "direct_connect": 18,
+        "remote_uplink": -12,
+        "packet_loss": 5,
+        "protocol": "TRACKS",
+        "description": "Heavy-duty crawler treads engineered for maximum stability on muddy seabed and quarry terrain."
+      }
+    }
   }
 ]

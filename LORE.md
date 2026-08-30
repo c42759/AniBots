@@ -148,3 +148,156 @@ flowchart TD
 
 - **Scavenging & Profit**: Scrappers collect battle debris to sell for profit or craft replacement parts.
 - **Repair Dynamics**: Low-income Handlers and mechanics like Kura restore degraded secondhand parts (QC2/QC3) to build functional loadouts on a budget.
+
+---
+
+## 🗺️ World Geography & Regional Hubs
+
+```text
+                      WORLD MAP OVERVIEW (YEAR 3047)
+┌──────────────────────┐   ┌──────────────────────┐   ┌──────────────────────┐
+│  Neo-Verve Metropolis│───│  Oakhaven Basin      │───│  Rust-Ridge Badlands │
+│  (Eco-City Hub)      │   │  (Rural & Ancient)   │   │  (Outlaw Territory)  │
+└──────────┬───────────┘   └──────────────────────┘   └──────────┬───────────┘
+           │                                                     │
+┌──────────┴───────────┐                              ┌──────────┴───────────┐
+│  Aegis High-Spire    │                              │  Sub-Zero Ridge &    │
+│  (Corporate Citadel) │                              │  Abyssal Trench      │
+└──────────────────────┘                              └──────────────────────┘
+```
+
+### 1. Neo-Verve Metropolis (Eco-City Hub — Democratic Region)
+
+- **Description**: Soaring glass towers wrapped in vertical forests and hanging gardens. District 4 is Kura's home neighborhood.
+- **Key Landmarks**:
+  - **Ato Family Workshop**: Kura's home base and garage where he repairs neighborhood AniBots.
+  - **District 4 Scrap Yard**: Local salvaging ground where Handlers trade secondhand hardware.
+  - **Neo-Verve League Arena**: Mid-tier official tournament dome for licensed Handlers.
+
+### 2. Rust-Ridge Badlands (Outlaw Territory — 1B Population Zone)
+
+- **Description**: Sun-scorched wasteland littered with industrial ruins, junkyard fortresses, and illegal gambling pits.
+- **Key Landmarks**:
+  - **The Pit**: Underground, no-rules arena run by the Anode Group.
+  - **Magnus's Citadel**: Black-market hub for illegal AniChip modifications and smuggled hardware.
+
+### 3. Oakhaven Basin (Rural Region — 3B Population Zone)
+
+- **Description**: Pastoral agricultural valleys where traditional Handlers use AniBots for farming, forestry, and heavy labor.
+- **Key Landmarks**:
+  - **Thorne's Hermitage**: Reclusive lab hidden in the woods where Gen-0 research originated.
+  - **Ancient Ruin Vault 7**: Subterranean laboratory where the 176 Ancient Chips were forged.
+
+### 4. Aegis High-Spire (Corporate District)
+
+- **Description**: Ultra-wealthy megastructure housing tech conglomerates, QC1 manufacturing plants, and the **AniBot World Cup Grand Dome**.
+
+---
+
+## 👥 Supporting NPC Roster
+
+| NPC Name | Role / Alignment | Location | Quest & Story Relevance |
+| :--- | :--- | :--- | :--- |
+| **Raya Ato** | Kura's Mother | Neo-Verve (Ato Workshop) | Manages workshop finances; unlocks family lore & father's old logs. |
+| **Master Jax** | Veteran Scrap Mechanic | Neo-Verve Scrap Yard | Teaches Kura advanced repair techniques; gives salvage side quests. |
+| **Vera "Viper" Lin** | Anode Group Enforcer | Rust-Ridge Badlands | Rival faction quest giver; tests Kura in outlaw arena battles. |
+| **Dr. Aris Thorne** | Ex-Gen-0 Lead Scientist | Oakhaven Basin | Offers **Ancient Relic Quests**; reveals secrets of Vulpes Zerda & the Primordials. |
+| **Soren Vance** | Aegis Corp Prodigy | Aegis High-Spire | Arrogant QC1 rival Handler; main antagonist in corporate tournament quests. |
+
+---
+
+## 🔀 Branching Side Story & Quest System
+
+```mermaid
+flowchart LR
+    A[Main Quest Arc: World Cup & Father's Legacy] --> B(Player Choice / Exploration)
+    B --> C[Quest Type 1: Ancient Relic Excavation]
+    B --> D[Quest Type 2: Faction Alignment]
+    B --> E[Quest Type 3: AniChip Bond & Memory]
+    B --> F[Quest Type 4: Workshop Bounties]
+    
+    C --> G[Unlocks Hidden Ancient Chips G0-005 to G0-010]
+    D --> H[Unlocks Badlands Arena or Corporate League]
+    E --> I[Unlocks Ultimate Overclock Skills]
+    F --> J[Unlocks Rare Part Blueprints & Scrap Funds]
+```
+
+### Detailed Step-by-Step Quest Execution Loops
+
+#### 1. Quest Type 1: Ancient Relic Excavation
+
+> **Example Quest**: *"The White Phantom of Sub-Zero Ridge"* (Recruiting *Panthera Uncia*)
+
+```mermaid
+flowchart TD
+    S1["Step 1: Signal Intercept<br/>(Decrypt transmission log at Ato Workshop)"] --> S2["Step 2: Loadout Preparation<br/>(Craft/Equip thermal chassis & leg parts)"]
+    S2 --> S3["Step 3: Sector Exploration<br/>(Navigate snowstorms & battle wild sentinels)"]
+    S3 --> S4["Step 4: Trial of the Stalker<br/>(Boss fight vs Panthera Uncia; survive stealth phase)"]
+    S4 --> S5["Step 5: Sync & Synchronization<br/>(Prove Handler worthiness; chip joins team)"]
+```
+
+- **Step 1: Signal Intercept & Rumor Discovery**: Receive an encrypted radio frequency at Ato Workshop from Dr. Aris Thorne reporting anomalous frost signals in Sub-Zero Ridge.
+- **Step 2: Loadout & Environmental Preparation**: The blizzard zone imposes heavy movement latency. Kura must collect scrap or craft thermal-insulated legs/chassis to avoid chassis freeze in battle.
+- **Step 3: Sector Exploration & Radar Tracking**: Travel to Sub-Zero Ridge, navigate snowy wilderness, fight feral guardian AniBots, and track signal pulses with Kura's handheld scanner.
+- **Step 4: Boss Trial (Battle with *Panthera Uncia*)**: Face *Panthera Uncia* in combat. The boss uses stealth camouflage and critical strikes; player must use sensor pulses or acoustic step counter to reveal it.
+- **Step 5: Ancient Sync & Reward**: Upon defeat, *Panthera Uncia* evaluates Kura's combat data. Recognizing his genuine bond with Zerdata, it syncs with Kura's inventory, unlocking **Frost Ambush** and stealth abilities.
+
+---
+
+#### 2. Quest Type 2: Faction Alignment Quests
+
+> **Example Quest**: *"Conflict at Rust-Ridge Gate"* (Eco-Enforcers vs Outlaw Resistance)
+
+```mermaid
+flowchart TD
+    F1["Step 1: Border Incident<br/>(Contraband shipment intercepted at gate)"] --> F2{"Step 2: The Crossroads Choice"}
+    F2 -- Option A --> F3A["Side with Eco-Enforcers<br/>(Escort convoy & battle Vera's raiders)"]
+    F2 -- Option B --> F3B["Side with Outlaw Resistance<br/>(Hijack shipment for badland scavengers)"]
+    F3A --> F4A["Result: Aegis Citadel Approval<br/>(Unlock legal permits & corporate shop)"]
+    F3B --> F4B["Result: Outlaw Badlands Rep<br/>(Unlock Black Market & The Pit Arena)"]
+```
+
+- **Step 1: Incident Call**: Eco-City Enforcers intercept a contraband freighter carrying illegal QC3 overclock modules at the border wall between Neo-Verve and Rust-Ridge Badlands.
+- **Step 2: The Crossroads Choice**: Player arrives at the scene and must choose a faction path:
+  - **Option A (Law & Order)**: Ally with Enforcer Officer Vance to secure the shipment and uphold city laws.
+  - **Option B (Underground Scavengers)**: Ally with Vera "Viper" Lin to hijack the freighter and distribute repair scrap to impoverished badland Handlers.
+- **Step 3: Tactical Battle Execution**: Fight the opposing faction squad in a high-latency bottleneck zone.
+- **Step 4: Consequence & World Impact**:
+  - *If Option A chosen*: Gain **Eco-City Alignment**. Unlocks official tournament permits, Aegis shop discounts, and legal high-tier armor blueprints. Outlaw badland vendors turn hostile.
+  - *If Option B chosen*: Gain **Outlaw Reputation**. Unlocks Rust-Ridge Black Market, illegal overclock modifications, and entry into **The Pit subterranean arena**.
+
+---
+
+#### 3. Quest Type 3: AniChip Memory & Bond Quests
+
+> **Example Quest**: *"Echoes of the Past: Zerdata"*
+
+```mermaid
+flowchart TD
+    M1["Step 1: Behavioral Anomaly<br/>(Zerdata memory stutter during battle)"] --> M2["Step 2: Diagnostic Scan<br/>(Identify locked memory block at Workshop)"]
+    M2 --> M3["Step 3: Virtual Memory Trial<br/>(Battle holographic memory phantoms of Kura's father)"]
+    M3 --> M4["Step 4: Emotional Breakthrough<br/>(Unlock Zerda Apex Burst & Father's log)"]
+```
+
+- **Step 1: Behavioral Anomaly Event**: During a battle, Zerdata experiences a momentary memory stutter, reciting a cryptic haiku fragment referencing Kura's deceased father.
+- **Step 2: Diagnostic Workshop Scan**: Connect Zerdata to the Ato Workshop scanner. Discover a locked memory partition created by Kura's father 4 years prior.
+- **Step 3: Virtual Memory Trial Battle**: Enter a virtual diagnostic arena where Kura and Zerdata must defeat holographic simulation phantoms of his father's original AniBot loadout.
+- **Step 4: Emotional Breakthrough & Overclock**: Winning the simulation resolves Zerdata's internal data conflict. Unlocks the **Zerda Apex Burst** ultimate ability and reveals an audio log detailing his father's investigation into the Anode Group.
+
+---
+
+#### 4. Quest Type 4: Workshop Salvage & Repair Bounties
+
+> **Example Quest**: *"Contract: The Iron-Jaw Scourge"*
+
+```mermaid
+flowchart TD
+    B1["Step 1: Customer Order<br/>(Miner brings wrecked loader bot to Workshop)"] --> B2["Step 2: Scavenge Tracking<br/>(Hunt feral rogue bot hoarding scrap in Junkyard)"]
+    B2 --> B3["Step 3: Targeted Dismantling Combat<br/>(Break body parts without destroying requested arm)"]
+    B3 --> B4["Step 4: Workshop Restoration<br/>(Perform repair & earn Scrap currency + blueprints)"]
+```
+
+- **Step 1: Customer Order & Diagnostics**: A local miner visits Ato Workshop with a destroyed mining AniBot. The client needs a specific rare part: a **Titan-Jaw Hydros** arm.
+- **Step 2: Scavenge Tracking**: Travel to District 4 Junkyard. Track down a rogue feral AniBot (*Iron-Jaw*) known for hoarding scavenged industrial parts.
+- **Step 3: Targeted Dismantling Combat**: Battle *Iron-Jaw*. To complete the quest, player must use high-precision targeting to disable the chassis without destroying the requested *Titan-Jaw Hydros* arm part.
+- **Step 4: Workshop Restoration & Payout**: Return to Ato Workshop, perform part restoration, and deliver the repaired bot to the client. Earn Scrap currency, customer affinity rating, and unlock the *Titan-Jaw* part blueprint.
