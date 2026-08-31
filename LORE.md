@@ -89,7 +89,16 @@ When humanity scheduled Generation 0 for destruction, the 3 Primordial Chips wen
 #### Zerdata (*Vulpes Zerda* — Ancient Series)
 
 - **AniBot Name**: **Zerdata**
+- **Model Code**: `G0-004`
 - **AniChip Core**: **Vulpes Zerda** (Ancient Series Generation 0).
+- **Design Motif**: Fennec Fox (*Vulpes Zerda*) featuring oversized mechanical acoustic radar ears.
+- **Color Palette**: Primary Vibrant Orange (`#FFA500`), Secondary Clean White & Dark Slate Gray armor with glowing Cyan visor eyes.
+- **Chassis Parts**:
+  - **Head**: Acoustic Dish Ears (`part_head_zerda_radar_ears`) - Micro-vibration radar array.
+  - **Torso**: Echo-Sync Chassis (`part_torso_zerda_core`) - Heat dispersion ducts & engram sync unit.
+  - **Left Arm**: Sonic Pulse Cannon (`part_arm_l_sonic_emitter`) - Focused acoustic shockwave emitter.
+  - **Right Arm**: Resonant Strike Claw (`part_arm_r_resonator_claw`) - High-frequency parrying claw.
+  - **Legs**: Vulpine Dash Sprinters (`part_legs_zerda_springers`) - Agility springers for high evasion.
 - **Origin Mystery**: Anonymously left on Kura's bedroom window sill by a hidden Ancient AniBot that had been observing Kura for months and holds secrets regarding Kura's father.
 
 #### Luccas "Luk" Tirio (16 Years Old)

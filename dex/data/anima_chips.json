@@ -1904,7 +1904,7 @@
     "affinity": "AGILITY",
     "bonus_text": "+30% Evasion and automatic counter-attack on dodged strikes",
     "target_priority": "WEAKEST_DEFENSE",
-    "starter_frame": null,
+    "starter_frame": "anibot_zerdata",
     "passive_trait": {
       "name": "Echo Counter",
       "description": "Detects high-frequency motor vibrations, granting +30% Evasion and triggering automatic counters."

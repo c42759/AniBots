@@ -2921,5 +2921,84 @@
         "description": "Heavy-duty crawler treads engineered for maximum stability on muddy seabed and quarry terrain."
       }
     }
+  },
+  {
+    "id": "anibot_zerdata",
+    "model_code": "G0-004",
+    "name": "Zerdata",
+    "series": "ANCIENT",
+    "archetype": "High-Frequency Echo Scout",
+    "description": "Ancient Fennec Fox chassis engineered with hyper-sensitive acoustic radar ears and high-speed evasive counter thrusters.",
+    "preferred_chip": "chip_vulpes_zerda",
+    "affinity": "AGILITY",
+    "affinity_synergy_bonus": "+10% boost to Evasion and Speed when equipped with Vulpes Zerda Chip",
+    "parts": {
+      "head": {
+        "id": "part_head_zerda_radar_ears",
+        "name": "Acoustic Dish Ears",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 65,
+        "payload": 0,
+        "precision": 98,
+        "execution_time": 1.0,
+        "latency": 1.5,
+        "weight": 4,
+        "cache": 4,
+        "description": "Hyper-sensitive radar ear dishes that track micro-vibrations and opponent motor frequencies."
+      },
+      "torso": {
+        "id": "part_torso_zerda_core",
+        "name": "Echo-Sync Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 135,
+        "max_loadout": 24,
+        "firewall": 12,
+        "cooling": 2.8,
+        "description": "Streamlined ancient frame housing high-speed heat-dispersion ducts and echo sync processor."
+      },
+      "left_arm": {
+        "id": "part_arm_l_sonic_emitter",
+        "name": "Sonic Pulse Cannon",
+        "slot": "LEFT_ARM",
+        "type": "RANGED",
+        "integrity": 50,
+        "payload": 34,
+        "precision": 94,
+        "execution_time": 1.1,
+        "latency": 1.7,
+        "weight": 5,
+        "cache": 0,
+        "description": "Focused acoustic emitter that blasts resonant shockwaves capable of disrupting internal circuitry."
+      },
+      "right_arm": {
+        "id": "part_arm_r_resonator_claw",
+        "name": "Resonant Strike Claw",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 55,
+        "payload": 28,
+        "precision": 96,
+        "execution_time": 1.0,
+        "latency": 1.6,
+        "weight": 4,
+        "cache": -1,
+        "description": "Lightweight high-frequency claw designed for swift counter-attacks following successful dodges."
+      },
+      "legs": {
+        "id": "part_legs_zerda_springers",
+        "name": "Vulpine Dash Sprinters",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 80,
+        "clock_speed": 2.2,
+        "direct_connect": 20,
+        "remote_uplink": -5,
+        "packet_loss": 30,
+        "protocol": "BIPEDAL",
+        "description": "High-agility spring-loaded legs allowing explosive omni-directional dashes and jump-dodges."
+      }
+    }
   }
 ]
