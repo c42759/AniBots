@@ -86,7 +86,7 @@ We are building a highly tactical, system-driven RPG and actively welcome contri
 
 ### How to Get Started
 
-1. Read our comprehensive design document: 👉 **[OVERVIEW.md](./OVERVIEW.md)** and story bible 👉 **[LORE.md](./LORE.md)** to understand the world, lore, mechanics, and design philosophy.
+1. Read our comprehensive design document 👉 **[OVERVIEW.md](./OVERVIEW.md)**, story bible 👉 **[LORE.md](./LORE.md)**, and character databank 👉 **[CHARACTERS.md](./CHARACTERS.md)** to understand the world, characters, lore, mechanics, and design philosophy.
 2. Check existing Issues or open a new Discussion/Issue with your ideas or proposed changes.
 3. Fork the repository, create your feature branch, and submit a Pull Request.
 

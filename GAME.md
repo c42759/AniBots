@@ -9,7 +9,7 @@
   - `user://settings.cfg` or `user://global_settings.db`: Global configuration (audio volumes, display settings)
   - `user://saves/slot_{1..5}.db` (or `slot_{1..5}.json`): 5 isolated, ACID-compliant SQLite player save slots
 
-```
+```text
 res://
 ├── assets/
 │   ├── audio/
@@ -175,7 +175,7 @@ graph TD
 
 ### 5.2 Scene Tree & World Hierarchy (`StarterCity.tscn`)
 
-```
+```text
 StarterCity (Node2D)
 ├── Boundaries (StaticBody2D with WorldBoundary collision walls)
 ├── WorkshopBuilding (StaticBody2D structure with visual lab decor)
@@ -246,7 +246,7 @@ graph TD
 
 ### 7.2 Assembly Scene Hierarchy (`AnibotAssembly.tscn`)
 
-```
+```text
 AnibotAssembly (Control - CanvasLayer)
 ├── DimBackground (ColorRect)
 └── CenterContainer
