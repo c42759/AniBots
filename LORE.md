@@ -165,7 +165,7 @@ flowchart TD
 ```text
                       WORLD MAP OVERVIEW (YEAR 3047)
 ┌──────────────────────┐   ┌──────────────────────┐   ┌──────────────────────┐
-│  Neo-Verve Metropolis│───│  Oakhaven Basin      │───│  Rust-Ridge Badlands │
+│  Neo Metropolis      │───│  Oakhaven Basin      │───│  Rust-Ridge Badlands │
 │  (Eco-City Hub)      │   │  (Rural & Ancient)   │   │  (Outlaw Territory)  │
 └──────────┬───────────┘   └──────────────────────┘   └──────────┬───────────┘
            │                                                     │
@@ -175,13 +175,13 @@ flowchart TD
 └──────────────────────┘                              └──────────────────────┘
 ```
 
-### 1. Neo-Verve Metropolis (Eco-City Hub — Democratic Region)
+### 1. Neo Metropolis (Eco-City Hub — Democratic Region)
 
 - **Description**: Soaring glass towers wrapped in vertical forests and hanging gardens. District 4 is Kura's home neighborhood.
 - **Key Landmarks**:
   - **Ato Family Workshop**: Kura's home base and garage where he repairs neighborhood AniBots.
   - **District 4 Scrap Yard**: Local salvaging ground where Handlers trade secondhand hardware.
-  - **Neo-Verve League Arena**: Mid-tier official tournament dome for licensed Handlers.
+  - **Neo League Arena**: Mid-tier official tournament dome for licensed Handlers.
 
 ### 2. Rust-Ridge Badlands (Outlaw Territory — 1B Population Zone)
 
@@ -207,8 +207,8 @@ flowchart TD
 
 | NPC Name | Role / Alignment | Location | Quest & Story Relevance |
 | :--- | :--- | :--- | :--- |
-| **Raya Ato** | Kura's Mother | Neo-Verve (Ato Workshop) | Manages workshop finances; unlocks family lore & father's old logs. |
-| **Master Jax** | Veteran Scrap Mechanic | Neo-Verve Scrap Yard | Teaches Kura advanced repair techniques; gives salvage side quests. |
+| **Raya Ato** | Kura's Mother | Neo Metropolis (Ato Workshop) | Manages workshop finances; unlocks family lore & father's old logs. |
+| **Master Jax** | Veteran Scrap Mechanic | Neo Metropolis Scrap Yard | Teaches Kura advanced repair techniques; gives salvage side quests. |
 | **Vera "Viper" Lin** | Anode Group Enforcer | Rust-Ridge Badlands | Rival faction quest giver; tests Kura in outlaw arena battles. |
 | **Dr. Aris Thorne** | Ex-Gen-0 Lead Scientist | Oakhaven Basin | Offers **Ancient Relic Quests**; reveals secrets of Vulpes Zerda & the Primordials. |
 | **Soren Vance** | Aegis Corp Prodigy | Aegis High-Spire | Arrogant QC1 rival Handler; main antagonist in corporate tournament quests. |
@@ -266,7 +266,7 @@ flowchart TD
     F3B --> F4B["Result: Outlaw Badlands Rep<br/>(Unlock Black Market & The Pit Arena)"]
 ```
 
-- **Step 1: Incident Call**: Eco-City Enforcers intercept a contraband freighter carrying illegal QC3 overclock modules at the border wall between Neo-Verve and Rust-Ridge Badlands.
+- **Step 1: Incident Call**: Eco-City Enforcers intercept a contraband freighter carrying illegal QC3 overclock modules at the border wall between Neo Metropolis and Rust-Ridge Badlands.
 - **Step 2: The Crossroads Choice**: Player arrives at the scene and must choose a faction path:
   - **Option A (Law & Order)**: Ally with Enforcer Officer Vance to secure the shipment and uphold city laws.
   - **Option B (Underground Scavengers)**: Ally with Vera "Viper" Lin to hijack the freighter and distribute repair scrap to impoverished badland Handlers.

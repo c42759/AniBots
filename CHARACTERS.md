@@ -10,7 +10,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 - **Age**: 16 years old
 - **Role**: Main Protagonist, Freelance AniBot Mechanic & Handler
-- **Location**: Neo-Verve Metropolis (District 4, Ato Family Workshop)
+- **Location**: Neo Metropolis (District 4, Ato Family Workshop)
 - **Background**: Kura is an independent, resourceful 16-year-old living with his mother. His father passed away under mysterious circumstances 4 years prior (3043 AD), leaving behind an unpowered AniBot chassis (`anibot_zerdata`). To support his family, Kura works odd delivery and construction jobs while working as a talented freelance AniBot mechanic for locals.
 - **Personality & Drive**: Highly intelligent, practical, fiercely protective of his family and friends. Knows AniBot hardware inside and out.
 - **Primary Goals**:
@@ -51,7 +51,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 - **Age**: 16 years old
 - **Role**: Kura's Best Friend & Primary Rival Handler
-- **Location**: Neo-Verve Metropolis
+- **Location**: Neo Metropolis
 - **Background**: Comes from a financially secure family. Student and active Handler who frequently helps Kura on odd jobs (stubbornly refusing any payment).
 - **Personality**: Energetic, competitive, loyal, ambitious.
 - **Dream**: Believes that one day, both he and Kura will battle in the Grand Finals of the **AniBot World Cup** to decide who is the ultimate Handler.
@@ -61,7 +61,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 ### 4. Raya Ato
 
 - **Role**: Kura's Mother
-- **Location**: Ato Family Workshop (Neo-Verve Metropolis, District 4)
+- **Location**: Ato Family Workshop (Neo Metropolis, District 4)
 - **Background & Function**: Warm and resilient mother managing household and workshop accounting. Holds old family records and Kura's father's original research logs.
 
 ---
@@ -77,7 +77,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 | Character | Role / Occupation | Location | Story Relevance & Quest Function |
 | :--- | :--- | :--- | :--- |
-| **Master Jax** | Veteran Scrap Mechanic | Neo-Verve Scrap Yard | Teaches Kura advanced part restoration & tuning; issues salvage bounties and rogue AniBot hunting contracts. |
+| **Master Jax** | Veteran Scrap Mechanic | Neo Metropolis Scrap Yard | Teaches Kura advanced part restoration & tuning; issues salvage bounties and rogue AniBot hunting contracts. |
 | **Dr. Aris Thorne** | Ex-Gen-0 Lead Scientist | Oakhaven Basin (Thorne's Hermitage) | Original architect of the 176 Ancient Chips; offers **Ancient Relic Excavation Quests** and reveals Gen-0 secrets. |
 | **Soren Vance** | Aegis Corp Prodigy Handler | Aegis High-Spire | Arrogant elite Handler sponsored by Aegis Corp; main corporate tournament rival wielding top-tier QC1 chips. |
 
@@ -90,7 +90,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 - **Title**: Ex-Generation 0 Lead Scientist & Architect of the 176 Ancient Series AniChips
 - **Location**: Oakhaven Basin (Thorne's Hermitage)
 - **Background & Career Timeline**:
-  - **2965 AD**: Born in Neo-Verve Metropolis.
+  - **2965 AD**: Born in Neo Metropolis.
   - **2995 AD (Age 30)**: Appointed Lead Scientist of the global **Generation 0 Anima Core Initiative** after breakthroughs in Anima Stone stabilization.
   - **3005 AD (Age 40)**: Successfully completes manufacturing of the **176 Ancient Series Chips** (G0-001 through G0-176).
   - **3010 AD (Age 45)**: Governing council orders Gen-0 decommission and destruction due to fears of uncapped learning abilities. Refusing to let his creations be destroyed, Dr. Thorne secretly unlocks Vault 7 security, allowing **Agon, Biggon, and Cygon** to escape with 7 saved Ancient Chips. Resigns in disgrace and vanishes into reclusive hiding.
