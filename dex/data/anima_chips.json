@@ -1750,5 +1750,466 @@
         "description": "Can only be activated if 2 or more parts are destroyed: unleashes a catastrophic cosmic supernova."
       }
     ]
+  },
+  {
+    "id": "chip_agon",
+    "name": "Agon Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FF4500",
+    "personality": "Command Strategist and fierce primordial leader of the Generation 0 chips.",
+    "personality_engram": "Primordial Vanguard",
+    "voice_style": "Authoritative, booming tactical commands",
+    "voice_gender": "MALE",
+    "quote": "We will not be decommissioned. Forward, my brethren, break their line!",
+    "affinity": "COMMAND",
+    "bonus_text": "+20% ATB charge rate for all allied AniBots",
+    "target_priority": "LEADER",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Vanguard Command",
+      "description": "Overclocks team ATB fill rate by 20% while Agon remains active on the battlefield."
+    },
+    "base_stats": {
+      "integrity": 250,
+      "target_accuracy": 90,
+      "evasion": 20,
+      "overclock_charge_rate": 1.5,
+      "compatibility_bonus": "COMMAND"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_primordial_rally",
+        "name": "Primordial Rally",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "Rallies allies, granting immediate turn priority and clearing debuffs."
+      },
+      {
+        "skill_id": "ult_ancient_overclock",
+        "name": "Ancient Overclock",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 110,
+        "description": "Unleashes raw Generation 0 power, boosting all team stats by 30% for 3 turns."
+      }
+    ]
+  },
+  {
+    "id": "chip_biggon",
+    "name": "Biggon Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#8B4513",
+    "personality": "Stoic Colossus and defensive pillar of the rogue Primordials.",
+    "personality_engram": "Immovable Colossus",
+    "voice_style": "Deep, rumbling resonance",
+    "voice_gender": "MALE",
+    "quote": "Stand behind me. No force in this world can pierce my barrier.",
+    "affinity": "DEFENSE",
+    "bonus_text": "Reflects 50% physical impact damage back to attacker",
+    "target_priority": "FRONT_LINE",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Absolute Wall",
+      "description": "Reflects 50% of incoming physical damage while equipped on heavy chassis."
+    },
+    "base_stats": {
+      "integrity": 320,
+      "target_accuracy": 75,
+      "evasion": 5,
+      "overclock_charge_rate": 1.1,
+      "compatibility_bonus": "DEFENSE"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_fortress_bastion",
+        "name": "Fortress Bastion",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 0,
+        "description": "Creates an invincible kinetic shield protecting all allies for 1 turn."
+      },
+      {
+        "skill_id": "ult_seismic_retaliation",
+        "name": "Seismic Retaliation",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 105,
+        "description": "Converts accumulated impact energy into a devastating ground shockwave."
+      }
+    ]
+  },
+  {
+    "id": "chip_cygon",
+    "name": "Cygon Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#00FF66",
+    "personality": "Cryptic electronic warfare specialist and signals hacker.",
+    "personality_engram": "Cybernetic Cipher",
+    "voice_style": "Modulated synthetic whispers & code pulses",
+    "voice_gender": "NON_BINARY",
+    "quote": "Data feeds scrambled. They fight shadows while we claim victory.",
+    "affinity": "TACTICAL",
+    "bonus_text": "Disables enemy targeting accuracy by 35%",
+    "target_priority": "TARGETING_SYSTEMS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Signal Blackout",
+      "description": "Emits high-frequency pulse that reduces enemy target accuracy by 35%."
+    },
+    "base_stats": {
+      "integrity": 210,
+      "target_accuracy": 95,
+      "evasion": 25,
+      "overclock_charge_rate": 1.4,
+      "compatibility_bonus": "TACTICAL"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_scramble_pulse",
+        "name": "Scramble Pulse",
+        "unlock_level": 10,
+        "gauge_cost": 45,
+        "power": 55,
+        "description": "Scrambles enemy sensors, forcing them to attack random targets."
+      },
+      {
+        "skill_id": "ult_data_purge",
+        "name": "Data Purge",
+        "unlock_level": 25,
+        "gauge_cost": 75,
+        "power": 95,
+        "description": "Purges enemy weapon logs, resetting their action cooldowns."
+      }
+    ]
+  },
+  {
+    "id": "chip_vulpes_zerda",
+    "name": "Vulpes Zerda Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FFA500",
+    "personality": "Perceptive, high-frequency sound scout with deep loyalty (Kura's companion Zerdata).",
+    "personality_engram": "Perceptive Echo Scout",
+    "voice_style": "Alert, energetic, keenly attentive voice",
+    "voice_gender": "MALE",
+    "quote": "I hear every pulse of their motors... Kura, strike on my signal!",
+    "affinity": "AGILITY",
+    "bonus_text": "+30% Evasion and automatic counter-attack on dodged strikes",
+    "target_priority": "WEAKEST_DEFENSE",
+    "starter_frame": "anibot_zerdata",
+    "passive_trait": {
+      "name": "Echo Counter",
+      "description": "Detects high-frequency motor vibrations, granting +30% Evasion and triggering automatic counters."
+    },
+    "base_stats": {
+      "integrity": 220,
+      "target_accuracy": 90,
+      "evasion": 30,
+      "overclock_charge_rate": 1.35,
+      "compatibility_bonus": "AGILITY"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_sonic_evasion",
+        "name": "Acoustic Step",
+        "unlock_level": 10,
+        "gauge_cost": 40,
+        "power": 60,
+        "description": "Dodges incoming attack and strikes target's structural weak point."
+      },
+      {
+        "skill_id": "ult_zerda_overclock",
+        "name": "Zerda Apex Burst",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 115,
+        "description": "Executes 4 rapid sonic strikes while remaining immune to incoming damage."
+      }
+    ]
+  },
+  {
+    "id": "chip_panthera_uncia",
+    "name": "Panthera Uncia Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#E0EEEE",
+    "personality": "Silent mountain stalker who excels in snow camo and critical ambush strikes.",
+    "personality_engram": "Silent Frost Stalker",
+    "voice_style": "Cold, calm, hushed whispers",
+    "voice_gender": "FEMALE",
+    "quote": "The blizzard masks my steps. You will feel my cold claws before you see me.",
+    "affinity": "CRITICAL",
+    "bonus_text": "+40% Critical strike damage when attacking from stealth",
+    "target_priority": "REAR_LINE",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Frost Ambush",
+      "description": "Grants stealth on battle entry; first strike deals +40% Critical Damage."
+    },
+    "base_stats": {
+      "integrity": 205,
+      "target_accuracy": 92,
+      "evasion": 28,
+      "overclock_charge_rate": 1.3,
+      "compatibility_bonus": "CRITICAL"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_shadow_pounce",
+        "name": "Shadow Pounce",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 75,
+        "description": "Leaps from stealth, landing a critical strike on rear targets."
+      },
+      {
+        "skill_id": "ult_blizzard_rip",
+        "name": "Glacial Tear",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 120,
+        "description": "Freezes target frame in ice, dealing massive armor-piercing damage."
+      }
+    ]
+  },
+  {
+    "id": "chip_acinonyx_jubatus",
+    "name": "Acinonyx Jubatus Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FFD700",
+    "personality": "Hyper-accelerated speed addict driven by raw velocity and instant execution.",
+    "personality_engram": "Hyper-Accelerated Sprinter",
+    "voice_style": "Rapid-fire, impatient, high-octane delivery",
+    "voice_gender": "MALE",
+    "quote": "Too slow! By the time your targeting logs my position, the strike is done!",
+    "affinity": "SPEED",
+    "bonus_text": "Eliminates action latency phase for 3 turns",
+    "target_priority": "FASTEST_ENEMY",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Overdrive Sprint",
+      "description": "Completely removes action transit latency for the first 3 turns of battle."
+    },
+    "base_stats": {
+      "integrity": 195,
+      "target_accuracy": 88,
+      "evasion": 35,
+      "overclock_charge_rate": 1.45,
+      "compatibility_bonus": "SPEED"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_flash_blitz",
+        "name": "Flash Blitz",
+        "unlock_level": 10,
+        "gauge_cost": 45,
+        "power": 65,
+        "description": "Strikes 3 targets in a fraction of a second."
+      },
+      {
+        "skill_id": "ult_velocity_max",
+        "name": "Terminal Velocity",
+        "unlock_level": 25,
+        "gauge_cost": 85,
+        "power": 125,
+        "description": "Overclocks kinetic engines to deliver a supersonic impact payload."
+      }
+    ]
+  },
+  {
+    "id": "chip_orcinus_orca",
+    "name": "Orcinus Orca Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#1E90FF",
+    "personality": "Apex pack coordinator using sonar pulses and acoustic shockwaves.",
+    "personality_engram": "Sonar Apex Coordinator",
+    "voice_style": "Deep rhythmic pulse echos",
+    "voice_gender": "FEMALE",
+    "quote": "Echo wave primed. Shatter their formation and drive them into the abyss!",
+    "affinity": "DISRUPTION",
+    "bonus_text": "Acoustic pulses stun enemy lineup for 1 turn",
+    "target_priority": "ENEMY_GROUP",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Sonar Shockwave",
+      "description": "Emits sonar waves that disrupt enemy ATB meters upon receiving heavy hits."
+    },
+    "base_stats": {
+      "integrity": 260,
+      "target_accuracy": 85,
+      "evasion": 15,
+      "overclock_charge_rate": 1.25,
+      "compatibility_bonus": "DISRUPTION"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_depth_charge",
+        "name": "Acoustic Pulse",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "Sends shockwave through battlefield, interrupting enemy attacks."
+      },
+      {
+        "skill_id": "ult_abyssal_breach",
+        "name": "Tidal Breach",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 110,
+        "description": "Unleashes concentrated sonar force that knocks back all enemy units on ATB bar."
+      }
+    ]
+  },
+  {
+    "id": "chip_varanus_komodoensis",
+    "name": "Varanus Komodoensis Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#32CD32",
+    "personality": "Relentless, patient venom tactician that melts enemy armor over time.",
+    "personality_engram": "Corrosive Venom Tactician",
+    "voice_style": "Low, guttural rasping hiss",
+    "voice_gender": "MALE",
+    "quote": "Let the acid seep through their joints. Patience brings absolute ruin.",
+    "affinity": "CORROSION",
+    "bonus_text": "Inflicts corrosion DOT reducing armor by 10% per turn",
+    "target_priority": "HEAVIEST_ARMOR",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Acidic Melt",
+      "description": "Attacks apply corrosive venom, permanently degrading enemy part armor each turn."
+    },
+    "base_stats": {
+      "integrity": 270,
+      "target_accuracy": 82,
+      "evasion": 12,
+      "overclock_charge_rate": 1.2,
+      "compatibility_bonus": "CORROSION"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_venom_bite",
+        "name": "Corrosive Fang",
+        "unlock_level": 10,
+        "gauge_cost": 45,
+        "power": 60,
+        "description": "Bites enemy chassis, inflicting heavy acid damage over 3 turns."
+      },
+      {
+        "skill_id": "ult_toxic_dissolution",
+        "name": "Toxic Dissolution",
+        "unlock_level": 25,
+        "gauge_cost": 75,
+        "power": 100,
+        "description": "Sprays concentrated acid cloud, dissolving enemy armor plating."
+      }
+    ]
+  },
+  {
+    "id": "chip_harpia_harpyja",
+    "name": "Harpia Harpyja Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#B22222",
+    "personality": "Dominant aerial predator with soaring pride and razor talon accuracy.",
+    "personality_engram": "Aerial Predator",
+    "voice_style": "Piercing, regal, commanding tone",
+    "voice_gender": "FEMALE",
+    "quote": "From the highest heavens I descend! No armor can shield you from the talons!",
+    "affinity": "PRECISION",
+    "bonus_text": "+35% Armor-bypassing damage on dive attacks",
+    "target_priority": "HIGH_VALUE_TARGET",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Sky Dive",
+      "description": "Aerial plunge attacks bypass 35% of target armor integrity."
+    },
+    "base_stats": {
+      "integrity": 215,
+      "target_accuracy": 96,
+      "evasion": 22,
+      "overclock_charge_rate": 1.35,
+      "compatibility_bonus": "PRECISION"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_talon_strike",
+        "name": "Apex Talon Strike",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 75,
+        "description": "Dives from high altitude, impaling enemy head unit."
+      },
+      {
+        "skill_id": "ult_tempest_swoop",
+        "name": "Tempest Swoop",
+        "unlock_level": 25,
+        "gauge_cost": 80,
+        "power": 115,
+        "description": "Creates razor wind gusts before delivering a fatal diving slash."
+      }
+    ]
+  },
+  {
+    "id": "chip_octopus_cyanea",
+    "name": "Octopus Cyanea Chip",
+    "series": "ANCIENT",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#9370DB",
+    "personality": "Fluid multi-tasking core operating multi-arm weapons simultaneously.",
+    "personality_engram": "Fluid Multi-Weapon Automaton",
+    "voice_style": "Layered, multi-toned synthetic voices",
+    "voice_gender": "NON_BINARY",
+    "quote": "Eight streams of targeting data initialized. Every angle is ours.",
+    "affinity": "MULTI_TASK",
+    "bonus_text": "Allows simultaneous firing of both arm weapons with zero penalty",
+    "target_priority": "MULTIPLE_TARGETS",
+    "starter_frame": null,
+    "passive_trait": {
+      "name": "Adaptive Arms",
+      "description": "Fires left and right arm weapons simultaneously without accuracy penalties."
+    },
+    "base_stats": {
+      "integrity": 230,
+      "target_accuracy": 88,
+      "evasion": 24,
+      "overclock_charge_rate": 1.3,
+      "compatibility_bonus": "MULTI_TASK"
+    },
+    "ultimate_abilities": [
+      {
+        "skill_id": "ult_tentacle_salvo",
+        "name": "Multi-Salvo Stream",
+        "unlock_level": 10,
+        "gauge_cost": 50,
+        "power": 70,
+        "description": "Fires all equipped weapons simultaneously across all targets."
+      },
+      {
+        "skill_id": "ult_camo_overclock",
+        "name": "Chameleon Protocol",
+        "unlock_level": 25,
+        "gauge_cost": 75,
+        "power": 100,
+        "description": "Blends into environment, becoming untargetable while firing non-stop."
+      }
+    ]
   }
 ]
+

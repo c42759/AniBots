@@ -93,6 +93,21 @@ func _on_command_selected(slot: int, is_overclock: bool) -> void:
 func update_unit_damage(unit: CombatUnit3D) -> void:
 	_update_unit_hp(unit, unit.is_player)
 
+func spawn_floating_damage(damage: int, is_player_target: bool) -> void:
+	var label := Label.new()
+	label.text = "-%d" % damage
+	label.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2) if is_player_target else Color(1.0, 0.85, 0.2))
+	label.add_theme_font_size_override("font_size", 22)
+	
+	var spawn_pos := Vector2(250, 360) if is_player_target else Vector2(1030, 360)
+	label.position = spawn_pos
+	add_child(label)
+	
+	var tween := create_tween()
+	tween.tween_property(label, "position:y", spawn_pos.y - 40.0, 0.6)
+	tween.parallel().tween_property(label, "modulate:a", 0.0, 0.6)
+	tween.tween_callback(label.queue_free)
+
 func _update_unit_hp(unit: CombatUnit3D, is_player_side: bool) -> void:
 	var head_max = unit.part_max_integrities.get(Types.PartSlot.HEAD, 60)
 	var head_cur = unit.part_integrities.get(Types.PartSlot.HEAD, 60)

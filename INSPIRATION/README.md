@@ -1,3 +1,14 @@
+# Design Inspiration: Medabots (GBA)
+
+> [!NOTE]
+> This document provides historical design and mechanics research for **AniBots**. It analyzes the Game Boy Advance titles *Medabots: Metabee Version* and *Medabots: Rokusho Version* (Natsume, 2002/2003), which serve as foundational inspiration for AniBots' relay-line combat, modular part loadouts, and head-destruction win conditions.
+>
+> - **AniBots Game Design Document**: [OVERVIEW.md](../OVERVIEW.md)
+> - **Technical Implementation**: [GAME.md](../GAME.md)
+> - **Project Portal**: [README.md](../README.md)
+
+---
+
 Medabots: Metabee Version and Medabots: Rokusho Version are a pair of 2D top-down role-playing games released for the Game Boy Advance (GBA) by Natsume in 2002/2003. While they were the first Medabots RPGs to see an international release, they are actually enhanced remakes of Medarot 2, a Japan-exclusive title released for the Game Boy Color in 1999.
 
 # The Story
@@ -35,7 +46,7 @@ The Medaforce is an ultimate attack and utility system that operates independent
 
 Here is a breakdown of how the mechanics work in the GBA games:
 
-![](./Gemini_Generated_Video.mp4)
+<!-- Reference Gameplay Video: ./Gemini_Generated_Video.mp4 -->
 
 ## 1. Charging the Gauge
 During a Robattle, you will notice a percentage gauge (the MF Gauge) for each of your Medabots. You cannot use a Medaforce until you have enough energy stored. The gauge fills in two primary ways:

@@ -55,8 +55,9 @@ export const ChipCard: React.FC<ChipCardProps> = ({ chip, onSelect }) => {
         {/* Image Display Slot */}
         <div className="mb-3">
           <ItemImage
+            id={chip.id}
+            name={chip.name}
             src={chip.image}
-            defaultPath={`/images/chips/${chip.id}.png`}
             alt={chip.name}
             type="chip"
             diodeColor={diodeColor}

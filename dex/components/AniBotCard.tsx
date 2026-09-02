@@ -59,8 +59,9 @@ export const AniBotCard: React.FC<AniBotCardProps> = ({ bot, onSelect, onSelectC
         {/* Image Display Slot */}
         <div className="mb-3">
           <ItemImage
+            id={bot.id}
+            name={bot.name}
             src={bot.image}
-            defaultPath={`/images/anibots/${bot.id}.png`}
             alt={bot.name}
             type="anibot"
             aspectRatio="aspect-video"
