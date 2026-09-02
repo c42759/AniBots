@@ -1,5 +1,10 @@
 # AniChip Schematic & Ink Design Prompt Guide
 
+> [!NOTE]
+> - **Standard Anima Chips Catalog**: For official chip names, models, and series, see [CHIPS.md](../CHIPS.md).
+> - **Ancient Series Cores**: For Generation 0 chips, see [CHARACTERS.md](../CHARACTERS.md#the-10-legendary-ancient-series-anichips-generation-0).
+> - **Project Portal**: [README.md](../README.md).
+
 This document provides reusable AI image generation prompt templates to create technical ink schematic sketches for any **AniChip / AnimaChip**.
 
 ---

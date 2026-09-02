@@ -6,23 +6,39 @@ Welcome to the **AniBots** repository!
 
 **AniBots** is a strategic RPG built in **Godot**, featuring deeply customizable robots powered by unique AI cores known as **Anima Chips**. This project blends classic RPG battling mechanics with a robust hardware degradation and management system, where players act as "Handlers" commanding semi-autonomous machines.
 
+## 📚 Project Documentation
+
+The AniBots project is structured across modular, domain-specific documentation files:
+
+| Document | Focus & Domain |
+| :--- | :--- |
+| **[OVERVIEW.md](./OVERVIEW.md)** | **Game Design Document**: Core combat loop, attributes, autonomous utility AI targeting, degradation, and scrap economy. |
+| **[GAME.md](./GAME.md)** | **Technical Implementation Specification**: Godot 4.x architecture, autoloads, composite sprites, and SQLite database schema. |
+| **[CHIPS.md](./CHIPS.md)** | **Anima Chips Catalog**: Canonical databank of 36 mass-market AI cores (Antiquity, Kinetic, Astral series). |
+| **[LORE.md](./LORE.md)** | **World Bible**: 3047 AD timeline, societal order, geography, main story arcs, and branching quest loops. |
+| **[CHARACTERS.md](./CHARACTERS.md)** | **Character & Frame Databank**: Cast bios, Zerdata 5-part chassis anatomy, supporting NPCs, and the 10 Ancient Series cores. |
+| **[INSPIRATION/README.md](./INSPIRATION/README.md)** | **Design Roots**: Analysis of classic robot-battler mechanics (Medabots GBA relay system). |
+| **[ai/AniChipDesignPrompt.md](./ai/AniChipDesignPrompt.md)** | **AI Art Standard**: Reusable ink schematic sketch prompts for chip illustrations. |
+| **[dex/README.md](./dex/README.md)** | **AniDex Web App**: Next.js Pokédex-style databank for browsing 36 frames and 46 chips. |
+
+---
+
 ## 🛠 Tech Stack & Architecture
 
-- **Game Engine:** Godot
-- **Database:** SQLite
+- **Game Engine:** Godot 4.x (GL Compatibility / Desktop & Switch target)
+- **Persistence:** SQLite Dual-Database (Static Catalog + ACID Save DB)
 
-We are using a dual-database architecture powered by SQLite, ensuring lightweight, cross-platform performance (including Nintendo Switch):
+For technical architecture details, autoload singletons, and complete SQL table schemas, see **[GAME.md](./GAME.md)**.
 
-1. **The Catalog (Read-Only):** A static database containing all base stats for Anibot parts (Integrity, Payload, Precision). This allows for instant balance patching without touching the engine scripts.
-2. **The Save Database (Writable):** Tracks the player's dynamic state, inventory, and hardware degradation. SQLite guarantees ACID compliance, ensuring save files never corrupt during transactions.
+---
 
 ## 🤖 Core Game Systems
 
-If you are looking to contribute, here are the core systems that drive AniBots:
+For comprehensive gameplay formulas, hardware equations, and utility AI algorithms, see **[OVERVIEW.md](./OVERVIEW.md)**. Core systems include:
 
 ### 1. The Anima Chip (The AI "Soul")
 
-The Anima Chip is the central processor that dictates an Anibot's personality and autonomous targeting logic. Instead of hardcoded actions, chips use a **Weighted Scoring System (Utility AI)** to dynamically calculate threats on the battlefield based on their specific personality (e.g., Aggressive chips target heavy weapons, Sniper chips target weak armor).
+The Anima Chip is the central processor dictating autonomous targeting logic via a **Weighted Scoring System (Utility AI)**. Individual chip profiles and traits are cataloged in **[CHIPS.md](./CHIPS.md)** and **[CHARACTERS.md](./CHARACTERS.md#the-10-legendary-ancient-series-anichips-generation-0)**.
 
 ### 2. Modular Hardware Loadouts
 
@@ -86,7 +102,7 @@ We are building a highly tactical, system-driven RPG and actively welcome contri
 
 ### How to Get Started
 
-1. Read our comprehensive design document 👉 **[OVERVIEW.md](./OVERVIEW.md)**, story bible 👉 **[LORE.md](./LORE.md)**, and character databank 👉 **[CHARACTERS.md](./CHARACTERS.md)** to understand the world, characters, lore, mechanics, and design philosophy.
+1. Read our core design documents: **[OVERVIEW.md](./OVERVIEW.md)** (mechanics), **[GAME.md](./GAME.md)** (technical architecture), **[CHIPS.md](./CHIPS.md)** (chips databank), **[LORE.md](./LORE.md)** (story bible), and **[CHARACTERS.md](./CHARACTERS.md)** (cast profiles).
 2. Check existing Issues or open a new Discussion/Issue with your ideas or proposed changes.
 3. Fork the repository, create your feature branch, and submit a Pull Request.
 

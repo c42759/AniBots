@@ -1,6 +1,12 @@
 # AniBots Character Databank (`CHARACTERS.md`)
 
-Welcome to the official **AniBots Character Databank**. This document contains comprehensive profiles for all Handlers, AniBots, Anima Chips, supporting NPCs, factions, and legendary Ancient Series cores in the AniBots universe.
+Welcome to the official **AniBots Character Databank**. This document contains comprehensive profiles for all Handlers, AniBots, supporting NPCs, factions, and legendary Ancient Series cores in the AniBots universe.
+
+> [!NOTE]
+> - **World Lore & History**: Story arcs, world geography, and branching quest loops are in [LORE.md](./LORE.md).
+> - **Standard Anima Chips (36 Cores)**: Mass-market Antiquity, Kinetic, and Astral chips are cataloged in [CHIPS.md](./CHIPS.md).
+> - **Game Design & Starter Frames**: Core attributes, targeting AI, and starter loadouts are in [OVERVIEW.md](./OVERVIEW.md).
+> - **Interactive Web Databank**: Browse all AniBots and Chips with multi-filtering in [dex/README.md](./dex/README.md).
 
 ---
 
@@ -94,7 +100,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
   - **2995 AD (Age 30)**: Appointed Lead Scientist of the global **Generation 0 Anima Core Initiative** after breakthroughs in Anima Stone stabilization.
   - **3005 AD (Age 40)**: Successfully completes manufacturing of the **176 Ancient Series Chips** (G0-001 through G0-176).
   - **3010 AD (Age 45)**: Governing council orders Gen-0 decommission and destruction due to fears of uncapped learning abilities. Refusing to let his creations be destroyed, Dr. Thorne secretly unlocks Vault 7 security, allowing **Agon, Biggon, and Cygon** to escape with 7 saved Ancient Chips. Resigns in disgrace and vanishes into reclusive hiding.
-  - **3047 AD (Age 82 — Present)**: Living as an reclusive elder scholar in Oakhaven Basin. Serves as Kura's mentor for Ancient Relic quests and holds key secrets regarding Vulpes Zerda and Kura's father.
+  - **3047 AD (Age 82 — Present)**: Living as an reclusive elder scholar in Oakhaven Basin. Serves as Kura's mentor for [Ancient Relic Quests](./LORE.md#1-quest-type-1-ancient-relic-excavation) and holds key secrets regarding Vulpes Zerda and Kura's father.
 
 ---
 
@@ -104,13 +110,13 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 - **Role**: Supreme Boss of the **Anode Group**
 - **Location**: Magnus's Citadel (Rust-Ridge Badlands)
-- **Background & Goals**: Well-connected criminal mastermind controlling the black market. Seeks to expand syndicate operations into civilized cities, trade illegal overclock chips, and gain total world control.
+- **Background & Goals**: Well-connected criminal mastermind controlling the black market. Seeks to expand syndicate operations into civilized cities, trade illegal overclock chips, and gain total world control. See [LORE.md Story Arcs](./LORE.md#chapter-3-encounter-with-anode-group).
 
 ### 2. Vera "Viper" Lin
 
 - **Role**: Anode Group Lieutenant & Badlands Enforcer
 - **Location**: The Pit Arena (Rust-Ridge Badlands)
-- **Function**: Controls the underground illegal battle circuit in Rust-Ridge; key figure in Faction Alignment side quests.
+- **Function**: Controls the underground illegal battle circuit in Rust-Ridge; key figure in [Faction Alignment Quests](./LORE.md#2-quest-type-2-faction-alignment-quests).
 
 ---
 

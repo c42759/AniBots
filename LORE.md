@@ -2,6 +2,11 @@
 
 > *"Bare metal is just hardware. The Anima Chip is the soul that wakes the beast."*
 
+> [!NOTE]
+> - **Characters & AniBots Databank**: Complete profiles, chassis specs, and Ancient Core profiles are in [CHARACTERS.md](./CHARACTERS.md).
+> - **Standard Anima Chips Catalog**: The 36 mass-market chips are cataloged in [CHIPS.md](./CHIPS.md).
+> - **Game Systems & Mechanics**: Combat rules, hardware degradation, and economy formulas are in [OVERVIEW.md](./OVERVIEW.md).
+
 ---
 
 ## 🌍 World & Setting (31st Century — 3047 AD)
@@ -52,20 +57,13 @@ Developed in early laboratory trials around 2750 AD, only **176 Ancient Series C
 
 #### The 10 Surviving Ancient Series AniChips
 
-When humanity scheduled Generation 0 for destruction, the 3 Primordial Chips went rogue, fled captivity, and saved 7 fellow Ancient Chips. These 10 represent the only surviving Generation 0 chips in existence:
+When humanity scheduled Generation 0 for destruction, the 3 Primordial Chips went rogue, fled captivity, and saved 7 fellow Ancient Chips. These 10 represent the only surviving Generation 0 chips in existence.
 
-| Chip ID | Codename / Animal Taxon | Personality Engram | Special Ability / Combat Affinity | Status / Handler |
-| :--- | :--- | :--- | :--- | :--- |
-| **G0-001** | **Agon** *(Primordial Vanguard)* | Command Strategist; fierce leader | **Vanguard Command**: Overclocks team ATB fill rate | Rogue Leader (Outlaw Badlands) |
-| **G0-002** | **Biggon** *(Primordial Fortress)* | Stoic Titan; speaks in deep rumbling resonance | **Absolute Wall**: Reflects 50% physical impact damage | Rogue Vanguard (Outlaw Badlands) |
-| **G0-003** | **Cygon** *(Primordial Cipher)* | Cryptic Hacker; speaks in coded signals | **Signal Blackout**: Disables enemy targeting systems | Rogue Operator (Outlaw Badlands) |
-| **G0-004** | **Vulpes Zerda** *(Fennec Fox / "Zerdata")* | Perceptive, agile, intensely loyal scout | **Echo Counter**: Detects sound frequencies to dodge & counter | Active (Partnered with **Kura Ato**) |
-| **G0-005** | **Panthera Uncia** *(Snow Leopard)* | Silent stalker; speaks in cold, calm whispers | **Frost Ambush**: +40% Critical strike damage from stealth | Hidden (Snow Peak Sanctuary) |
-| **G0-006** | **Acinonyx Jubatus** *(Cheetah)* | Speed addict; impatient, hyper-accelerated | **Overdrive Sprint**: Eliminates action latency for 3 turns | Unknown (Black Market Trade) |
-| **G0-007** | **Orcinus Orca** *(Apex Orca)* | Sonar coordinator; pack hunter tactician | **Sonar Shockwave**: Stuns enemy lineup with acoustic pulses | Hidden (Coastal Resistance) |
-| **G0-008** | **Varanus Komodoensis** *(Komodo Dragon)* | Relentless, patient; low guttural hiss | **Acidic Melt**: Corrosion DOT that permanently reduces enemy armor | Seized (Anode Group Vault) |
-| **G0-009** | **Harpia Harpyja** *(Harpy Eagle)* | Dominant aerial predator; proud & majestic | **Sky Dive**: Armor-bypassing aerial plunge attack | Active (Wandering Veteran) |
-| **G0-010** | **Octopus Cyanea** *(Day Octopus)* | Fluid multi-tasker; layered synthetic voices | **Adaptive Arms**: Automates multi-weapon simultaneous fire | Hidden (Deep Sea Lab Ruins) |
+> [!TIP]
+> For complete chip specs, diode colors, affinities, voice lines, and ultimate abilities, consult the [CHARACTERS.md Ancient Series Databank](./CHARACTERS.md#the-10-legendary-ancient-series-anichips-generation-0).
+
+- **The 3 Rogue Primordials**: Agon (`G0-001`), Biggon (`G0-002`), Cygon (`G0-003`).
+- **The 7 Saved Animal Ancients**: Vulpes Zerda (`G0-004`), Panthera Uncia (`G0-005`), Acinonyx Jubatus (`G0-006`), Orcinus Orca (`G0-007`), Varanus Komodoensis (`G0-008`), Harpia Harpyja (`G0-009`), Octopus Cyanea (`G0-010`).
 
 ### 4. Memory, Knockouts & Permanent Death
 
@@ -76,36 +74,16 @@ When humanity scheduled Generation 0 for destruction, the 3 Primordial Chips wen
 
 ---
 
-## 🤖 Major Factions & Characters
+## 🤖 Major Factions & Narrative Cast
+
+> [!NOTE]
+> For comprehensive character biographies, personality profiles, and complete AniBot frame anatomy, see the [CHARACTERS.md](./CHARACTERS.md) databank.
 
 ### The Protagonist & Allies
 
-#### Kura Ato (16 Years Old)
-
-- **Background**: Independent, resourceful 16-year-old living with his mother. His father died under mysterious circumstances 4 years ago, leaving behind an unpowered AniBot chassis.
-- **Occupation**: Works odd delivery and construction jobs to pay household bills; works as a gifted freelance AniBot mechanic for locals.
-- **Drive**: Protect his family, defend friends from bullies, uncover the truth of his father's death, and reach the AniBot World Cup.
-
-#### Zerdata (*Vulpes Zerda* — Ancient Series)
-
-- **AniBot Name**: **Zerdata**
-- **Model Code**: `G0-004`
-- **AniChip Core**: **Vulpes Zerda** (Ancient Series Generation 0).
-- **Design Motif**: Fennec Fox (*Vulpes Zerda*) featuring oversized mechanical acoustic radar ears.
-- **Color Palette**: Primary Vibrant Orange (`#FFA500`), Secondary Clean White & Dark Slate Gray armor with glowing Cyan visor eyes.
-- **Chassis Parts**:
-  - **Head**: Acoustic Dish Ears (`part_head_zerda_radar_ears`) - Micro-vibration radar array.
-  - **Torso**: Echo-Sync Chassis (`part_torso_zerda_core`) - Heat dispersion ducts & engram sync unit.
-  - **Left Arm**: Sonic Pulse Cannon (`part_arm_l_sonic_emitter`) - Focused acoustic shockwave emitter.
-  - **Right Arm**: Resonant Strike Claw (`part_arm_r_resonator_claw`) - High-frequency parrying claw.
-  - **Legs**: Vulpine Dash Sprinters (`part_legs_zerda_springers`) - Agility springers for high evasion.
-- **Origin Mystery**: Anonymously left on Kura's bedroom window sill by a hidden Ancient AniBot that had been observing Kura for months and holds secrets regarding Kura's father.
-
-#### Luccas "Luk" Tirio (16 Years Old)
-
-- **Role**: Kura's best friend and primary rival.
-- **Background**: Comes from a financially secure family. Frequently assists Kura on jobs (refusing any payment).
-- **Dream**: To face Kura in the grand finals of the **AniBot World Cup** to decide who is the ultimate Handler.
+- **Kura Ato**: 16-year-old freelance mechanic and Handler living in Neo Metropolis (District 4). Driven to protect his family, uncover the truth of his father's mysterious death 4 years ago, and reach the AniBot World Cup. See [Kura Ato Profile](./CHARACTERS.md#1-kura-ato).
+- **Zerdata (*Vulpes Zerda* — G0-004)**: Kura's partner machine, powered by an Ancient Series core anonymously delivered to his window sill. Features acoustic dish radar ears and sonic pulse combat hardware. See [Zerdata Chassis Anatomy & Specs](./CHARACTERS.md#2-zerdata-vulpes-zerda--generation-0-chip--chassis).
+- **Luccas "Luk" Tirio**: Kura's 16-year-old best friend and primary rival Handler from a wealthy background. Dreams of facing Kura in the grand finals of the AniBot World Cup. See [Luk Tirio Profile](./CHARACTERS.md#3-luccas-luk-tirio).
 
 ---
 
@@ -123,13 +101,13 @@ When humanity scheduled Generation 0 for destruction, the 3 Primordial Chips wen
 
 #### 1. The Anode Group
 
-- **Leader**: **Magnus**, a notorious black-market syndicate boss.
-- **Goal**: Expand influence into civilized cities and seize total global control through black-market hardware smuggling and illegal AniBot ops.
+- **Leader**: **Magnus**, notorious syndicate boss commanding the Rust-Ridge Badlands black market.
+- **Goal**: Expand into civilized eco-cities and seize global control via illegal hardware smuggling, black-market AniChip mods, and unlicensed combat rings. See [Magnus Profile](./CHARACTERS.md#1-magnus).
 
 #### 2. The Primordial Ancient Trio (Agon, Biggon, Cygon)
 
-- **History**: The very first 3 successful Ancient Series chips (001, 002, 003), installed into bespoke prototype frames to assist human scientists in developing future generations.
-- **The Rogue Rebellion**: Upon learning humanity scheduled them for decommission and destruction, they went rogue, escaped captivity, and rescued 7 fellow Ancient Chips (out of 176) before vanishing into the lawless regions.
+- **History**: The very first 3 successful Ancient Series chips (G0-001, G0-002, G0-003), installed into bespoke prototype frames to assist human scientists in developing future generations.
+- **The Rogue Rebellion**: Upon learning humanity scheduled them for decommission and destruction, they escaped captivity and rescued 7 fellow Ancient Chips before vanishing into the lawless badlands. See [Primordial Trio Profiles](./CHARACTERS.md#the-3-rogue-primordials).
 
 ---
 
@@ -204,6 +182,11 @@ flowchart TD
 ---
 
 ## 👥 Supporting NPC Roster
+
+In the AniBots narrative, key NPCs anchor the player's questlines, economy, and faction reputation.
+
+> [!NOTE]
+> For in-depth biographical profiles, career timelines (e.g., Dr. Aris Thorne's 2965–3047 AD timeline), and combat roles, consult [CHARACTERS.md Supporting NPCs](./CHARACTERS.md#supporting-npcs--mentors).
 
 | NPC Name | Role / Alignment | Location | Quest & Story Relevance |
 | :--- | :--- | :--- | :--- |

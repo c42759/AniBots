@@ -1,5 +1,13 @@
 # AniBots - Game Implementation Plan & Architecture Specification (`GAME.md`)
 
+> [!NOTE]
+> - **Game Design & Formulas**: See [OVERVIEW.md](./OVERVIEW.md) for core combat loop, utility AI targeting, and degradation math.
+> - **Anima Chips Catalog**: See [CHIPS.md](./CHIPS.md) for all 36 mass-market AI cores and traits.
+> - **Characters & Frames**: See [CHARACTERS.md](./CHARACTERS.md) for Zerdata chassis anatomy and the 10 Ancient Cores.
+> - **Project Portal**: See [README.md](./README.md) for engine setup and the complete documentation directory.
+
+---
+
 ## 1. Project Overview & Technical Foundation
 
 - **Engine:** Godot Engine 4.x (GL Compatibility / Mobile / Desktop target)
