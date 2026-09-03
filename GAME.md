@@ -2,6 +2,7 @@
 
 > [!NOTE]
 > - **Game Design & Formulas**: See [OVERVIEW.md](./OVERVIEW.md) for core combat loop, utility AI targeting, and degradation math.
+> - **Modular Parts & Types**: See [PARTS.md](./PARTS.md) for full 5-slot anatomy, 5 payload types, 4 torso architectures, and 6 mobility protocols.
 > - **Anima Chips Catalog**: See [CHIPS.md](./CHIPS.md) for all 36 mass-market AI cores and traits.
 > - **Characters & Frames**: See [CHARACTERS.md](./CHARACTERS.md) for Zerdata chassis anatomy and the 10 Ancient Cores.
 > - **Project Portal**: See [README.md](./README.md) for engine setup and the complete documentation directory.
@@ -281,6 +282,9 @@ AnibotAssembly (Control - CanvasLayer)
 ```
 
 ### 7.3 Medabots-Style Part Swapping Rules & Mechanics
+
+> [!TIP]
+> For complete specifications of all 5 physical slots, 5 payload types, 4 torso architectures, and 6 mobility protocols with terrain formulas, consult **[PARTS.md](./PARTS.md)**.
 
 1. **Slot-Filtered Inventory:**
    - When the player clicks on the **[Left Arm]** slot, the right-hand browser automatically filters to show only `LEFT_ARM` parts in the player's inventory that are not currently equipped on another AniBot.

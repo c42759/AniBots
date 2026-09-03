@@ -3,6 +3,7 @@
 Welcome to the official **AniBots Character Databank**. This document contains comprehensive profiles for all Handlers, AniBots, supporting NPCs, factions, and legendary Ancient Series cores in the AniBots universe.
 
 > [!NOTE]
+> - **Modular Parts & Types**: Full slot specifications, payload types, and mobility protocols in [PARTS.md](./PARTS.md).
 > - **World Lore & History**: Story arcs, world geography, and branching quest loops are in [LORE.md](./LORE.md).
 > - **Standard Anima Chips (36 Cores)**: Mass-market Antiquity, Kinetic, and Astral chips are cataloged in [CHIPS.md](./CHIPS.md).
 > - **Game Design & Starter Frames**: Core attributes, targeting AI, and starter loadouts are in [OVERVIEW.md](./OVERVIEW.md).

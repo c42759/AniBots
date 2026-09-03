@@ -3,6 +3,7 @@
 **AniBots** is a tactical RPG built in **Godot 4.x**, featuring deeply customizable modular robots powered by autonomous AI cores known as **Anima Chips**. Players act as "Handlers," assembling hardware configurations, setting behavioral directives, and issuing tactical commands to semi-autonomous units.
 
 > [!NOTE]
+> - **Modular Parts & Types Specification**: See [PARTS.md](./PARTS.md) for full 5-slot anatomy, 5 payload types, 4 torso chassis, and 6 mobility protocols.
 > - **Technical Architecture & Godot Engine**: See [GAME.md](./GAME.md) for autoloads, scenes, and full SQLite schemas.
 > - **World Lore & Quests**: See [LORE.md](./LORE.md) for 3047 AD timeline, factions, and story arcs.
 > - **Characters & Frames**: See [CHARACTERS.md](./CHARACTERS.md) for cast profiles and the 10 Ancient Cores.
@@ -112,20 +113,19 @@ By offering one from each Series, you give the player three completely distinct 
 
 - **The Vibe:** Elegant and deadly. Designed for the patient player who wants to set up the perfect, unblockable shot to instantly destroy an enemy's Head part in a single blow.
 
-## Attributes
+## Attributes & Hardware Mechanics
+
+> [!TIP]
+> For the authoritative specification of all 5 physical slots, 5 payload types, 4 torso architectures, and 6 mobility protocols with terrain interaction formulas, consult **[PARTS.md](./PARTS.md)**.
 
 ### 1. Active Parts (Head, Left Arm, Right Arm)
 
 These are your peripheral devices—the tools that execute commands.
 
 - **Integrity (HP):** The physical health of the component. If the Head's Integrity hits 0, it results in a "System Failure" (game over). If an Arm hits 0, it is disabled.
-
 - **Payload (Power):** The raw output. This could be kinetic damage (bullets/swords), elemental damage, or the strength of a firewall/buff.
-
 - **Precision (Success):** The targeting accuracy. Higher Precision not only guarantees hits but increases the chance of striking a critical vulnerability.
-
-- Execution Time (Charge):** The Uplink speed. How fast the Anibot can sprint from the starting line to the center line to deliver this specific payload.
-
+- **Execution Time (Charge):** The Uplink speed. How fast the Anibot can sprint from the starting line to the center line to deliver this specific payload.
 - **Latency (Cooldown):** The Downlink speed. The mechanical recovery time needed to run back to the starting line after the attack animation finishes. Heavy weapons have massive latency.
 
 - **Cache (Head Only):** Replaces "Uses". The finite amount of memory allocated for this devastating attack (e.g., Cache: 3).
@@ -149,7 +149,7 @@ These are your peripheral devices—the tools that execute commands.
 
 The Torso acts as the motherboard. It doesn't have its own attacks; instead, it dictates the structural limits and passive defenses of the entire build.
 
-- **Integrity (HP):** If the Torso is destroyed, the Anibot doesn't die, but it loses connection to its Arms, disabling them until repaired.
+- **Integrity (HP):** If the Torso is destroyed (0 HP), the Anibot does not die, and equipped Arms remain fully functional as long as their own Integrity is above 0. However, the Anibot loses the Torso's Firewall armor mitigation and Cooling bonuses for the remainder of the battle.
 
 - **Max Loadout (Bandwidth):** Every Head and Arm has a "Weight" value. The Torso's Max Loadout determines how much heavy equipment it can support. If you exceed this limit, your overall speed suffers massive penalties.
 
