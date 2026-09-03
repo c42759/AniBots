@@ -60,19 +60,35 @@ Every AniBot is assembled from 5 modular slots defined in Godot [`Types.PartSlot
 | **RIGHT_ARM** | `PartSlot.RIGHT_ARM` | Primary or secondary active weapon, shield, or utility. | Infinite standard usage. | **Disabled**: Right arm cannot be selected for combat commands for remainder of match. |
 | **LEGS** | `PartSlot.LEGS` | Mobility platform. Dictates ATB fill rate, evasion, combat range modifiers, and terrain handling. | Passive mobility. | **Crippled**: Robot defaults to minimum crawl speed (Clock Speed drops to floor value). |
 
-### Mathematical Formulas & Slot Scaling
+### GDScript Formulas & Slot Scaling
 
 1. **In-Battle HP (Integrity vs. Condition)**:
-   $$\text{Integrity}_{\text{max}} = \text{Base Integrity} \times \left( \frac{\text{Condition}}{100} \right)$$
+   ```gdscript
+   # Calculates max in-battle HP based on permanent part condition (0-100%)
+   func calculate_battle_integrity(base_integrity: int, condition_percent: float) -> int:
+       if condition_percent <= 0.0:
+           return 0  # Bricked: Cannot be equipped
+       return int(round(base_integrity * (condition_percent / 100.0)))
+   ```
    *Example: A 60 HP base arm at 85% Condition enters combat with 51 HP. At 0% Condition, the part is Bricked and cannot be equipped.*
 
 2. **Torso Bandwidth Validation**:
-   $$\text{Total Weight} = \text{Weight}_{\text{Head}} + \text{Weight}_{\text{Left\_Arm}} + \text{Weight}_{\text{Right\_Arm}}$$
-   $$\text{If } \text{Total Weight} > \text{Max Loadout}_{\text{Torso}} \implies \text{Overweight Penalty: } +50\% \text{ to all Action Latencies}$$
+   ```gdscript
+   # Checks if total equipped arm/head weight exceeds Torso max loadout
+   func is_build_overweight(head: Dictionary, left_arm: Dictionary, right_arm: Dictionary, torso: Dictionary) -> bool:
+       var total_weight: int = head.get("weight", 0) + left_arm.get("weight", 0) + right_arm.get("weight", 0)
+       return total_weight > torso.get("max_loadout", 0)
+   ```
+   *If `is_build_overweight` is true, an Overweight Penalty of +50% latency is applied to all action recovery phases.*
 
 3. **Effective Weapon Latency (Cooldown Time)**:
-   $$\text{Effective Latency} = \max\left(1.0, \text{Base Latency}_{\text{Weapon}} - \text{Cooling}_{\text{Torso}}\right)$$
-   *Higher Torso Cooling physically accelerates weapon recovery times on the return line.*
+   ```gdscript
+   # Higher Torso Cooling physically accelerates weapon recovery times on the return line
+   func calculate_effective_latency(base_latency: float, torso_cooling: float, is_overweight: bool = false) -> float:
+       var net_latency: float = maxf(1.0, base_latency - torso_cooling)
+       var overweight_multiplier: float = 1.5 if is_overweight else 1.0
+       return net_latency * overweight_multiplier
+   ```
 
 ---
 
@@ -169,7 +185,18 @@ Modifiers applied to Action Bar fill rates and evasion based on arena terrain:
 
 When an active weapon part's `type` matches the slotted [Anima Chip's](./CHIPS.md) `affinity`, the system activates an **Affinity Synergy Match**:
 
-$$\text{Affinity Synergy Bonus} = +10\% \text{ to Payload, Precision, and Overclock Charge}$$
+```gdscript
+# Active part matching slotted Anima Chip affinity receives +10% synergy bonus
+func apply_affinity_synergy(part_attack_type: Types.AttackType, chip_affinity: String, base_payload: int, base_precision: int) -> Dictionary:
+    var type_key: String = Types.AttackType.keys()[part_attack_type]
+    var matches: bool = type_key.to_upper() == chip_affinity.to_upper()
+    var multiplier: float = 1.10 if matches else 1.0
+    return {
+        "payload": int(round(base_payload * multiplier)),
+        "precision": int(round(base_precision * multiplier)),
+        "overclock_boost": multiplier
+    }
+```
 
 - **`MELEE` Affinity Chips** (e.g., *Ronin*, *Berserker*, *Gladiator*): Best paired with swords, claws, and impact hammers.
 - **`SHOOTING` / `SNIPER` Affinity Chips** (e.g., *Orion*, *Gunslinger*, *Photon*): Best paired with rifles, pistols, and laser blasters.

@@ -215,19 +215,19 @@ StarterCity (Node2D)
 - **NPC:** "Bolt" (Sparring Coordinator).
 - **Proximity:** When player approaches, displays animated `[E] Talk` prompt bubble.
 - **Input:** Pressing `E` or `Space` in range opens branching dialogue:
-  1. *Let's battle!* $\rightarrow$ Launches 3-Phase ATB Sparring Arena against Training Drone.
-  2. *Explain combat rules.* $\rightarrow$ Explains Wait/Run/Action/Cooldown and Head destruction win condition.
-  3. *Maybe later.* $\rightarrow$ Closes dialogue.
+  1. *Let's battle!* → Launches 3-Phase ATB Sparring Arena against Training Drone.
+  2. *Explain combat rules.* → Explains Wait/Run/Action/Cooldown and Head destruction win condition.
+  3. *Maybe later.* → Closes dialogue.
 
 ### 6.2 3-Phase ATB Battle Arena (`BattleArena.tscn`)
 
-- **Relay Track:** Player Base Line `(220px)` $\leftrightarrow$ Center Combat Line `(640px)` $\leftrightarrow$ Enemy Base Line `(1060px)`.
+- **Relay Track:** Player Base Line `(220px)` ↔ Center Combat Line `(640px)` ↔ Enemy Base Line `(1060px)`.
 - **Phase Loop:**
   1. `WAIT`: Leg clock speed fills Action Bar at base line.
   2. `COMMAND`: Player selects weapon payload (Head with cache, Left Arm, Right Arm, or Overclock Ultimate).
   3. `RUN`: Robot sprints to center line with speed modified by Leg condition.
   4. `ACTION & COOLDOWN`: Delivers payload attack to enemy part, calculates damage/armor mitigation, and returns to base line with latency modified by weapon weight & Torso cooling.
-- **Win Condition:** Destroy enemy Head part (System Failure) $\rightarrow$ Awards 20 Scrap + Salvage Part drop.
+- **Win Condition:** Destroy enemy Head part (System Failure) → Awards 20 Scrap + Salvage Part drop.
 
 ---
 
@@ -290,12 +290,17 @@ AnibotAssembly (Control - CanvasLayer)
    - When the player clicks on the **[Left Arm]** slot, the right-hand browser automatically filters to show only `LEFT_ARM` parts in the player's inventory that are not currently equipped on another AniBot.
 2. **Stat Comparison Preview:**
    - Hovering or selecting an inventory part displays a side-by-side comparison:
-     - $\Delta \text{Integrity}$ (e.g. `65 HP` $\rightarrow$ `55 HP` <font color="red">(-10)</font>)
-     - $\Delta \text{Payload}$ (e.g. `28 Power` $\rightarrow$ `38 Power` <font color="green">(+10)</font>)
-     - $\Delta \text{Latency}$ (e.g. `2.8s` $\rightarrow$ `4.8s` <font color="red">(+2.0s cooldown)</font>)
-     - $\Delta \text{Weight}$ (e.g. `8` $\rightarrow$ `12` <font color="red">(+4 load)</font>)
+     - **Δ Integrity:** `65 HP` → `55 HP` (`-10 HP`)
+     - **Δ Payload:** `28 Power` → `38 Power` (`+10 Power`)
+     - **Δ Latency:** `2.8s` → `4.8s` (`+2.0s cooldown`)
+     - **Δ Weight:** `8` → `12` (`+4 load`)
 3. **Torso Max Loadout Validation:**
-   - Total equipped weight ($Weight_{Head} + Weight_{LArm} + Weight_{RArm}$) cannot exceed the equipped Torso's `max_loadout`.
+   - Total equipped weight cannot exceed the equipped Torso's `max_loadout`:
+   ```gdscript
+   var total_weight: int = head_part.weight + left_arm_part.weight + right_arm_part.weight
+   if total_weight > torso_part.max_loadout:
+       apply_overweight_penalty()  # Cooldown latency penalized by +50%
+   ```
    - If a swap exceeds bandwidth, a warning indicator displays: `"OVERWEIGHT: Cooldown latency penalized by 50%!"`
 4. **Chip Affinity Indicator:**
    - If an equipped part matches the active Anima Chip's Affinity (e.g. `MELEE` part with `Artificer` or `SHOOTING` with `Orion`), a glowing **"AFFINITY MATCH (+10% Stat Bonus)"** badge lights up.
@@ -418,7 +423,7 @@ CREATE TABLE IF NOT EXISTS assembled_anibots (
 - [x] Implement `AnibotAssembly.tscn` & `AnibotAssembly.gd` (HUD garage modal).
 - [x] Bind Overworld HUD "AniBots" button and `Tab` / `I` keyboard shortcuts.
 - [x] Implement slot-filtered inventory part selection and stat comparison card.
-- [x] Implement part swap transactions (unequip $\rightarrow$ inventory, equip $\rightarrow$ bot) and save sync.
+- [x] Implement part swap transactions (unequip → inventory, equip → bot) and save sync.
 
 ### Phase 6: Workshop Interior & Parts Shopkeeper NPC [COMPLETED]
 

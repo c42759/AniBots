@@ -297,7 +297,14 @@ Upon match victory, the Handler secures one random part from the defeated oppone
 Hardware durability is split across two distinct layers:
 - **Integrity (In-Battle HP)**: The transient operational health of a part during active combat (e.g., 50/50 HP).
 - **Condition (Permanent Grade)**: The persistent physical state of the hardware, capped at 100%.
-- **Scaling Formula**: Max in-battle Integrity scales linearly with Condition. A 100 HP base weapon at 85% Condition enters battle with 85 Max HP. At 0% Condition, the component is "Bricked" and cannot be equipped until fully repaired.
+- **Scaling Formula**: Max in-battle Integrity scales linearly with Condition. A 100 HP base weapon at 85% Condition enters battle with 85 Max HP. At 0% Condition, the component is "Bricked" and cannot be equipped until fully repaired:
+
+```gdscript
+func calculate_battle_integrity(base_integrity: int, condition_percent: float) -> int:
+    if condition_percent <= 0.0:
+        return 0  # Bricked: Cannot be equipped
+    return int(round(base_integrity * (condition_percent / 100.0)))
+```
 
 ### 3. Destruction Penalty
 
