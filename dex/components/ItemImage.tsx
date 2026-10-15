@@ -8,7 +8,7 @@ interface ItemImageProps {
   name?: string;
   src?: string;
   alt: string;
-  type: 'anibot' | 'chip';
+  type: 'anibot' | 'chip' | 'part';
   diodeColor?: string;
   aspectRatio?: string;
   objectFit?: 'cover' | 'contain';
@@ -108,8 +108,17 @@ export const ItemImage: React.FC<ItemImageProps> = ({
   };
 
   const isBot = type === 'anibot';
-  const borderAccent = isBot ? 'border-amber-500/30' : 'border-cyan-500/30';
-  const bgAccent = isBot ? 'bg-amber-950/20' : 'bg-cyan-950/20';
+  const isPart = type === 'part';
+  const borderAccent = isBot
+    ? 'border-amber-500/30'
+    : isPart
+    ? 'border-emerald-500/30'
+    : 'border-cyan-500/30';
+  const bgAccent = isBot
+    ? 'bg-amber-950/20'
+    : isPart
+    ? 'bg-emerald-950/20'
+    : 'bg-cyan-950/20';
 
   return (
     <div
@@ -142,6 +151,10 @@ export const ItemImage: React.FC<ItemImageProps> = ({
             <div className="w-10 h-10 rounded-full bg-amber-950/60 border border-amber-500/40 flex items-center justify-center text-amber-400 text-lg mb-1 group-hover/img:scale-110 transition-transform">
               🤖
             </div>
+          ) : isPart ? (
+            <div className="w-10 h-10 rounded-full bg-emerald-950/60 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-lg mb-1 group-hover/img:scale-110 transition-transform">
+              ⚙️
+            </div>
           ) : (
             <div
               className="w-10 h-10 rounded-full border flex items-center justify-center text-lg mb-1 group-hover/img:scale-110 transition-transform animate-diode"
@@ -155,7 +168,7 @@ export const ItemImage: React.FC<ItemImageProps> = ({
             </div>
           )}
           <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">
-            {isBot ? 'FRAME SCHEMATIC' : 'CORE ENGRAM'}
+            {isBot ? 'FRAME SCHEMATIC' : isPart ? 'PART BLUEPRINT' : 'CORE ENGRAM'}
           </span>
           <span className="text-[9px] text-slate-600 mt-0.5">IMAGE SLOT RESERVED</span>
         </div>

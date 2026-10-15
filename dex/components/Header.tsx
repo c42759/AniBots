@@ -6,9 +6,10 @@ import { toggleSound, isSoundEnabled } from '../utils/audio';
 interface HeaderProps {
   botCount: number;
   chipCount: number;
+  partCount?: number;
 }
 
-export const Header: React.FC<HeaderProps> = ({ botCount, chipCount }) => {
+export const Header: React.FC<HeaderProps> = ({ botCount, chipCount, partCount }) => {
   const [audioActive, setAudioActive] = useState<boolean>(isSoundEnabled());
 
   const handleSoundToggle = () => {
@@ -38,7 +39,7 @@ export const Header: React.FC<HeaderProps> = ({ botCount, chipCount }) => {
               </span>
             </div>
             <p className="text-xs text-slate-400 font-mono">
-              ANIBOTS &amp; ANIMA CHIPS TACTICAL DATABASE
+              ANIBOTS, CHIPS &amp; MODULAR PARTS TACTICAL DATABASE
             </p>
           </div>
         </div>
@@ -57,6 +58,16 @@ export const Header: React.FC<HeaderProps> = ({ botCount, chipCount }) => {
               <span className="text-slate-400">CORES:</span>
               <span className="text-cyan-400 font-bold">{chipCount}</span>
             </div>
+            {partCount !== undefined && (
+              <>
+                <div className="h-3 w-[1px] bg-slate-700"></div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  <span className="text-slate-400">PARTS:</span>
+                  <span className="text-emerald-400 font-bold">{partCount}</span>
+                </div>
+              </>
+            )}
           </div>
 
           <button

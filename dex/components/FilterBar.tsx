@@ -13,6 +13,9 @@ interface FilterBarProps {
   onSeriesChange: (s: string) => void;
   selectedAffinity: string;
   onAffinityChange: (a: string) => void;
+  selectedSlot?: string;
+  onSlotChange?: (slot: string) => void;
+  availableSlots?: string[];
   sortBy: string;
   onSortChange: (s: string) => void;
   availableSeries: string[];
@@ -29,6 +32,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   onSeriesChange,
   selectedAffinity,
   onAffinityChange,
+  selectedSlot = 'ALL',
+  onSlotChange,
+  availableSlots = ['ALL', 'HEAD', 'TORSO', 'LEFT_ARM', 'RIGHT_ARM', 'LEGS'],
   sortBy,
   onSortChange,
   availableSeries,
@@ -40,8 +46,11 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     onSearchChange('');
     onSeriesChange('ALL');
     onAffinityChange('ALL');
+    if (onSlotChange) onSlotChange('ALL');
     onSortChange('name');
   };
+
+  const isPartsMode = mode === 'parts';
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-8 py-4 space-y-4">
@@ -72,7 +81,20 @@ export const FilterBar: React.FC<FilterBarProps> = ({
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
             }`}
           >
-            <span>💾 ANIMA CHIPS</span>
+            <span>💾 CHIPS</span>
+          </button>
+          <button
+            onClick={() => {
+              playSelectSound();
+              onModeChange('parts');
+            }}
+            className={`flex items-center gap-2 px-5 py-2 rounded-md text-sm font-semibold transition-all ${
+              mode === 'parts'
+                ? 'bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/20 font-bold'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+            }`}
+          >
+            <span>⚙️ PARTS</span>
           </button>
         </div>
 
@@ -87,7 +109,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       {/* Search & Filter Controls */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
         {/* Search Bar */}
-        <div className="lg:col-span-4 relative">
+        <div className={`${isPartsMode ? 'lg:col-span-3' : 'lg:col-span-4'} relative`}>
           <input
             type="text"
             value={searchQuery}
@@ -95,7 +117,9 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             placeholder={
               mode === 'anibots'
                 ? 'Search name, model code, archetype...'
-                : 'Search name, personality, quote, trait...'
+                : mode === 'chips'
+                ? 'Search name, personality, quote, trait...'
+                : 'Search part name, slot, type, bot...'
             }
             className="w-full bg-slate-900/80 border border-slate-700/80 rounded-lg px-3.5 py-2 pl-9 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-sans"
           />
@@ -110,8 +134,28 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           )}
         </div>
 
+        {/* Slot Filter (Parts mode only) */}
+        {isPartsMode && onSlotChange && (
+          <div className="lg:col-span-2">
+            <select
+              value={selectedSlot}
+              onChange={(e) => {
+                playBeep(700, 0.03);
+                onSlotChange(e.target.value);
+              }}
+              className="w-full bg-slate-900/80 border border-slate-700/80 rounded-lg px-3 py-2 text-sm text-emerald-300 focus:outline-none focus:border-emerald-500 font-mono"
+            >
+              {availableSlots.map((slot) => (
+                <option key={slot} value={slot}>
+                  {slot === 'ALL' ? 'All Slots' : `Slot: ${slot.replace('_', ' ')}`}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         {/* Series Filter */}
-        <div className="lg:col-span-3">
+        <div className={`${isPartsMode ? 'lg:col-span-2' : 'lg:col-span-3'}`}>
           <select
             value={selectedSeries}
             onChange={(e) => {
@@ -130,7 +174,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         </div>
 
         {/* Affinity Filter */}
-        <div className="lg:col-span-3">
+        <div className={`${isPartsMode ? 'lg:col-span-2' : 'lg:col-span-3'}`}>
           <select
             value={selectedAffinity}
             onChange={(e) => {
@@ -149,7 +193,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         </div>
 
         {/* Sort By & Reset */}
-        <div className="lg:col-span-2 flex items-center gap-2">
+        <div className={`${isPartsMode ? 'lg:col-span-3' : 'lg:col-span-2'} flex items-center gap-2`}>
           <select
             value={sortBy}
             onChange={(e) => {
@@ -159,11 +203,21 @@ export const FilterBar: React.FC<FilterBarProps> = ({
             className="w-full bg-slate-900/80 border border-slate-700/80 rounded-lg px-2.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-cyan-500 font-mono"
           >
             <option value="name">Sort: Name</option>
-            <option value="code">Sort: Code / ID</option>
-            <option value="integrity">Sort: Max Integrity</option>
+            {isPartsMode ? (
+              <>
+                <option value="slot">Sort: Slot Order</option>
+                <option value="integrity">Sort: Integrity (HP)</option>
+                <option value="bot">Sort: Parent Bot</option>
+              </>
+            ) : (
+              <>
+                <option value="code">Sort: Code / ID</option>
+                <option value="integrity">Sort: Max Integrity</option>
+              </>
+            )}
           </select>
 
-          {(searchQuery || selectedSeries !== 'ALL' || selectedAffinity !== 'ALL') && (
+          {(searchQuery || selectedSeries !== 'ALL' || selectedAffinity !== 'ALL' || (isPartsMode && selectedSlot !== 'ALL')) && (
             <button
               onClick={handleReset}
               className="px-3 py-2 rounded-lg bg-red-950/40 border border-red-800/50 text-red-300 hover:bg-red-900/60 text-xs font-mono shrink-0"

@@ -1,28 +1,73 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { AniBot, AnimaChip, CategoryMode } from '../types/dex';
+import { AniBot, AnimaChip, CategoryMode, ModularPart, PartSlotType } from '../types/dex';
 import anibotsData from '../data/anibots.json';
 import chipsData from '../data/anima_chips.json';
 import { Header } from '../components/Header';
 import { FilterBar } from '../components/FilterBar';
 import { AniBotCard } from '../components/AniBotCard';
 import { ChipCard } from '../components/ChipCard';
+import { PartCard } from '../components/PartCard';
 import { AniBotDetailModal } from '../components/AniBotDetailModal';
 import { ChipDetailModal } from '../components/ChipDetailModal';
+import { PartDetailModal } from '../components/PartDetailModal';
 
 const allBots = anibotsData as unknown as AniBot[];
 const allChips = chipsData as unknown as AnimaChip[];
+
+const SLOT_ORDER: Record<PartSlotType, number> = {
+  HEAD: 1,
+  TORSO: 2,
+  LEFT_ARM: 3,
+  RIGHT_ARM: 4,
+  LEGS: 5,
+};
 
 export default function Home() {
   const [mode, setMode] = useState<CategoryMode>('anibots');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedSeries, setSelectedSeries] = useState<string>('ALL');
   const [selectedAffinity, setSelectedAffinity] = useState<string>('ALL');
+  const [selectedSlot, setSelectedSlot] = useState<string>('ALL');
   const [sortBy, setSortBy] = useState<string>('name');
 
   const [selectedBot, setSelectedBot] = useState<AniBot | null>(null);
   const [selectedChip, setSelectedChip] = useState<AnimaChip | null>(null);
+  const [selectedPart, setSelectedPart] = useState<ModularPart | null>(null);
+
+  // Extract all 190 modular parts across all 38 AniBots
+  const allParts = useMemo<ModularPart[]>(() => {
+    const list: ModularPart[] = [];
+    allBots.forEach((bot) => {
+      if (!bot.parts) return;
+      const meta = {
+        botId: bot.id,
+        botName: bot.name,
+        botModelCode: bot.model_code,
+        series: bot.series,
+        affinity: bot.affinity,
+        image: bot.image,
+      };
+
+      if (bot.parts.head) {
+        list.push({ ...bot.parts.head, ...meta, slot: 'HEAD' });
+      }
+      if (bot.parts.torso) {
+        list.push({ ...bot.parts.torso, ...meta, slot: 'TORSO' });
+      }
+      if (bot.parts.left_arm) {
+        list.push({ ...bot.parts.left_arm, ...meta, slot: 'LEFT_ARM' });
+      }
+      if (bot.parts.right_arm) {
+        list.push({ ...bot.parts.right_arm, ...meta, slot: 'RIGHT_ARM' });
+      }
+      if (bot.parts.legs) {
+        list.push({ ...bot.parts.legs, ...meta, slot: 'LEGS' });
+      }
+    });
+    return list;
+  }, []);
 
   // Derive unique series and affinities
   const availableSeries = useMemo(() => {
@@ -37,6 +82,10 @@ export default function Home() {
     allBots.forEach((b) => b.affinity && affinitySet.add(b.affinity));
     allChips.forEach((c) => c.affinity && affinitySet.add(c.affinity));
     return Array.from(affinitySet).sort();
+  }, []);
+
+  const availableSlots = useMemo(() => {
+    return ['ALL', 'HEAD', 'TORSO', 'LEFT_ARM', 'RIGHT_ARM', 'LEGS'];
   }, []);
 
   // Filtered AniBots
@@ -101,6 +150,52 @@ export default function Home() {
       });
   }, [searchQuery, selectedSeries, selectedAffinity, sortBy]);
 
+  // Filtered Modular Parts
+  const filteredParts = useMemo(() => {
+    return allParts
+      .filter((part) => {
+        if (selectedSlot !== 'ALL' && part.slot !== selectedSlot) return false;
+        if (selectedSeries !== 'ALL' && part.series !== selectedSeries) return false;
+        if (selectedAffinity !== 'ALL' && part.affinity !== selectedAffinity) return false;
+
+        if (searchQuery.trim()) {
+          const q = searchQuery.toLowerCase();
+          const matchName = part.name.toLowerCase().includes(q);
+          const matchSlot = part.slot.toLowerCase().includes(q);
+          const matchType = part.type.toLowerCase().includes(q);
+          const matchBotName = part.botName.toLowerCase().includes(q);
+          const matchBotCode = part.botModelCode.toLowerCase().includes(q);
+          const matchDesc = part.description.toLowerCase().includes(q);
+          const matchProtocol = part.protocol?.toLowerCase().includes(q);
+          return (
+            matchName ||
+            matchSlot ||
+            matchType ||
+            matchBotName ||
+            matchBotCode ||
+            matchDesc ||
+            matchProtocol
+          );
+        }
+
+        return true;
+      })
+      .sort((a, b) => {
+        if (sortBy === 'slot') {
+          const diff = (SLOT_ORDER[a.slot] || 99) - (SLOT_ORDER[b.slot] || 99);
+          if (diff !== 0) return diff;
+          return a.name.localeCompare(b.name);
+        }
+        if (sortBy === 'integrity') {
+          return b.integrity - a.integrity;
+        }
+        if (sortBy === 'bot') {
+          return a.botModelCode.localeCompare(b.botModelCode);
+        }
+        return a.name.localeCompare(b.name);
+      });
+  }, [allParts, selectedSlot, selectedSeries, selectedAffinity, searchQuery, sortBy]);
+
   // Navigation handlers
   const handleSelectChipById = (chipId: string) => {
     const foundChip = allChips.find(
@@ -108,21 +203,49 @@ export default function Home() {
     );
     if (foundChip) {
       setSelectedBot(null);
+      setSelectedPart(null);
       setSelectedChip(foundChip);
     }
   };
 
   const handleSelectBot = (bot: AniBot) => {
     setSelectedChip(null);
+    setSelectedPart(null);
     setSelectedBot(bot);
   };
 
-  const totalResults = mode === 'anibots' ? filteredBots.length : filteredChips.length;
+  const handleSelectBotById = (botId: string) => {
+    const foundBot = allBots.find(
+      (b) => b.id.toLowerCase() === botId.toLowerCase()
+    );
+    if (foundBot) {
+      setSelectedChip(null);
+      setSelectedPart(null);
+      setSelectedBot(foundBot);
+    }
+  };
+
+  const handleSelectPart = (part: ModularPart) => {
+    setSelectedBot(null);
+    setSelectedChip(null);
+    setSelectedPart(part);
+  };
+
+  const totalResults =
+    mode === 'anibots'
+      ? filteredBots.length
+      : mode === 'chips'
+      ? filteredChips.length
+      : filteredParts.length;
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 scanline-overlay">
       {/* Header */}
-      <Header botCount={allBots.length} chipCount={allChips.length} />
+      <Header
+        botCount={allBots.length}
+        chipCount={allChips.length}
+        partCount={allParts.length}
+      />
 
       {/* Main Filter & Content Area */}
       <main className="flex-1 pb-16">
@@ -135,6 +258,9 @@ export default function Home() {
           onSeriesChange={setSelectedSeries}
           selectedAffinity={selectedAffinity}
           onAffinityChange={setSelectedAffinity}
+          selectedSlot={selectedSlot}
+          onSlotChange={setSelectedSlot}
+          availableSlots={availableSlots}
           sortBy={sortBy}
           onSortChange={setSortBy}
           availableSeries={availableSeries}
@@ -151,7 +277,7 @@ export default function Home() {
                   <AniBotCard
                     key={bot.id}
                     bot={bot}
-                    onSelect={setSelectedBot}
+                    onSelect={handleSelectBot}
                     onSelectChip={handleSelectChipById}
                   />
                 ))}
@@ -159,10 +285,25 @@ export default function Home() {
             ) : (
               <EmptyState searchQuery={searchQuery} />
             )
-          ) : filteredChips.length > 0 ? (
+          ) : mode === 'chips' ? (
+            filteredChips.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {filteredChips.map((chip) => (
+                  <ChipCard key={chip.id} chip={chip} onSelect={setSelectedChip} />
+                ))}
+              </div>
+            ) : (
+              <EmptyState searchQuery={searchQuery} />
+            )
+          ) : filteredParts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {filteredChips.map((chip) => (
-                <ChipCard key={chip.id} chip={chip} onSelect={setSelectedChip} />
+              {filteredParts.map((part) => (
+                <PartCard
+                  key={`${part.botId}_${part.id}_${part.slot}`}
+                  part={part}
+                  onSelect={handleSelectPart}
+                  onSelectBot={handleSelectBotById}
+                />
               ))}
             </div>
           ) : (
@@ -188,6 +329,12 @@ export default function Home() {
         allBots={allBots}
         onClose={() => setSelectedChip(null)}
         onSelectBot={handleSelectBot}
+      />
+
+      <PartDetailModal
+        part={selectedPart}
+        onClose={() => setSelectedPart(null)}
+        onSelectBot={handleSelectBotById}
       />
     </div>
   );
