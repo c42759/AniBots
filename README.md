@@ -18,6 +18,7 @@ The AniBots project is structured across modular, domain-specific documentation 
 | **[CHIPS.md](./CHIPS.md)** | **Anima Chips Catalog**: Canonical databank of 36 mass-market AI cores (Antiquity, Kinetic, Astral series). |
 | **[LORE.md](./LORE.md)** | **World Bible**: 3047 AD timeline, societal order, geography, main story arcs, and branching quest loops. |
 | **[CHARACTERS.md](./CHARACTERS.md)** | **Character & Frame Databank**: Cast bios, Zerdata 5-part chassis anatomy, supporting NPCs, and the 10 Ancient Series cores. |
+| **[CHARACTERS-DESIGN.md](./CHARACTERS-DESIGN.md)** | **Character Design Guidelines**: 100–120 cm chibi-mecha proportions, Neutral Under-Skeleton Anchor (no tinpet), Omni-Relay couplers, and 7 visor archetypes. |
 | **[INSPIRATION/README.md](./INSPIRATION/README.md)** | **Design Roots**: Analysis of classic robot-battler mechanics (Medabots GBA relay system). |
 | **[ai/AniChipDesignPrompt.md](./ai/AniChipDesignPrompt.md)** | **AI Art Standard**: Reusable ink schematic sketch prompts for chip illustrations. |
 | **[dex/README.md](./dex/README.md)** | **AniDex Web App**: Next.js Pokédex-style databank for browsing 36 frames and 46 chips. |
