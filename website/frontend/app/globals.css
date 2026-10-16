@@ -1,0 +1,63 @@
+@import "tailwindcss" source(none);
+@source "../app";
+@source "../components";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #FAF9F6;
+  --foreground: #111110;
+  --surface: #F2F0EB;
+  --border: #E2DFD7;
+  --muted: #575653;
+  --accent: #D9381E;
+}
+
+.dark {
+  --background: #0F0F0E;
+  --foreground: #F2F0EB;
+  --surface: #181816;
+  --border: #262624;
+  --muted: #9E9C96;
+  --accent: #FF4F33;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Pulse animation for diode indicator (AniDex) */
+@keyframes diode-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 8px currentColor;
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(0.92);
+    box-shadow: 0 0 2px currentColor;
+  }
+}
+
+.animate-diode {
+  animation: diode-pulse 2s infinite ease-in-out;
+}
