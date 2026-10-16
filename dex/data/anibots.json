@@ -2932,6 +2932,7 @@
     "preferred_chip": "chip_vulpes_zerda",
     "affinity": "AGILITY",
     "affinity_synergy_bonus": "+10% boost to Evasion and Speed when equipped with Vulpes Zerda Chip",
+    "image": "/images/BOT-g0-004-zerdata.jpg",
     "parts": {
       "head": {
         "id": "part_head_zerda_radar_ears",

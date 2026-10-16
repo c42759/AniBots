@@ -120,4 +120,35 @@ export interface AnimaChip {
   ultimate_abilities: UltimateAbility[];
 }
 
-export type CategoryMode = 'anibots' | 'chips';
+export type CategoryMode = 'anibots' | 'chips' | 'parts';
+
+export type PartSlotType = 'HEAD' | 'TORSO' | 'LEFT_ARM' | 'RIGHT_ARM' | 'LEGS';
+
+export interface ModularPart {
+  id: string;
+  name: string;
+  slot: PartSlotType;
+  type: string;
+  integrity: number;
+  description: string;
+  payload?: number;
+  precision?: number;
+  execution_time?: number;
+  latency?: number;
+  weight?: number;
+  cache?: number;
+  max_loadout?: number;
+  firewall?: number;
+  cooling?: number;
+  clock_speed?: number;
+  direct_connect?: number;
+  remote_uplink?: number;
+  packet_loss?: number;
+  protocol?: string;
+  botId: string;
+  botName: string;
+  botModelCode: string;
+  series: string;
+  affinity: string;
+  image?: string;
+}

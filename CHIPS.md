@@ -3,6 +3,7 @@
 Welcome to the canonical **Anima Chips Catalog**. Anima Chips are the solid-state AI cores that function as both the operating system and autonomous soul of every AniBot.
 
 > [!NOTE]
+> - **Modular Parts & Types**: Complete 5-slot hardware breakdown and mobility protocols in [PARTS.md](./PARTS.md).
 > - **Legendary Ancient Chips (Gen 0)**: Documented in [CHARACTERS.md](./CHARACTERS.md#the-10-legendary-ancient-series-anichips-generation-0).
 > - **Combat & AI Targeting Rules**: Detailed in [OVERVIEW.md](./OVERVIEW.md#targeting).
 > - **Web Databank Browser**: Explore with search and multi-filtering in [dex/README.md](./dex/README.md).

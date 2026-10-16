@@ -1,0 +1,8 @@
+services:
+    dex:
+        build: .
+        container_name: anibots_dex
+        volumes:
+            - .:/app
+        ports:
+            - "3000:3000"

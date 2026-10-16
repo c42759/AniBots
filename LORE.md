@@ -5,6 +5,7 @@
 > [!NOTE]
 > - **Characters & AniBots Databank**: Complete profiles, chassis specs, and Ancient Core profiles are in [CHARACTERS.md](./CHARACTERS.md).
 > - **Standard Anima Chips Catalog**: The 36 mass-market chips are cataloged in [CHIPS.md](./CHIPS.md).
+> - **Modular Parts & Types**: Hardware slots, payload types, and mobility protocols are in [PARTS.md](./PARTS.md).
 > - **Game Systems & Mechanics**: Combat rules, hardware degradation, and economy formulas are in [OVERVIEW.md](./OVERVIEW.md).
 
 ---
