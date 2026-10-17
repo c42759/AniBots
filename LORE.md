@@ -84,7 +84,8 @@ When humanity scheduled Generation 0 for destruction, the 3 Primordial Chips wen
 
 - **Kura Ato**: 16-year-old freelance mechanic and Handler living in Neo Metropolis (District 4). Driven to protect his family, uncover the truth of his father's mysterious death 4 years ago, and reach the AniBot World Cup. See [Kura Ato Profile](./CHARACTERS.md#1-kura-ato).
 - **Zerdata (*Vulpes Zerda* — G0-004)**: Kura's partner machine, powered by an Ancient Series core anonymously delivered to his window sill. Features acoustic dish radar ears and sonic pulse combat hardware. See [Zerdata Chassis Anatomy & Specs](./CHARACTERS.md#2-zerdata-vulpes-zerda--generation-0-chip--chassis).
-- **Luccas "Luk" Tirio**: Kura's 16-year-old best friend and primary rival Handler from a wealthy background. Dreams of facing Kura in the grand finals of the AniBot World Cup. See [Luk Tirio Profile](./CHARACTERS.md#3-luccas-luk-tirio).
+- **Luccas "Luk" Tirio**: Kura's 16-year-old best friend and rival Handler from a wealthy background. Dreams of facing Kura in the grand finals of the AniBot World Cup. See [Luk Tirio Profile](./CHARACTERS.md#3-luccas-luk-tirio).
+- **Anda Tal**: 16-year-old student prodigy and Kura's composed academic rival ("Student Only"). Driven by personal perfection and staying one step ahead. See [Anda Tal Profile](./CHARACTERS.md#4-anda-tal).
 
 ---
 
@@ -193,6 +194,7 @@ In the AniBots narrative, key NPCs anchor the player's questlines, economy, and 
 | :--- | :--- | :--- | :--- |
 | **Raya Ato** | Kura's Mother | Neo Metropolis (Ato Workshop) | Manages workshop finances; unlocks family lore & father's old logs. |
 | **Master Jax** | Veteran Scrap Mechanic | Neo Metropolis Scrap Yard | Teaches Kura advanced repair techniques; gives salvage side quests. |
+| **Anda Tal** | Student Prodigy / Academic Rival | Neo Metropolis (District 2) | Kura's composed school rival; unlocks academic duel circuits and tactical challenge bouts. |
 | **Vera "Viper" Lin** | Anode Group Enforcer | Rust-Ridge Badlands | Rival faction quest giver; tests Kura in outlaw arena battles. |
 | **Dr. Aris Thorne** | Ex-Gen-0 Lead Scientist | Oakhaven Basin | Offers **Ancient Relic Quests**; reveals secrets of Vulpes Zerda & the Primordials. |
 | **Soren Vance** | Aegis Corp Prodigy | Aegis High-Spire | Arrogant QC1 rival Handler; main antagonist in corporate tournament quests. |
