@@ -68,7 +68,7 @@ Neutral Under-Skeleton Anchor (NUA) Architecture:
 
 ### A. The Neutral Under-Skeleton Anchor (NUA)
 
-- **Universal & Gender-Neutral**: Standardized across all 38 AniBots. No male or female frame locks. Any head, arm, or leg part can mount seamlessly to any torso anchor.
+- **Universal & Gender-Neutral**: Standardized across all 53 AniBots. No male or female frame locks. Any head, arm, or leg part can mount seamlessly to any torso anchor.
 - **Titanium-Ceramic Backbone**: The NUA acts as the rigid central spine inside the Torso Chassis. It houses:
   1. **Anima Chip Cradle**: Secure rear port locking the Anima Chip into direct hardware contact.
   2. **Central Bus Bridge**: High-bandwidth fiber-optic bridge multiplexing control signals between chip and limbs.

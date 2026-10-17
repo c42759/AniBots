@@ -454,12 +454,12 @@ export default function Home() {
                         <div className='grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border'>
                             <div className='py-8 pr-6'>
                                 <div className='font-mono text-xs text-muted uppercase'>01 / Chassis Frames</div>
-                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>38+</div>
-                                <div className='mt-1 text-xs text-muted'>Cataloged complete robot archetypes</div>
+                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>53+</div>
+                                <div className='mt-1 text-xs text-muted'>5 Series: Antiquity, Kinetic, Astral, Ancient, Primal</div>
                             </div>
                             <div className='py-8 md:px-6'>
                                 <div className='font-mono text-xs text-muted uppercase'>02 / Swappable Parts</div>
-                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>190</div>
+                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>265</div>
                                 <div className='mt-1 text-xs text-muted'>Individual modular hardware components</div>
                             </div>
                             <div className='py-8 pr-6 md:px-6'>

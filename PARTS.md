@@ -8,7 +8,7 @@ Part types dictate core combat mechanics: targeting lock-on timing, relay transi
 > - **Game Design & Combat Loop**: Detailed in [OVERVIEW.md](./OVERVIEW.md).
 > - **Anima Chips & AI Cores**: Cataloged in [CHIPS.md](./CHIPS.md) and [CHARACTERS.md](./CHARACTERS.md#the-10-legendary-ancient-series-anichips-generation-0).
 > - **Godot Architecture & Database Schema**: Implemented in [GAME.md](./GAME.md) and [`src/src/core/Types.gd`](./src/src/core/Types.gd).
-> - **Interactive Parts Databank**: Explore 190 modular parts across 38 AniBots in the [AniDex Web App](./dex/README.md).
+> - **Interactive Parts Databank**: Explore 265 modular parts across 53 AniBots in the [AniDex Web App](./dex/README.md).
 > - **Combat Design Roots**: Inspired by classic relay-line battlers documented in [INSPIRATION/README.md](./INSPIRATION/README.md).
 
 ---

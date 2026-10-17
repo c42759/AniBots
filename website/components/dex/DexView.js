@@ -40,7 +40,7 @@ export const DexView = ({ mode = 'anibots' }) => {
   const [selectedChip, setSelectedChip] = useState(null);
   const [selectedPart, setSelectedPart] = useState(null);
 
-  // Extract all 190 modular parts across all 38 AniBots
+  // Extract all 265 modular parts across all 53 AniBots
   const allParts = useMemo(() => {
     const list = [];
     allBots.forEach((bot) => {
