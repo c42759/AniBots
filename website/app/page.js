@@ -386,7 +386,7 @@ export default function Home() {
                                                     rel='noopener noreferrer'
                                                     className='text-accent hover:underline font-medium'
                                                 >
-                                                    dex.anibots.c42759.dev ↗
+                                                    anibots.c42759.dev/dex/ ↗
                                                 </a>
                                             </dd>
                                         </div>
@@ -428,16 +428,38 @@ export default function Home() {
                             </div>
                         </div>
 
+                        {/* Cinematic Hero Artwork Banner */}
+                        <div className='py-8 sm:py-12 border-b border-border'>
+                            <div className='relative overflow-hidden border border-border bg-surface/50 group'>
+                                {/* Technical HUD Corner Overlays */}
+                                <div className='absolute top-3 left-3 z-10 font-mono text-[10px] text-foreground/80 uppercase tracking-widest bg-background/90 px-2.5 py-1 border border-border backdrop-blur-xs flex items-center gap-2'>
+                                    <span className='w-1.5 h-1.5 bg-accent inline-block' />
+                                    <span>FIG. 01 // HANDLER & PARTNER CHASSIS</span>
+                                </div>
+                                <div className='absolute bottom-3 right-3 z-10 font-mono text-[10px] text-foreground/80 uppercase tracking-widest bg-background/90 px-2.5 py-1 border border-border backdrop-blur-xs hidden sm:flex items-center gap-2'>
+                                    <span>KURA ATO & ZERDATA</span>
+                                    <span className='text-accent'>•</span>
+                                    <span>VULPES ZERDA G0-004</span>
+                                </div>
+                                <img
+                                    src='/images/hero-banner.jpg'
+                                    alt='AniBots Protagonist Kura Ato and Zerdata Chassis'
+                                    className='w-full h-auto object-cover max-h-[580px] transition-transform duration-700 group-hover:scale-[1.01]'
+                                    loading='eager'
+                                />
+                            </div>
+                        </div>
+
                         {/* Quantitative Strip */}
                         <div className='grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-border'>
                             <div className='py-8 pr-6'>
                                 <div className='font-mono text-xs text-muted uppercase'>01 / Chassis Frames</div>
-                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>38+</div>
-                                <div className='mt-1 text-xs text-muted'>Cataloged complete robot archetypes</div>
+                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>53+</div>
+                                <div className='mt-1 text-xs text-muted'>5 Series: Antiquity, Kinetic, Astral, Ancient, Primal</div>
                             </div>
                             <div className='py-8 md:px-6'>
                                 <div className='font-mono text-xs text-muted uppercase'>02 / Swappable Parts</div>
-                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>190</div>
+                                <div className='mt-2 text-3xl sm:text-4xl font-bold tracking-tight'>265</div>
                                 <div className='mt-1 text-xs text-muted'>Individual modular hardware components</div>
                             </div>
                             <div className='py-8 pr-6 md:px-6'>
@@ -872,7 +894,7 @@ export default function Home() {
                                             </p>
                                         </div>
                                         <span className='font-mono text-xs text-accent group-hover:underline shrink-0 mt-1 font-medium'>
-                                            dex.anibots.c42759.dev ↗
+                                            anibots.c42759.dev/dex/ ↗
                                         </span>
                                     </a>
 

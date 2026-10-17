@@ -15,6 +15,8 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 ### 1. Kura Ato
 
+![Kura Ato](./website/public/images/characters/kura_ato_2.jpg)
+
 - **Age**: 16 years old
 - **Role**: Main Protagonist, Freelance AniBot Mechanic & Handler
 - **Location**: Neo Metropolis (District 4, Ato Family Workshop)
@@ -56,8 +58,10 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 ### 3. Luccas "Luk" Tirio
 
+![Luccas "Luk" Tirio](./website/public/images/characters/luccas_luk_tirio.jpg)
+
 - **Age**: 16 years old
-- **Role**: Kura's Best Friend & Primary Rival Handler
+- **Role**: Kura's Best Friend & Rival Handler
 - **Location**: Neo Metropolis
 - **Background**: Comes from a financially secure family. Student and active Handler who frequently helps Kura on odd jobs (stubbornly refusing any payment).
 - **Personality**: Energetic, competitive, loyal, ambitious.
@@ -65,7 +69,29 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 ---
 
-### 4. Raya Ato
+### 4. Anda Tal
+
+![Anda Tal](./website/public/images/characters/anda_tal.jpg)
+
+- **Age**: 16 years old
+- **Role**: Student Only; Kura Ato's Academic & Peer Rival
+- **Location**: Neo Metropolis (District 2 Academic Sector)
+- **Tagline**: "Always one step ahead."
+- **Quote**: *"I'm not here to be friends. I'm here to be ahead."*
+- **Background**: Top-ranking student in Neo Metropolis. Unlike Kura, who balances freelance salvage and workshop maintenance to support his family, Anda is strictly focused on academic and technical supremacy ("Student Only"). He rejects sentimental camaraderie in favor of relentless performance and preparation.
+- **Personality**: Intelligent, extraordinarily talented, composed, cool, confident, charismatic. Never engages in petty bullying; respects skill and results, pushing himself and his rivals to stay ahead of the pack.
+- **Visual Design & Streetwear**:
+  - **Hair & Eyes**: Layered ash-silver hair, piercing slate-blue/silver eyes.
+  - **Attire**: Modern academic streetwear uniform — tailored sleeveless vest with embroidered golden crest, loosened dark necktie, short-sleeve collared shirt, dark relaxed-fit trousers with utility straps, and chunky tech-sneakers.
+  - **Accessories**: Fingerless gloves with reinforced wrist cuffs and crest emblem; two-tone cap (worn casually forward or backward).
+  - **Color Palette**: Charcoal Black (`#1E1E24`), Slate Gray (`#4A4E69`), Off-White (`#E5E5E5`), Muted Ochre (`#C68B59`).
+- **Dynamic with Kura Ato**: Represents the disciplined, high-achieving academy counterpart to Kura's scrappy, street-smart mechanic style. Serves as a benchmark rival whom Kura must outthink rather than overpower.
+
+---
+
+### 5. Raya Ato
+
+![Raya Ato](./website/public/images/characters/raya_ato.jpg)
 
 - **Role**: Kura's Mother
 - **Location**: Ato Family Workshop (Neo Metropolis, District 4)
@@ -73,7 +99,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 ---
 
-### 5. Kura's Deceased Father
+### 6. Kura's Deceased Father
 
 - **Passed**: 3043 AD (4 years prior to main story)
 - **Legacy**: Former engineer/investigator who studied Generation 0 chips and the Anode Group. Built the original chassis that became Zerdata and hid encrypted data logs regarding Vault 7 and the Primordial Trio.
@@ -109,11 +135,15 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 ### 1. Magnus
 
+![Magnus](./website/public/images/characters/magnus.jpg)
+
 - **Role**: Supreme Boss of the **Anode Group**
 - **Location**: Magnus's Citadel (Rust-Ridge Badlands)
 - **Background & Goals**: Well-connected criminal mastermind controlling the black market. Seeks to expand syndicate operations into civilized cities, trade illegal overclock chips, and gain total world control. See [LORE.md Story Arcs](./LORE.md#chapter-3-encounter-with-anode-group).
 
 ### 2. Vera "Viper" Lin
+
+![Vera "Viper" Lin](./website/public/images/characters/vera_viper_lin.jpg)
 
 - **Role**: Anode Group Lieutenant & Badlands Enforcer
 - **Location**: The Pit Arena (Rust-Ridge Badlands)

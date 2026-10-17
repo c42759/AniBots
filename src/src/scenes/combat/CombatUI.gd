@@ -151,15 +151,25 @@ func set_combat_log(msg: String) -> void:
 
 func show_battle_results(victory: bool, rewards: Dictionary) -> void:
 	command_panel.hide()
+	var degraded: Array = rewards.get("degraded_parts", [])
+	var deg_text := ""
+	if degraded.size() > 0:
+		deg_text = "\n\n⚠ Destruction Penalty (-Condition):"
+		for d in degraded:
+			deg_text += "\n- %s: %d%% -> %d%%" % [d.get("name", "Part"), int(d.get("old_condition", 100)), int(d.get("new_condition", 85))]
+			
 	if victory:
 		result_title_label.text = "SYSTEM VICTORY!"
 		result_title_label.modulate = Color(0.3, 1.0, 0.4)
-		var scrap_earned = rewards.get("scrap", 15)
-		result_desc_label.text = "Opponent Head Destroyed!\nSystem Failure Confirmed.\n\nRewards Claimed:\n+ %d Scrap Units\n+ 1 Salvage Part Diagnostic Data" % scrap_earned
+		var scrap_earned := int(rewards.get("scrap", 25))
+		var credits_earned := int(rewards.get("credits", 150))
+		var salvaged: Dictionary = rewards.get("salvaged_part", {})
+		var salvage_line := "+ 1 Salvaged Part: %s (%d%% Grade)" % [salvaged.get("part_name", "AniPart"), int(salvaged.get("condition", 90))] if not salvaged.is_empty() else "+ 1 Salvage Diagnostic Log"
+		result_desc_label.text = "Opponent Head Destroyed! System Failure Confirmed.\n\nRewards Claimed:\n+ %d Credits | + %d Scrap\n%s%s" % [credits_earned, scrap_earned, salvage_line, deg_text]
 	else:
 		result_title_label.text = "SYSTEM FAILURE"
 		result_title_label.modulate = Color(1.0, 0.3, 0.3)
-		result_desc_label.text = "Your Anibot's Head integrity reached 0.\nReturning to workshop for field maintenance."
+		result_desc_label.text = "Your AniBot's Head integrity reached 0.\nReturning to Ato Workshop for maintenance.%s" % deg_text
 		
 	result_modal.show()
 

@@ -14,6 +14,10 @@
 - **Engine:** Godot Engine 4.x (GL Compatibility / Mobile / Desktop target)
 - **Primary Language:** GDScript 2.0 (Strict typing enabled)
 - **Architecture Pattern:** Composition over Inheritance, Event Bus Signal decoupling, Autoload Singletons
+- **Game Presentation & Perspectives:**
+  - **Out of Battle (Overworld):** 3D top-down role-playing game (RPG) featuring stylized 3D environments, free 8-way movement, and fixed-pitch overhead/isometric `Camera3D` tracking.
+  - **In Battle (Combat Arena):** Turn-based, speed-dependent tactical battles controlling a team of up to three AniBots. Action order is determined dynamically by how fast an AniBot sprints from its base line to the battlefield center line.
+  - **Attack Execution Camera:** Seamlessly transitions into a dynamic 2.5D presentation with 3D elements (3D chassis models, volumetric lighting, particle FX, and camera punch).
 - **Data Persistence:** Dual SQLite Database (`godot-sqlite` plugin / GDExtension / JSON ACID driver fallback)
   - `user://settings.cfg` or `user://global_settings.db`: Global configuration (audio volumes, display settings)
   - `user://saves/slot_{1..5}.db` (or `slot_{1..5}.json`): 5 isolated, ACID-compliant SQLite player save slots
@@ -29,6 +33,9 @@ res://
 │   │   ├── environment/
 │   │   ├── anibots/
 │   │   └── ui/
+│   ├── models/
+│   │   ├── characters/
+│   │   └── anibots/
 │   └── shaders/
 ├── src/
 │   ├── autoload/
@@ -50,13 +57,13 @@ res://
 │   │   │   └── AnibotAssembly.tscn          # <-- AniBot & Part Swapping Garage
 │   │   ├── overworld/
 │   │   │   ├── StarterCity.tscn
-│   │   │   ├── Player.tscn
-│   │   │   ├── CompositeCharacter.gd
+│   │   │   ├── Player3D.tscn
+│   │   │   ├── CompositeCharacter3D.gd
 │   │   │   └── npc/
-│   │   │       ├── NPCBase.tscn
-│   │   │       └── SparringNPC.tscn
+│   │   │       ├── NPCBase3D.tscn
+│   │   │       └── SparringNPC3D.tscn
 │   │   └── combat/
-│   │       ├── BattleArena.tscn
+│   │       ├── BattleArena.tscn         # 2.5D / 3D Hybrid Relay Arena
 │   │       ├── CombatUnit.tscn
 │   │       └── CombatUI.tscn
 └── project.godot
@@ -105,7 +112,7 @@ signal anibot_part_swapped(bot_id: String, slot: int, new_part_id: String)
 signal anibot_assembly_closed()
 
 # Battle Signals
-signal combat_started(battle_context: Dictionary)
+signal combat_started(player_team: Array, enemy_team: Array, battle_context: Dictionary)
 signal combat_phase_changed(unit_id: String, phase: int)
 signal combat_action_executed(attacker_id: String, target_id: String, part_used: Dictionary, damage_dealt: int)
 signal combat_ended(player_won: bool, rewards: Dictionary)
@@ -175,36 +182,40 @@ graph TD
 
 ## 5. Starter City (Overworld)
 
-### 5.1 Visual Environment Design (Sinnoh / BDSP Palette)
+### 5.1 Visual Environment Design (3D Top-Down RPG)
 
-- **Ground & Pathways:** Saturated emerald green grass with checkerboard tile accents, soft cobblestone cream streets, and central circular plaza with fountain water pool.
-- **Nature Decor:** Layered puffy cartoon trees with drop shadows, vibrant multi-colored flower patches (red, yellow, cyan, violet petals).
-- **Buildings:** Miniature workshop with bright cyan pitched roof, wooden signplate, and glowing windows.
-- **Sparring Ring:** Southeast neon-lit arena platform with corner energy posts.
+- **Perspective & Camera:** 3D top-down RPG view. Fixed overhead/isometric angle (`Camera3D` pitched at ~45-55 degrees, orthographic or subtle perspective FOV) following the player with smooth spring-arm damping.
+- **Ground & Pathways:** Saturated emerald green terrain mesh with checkerboard tile accents, cobblestone street geometry, and central circular plaza with 3D animated water fountain.
+- **Nature & Props:** Stylized 3D low-poly cartoon trees, flower clusters, benches, streetlamps with volumetric light cones, and dynamic soft shadow casting.
+- **Architecture:** Modular 3D workshop structures with pitched roofs, glowing neon signage, and physical entry trigger colliders.
+- **Sparring Ring:** Southeast elevated arena platform with illuminated corner pylons for initiating 3v3 exhibition matches.
 
-### 5.2 Scene Tree & World Hierarchy (`StarterCity.tscn`)
+### 5.2 Scene Tree & World Hierarchy (`StarterCity.tscn` - 3D)
 
 ```text
-StarterCity (Node2D)
-├── Boundaries (StaticBody2D with WorldBoundary collision walls)
-├── WorkshopBuilding (StaticBody2D structure with visual lab decor)
-├── YSortRoot (Node2D - y_sort_enabled = true)
-│   ├── SparringNPC (CharacterBody2D / Sparring Coordinator "Bolt")
-│   └── Player (CharacterBody2D with RayCast2D interaction probe)
+StarterCity (Node3D)
+├── WorldEnvironment (Stylized lighting, sky, ambient occlusion, glow)
+├── DirectionalLight3D (Sunlight with soft shadow maps)
+├── LevelGeometry (StaticBody3D terrain, roads, fences, plaza fountain)
+├── WorkshopBuilding (StaticBody3D structure with DoorWarp Area3D trigger)
+├── Entities (Node3D)
+│   ├── SparringNPC (CharacterBody3D / Sparring Coordinator "Bolt")
+│   └── Player (CharacterBody3D with Camera3D SpringArm rig & RayCast3D probe)
 └── HUD (CanvasLayer)
     ├── TopBar (Location Badge, Active Bot Name, Scrap & Credits Counter)
-    ├── BotButton ("[TAB] AniBots / Garage")      # <-- Opens Assembly Modal
+    ├── BotButton ("[TAB] AniBots / Garage")
     ├── MenuButton ("Pause / Save")
     ├── DialogueBox (DialogueUI instance)
-    ├── AnibotAssembly (Assembly & Part Swap UI)   # <-- Assembly Component
+    ├── AnibotAssembly (Assembly & Part Swap UI)
     └── PauseModal (Pause & Return to Menu)
 ```
 
-### 5.2 Top-Down Player Controller (`Player.gd`)
+### 5.3 3D Top-Down Player Controller (`Player.gd`)
 
-- Movement: 8-directional top-down movement with diagonal speed normalization (`move_left`, `move_right`, `move_up`, `move_down`).
-- Interaction Probe: `RayCast2D` rotating in facing direction, detecting direct or parent interactable nodes.
-- Control Lock: Disables movement automatically during dialogues, menus, or scene transitions.
+- **Movement:** 3D planar top-down navigation (`Vector3.X` and `Vector3.Z`) with analog/8-directional input vector normalization, acceleration, and deceleration friction.
+- **Model Orientation:** Smooth model yaw rotation facing velocity vector (`transform.basis`).
+- **Interaction Probe:** `RayCast3D` projecting forward along facing vector (1.8m reach) detecting interactable NPCs, doors, and inspection points.
+- **Control Lock:** Automatically freezes velocity and animations during dialogues, garage assembly modals, or scene transitions.
 
 ---
 
@@ -215,19 +226,33 @@ StarterCity (Node2D)
 - **NPC:** "Bolt" (Sparring Coordinator).
 - **Proximity:** When player approaches, displays animated `[E] Talk` prompt bubble.
 - **Input:** Pressing `E` or `Space` in range opens branching dialogue:
-  1. *Let's battle!* → Launches 3-Phase ATB Sparring Arena against Training Drone.
-  2. *Explain combat rules.* → Explains Wait/Run/Action/Cooldown and Head destruction win condition.
+  1. *Let's battle!* → Launches 3v3 speed-dependent relay arena battle against rival team.
+  2. *Explain combat rules.* → Explains 3v3 team setup, center-line sprint speed ordering, 2.5D/3D attack execution, and Head destruction win condition.
   3. *Maybe later.* → Closes dialogue.
 
-### 6.2 3-Phase ATB Battle Arena (`BattleArena.tscn`)
+### 6.2 3v3 Speed-Dependent Battle Arena (`BattleArena.tscn`)
 
-- **Relay Track:** Player Base Line `(220px)` ↔ Center Combat Line `(640px)` ↔ Enemy Base Line `(1060px)`.
-- **Phase Loop:**
-  1. `WAIT`: Leg clock speed fills Action Bar at base line.
-  2. `COMMAND`: Player selects weapon payload (Head with cache, Left Arm, Right Arm, or Overclock Ultimate).
-  3. `RUN`: Robot sprints to center line with speed modified by Leg condition.
-  4. `ACTION & COOLDOWN`: Delivers payload attack to enemy part, calculates damage/armor mitigation, and returns to base line with latency modified by weapon weight & Torso cooling.
-- **Win Condition:** Destroy enemy Head part (System Failure) → Awards 20 Scrap + Salvage Part drop.
+- **Team Size:** Players control a team of up to **three AniBots** deployed simultaneously on the field against an opposing squad of up to three enemy bots.
+- **Turn-Based Speed-Dependent Relay Battlefield:**
+  - **Field Layout:** Player Base Line (Spawn positions 1, 2, 3) ↔ **Center Action Line** ↔ Enemy Base Line (Spawn positions 1, 2, 3).
+  - **Action Order by Center-Line Race:** Action order is determined dynamically by how fast an AniBot can run to the center line of the battlefield.
+  - **Phase Loop per Bot:**
+    1. `WAIT / CHARGE`: Leg part clock speed and mobility class fill the unit's action threshold.
+    2. `COMMAND SELECTION`: When ready, command input pauses for player decision: choose target enemy bot, part to target, and weapon payload (Head cache, Left Arm, Right Arm, or Core Ability).
+    3. `SPRINT TO CENTER`: AniBot dashes across relay track toward the center combat line. Running speed is calculated from `Legs.clock_speed`, equipped weight loadout penalty, and terrain affinity. The fastest bot reaching the center executes first.
+    4. `EXECUTION (2.5D with 3D Elements)`: Upon reaching the center line, combat view switches to an immersive 2.5D perspective:
+       - **Camera:** Dynamic 2.5D side/isometric battle shot framed on the colliding bots.
+       - **3D Elements:** Fully 3D AniBot modular frames, weapon animations (blaster muzzle blasts, laser beams, hammer strikes), dynamic hit reactions, shield sparks, and volumetric particle effects.
+       - **Damage & Part Targeting:** Payload calculated with firewall defense mitigation; damage applied directly to targeted enemy part (Head, Torso, Left Arm, Right Arm, Legs).
+    5. `RETURN & COOLDOWN`: AniBot runs back to its base line with latency cooldown governed by Torso heat dissipation, weapon weight, and fatigue.
+- **Win Conditions:**
+  - **Team Leader Elimination:** Destroying the enemy Leader AniBot's Head (System Failure) scores an immediate match victory.
+  - **Full Team Wipeout:** Alternatively, dismantling all active enemy AniBots on the field.
+  - **Match Rewards:** Yields Credits, Scrap, and salvageable AniPart drops.
+
+### 6.3 Combat Camera & Perspective Pipeline
+- **Track Overview:** 2.5D fixed lateral perspective showing all 6 relay lanes (3 Player vs 3 Enemy) and the center line.
+- **Attack Execution Cut-In:** Seamless camera transition into a dramatic 2.5D presentation with 3D elements when an AniBot reaches the center line to strike, with split-second impact freeze, screen shake, and part damage readouts.
 
 ---
 

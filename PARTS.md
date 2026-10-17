@@ -8,7 +8,7 @@ Part types dictate core combat mechanics: targeting lock-on timing, relay transi
 > - **Game Design & Combat Loop**: Detailed in [OVERVIEW.md](./OVERVIEW.md).
 > - **Anima Chips & AI Cores**: Cataloged in [CHIPS.md](./CHIPS.md) and [CHARACTERS.md](./CHARACTERS.md#the-10-legendary-ancient-series-anichips-generation-0).
 > - **Godot Architecture & Database Schema**: Implemented in [GAME.md](./GAME.md) and [`src/src/core/Types.gd`](./src/src/core/Types.gd).
-> - **Interactive Parts Databank**: Explore 190 modular parts across 38 AniBots in the [AniDex Web App](./dex/README.md).
+> - **Interactive Parts Databank**: Explore 265 modular parts across 53 AniBots in the [AniDex Web App](./dex/README.md).
 > - **Combat Design Roots**: Inspired by classic relay-line battlers documented in [INSPIRATION/README.md](./INSPIRATION/README.md).
 
 ---
@@ -52,13 +52,13 @@ AniParts Architecture:
 
 Every AniBot is assembled from 5 modular slots defined in Godot [`Types.PartSlot`](./src/src/core/Types.gd):
 
-| Slot | Enum | Primary Role | Ammo / Resource | Destruction Penalty (0 Integrity) |
-| :--- | :--- | :--- | :--- | :--- |
-| **HEAD** | `PartSlot.HEAD` | Tactical burst attacks, powerful shields, traps, and utility scans. | **Cache** (2 to 4 finite uses per battle). | **System Failure**: Robot immediately shuts down. Reaching 0 Head Integrity loses the battle. |
-| **TORSO** | `PartSlot.TORSO` | The central motherboard. Provides passive armor, weight bandwidth, and heat cooling. | Passive (No direct attack). | **Chassis Ruptured**: Robot remains fully operational. Arms remain usable as long as their own HP is above 0. Torso loses Firewall damage reduction and Cooling bonuses for remainder of battle. |
-| **LEFT_ARM** | `PartSlot.LEFT_ARM` | Primary or secondary active weapon, shield, or utility. | Infinite standard usage. | **Disabled**: Left arm cannot be selected for combat commands for remainder of match. |
-| **RIGHT_ARM** | `PartSlot.RIGHT_ARM` | Primary or secondary active weapon, shield, or utility. | Infinite standard usage. | **Disabled**: Right arm cannot be selected for combat commands for remainder of match. |
-| **LEGS** | `PartSlot.LEGS` | Mobility platform. Dictates ATB fill rate, evasion, combat range modifiers, and terrain handling. | Passive mobility. | **Crippled**: Robot defaults to minimum crawl speed (Clock Speed drops to floor value). |
+| Slot          | Enum                 | Primary Role                                                                                      | Ammo / Resource                            | Destruction Penalty (0 Integrity)                                                                                                                                                                |
+| :------------ | :------------------- | :------------------------------------------------------------------------------------------------ | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **HEAD**      | `PartSlot.HEAD`      | Tactical burst attacks, powerful shields, traps, and utility scans.                               | **Cache** (2 to 4 finite uses per battle). | **System Failure**: Robot immediately shuts down. Reaching 0 Head Integrity loses the battle.                                                                                                    |
+| **TORSO**     | `PartSlot.TORSO`     | The central motherboard. Provides passive armor, weight bandwidth, and heat cooling.              | Passive (No direct attack).                | **Chassis Ruptured**: Robot remains fully operational. Arms remain usable as long as their own HP is above 0. Torso loses Firewall damage reduction and Cooling bonuses for remainder of battle. |
+| **LEFT_ARM**  | `PartSlot.LEFT_ARM`  | Primary or secondary active weapon, shield, or utility.                                           | Infinite standard usage.                   | **Disabled**: Left arm cannot be selected for combat commands for remainder of match.                                                                                                            |
+| **RIGHT_ARM** | `PartSlot.RIGHT_ARM` | Primary or secondary active weapon, shield, or utility.                                           | Infinite standard usage.                   | **Disabled**: Right arm cannot be selected for combat commands for remainder of match.                                                                                                           |
+| **LEGS**      | `PartSlot.LEGS`      | Mobility platform. Dictates ATB fill rate, evasion, combat range modifiers, and terrain handling. | Passive mobility.                          | **Crippled**: Robot defaults to minimum crawl speed (Clock Speed drops to floor value).                                                                                                          |
 
 ### GDScript Formulas & Slot Scaling
 

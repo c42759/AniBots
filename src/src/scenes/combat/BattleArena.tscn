@@ -23,7 +23,7 @@ metallic = 0.8
 roughness = 0.3
 
 [sub_resource type="BoxMesh" id="BoxMesh_track_lane"]
-size = Vector3(20, 0.04, 3.2)
+size = Vector3(16, 0.04, 5.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_track_lane"]
 albedo_color = Color(0.0941176, 0.12549, 0.188235, 1)
@@ -31,7 +31,7 @@ metallic = 0.6
 roughness = 0.4
 
 [sub_resource type="BoxMesh" id="BoxMesh_center_line"]
-size = Vector3(0.2, 0.06, 3.2)
+size = Vector3(0.2, 0.06, 5.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_center_line"]
 albedo_color = Color(1, 0.839216, 0, 1)
@@ -40,7 +40,7 @@ emission = Color(1, 0.839216, 0, 1)
 emission_energy_multiplier = 2.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_p_base_line"]
-size = Vector3(0.15, 0.06, 3.2)
+size = Vector3(0.15, 0.06, 5.6)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p_base"]
 albedo_color = Color(0, 0.898039, 1, 1)
@@ -73,9 +73,9 @@ light_energy = 2.0
 omni_range = 16.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6.2, 8.8)
+transform = Transform3D(1, 0, 0, 0, 0.882948, 0.469472, 0, -0.469472, 0.882948, 0, 7.2, 11.8)
 current = true
-fov = 42.0
+fov = 50.0
 
 [node name="ArenaFloor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_arena_floor")
@@ -92,22 +92,22 @@ mesh = SubResource("BoxMesh_center_line")
 surface_material_override/0 = SubResource("StandardMaterial3D_center_line")
 
 [node name="PlayerBaseLine" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0.04, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0.04, 0)
 mesh = SubResource("BoxMesh_p_base_line")
 surface_material_override/0 = SubResource("StandardMaterial3D_p_base")
 
 [node name="EnemyBaseLine" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0.04, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0.04, 0)
 mesh = SubResource("BoxMesh_p_base_line")
 surface_material_override/0 = SubResource("StandardMaterial3D_e_base")
 
 [node name="PlayerUnit" parent="." instance=ExtResource("2_unit_3d")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 0, 0)
 
 [node name="EnemyUnit" parent="." instance=ExtResource("2_unit_3d")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2, 0, 0)
 is_player = false
 
 [node name="HUDLayer" type="CanvasLayer" parent="."]

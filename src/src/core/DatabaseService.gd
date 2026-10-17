@@ -1,5 +1,5 @@
 # DatabaseService.gd
-# Data persistence layer supporting 5 save slots and global settings
+# Data persistence layer supporting 5 save slots, 3-bot active squad roster, and global settings
 class_name DatabaseService
 extends RefCounted
 
@@ -8,6 +8,7 @@ const SETTINGS_FILE: String = "user://settings.cfg"
 const TOTAL_SAVE_SLOTS: int = 5
 
 static func ensure_save_directory() -> void:
+	Types.ensure_catalogs_loaded()
 	if not DirAccess.dir_exists_absolute(SAVES_DIR):
 		DirAccess.make_dir_recursive_absolute(SAVES_DIR)
 
@@ -85,14 +86,24 @@ static func load_slot_data(slot_id: int) -> Dictionary:
 	
 	var data = JSON.parse_string(json_text)
 	if typeof(data) == TYPE_DICTIONARY:
+		_migrate_save_schema(data)
 		return data
 	return {}
+
+static func _migrate_save_schema(data: Dictionary) -> void:
+	# Ensure squad_roster exists and mirrors active_anibot[0] for backward compatibility
+	if not data.has("squad_roster") or typeof(data["squad_roster"]) != TYPE_ARRAY or data["squad_roster"].is_empty():
+		var leader_bot: Dictionary = data.get("active_anibot", create_bot_loadout("bot_starter_01", "chip_artificer"))
+		var wingman_2: Dictionary = create_bot_loadout("bot_squad_02", "chip_spark")
+		var wingman_3: Dictionary = create_bot_loadout("bot_squad_03", "chip_orion")
+		data["squad_roster"] = [leader_bot, wingman_2, wingman_3]
+		data["selected_bot_index"] = 0
+		data["active_anibot"] = data["squad_roster"][0]
 
 static func save_slot_data(slot_id: int, full_data: Dictionary) -> bool:
 	ensure_save_directory()
 	var path := get_slot_path(slot_id)
 	
-	# Update metadata timestamps
 	if not full_data.has("metadata"):
 		full_data["metadata"] = {}
 	
@@ -115,21 +126,32 @@ static func delete_slot(slot_id: int) -> bool:
 		return DirAccess.remove_absolute(path) == OK
 	return true
 
-# --- Factory for Default Save Data ---
-static func create_initial_save_data(player_name: String, appearance: Dictionary, starter_chip_id: String) -> Dictionary:
-	var chip_data = Types.CHIPS_CATALOG.get(starter_chip_id, Types.CHIPS_CATALOG["chip_artificer"])
-	
-	var initial_bot := {
-		"bot_id": "bot_starter_01",
-		"bot_name": chip_data.get("starter_frame", "Genesis-1"),
-		"chip_id": starter_chip_id,
+static func create_bot_loadout(bot_id: String, chip_id: String) -> Dictionary:
+	Types.ensure_catalogs_loaded()
+	var chip_data: Dictionary = Types.CHIPS_CATALOG.get(chip_id, Types.CHIPS_CATALOG["chip_artificer"])
+	var frame_name: String = str(chip_data.get("starter_frame", "Genesis-1"))
+	var bot := {
+		"bot_id": bot_id,
+		"bot_name": frame_name,
+		"chip_id": chip_id,
+		"chip_level": 1,
+		"chip_exp": 0,
+		"is_active_in_battle": true,
 		"parts": {}
 	}
-	
-	# Assign initial starter parts based on chip
-	match starter_chip_id:
+	match chip_id:
+		"chip_vulpes_zerda":
+			bot["bot_name"] = "Zerdata"
+			bot["parts"] = {
+				"head": {"part_id": "part_head_zerda_radar_ears", "condition": 100.0, "current_cache": 4},
+				"left_arm": {"part_id": "part_arm_l_sonic_emitter", "condition": 100.0},
+				"right_arm": {"part_id": "part_arm_r_resonator_claw", "condition": 100.0},
+				"torso": {"part_id": "part_torso_zerda_core", "condition": 100.0},
+				"legs": {"part_id": "part_legs_zerda_springers", "condition": 100.0}
+			}
 		"chip_spark":
-			initial_bot["parts"] = {
+			bot["bot_name"] = "Circuit-Breaker"
+			bot["parts"] = {
 				"head": {"part_id": "part_head_surge_node", "condition": 100.0, "current_cache": 4},
 				"left_arm": {"part_id": "part_arm_l_static_whip", "condition": 100.0},
 				"right_arm": {"part_id": "part_arm_r_volt_caster", "condition": 100.0},
@@ -137,44 +159,63 @@ static func create_initial_save_data(player_name: String, appearance: Dictionary
 				"legs": {"part_id": "part_legs_current_wheels", "condition": 100.0}
 			}
 		"chip_orion":
-			initial_bot["parts"] = {
+			bot["bot_name"] = "Nova-Seeker"
+			bot["parts"] = {
 				"head": {"part_id": "part_head_astro_scope", "condition": 100.0, "current_cache": 3},
 				"left_arm": {"part_id": "part_arm_l_pulsar_rifle", "condition": 100.0},
 				"right_arm": {"part_id": "part_arm_r_comet_snipe", "condition": 100.0},
 				"torso": {"part_id": "part_torso_nova", "condition": 100.0},
 				"legs": {"part_id": "part_legs_hover_drive", "condition": 100.0}
 			}
-		_: # Artificer
-			initial_bot["parts"] = {
+		_:
+			bot["bot_name"] = "Genesis-1"
+			bot["parts"] = {
 				"head": {"part_id": "part_head_logic_bomb", "condition": 100.0, "current_cache": 3},
 				"left_arm": {"part_id": "part_arm_l_wrench", "condition": 100.0},
 				"right_arm": {"part_id": "part_arm_r_ratchet", "condition": 100.0},
 				"torso": {"part_id": "part_torso_genesis", "condition": 100.0},
 				"legs": {"part_id": "part_legs_steady_tread", "condition": 100.0}
 			}
+	return bot
+
+# --- Factory for Default Save Data ---
+static func create_initial_save_data(player_name: String, appearance: Dictionary, starter_chip_id: String) -> Dictionary:
+	Types.ensure_catalogs_loaded()
+	var chip_data: Dictionary = Types.CHIPS_CATALOG.get(starter_chip_id, Types.CHIPS_CATALOG["chip_artificer"])
+	
+	# Leader Bot (Selected Starter) + 2 Support Squad Bots for 3v3 Relay Combat
+	var leader_bot := create_bot_loadout("bot_starter_01", starter_chip_id)
+	var second_chip := "chip_spark" if starter_chip_id != "chip_spark" else "chip_artificer"
+	var third_chip := "chip_orion" if starter_chip_id != "chip_orion" else "chip_vulpes_zerda"
+	var wingman_2 := create_bot_loadout("bot_squad_02", second_chip)
+	var wingman_3 := create_bot_loadout("bot_squad_03", third_chip)
+	var squad_roster: Array = [leader_bot, wingman_2, wingman_3]
 
 	return {
 		"metadata": {
-			"player_name": player_name if not player_name.is_empty() else "Handler",
+			"player_name": player_name if not player_name.is_empty() else "Kura Ato",
 			"playtime_seconds": 0,
 			"created_at": Time.get_datetime_string_from_system(),
 			"last_saved_at": Time.get_datetime_string_from_system(),
 			"starter_chip": chip_data.get("name", "Artificer Chip"),
-			"location_name": "Circuit City - Sector 0",
-			"badges": 0
+			"location_name": "Neo Metropolis - District 4",
+			"badges": 0,
+			"chapter": 1
 		},
 		"player": {
-			"name": player_name if not player_name.is_empty() else "Handler",
+			"name": player_name if not player_name.is_empty() else "Kura Ato",
 			"appearance": appearance,
 			"position": {"x": 0.0, "y": 0.0, "z": 3.0},
 			"current_map": "StarterCity"
 		},
 		"economy": {
-			"credits": 500,
-			"scrap": 25,
-			"patch_kits": 2
+			"credits": 650,
+			"scrap": 100,
+			"patch_kits": 3
 		},
-		"active_anibot": initial_bot,
+		"selected_bot_index": 0,
+		"active_anibot": leader_bot,
+		"squad_roster": squad_roster,
 		"inventory_parts": [
 			{
 				"uuid": "inv_part_01",
@@ -205,7 +246,19 @@ static func create_initial_save_data(player_name: String, appearance: Dictionary
 				"part_id": "part_torso_circuit",
 				"condition": 100.0,
 				"current_cache": -1
+			},
+			{
+				"uuid": "inv_part_06",
+				"part_id": "part_arm_l_aegis_shield",
+				"condition": 100.0,
+				"current_cache": -1
+			},
+			{
+				"uuid": "inv_part_07",
+				"part_id": "part_head_zerda_radar_ears",
+				"condition": 100.0,
+				"current_cache": 4
 			}
 		],
-		"inventory_chips": [starter_chip_id]
+		"inventory_chips": [starter_chip_id, "chip_vulpes_zerda", "chip_artificer", "chip_spark", "chip_orion", "chip_phalanx", "chip_ronin"]
 	}

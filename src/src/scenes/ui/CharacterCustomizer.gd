@@ -35,7 +35,7 @@ var selected_shirt_color: Color = Color("#1976D2")
 var selected_bottom_color: Color = Color("#37474F")
 var selected_shoe_color: Color = Color("#FAFAFA")
 
-var starter_chips = ["chip_artificer", "chip_spark", "chip_orion"]
+var starter_chips = ["chip_vulpes_zerda", "chip_artificer", "chip_spark", "chip_orion"]
 var starter_chip_idx: int = 0
 var turntable_rot_speed: float = 0.0
 
@@ -238,7 +238,7 @@ func _on_start_game_pressed() -> void:
 	SignalBus.play_sfx_requested.emit("confirm")
 	var p_name = name_input.text.strip_edges()
 	if p_name.is_empty():
-		p_name = "Handler"
+		p_name = "Kura Ato"
 		
 	var hair_entry = Types.CUSTOMIZATION_DATA["hair_styles"][hair_style_idx]
 	var shirt_entry = Types.CUSTOMIZATION_DATA["shirt_styles"][shirt_style_idx]
