@@ -135,11 +135,15 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 
 ### 1. Magnus
 
+![Magnus](./website/public/images/characters/magnus.jpg)
+
 - **Role**: Supreme Boss of the **Anode Group**
 - **Location**: Magnus's Citadel (Rust-Ridge Badlands)
 - **Background & Goals**: Well-connected criminal mastermind controlling the black market. Seeks to expand syndicate operations into civilized cities, trade illegal overclock chips, and gain total world control. See [LORE.md Story Arcs](./LORE.md#chapter-3-encounter-with-anode-group).
 
 ### 2. Vera "Viper" Lin
+
+![Vera "Viper" Lin](./website/public/images/characters/vera_viper_lin.jpg)
 
 - **Role**: Anode Group Lieutenant & Badlands Enforcer
 - **Location**: The Pit Arena (Rust-Ridge Badlands)
