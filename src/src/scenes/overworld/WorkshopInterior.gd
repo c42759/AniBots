@@ -58,12 +58,32 @@ func _ready() -> void:
 		
 	SignalBus.economy_updated.connect(_update_hud)
 	SignalBus.anibot_part_swapped.connect(func(_b, _s, _p): _update_hud())
+	SignalBus.anibot_chip_swapped.connect(func(_b, _c): _update_hud())
+	
+	_apply_workshop_textures()
 	
 	# Spawn player near entrance door
 	if player:
 		player.global_position = Vector3(0.0, 0.0, 3.8)
 		
 	_update_hud()
+
+func _apply_workshop_textures() -> void:
+	var floor_mesh := get_node_or_null("Room/FloorMesh") as MeshInstance3D
+	if floor_mesh:
+		floor_mesh.material_override = EnvironmentTextureService.create_tiled_material(
+			"workshop_floor_grid.png", Vector3(0.5, 0.5, 0.5), 0.35, 0.30, true, 71, 0.25
+		)
+	var wall_mesh := get_node_or_null("Room/BackWallMesh") as MeshInstance3D
+	if wall_mesh:
+		wall_mesh.material_override = EnvironmentTextureService.create_tiled_material(
+			"workshop_wall_tech.png", Vector3(0.4, 0.4, 0.4), 0.55, 0.20, true, 81, 0.35
+		)
+	var bench_mesh := get_node_or_null("Workbench/WorkbenchMesh") as MeshInstance3D
+	if bench_mesh:
+		bench_mesh.material_override = EnvironmentTextureService.create_tiled_material(
+			"workbench_metal.png", Vector3(0.6, 0.6, 0.6), 0.35, 0.65, true, 91, 0.30
+		)
 
 func _update_hud() -> void:
 	if SaveManager.is_game_loaded:

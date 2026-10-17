@@ -44,11 +44,8 @@ func _ready() -> void:
 	_load_clash_from_session()
 
 func _setup_arena_environment() -> void:
-	var f_mat = StandardMaterial3D.new()
-	f_mat.albedo_color = Color("#141A29")
-	f_mat.metallic = 0.8
-	f_mat.roughness = 0.3
-	floor_mesh.material_override = f_mat
+	var terrain_id: int = int(GameManager.active_battle_session.get("terrain", GameManager.active_battle_terrain))
+	floor_mesh.material_override = EnvironmentTextureService.create_arena_terrain_material(terrain_id)
 	
 	var s_mat = StandardMaterial3D.new()
 	s_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -115,9 +112,9 @@ func start_clash_sequence() -> void:
 	slash_fx.hide()
 	laser_fx.hide()
 	
-	# Position AniBots
-	var p_att_x = -3.2 if is_attacker_player else 3.2
-	var p_def_x = 3.2 if is_attacker_player else -3.2
+	# Position AniBots so both are clearly visible in the two-shot frame
+	var p_att_x = -2.6 if is_attacker_player else 2.6
+	var p_def_x = 2.6 if is_attacker_player else -2.6
 	
 	attacker_model.global_position = Vector3(p_att_x, 0, 0)
 	attacker_model.rotation_degrees.y = 90.0 if is_attacker_player else -90.0
@@ -162,65 +159,88 @@ func start_clash_sequence() -> void:
 
 func _apply_damage_and_resolve() -> Dictionary:
 	impact_resolved = true
-	var pwr = action_part.get("payload", 30 if is_attacker_player else 20)
-	var act_type = action_part.get("type", Types.AttackType.MELEE)
-	var sfx = "laser" if is_ult else ("slash" if act_type == Types.AttackType.MELEE else "attack_hit")
+	var pwr: int = int(action_part.get("payload", 30 if is_attacker_player else 20))
+	var act_type: int = int(action_part.get("type", Types.AttackType.MELEE))
+	var sfx := "laser" if is_ult else ("slash" if act_type == Types.AttackType.MELEE else "attack_hit")
 	SignalBus.play_sfx_requested.emit(sfx)
 	
-	var session = GameManager.active_battle_session
-	var def_key = "enemy" if is_attacker_player else "player"
-	var att_key = "player" if is_attacker_player else "enemy"
-	var def_state = session.get(def_key, {})
-	var att_state = session.get(att_key, {})
+	var session: Dictionary = GameManager.active_battle_session
+	var clash_info: Dictionary = session.get("last_clash", {})
+	var target_override: int = int(clash_info.get("target_slot_override", -1))
+	
+	var def_key := "enemy" if is_attacker_player else "player"
+	var att_key := "player" if is_attacker_player else "enemy"
+	var def_state: Dictionary = session.get(def_key, {})
+	var att_state: Dictionary = session.get(att_key, {})
 	var def_integrities: Dictionary = def_state.get("part_integrities", {})
 	if def_integrities.is_empty():
 		def_integrities = def_state.get("integrities", {})
 	
-	# Calculate damage
-	var damage = max(int(pwr - 4), 5)
+	# Check Defender Torso Firewall (0 if Torso is ruptured at 0 HP!)
+	var def_torso_hp: int = int(def_integrities.get(Types.PartSlot.TORSO, def_integrities.get(str(Types.PartSlot.TORSO), 100)))
+	var firewall: int = 0
+	if def_torso_hp > 0:
+		var def_torso_id: String = str(def_state.get("config", {}).get("parts", {}).get("torso", {}).get("part_id", ""))
+		var def_torso_cat: Dictionary = Types.PARTS_CATALOG.get(def_torso_id, {})
+		firewall = int(def_torso_cat.get("firewall", 8))
+		if bool(def_state.get("override_guard_active", false)):
+			firewall += 12
+			
+	# Check Attacker Guaranteed Crit (from Support Scanner)
+	var is_crit: bool = bool(att_state.get("guaranteed_crit_next", false)) or is_ult
+	if bool(att_state.get("guaranteed_crit_next", false)):
+		att_state["guaranteed_crit_next"] = false
+		pwr = int(round(float(pwr) * 1.45))
+		
+	var damage: int = maxi(int(pwr - int(firewall * 0.5)), 5)
 	
-	# Pick random surviving slot
-	var valid_slots = []
+	# Use Utility AI target_override if valid and above 0 HP, else pick surviving slot
+	var valid_slots: Array = []
 	for s in [Types.PartSlot.HEAD, Types.PartSlot.LEFT_ARM, Types.PartSlot.RIGHT_ARM, Types.PartSlot.LEGS, Types.PartSlot.TORSO]:
-		var cur_val = def_integrities.get(s, def_integrities.get(str(s), 50))
+		var cur_val: int = int(def_integrities.get(s, def_integrities.get(str(s), 50)))
 		if cur_val > 0:
 			valid_slots.append(s)
-	var target_slot = valid_slots[randi() % valid_slots.size()] if valid_slots.size() > 0 else Types.PartSlot.HEAD
+			
+	var target_slot: int = Types.PartSlot.HEAD
+	if target_override in valid_slots:
+		target_slot = target_override
+	elif valid_slots.size() > 0:
+		target_slot = int(valid_slots[randi() % valid_slots.size()])
 	
-	var cur_hp = def_integrities.get(target_slot, def_integrities.get(str(target_slot), 50))
-	var new_hp = max(0, cur_hp - damage)
+	var cur_hp: int = int(def_integrities.get(target_slot, def_integrities.get(str(target_slot), 50)))
+	var new_hp: int = maxi(0, cur_hp - damage)
 	def_integrities[target_slot] = new_hp
 	def_state["part_integrities"] = def_integrities
 	def_state["integrities"] = def_integrities
 
-	# Attacker Overclock Gauge charge (or reset if ultimate used)
 	if is_ult:
 		att_state["overclock_gauge"] = 0.0
 	else:
-		var att_chip = att_state.get("config", {}).get("chip_id", att_state.get("chip_id", ""))
-		var att_mult = 2.0 if att_chip == "chip_draco" else 1.0
-		var cur_att_gauge = att_state.get("overclock_gauge", 0.0)
+		var att_chip: String = str(att_state.get("config", {}).get("chip_id", att_state.get("chip_id", "")))
+		var att_mult := 2.0 if att_chip == "chip_draco" else 1.0
+		var cur_att_gauge := float(att_state.get("overclock_gauge", 0.0))
 		att_state["overclock_gauge"] = clampf(cur_att_gauge + (20.0 * att_mult), 0.0, 100.0)
 
-	# Defender Overclock Gauge charge on damage taken
-	var def_chip = def_state.get("config", {}).get("chip_id", def_state.get("chip_id", ""))
-	var def_mult = 2.0 if def_chip == "chip_draco" else 1.0
-	var cur_def_gauge = def_state.get("overclock_gauge", 0.0)
+	var def_chip: String = str(def_state.get("config", {}).get("chip_id", def_state.get("chip_id", "")))
+	var def_mult := 2.0 if def_chip == "chip_draco" else 1.0
+	var cur_def_gauge := float(def_state.get("overclock_gauge", 0.0))
 	def_state["overclock_gauge"] = clampf(cur_def_gauge + (25.0 * def_mult), 0.0, 100.0)
 
 	session[att_key] = att_state
 	session[def_key] = def_state
 	
-	var head_hp = def_integrities.get(Types.PartSlot.HEAD, def_integrities.get(str(Types.PartSlot.HEAD), 60))
-	var is_destroyed = (new_hp <= 0)
-	var is_head_destroyed = (head_hp <= 0)
+	var head_hp: int = int(def_integrities.get(Types.PartSlot.HEAD, def_integrities.get(str(Types.PartSlot.HEAD), 60)))
+	var is_destroyed := (new_hp <= 0)
+	var is_head_destroyed := (head_hp <= 0)
 	
-	var slot_name = _slot_name_str(target_slot)
-	var att_name = attacker_config.get("bot_name", "AniBot")
-	var def_name = defender_config.get("bot_name", "Opponent")
-	var log_msg = "%s strikes with %s! Dealt %d damage to %s's %s!" % [
+	var slot_name := _slot_name_str(target_slot)
+	var att_name: String = str(attacker_config.get("bot_name", "AniBot"))
+	var def_name: String = str(defender_config.get("bot_name", "Opponent"))
+	var crit_tag := " [CRIT!]" if is_crit else ""
+	var log_msg := "%s strikes with %s%s! Dealt %d damage to %s's %s!" % [
 		att_name,
 		action_part.get("name", "Attack"),
+		crit_tag,
 		damage,
 		def_name,
 		slot_name
@@ -242,9 +262,10 @@ func _apply_damage_and_resolve() -> Dictionary:
 
 func _choreograph_melee_attack() -> void:
 	var dir = 1.0 if is_attacker_player else -1.0
-	var start_cam = Vector3(-1.0 * dir, 1.8, 4.2)
-	var target_cam = Vector3(0.0, 1.5, 3.4)
+	var start_cam = Vector3(-0.4 * dir, 2.2, 5.4)
+	var target_cam = Vector3(0.4 * dir, 1.9, 4.6)
 	
+	camera_3d.fov = 52.0
 	camera_3d.position = start_cam
 	camera_3d.look_at(Vector3(0, 0.8, 0))
 	
@@ -271,8 +292,9 @@ func _choreograph_melee_attack() -> void:
 
 func _choreograph_shooting_attack() -> void:
 	var dir = 1.0 if is_attacker_player else -1.0
-	camera_3d.position = Vector3(-2.2 * dir, 1.6, 3.8)
-	camera_3d.look_at(defender_model.global_position + Vector3(0, 0.8, 0))
+	camera_3d.fov = 52.0
+	camera_3d.position = Vector3(-0.3 * dir, 2.2, 5.6)
+	camera_3d.look_at(Vector3(0, 0.8, 0))
 	
 	var tw = create_tween()
 	current_clash_tween = tw
@@ -296,9 +318,9 @@ func _choreograph_shooting_attack() -> void:
 	tw.tween_callback(_complete_clash)
 
 func _choreograph_trap_attack() -> void:
-	var dir = 1.0 if is_attacker_player else -1.0
-	camera_3d.position = Vector3(0, 3.2, 4.5)
-	camera_3d.look_at(Vector3(0, 0.5, 0))
+	camera_3d.fov = 52.0
+	camera_3d.position = Vector3(0, 3.0, 5.4)
+	camera_3d.look_at(Vector3(0, 0.6, 0))
 	
 	var tw = create_tween()
 	current_clash_tween = tw
@@ -315,18 +337,19 @@ func _choreograph_trap_attack() -> void:
 
 func _choreograph_overclock_ultimate() -> void:
 	var dir = 1.0 if is_attacker_player else -1.0
-	camera_3d.position = Vector3(-1.8 * dir, 1.4, 2.6)
-	camera_3d.look_at(attacker_model.global_position + Vector3(0, 0.8, 0))
+	camera_3d.fov = 52.0
+	camera_3d.position = Vector3(-0.5 * dir, 2.2, 5.4)
+	camera_3d.look_at(Vector3(0, 0.8, 0))
 	
 	var tw = create_tween()
 	current_clash_tween = tw
 	
 	tw.tween_callback(func(): attacker_model.play_attack("charge"))
-	tw.tween_property(camera_3d, "fov", 35.0, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.tween_property(camera_3d, "fov", 46.0, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
 	var strike_pos = defender_model.global_position - Vector3(1.0 * dir, 0, 0)
 	tw.tween_callback(func():
-		camera_3d.position = Vector3(0, 1.8, 4.0)
+		camera_3d.position = Vector3(0.3 * dir, 2.0, 4.8)
 		camera_3d.fov = 52.0
 		camera_3d.look_at(Vector3(0, 0.8, 0))
 	)

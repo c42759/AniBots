@@ -1,5 +1,5 @@
 # AnibotAssembly.gd
-# Medabots-style Anibot Loadout Assembly and Part Swapping 3D Garage UI
+# Medabots-style AniBot Loadout Assembly, 3-Bot Squad Switcher, Field-Patch Kit (85% Cap), and Part Swapping 3D Garage UI
 extends Control
 
 signal closed
@@ -46,8 +46,15 @@ signal closed
 var active_slot_selected: int = Types.PartSlot.HEAD
 var selected_inventory_part: Dictionary = {}
 
+# Dynamic extra controls for Squad Switcher, Chip Cycer & Field-Patch Kit
+var squad_switch_btn: Button = null
+var cycle_chip_btn: Button = null
+var patch_slot_btn: Button = null
+
 func _ready() -> void:
+	Types.ensure_catalogs_loaded()
 	_ensure_nodes_resolved()
+	_setup_extra_controls()
 	if comparison_panel:
 		comparison_panel.hide()
 	if close_button and not close_button.pressed.is_connected(_on_close_pressed):
@@ -65,6 +72,58 @@ func _ready() -> void:
 		select_r_arm_btn.pressed.connect(_select_slot_r_arm)
 	if select_legs_btn and not select_legs_btn.pressed.is_connected(_select_slot_legs):
 		select_legs_btn.pressed.connect(_select_slot_legs)
+
+func _setup_extra_controls() -> void:
+	if bot_name_label and bot_name_label.get_parent() and not squad_switch_btn:
+		var parent_box := bot_name_label.get_parent()
+		var hbox := HBoxContainer.new()
+		hbox.add_theme_constant_override("separation", 6)
+		parent_box.add_child(hbox)
+		parent_box.move_child(hbox, bot_name_label.get_index() + 1)
+		
+		squad_switch_btn = Button.new()
+		squad_switch_btn.text = "Switch Squad Bot [1/3]"
+		squad_switch_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		squad_switch_btn.pressed.connect(_on_switch_squad_bot)
+		hbox.add_child(squad_switch_btn)
+		
+		cycle_chip_btn = Button.new()
+		cycle_chip_btn.text = "Swap Chip"
+		cycle_chip_btn.pressed.connect(_on_cycle_chip)
+		hbox.add_child(cycle_chip_btn)
+		
+		patch_slot_btn = Button.new()
+		patch_slot_btn.text = "Apply Field-Patch Kit (85% Cap)"
+		patch_slot_btn.pressed.connect(_on_apply_patch_kit)
+		parent_box.add_child(patch_slot_btn)
+
+func _on_switch_squad_bot() -> void:
+	SignalBus.play_sfx_requested.emit("click")
+	var roster := SaveManager.get_squad_roster()
+	if roster.size() > 0:
+		var next_idx := (SaveManager.get_selected_bot_index() + 1) % roster.size()
+		SaveManager.select_squad_bot(next_idx)
+		refresh_all_views()
+
+func _on_cycle_chip() -> void:
+	SignalBus.play_sfx_requested.emit("click")
+	var owned := SaveManager.get_owned_chips()
+	if owned.is_empty():
+		return
+	var bot := SaveManager.get_active_anibot()
+	var cur_chip: String = str(bot.get("chip_id", "chip_artificer"))
+	var idx := owned.find(cur_chip)
+	var next_chip: String = str(owned[(idx + 1) % owned.size()])
+	SaveManager.swap_active_anibot_chip(next_chip)
+	refresh_all_views()
+
+func _on_apply_patch_kit() -> void:
+	var res := SaveManager.apply_field_patch_to_equipped_slot(active_slot_selected)
+	if res.get("success", false):
+		SignalBus.play_sfx_requested.emit("confirm")
+	else:
+		SignalBus.play_sfx_requested.emit("cancel")
+	refresh_all_views()
 
 func _process(delta: float) -> void:
 	if visible and hangar_bot:
@@ -116,107 +175,137 @@ func _ensure_nodes_resolved() -> void:
 func open_garage() -> void:
 	show()
 	_ensure_nodes_resolved()
+	_setup_extra_controls()
 	_select_slot(Types.PartSlot.HEAD)
 	refresh_all_views()
 	SignalBus.anibot_assembly_opened.emit()
 
 func refresh_all_views() -> void:
-	var bot_data = SaveManager.get_active_anibot()
+	Types.ensure_catalogs_loaded()
+	var bot_data := SaveManager.get_active_anibot()
 	if bot_data.is_empty():
 		return
 		
+	var idx := SaveManager.get_selected_bot_index()
+	var roster := SaveManager.get_squad_roster()
+	var role_tag := "LEADER" if idx == 0 else ("WINGMAN #%d" % (idx + 1))
 	var bot_name: String = bot_data.get("bot_name", "Genesis-1")
 	var chip_id: String = bot_data.get("chip_id", "chip_artificer")
-	var chip = Types.CHIPS_CATALOG.get(chip_id, Types.CHIPS_CATALOG["chip_artificer"])
+	var chip: Dictionary = Types.CHIPS_CATALOG.get(chip_id, Types.CHIPS_CATALOG["chip_artificer"])
+	var chip_aff: String = str(chip.get("affinity", "TRAP"))
 	
-	bot_name_label.text = bot_name
-	chip_info_label.text = "Chip: %s (%s)\nAffinity: %s" % [chip["name"], chip["personality"], chip["affinity"]]
+	bot_name_label.text = "[%s] %s" % [role_tag, bot_name]
+	if squad_switch_btn:
+		squad_switch_btn.text = "Squad Bot [%d/%d]" % [idx + 1, maxi(1, roster.size())]
+	if patch_slot_btn:
+		var kits := int(SaveManager.get_economy().get("patch_kits", 0))
+		patch_slot_btn.text = "Patch %s -> 85%% (Kits: %d)" % [_slot_name(active_slot_selected), kits]
+		patch_slot_btn.disabled = (kits <= 0)
+		
+	chip_info_label.text = "Chip: %s (%s)\nAffinity: %s" % [chip.get("name", "Chip"), chip.get("personality_engram", chip.get("personality", "")), chip_aff]
 	
 	var parts: Dictionary = bot_data.get("parts", {})
-	
-	# Calculate totals
-	var total_hp = 0
-	var total_weight = 0
+	var total_hp := 0
+	var total_weight := 0
+	var affinity_match_count := 0
 	
 	# Head
-	var head_item = parts.get("head", {})
-	var head_cat = Types.PARTS_CATALOG.get(head_item.get("part_id", ""), {})
-	head_name_label.text = head_cat.get("name", "Empty")
+	var head_item: Dictionary = parts.get("head", {})
+	var head_cat: Dictionary = Types.PARTS_CATALOG.get(head_item.get("part_id", ""), {})
+	var head_hp := Types.calculate_battle_integrity(int(head_cat.get("base_integrity", 0)), float(head_item.get("condition", 100.0)))
+	var head_syn := Types.apply_affinity_synergy(int(head_cat.get("type", 0)), chip_aff, int(head_cat.get("payload", 0)), int(head_cat.get("precision", 85)))
+	if head_syn["matches"]: affinity_match_count += 1
+	head_name_label.text = head_cat.get("name", "Empty") + (" [★+10%]" if head_syn["matches"] else "")
 	head_stats_label.text = "Cond: %d%% | HP: %d | Pwr: %d | Cache: %d" % [
 		int(head_item.get("condition", 100.0)),
-		int(head_cat.get("base_integrity", 0) * (head_item.get("condition", 100.0) / 100.0)),
-		head_cat.get("payload", 0),
+		head_hp,
+		head_syn["payload"],
 		head_item.get("current_cache", head_cat.get("cache", 3))
 	]
-	total_hp += int(head_cat.get("base_integrity", 0) * (head_item.get("condition", 100.0) / 100.0))
-	total_weight += head_cat.get("weight", 0)
+	total_hp += head_hp
+	total_weight += int(head_cat.get("weight", 0))
 	
 	# Torso
-	var torso_item = parts.get("torso", {})
-	var torso_cat = Types.PARTS_CATALOG.get(torso_item.get("part_id", ""), {})
+	var torso_item: Dictionary = parts.get("torso", {})
+	var torso_cat: Dictionary = Types.PARTS_CATALOG.get(torso_item.get("part_id", ""), {})
+	var torso_hp := Types.calculate_battle_integrity(int(torso_cat.get("base_integrity", 0)), float(torso_item.get("condition", 100.0)))
 	torso_name_label.text = torso_cat.get("name", "Empty")
 	torso_stats_label.text = "Cond: %d%% | HP: %d | Firewall: %d | Cool: %.1f | MaxLoad: %d" % [
 		int(torso_item.get("condition", 100.0)),
-		int(torso_cat.get("base_integrity", 0) * (torso_item.get("condition", 100.0) / 100.0)),
-		torso_cat.get("firewall", 0),
-		torso_cat.get("cooling", 1.0),
-		torso_cat.get("max_loadout", 30)
+		torso_hp,
+		int(torso_cat.get("firewall", 0)),
+		float(torso_cat.get("cooling", 1.0)),
+		int(torso_cat.get("max_loadout", 30))
 	]
-	total_hp += int(torso_cat.get("base_integrity", 0) * (torso_item.get("condition", 100.0) / 100.0))
-	var max_loadout: int = torso_cat.get("max_loadout", 30)
-	var cooling_val: float = torso_cat.get("cooling", 1.0)
+	total_hp += torso_hp
+	var max_loadout: int = int(torso_cat.get("max_loadout", 30))
+	var cooling_val: float = float(torso_cat.get("cooling", 1.0))
 	
 	# Left Arm
-	var l_arm_item = parts.get("left_arm", {})
-	var l_arm_cat = Types.PARTS_CATALOG.get(l_arm_item.get("part_id", ""), {})
-	l_arm_name_label.text = l_arm_cat.get("name", "Empty")
+	var l_arm_item: Dictionary = parts.get("left_arm", {})
+	var l_arm_cat: Dictionary = Types.PARTS_CATALOG.get(l_arm_item.get("part_id", ""), {})
+	var l_arm_hp := Types.calculate_battle_integrity(int(l_arm_cat.get("base_integrity", 0)), float(l_arm_item.get("condition", 100.0)))
+	var l_syn := Types.apply_affinity_synergy(int(l_arm_cat.get("type", 0)), chip_aff, int(l_arm_cat.get("payload", 0)), int(l_arm_cat.get("precision", 85)))
+	if l_syn["matches"]: affinity_match_count += 1
+	l_arm_name_label.text = l_arm_cat.get("name", "Empty") + (" [★+10%]" if l_syn["matches"] else "")
 	l_arm_stats_label.text = "Cond: %d%% | HP: %d | Pwr: %d | Latency: %.1fs" % [
 		int(l_arm_item.get("condition", 100.0)),
-		int(l_arm_cat.get("base_integrity", 0) * (l_arm_item.get("condition", 100.0) / 100.0)),
-		l_arm_cat.get("payload", 0),
-		l_arm_cat.get("latency", 2.0)
+		l_arm_hp,
+		l_syn["payload"],
+		float(l_arm_cat.get("latency", 2.0))
 	]
-	total_hp += int(l_arm_cat.get("base_integrity", 0) * (l_arm_item.get("condition", 100.0) / 100.0))
-	total_weight += l_arm_cat.get("weight", 0)
+	total_hp += l_arm_hp
+	total_weight += int(l_arm_cat.get("weight", 0))
 	
 	# Right Arm
-	var r_arm_item = parts.get("right_arm", {})
-	var r_arm_cat = Types.PARTS_CATALOG.get(r_arm_item.get("part_id", ""), {})
-	r_arm_name_label.text = r_arm_cat.get("name", "Empty")
+	var r_arm_item: Dictionary = parts.get("right_arm", {})
+	var r_arm_cat: Dictionary = Types.PARTS_CATALOG.get(r_arm_item.get("part_id", ""), {})
+	var r_arm_hp := Types.calculate_battle_integrity(int(r_arm_cat.get("base_integrity", 0)), float(r_arm_item.get("condition", 100.0)))
+	var r_syn := Types.apply_affinity_synergy(int(r_arm_cat.get("type", 0)), chip_aff, int(r_arm_cat.get("payload", 0)), int(r_arm_cat.get("precision", 85)))
+	if r_syn["matches"]: affinity_match_count += 1
+	r_arm_name_label.text = r_arm_cat.get("name", "Empty") + (" [★+10%]" if r_syn["matches"] else "")
 	r_arm_stats_label.text = "Cond: %d%% | HP: %d | Pwr: %d | Latency: %.1fs" % [
 		int(r_arm_item.get("condition", 100.0)),
-		int(r_arm_cat.get("base_integrity", 0) * (r_arm_item.get("condition", 100.0) / 100.0)),
-		r_arm_cat.get("payload", 0),
-		r_arm_cat.get("latency", 2.0)
+		r_arm_hp,
+		r_syn["payload"],
+		float(r_arm_cat.get("latency", 2.0))
 	]
-	total_hp += int(r_arm_cat.get("base_integrity", 0) * (r_arm_item.get("condition", 100.0) / 100.0))
-	total_weight += r_arm_cat.get("weight", 0)
+	total_hp += r_arm_hp
+	total_weight += int(r_arm_cat.get("weight", 0))
 	
 	# Legs
-	var legs_item = parts.get("legs", {})
-	var legs_cat = Types.PARTS_CATALOG.get(legs_item.get("part_id", ""), {})
+	var legs_item: Dictionary = parts.get("legs", {})
+	var legs_cat: Dictionary = Types.PARTS_CATALOG.get(legs_item.get("part_id", ""), {})
+	var legs_hp := Types.calculate_battle_integrity(int(legs_cat.get("base_integrity", 0)), float(legs_item.get("condition", 100.0)))
 	legs_name_label.text = legs_cat.get("name", "Empty")
 	legs_stats_label.text = "Cond: %d%% | HP: %d | Speed: %.1f | Eva: %d%% | %s" % [
 		int(legs_item.get("condition", 100.0)),
-		int(legs_cat.get("base_integrity", 0) * (legs_item.get("condition", 100.0) / 100.0)),
-		legs_cat.get("clock_speed", 1.0),
-		legs_cat.get("packet_loss", 0),
-		legs_cat.get("protocol", "BIPEDAL")
+		legs_hp,
+		float(legs_cat.get("clock_speed", 1.0)),
+		int(legs_cat.get("packet_loss", 0)),
+		str(legs_cat.get("protocol", "BIPEDAL"))
 	]
-	total_hp += int(legs_cat.get("base_integrity", 0) * (legs_item.get("condition", 100.0) / 100.0))
+	total_hp += legs_hp
 
 	total_hp_label.text = "Total Integrity: %d HP" % total_hp
 	weight_loadout_label.text = "Weight Loadout: %d / %d" % [total_weight, max_loadout]
 	cooling_label.text = "Cooling System: %.1fx recovery" % cooling_val
 	
-	if total_weight > max_loadout:
+	if affinity_badge:
+		if affinity_match_count > 0:
+			affinity_badge.text = "★ AFFINITY SYNERGY ACTIVE (%d Parts +10%% Stats)" % affinity_match_count
+			affinity_badge.modulate = Color("#00E5FF")
+			affinity_badge.show()
+		else:
+			affinity_badge.hide()
+	
+	if Types.is_build_overweight(head_cat, l_arm_cat, r_arm_cat, torso_cat):
 		overweight_warning.show()
 		weight_loadout_label.modulate = Color(1, 0.3, 0.3)
 	else:
 		overweight_warning.hide()
 		weight_loadout_label.modulate = Color(0.4, 0.9, 0.4)
 
-	# Update 3D Hangar Bot
 	if hangar_bot:
 		hangar_bot.setup_model(bot_data, true)
 
@@ -228,13 +317,17 @@ func _select_slot(slot: int) -> void:
 	inv_title_label.text = "AVAILABLE %s PARTS" % _slot_name(slot).to_upper()
 	comparison_panel.hide()
 	selected_inventory_part = {}
+	if patch_slot_btn:
+		var kits := int(SaveManager.get_economy().get("patch_kits", 0))
+		patch_slot_btn.text = "Patch %s -> 85%% (Kits: %d)" % [_slot_name(active_slot_selected), kits]
+		patch_slot_btn.disabled = (kits <= 0)
 	_refresh_inventory_list()
 
 func _refresh_inventory_list() -> void:
 	for child in inv_parts_container.get_children():
 		child.queue_free()
 		
-	var items = SaveManager.get_inventory_parts(active_slot_selected)
+	var items := SaveManager.get_inventory_parts(active_slot_selected)
 	if items.size() == 0:
 		var empty_lbl := Label.new()
 		empty_lbl.text = "No spare %s parts in inventory." % _slot_name(active_slot_selected)
@@ -243,7 +336,7 @@ func _refresh_inventory_list() -> void:
 		return
 		
 	for item in items:
-		var card = _create_inventory_item_card(item)
+		var card := _create_inventory_item_card(item)
 		inv_parts_container.add_child(card)
 
 func _create_inventory_item_card(item: Dictionary) -> PanelContainer:
@@ -265,16 +358,20 @@ func _create_inventory_item_card(item: Dictionary) -> PanelContainer:
 	info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	hbox.add_child(info_vbox)
 	
+	var cond := int(item.get("condition", 100.0))
 	var name_lbl := Label.new()
-	name_lbl.text = item.get("name", "Part")
+	name_lbl.text = item.get("name", "Part") + (" [BRICKED]" if cond <= 0 else (" [TEST DRIVE 40%]" if cond == 40 else ""))
 	name_lbl.add_theme_font_size_override("font_size", 15)
+	if cond <= 0:
+		name_lbl.modulate = Color(1.0, 0.3, 0.3)
+	elif cond <= 45:
+		name_lbl.modulate = Color(1.0, 0.8, 0.2)
 	info_vbox.add_child(name_lbl)
 	
 	var stat_lbl := Label.new()
-	var cond = int(item.get("condition", 100.0))
-	var pwr = item.get("payload", 0)
-	var hp = int(item.get("base_integrity", 0) * (cond / 100.0))
-	stat_lbl.text = "Grade: %d%% | HP: %d | Power: %d | Wt: %d" % [cond, hp, pwr, item.get("weight", 0)]
+	var pwr := int(item.get("payload", 0))
+	var hp := Types.calculate_battle_integrity(int(item.get("base_integrity", 0)), float(cond))
+	stat_lbl.text = "Grade: %d%% | HP: %d | Power: %d | Wt: %d" % [cond, hp, pwr, int(item.get("weight", 0))]
 	stat_lbl.modulate = Color(0.7, 0.8, 0.9)
 	stat_lbl.add_theme_font_size_override("font_size", 12)
 	info_vbox.add_child(stat_lbl)
@@ -291,41 +388,42 @@ func _on_inspect_part(item: Dictionary) -> void:
 	SignalBus.play_sfx_requested.emit("click")
 	selected_inventory_part = item
 	
-	var bot = SaveManager.get_active_anibot()
+	var bot := SaveManager.get_active_anibot()
 	var parts: Dictionary = bot.get("parts", {})
-	var slot_key = _slot_to_key(active_slot_selected)
-	var cur_equipped_item = parts.get(slot_key, {})
-	var cur_cat = Types.PARTS_CATALOG.get(cur_equipped_item.get("part_id", ""), {})
+	var slot_key := _slot_to_key(active_slot_selected)
+	var cur_equipped_item: Dictionary = parts.get(slot_key, {})
+	var cur_cat: Dictionary = Types.PARTS_CATALOG.get(cur_equipped_item.get("part_id", ""), {})
 	
 	comp_title_label.text = "COMPARISON: %s -> %s" % [cur_cat.get("name", "Empty"), item.get("name", "Part")]
 	
-	# HP Diff
-	var cur_hp = int(cur_cat.get("base_integrity", 0) * (cur_equipped_item.get("condition", 100.0) / 100.0))
-	var new_hp = int(item.get("base_integrity", 0) * (item.get("condition", 100.0) / 100.0))
-	var diff_hp = new_hp - cur_hp
+	var cur_hp := Types.calculate_battle_integrity(int(cur_cat.get("base_integrity", 0)), float(cur_equipped_item.get("condition", 100.0)))
+	var new_hp := Types.calculate_battle_integrity(int(item.get("base_integrity", 0)), float(item.get("condition", 100.0)))
+	var diff_hp := new_hp - cur_hp
 	comp_hp_label.text = "Integrity: %d -> %d (%s%d)" % [cur_hp, new_hp, "+" if diff_hp >= 0 else "", diff_hp]
 	comp_hp_label.modulate = Color(0.4, 1.0, 0.4) if diff_hp >= 0 else Color(1.0, 0.4, 0.4)
 	
-	# Power Diff
-	var cur_pwr = cur_cat.get("payload", 0)
-	var new_pwr = item.get("payload", 0)
-	var diff_pwr = new_pwr - cur_pwr
+	var cur_pwr := int(cur_cat.get("payload", 0))
+	var new_pwr := int(item.get("payload", 0))
+	var diff_pwr := new_pwr - cur_pwr
 	comp_power_label.text = "Payload Power: %d -> %d (%s%d)" % [cur_pwr, new_pwr, "+" if diff_pwr >= 0 else "", diff_pwr]
 	comp_power_label.modulate = Color(0.4, 1.0, 0.4) if diff_pwr >= 0 else Color(1.0, 0.4, 0.4)
 	
-	# Latency Diff
-	var cur_lat = cur_cat.get("latency", 2.0)
-	var new_lat = item.get("latency", 2.0)
-	var diff_lat = new_lat - cur_lat
+	var cur_lat := float(cur_cat.get("latency", 2.0))
+	var new_lat := float(item.get("latency", 2.0))
+	var diff_lat := new_lat - cur_lat
 	comp_latency_label.text = "Cooldown Latency: %.1fs -> %.1fs (%s%.1fs)" % [cur_lat, new_lat, "+" if diff_lat > 0 else "", diff_lat]
 	comp_latency_label.modulate = Color(1.0, 0.4, 0.4) if diff_lat > 0 else Color(0.4, 1.0, 0.4)
 	
-	# Weight Diff
-	var cur_wt = cur_cat.get("weight", 0)
-	var new_wt = item.get("weight", 0)
-	var diff_wt = new_wt - cur_wt
+	var cur_wt := int(cur_cat.get("weight", 0))
+	var new_wt := int(item.get("weight", 0))
+	var diff_wt := new_wt - cur_wt
 	comp_weight_label.text = "Weight: %d -> %d (%s%d)" % [cur_wt, new_wt, "+" if diff_wt > 0 else "", diff_wt]
 	comp_weight_label.modulate = Color(1.0, 0.4, 0.4) if diff_wt > 0 else Color(0.4, 1.0, 0.4)
+
+	if equip_button:
+		var is_bricked := float(item.get("condition", 100.0)) <= 0.0
+		equip_button.disabled = is_bricked
+		equip_button.text = "Bricked (Repair Required)" if is_bricked else "Equip Selected Part"
 
 	comparison_panel.show()
 
@@ -334,7 +432,7 @@ func _on_equip_pressed() -> void:
 		return
 		
 	var uuid: String = selected_inventory_part.get("uuid", "")
-	var success = SaveManager.swap_active_anibot_part(active_slot_selected, uuid)
+	var success := SaveManager.swap_active_anibot_part(active_slot_selected, uuid)
 	if success:
 		SignalBus.play_sfx_requested.emit("confirm")
 		selected_inventory_part = {}
