@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 
 const GITHUB_REPO = 'https://github.com/c42759/AniBots/';
@@ -242,21 +243,24 @@ export default function Home() {
                         </a>
                     </div>
 
-                    <nav className='hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-muted'>
+                    <nav className='hidden lg:flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-muted'>
                         <a href='#overview' className='hover:text-foreground transition-colors'>
-                            01. Overview
+                            Overview
                         </a>
+                        <Link href='/characters/' className='hover:text-foreground transition-colors font-semibold text-foreground/90'>
+                            Characters
+                        </Link>
+                        <Link href='/lore/' className='hover:text-foreground transition-colors font-semibold text-foreground/90'>
+                            Lore
+                        </Link>
                         <a href='#architecture' className='hover:text-foreground transition-colors'>
-                            02. Architecture
+                            Architecture
                         </a>
                         <a href='#contributors' className='text-foreground font-semibold hover:text-accent transition-colors'>
-                            03. Contributors
-                        </a>
-                        <a href='#protocol' className='hover:text-foreground transition-colors'>
-                            04. Protocol
+                            Contributors
                         </a>
                         <a href='#directory' className='hover:text-foreground transition-colors'>
-                            05. Directory
+                            Directory
                         </a>
                     </nav>
 
@@ -876,6 +880,46 @@ export default function Home() {
                                 </h2>
 
                                 <div className='divide-y divide-border border-t border-b border-border'>
+                                    <Link
+                                        href='/characters/'
+                                        className='py-6 flex items-start justify-between gap-4 group'
+                                    >
+                                        <div>
+                                            <div className='font-mono text-xs text-accent font-semibold uppercase mb-1'>
+                                                01 / Characters Databank (11 Roster Profiles)
+                                            </div>
+                                            <h3 className='text-lg font-bold group-hover:text-accent transition-colors'>
+                                                Handlers, Mentors & Syndicate Roster
+                                            </h3>
+                                            <p className='text-xs sm:text-sm text-muted mt-1 max-w-xl'>
+                                                Explore character backgrounds, partner machines, personality engrams, and official turnaround artwork.
+                                            </p>
+                                        </div>
+                                        <span className='font-mono text-xs text-accent group-hover:underline shrink-0 mt-1 font-medium'>
+                                            /characters/ ↗
+                                        </span>
+                                    </Link>
+
+                                    <Link
+                                        href='/lore/'
+                                        className='py-6 flex items-start justify-between gap-4 group'
+                                    >
+                                        <div>
+                                            <div className='font-mono text-xs text-accent font-semibold uppercase mb-1'>
+                                                02 / World Lore & Canon Bible (6 Chapters)
+                                            </div>
+                                            <h3 className='text-lg font-bold group-hover:text-accent transition-colors'>
+                                                3047 AD Setting & Historical Archives
+                                            </h3>
+                                            <p className='text-xs sm:text-sm text-muted mt-1 max-w-xl'>
+                                                Read the 31st century history, Anima Stone origins, Quality Control tiers, Vault 7 rebellion, and World Cup tournament arc.
+                                            </p>
+                                        </div>
+                                        <span className='font-mono text-xs text-accent group-hover:underline shrink-0 mt-1 font-medium'>
+                                            /lore/ ↗
+                                        </span>
+                                    </Link>
+
                                     <a
                                         href={ANIDEX_URL}
                                         target='_blank'
@@ -884,13 +928,13 @@ export default function Home() {
                                     >
                                         <div>
                                             <div className='font-mono text-xs text-accent font-semibold uppercase mb-1'>
-                                                01 / Public Companion Database (Live)
+                                                03 / Public Companion Database (Live)
                                             </div>
                                             <h3 className='text-lg font-bold group-hover:text-accent transition-colors'>
                                                 AniDex Web Database
                                             </h3>
                                             <p className='text-xs sm:text-sm text-muted mt-1 max-w-xl'>
-                                                Browse the live public catalog of 38+ robot chassis archetypes, 190 modular hardware parts, and 46 Anima Chip AI cores.
+                                                Browse the live public catalog of 53+ robot chassis archetypes, 265 modular hardware parts, and 46 Anima Chip AI cores.
                                             </p>
                                         </div>
                                         <span className='font-mono text-xs text-accent group-hover:underline shrink-0 mt-1 font-medium'>
