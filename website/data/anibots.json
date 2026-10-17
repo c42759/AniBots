@@ -2300,6 +2300,7 @@
     "preferred_chip": "chip_draco",
     "affinity": "OVERCLOCK",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Draco Chip",
+    "image": "/images/anibots/DRC-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_draco_horns",
@@ -2932,7 +2933,7 @@
     "preferred_chip": "chip_vulpes_zerda",
     "affinity": "AGILITY",
     "affinity_synergy_bonus": "+10% boost to Evasion and Speed when equipped with Vulpes Zerda Chip",
-    "image": "/images/BOT-g0-004-zerdata.jpg",
+    "image": "/images/anibots/G0-004.jpg",
     "parts": {
       "head": {
         "id": "part_head_zerda_radar_ears",
@@ -3091,6 +3092,7 @@
     "preferred_chip": "chip_corrosive",
     "affinity": "CONTROL",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Corrosive Chip",
+    "image": "/images/anibots/ANA-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_serpent_hood",
@@ -3249,6 +3251,7 @@
     "preferred_chip": "chip_gladiator",
     "affinity": "MELEE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Gladiator Chip",
+    "image": "/images/anibots/GOR-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_primate_crown",
@@ -3644,6 +3647,7 @@
     "preferred_chip": "chip_agon",
     "affinity": "INTERCEPT",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Agon Chip",
+    "image": "/images/anibots/KBT-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_kabuto_horn",
