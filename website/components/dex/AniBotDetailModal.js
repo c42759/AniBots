@@ -82,51 +82,50 @@ export const AniBotDetailModal = ({ bot, onClose, onSelectChip }) => {
 
         {/* Modal Scrollable Body */}
         <div className="p-6 sm:p-8 overflow-y-auto space-y-8">
-          {/* Top Grid: Hero Image + Specification Summary */}
-          <div className="grid lg:grid-cols-12 border border-border">
-            <div className="lg:col-span-7 p-4 bg-surface/40 lg:border-r border-b lg:border-b-0 border-border flex items-center justify-center">
-              <ItemImage
-                id={bot.id}
-                name={bot.name}
-                src={bot.image}
-                alt={bot.name}
-                type="anibot"
-                aspectRatio="aspect-video"
-                objectFit="contain"
-              />
-            </div>
+          {/* Hero Image (Single Line / Full Width) */}
+          <div className="w-full border border-border p-4 bg-surface/40 flex items-center justify-center">
+            <ItemImage
+              id={bot.id}
+              name={bot.name}
+              src={bot.image}
+              alt={bot.name}
+              type="anibot"
+              aspectRatio="aspect-video"
+              objectFit="contain"
+            />
+          </div>
 
-            <div className="lg:col-span-5 p-5 flex flex-col justify-between bg-background">
-              <div>
-                <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold pb-2 border-b border-border">
-                  CHASSIS DOSSIER // {bot.archetype}
-                </div>
-                <p className="mt-3 text-xs sm:text-sm text-muted leading-relaxed">
-                  {bot.description}
-                </p>
+          {/* Chassis Dossier & Telemetry Specifications */}
+          <div className="border border-border bg-background p-5">
+            <div>
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold pb-2 border-b border-border">
+                CHASSIS DOSSIER // {bot.archetype}
               </div>
-
-              <dl className="mt-6 divide-y divide-border border-t border-border font-mono text-xs">
-                <div className="py-2.5 flex justify-between gap-4">
-                  <dt className="text-muted">TOTAL INTEGRITY</dt>
-                  <dd className="text-foreground font-bold">{totalIntegrity} HP</dd>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <dt className="text-muted">COMBINED PAYLOAD</dt>
-                  <dd className="text-foreground font-bold">{totalPayload}</dd>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <dt className="text-muted">LOADOUT WEIGHT</dt>
-                  <dd className="text-foreground font-bold">{totalWeight}</dd>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <dt className="text-muted">COOLING RATE</dt>
-                  <dd className="text-foreground font-bold">
-                    {bot.parts?.torso?.cooling || 0}/s
-                  </dd>
-                </div>
-              </dl>
+              <p className="mt-3 text-xs sm:text-sm text-muted leading-relaxed">
+                {bot.description}
+              </p>
             </div>
+
+            <dl className="mt-6 grid grid-cols-2 sm:grid-cols-4 border-t border-l border-border font-mono text-xs">
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">TOTAL INTEGRITY</dt>
+                <dd className="text-foreground font-bold text-sm">{totalIntegrity} HP</dd>
+              </div>
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">COMBINED PAYLOAD</dt>
+                <dd className="text-foreground font-bold text-sm">{totalPayload}</dd>
+              </div>
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">LOADOUT WEIGHT</dt>
+                <dd className="text-foreground font-bold text-sm">{totalWeight}</dd>
+              </div>
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">COOLING RATE</dt>
+                <dd className="text-foreground font-bold text-sm">
+                  {bot.parts?.torso?.cooling || 0}/s
+                </dd>
+              </div>
+            </dl>
           </div>
 
           {/* Affinity Synergy & Preferred Core Chip */}

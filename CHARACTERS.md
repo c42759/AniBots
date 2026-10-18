@@ -66,6 +66,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 - **Background**: Comes from a financially secure family. Student and active Handler who frequently helps Kura on odd jobs (stubbornly refusing any payment).
 - **Personality**: Energetic, competitive, loyal, ambitious.
 - **Dream**: Believes that one day, both he and Kura will battle in the Grand Finals of the **AniBot World Cup** to decide who is the ultimate Handler.
+- **Partner Machine**: **Kabuto-Horn** powered by **Agon** (`KBT-01`).
 
 ---
 
@@ -86,6 +87,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
   - **Accessories**: Fingerless gloves with reinforced wrist cuffs and crest emblem; two-tone cap (worn casually forward or backward).
   - **Color Palette**: Charcoal Black (`#1E1E24`), Slate Gray (`#4A4E69`), Off-White (`#E5E5E5`), Muted Ochre (`#C68B59`).
 - **Dynamic with Kura Ato**: Represents the disciplined, high-achieving academy counterpart to Kura's scrappy, street-smart mechanic style. Serves as a benchmark rival whom Kura must outthink rather than overpower.
+- **Partner Machine**: **Ancient-Wyrm** powered by **Draco** (`DRC-01`).
 
 ---
 
@@ -140,6 +142,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 - **Role**: Supreme Boss of the **Anode Group**
 - **Location**: Magnus's Citadel (Rust-Ridge Badlands)
 - **Background & Goals**: Well-connected criminal mastermind controlling the black market. Seeks to expand syndicate operations into civilized cities, trade illegal overclock chips, and gain total world control. See [LORE.md Story Arcs](./LORE.md#chapter-3-encounter-with-anode-group).
+- **Partner Machine**: **Silverback-Smash** powered by **Gladiator** (`GOR-01`).
 
 ### 2. Vera "Viper" Lin
 
@@ -148,6 +151,7 @@ Welcome to the official **AniBots Character Databank**. This document contains c
 - **Role**: Anode Group Lieutenant & Badlands Enforcer
 - **Location**: The Pit Arena (Rust-Ridge Badlands)
 - **Function**: Controls the underground illegal battle circuit in Rust-Ridge; key figure in [Faction Alignment Quests](./LORE.md#2-quest-type-2-faction-alignment-quests).
+- **Partner Machine**: **Serpent-Coil** powered by **Corrosive** (`ANA-01`).
 
 ---
 
