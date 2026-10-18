@@ -246,6 +246,7 @@
     "preferred_chip": "chip_phalanx",
     "affinity": "DEFENSE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Phalanx Chip",
+    "image":"/images/anibots/PLX-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_hoplite_helm",
@@ -1275,6 +1276,7 @@
     "preferred_chip": "chip_terra",
     "affinity": "DEFENSE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Terra Chip",
+    "image": "/images/anibots/TER-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_seismic_horn",
@@ -3015,6 +3017,7 @@
     "preferred_chip": "chip_panthera_uncia",
     "affinity": "MELEE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Panthera Uncia Chip",
+    "image": "/images/anibots/TGR-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_tigris_visor",
@@ -3174,6 +3177,7 @@
     "preferred_chip": "chip_biggon",
     "affinity": "DEFENSE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Biggon Chip",
+    "image": "/images/anibots/ELE-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_behemoth_crest",
@@ -3491,6 +3495,7 @@
     "preferred_chip": "chip_ursa",
     "affinity": "DEFENSE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Ursa Chip",
+    "image":"/images/anibots/GRZ-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_ursine_roar",
@@ -3729,6 +3734,7 @@
     "preferred_chip": "chip_gemini",
     "affinity": "DUAL_WIELD",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Gemini Chip",
+    "image": "/images/anibots/KWG-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_kuwagata_antenna",
