@@ -2217,6 +2217,35 @@
         "description": "Blends into environment, becoming untargetable while firing non-stop."
       }
     ]
+  },
+  {
+    "id": "chip_default",
+    "name": "Base Standard Chip",
+    "series": "NEUTRAL",
+    "slot": "CORE",
+    "type": "ANIMA_CHIP",
+    "diode_color": "#FFFFFF",
+    "personality": "Pragmatic utility core with balanced reactive processors.",
+    "personality_engram": "Balanced Utility Automaton",
+    "voice_style": "Neutral modulated voice",
+    "voice_gender": "NEUTRAL",
+    "quote": "Basic systems online. Ready for deployment.",
+    "affinity": "NEUTRAL",
+    "bonus_text": "None",
+    "target_priority": "BALANCED",
+    "starter_frame": "ANIBOT-001",
+    "passive_trait": {
+      "name": "Standard Response Protocol",
+      "description": "Default reaction protocols with no specialized bonuses."
+    },
+    "base_stats": {
+      "integrity": 200,
+      "target_accuracy": 80,
+      "evasion": 10,
+      "overclock_charge_rate": 1.0,
+      "compatibility_bonus": "NEUTRAL"
+    },
+    "ultimate_abilities": []
   }
 ]
 
