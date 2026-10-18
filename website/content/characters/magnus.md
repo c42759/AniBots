@@ -22,3 +22,5 @@ Magnus is not content with ruling the wasteland. He plans to breach the civilize
 - **Chassis**: `anibot_silverback_smash` (Primal Series `GOR-01`)
 - **Core Chip**: `chip_gladiator` (Antiquity Melee Brawler)
 - **Combat Style**: Devastating kinetic hammer fists, ground-pounding shockwaves, and impenetrable physical bulk.
+
+![Magnus and Silverback-Smash](/images/characters/margnus_n_silverbacksmash.jpg)

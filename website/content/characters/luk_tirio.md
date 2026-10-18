@@ -25,3 +25,5 @@ Luk firmly believes that he and Kura are destined to meet in the Grand Finals of
 - **Chassis**: `anibot_kabuto_horn` (Primal Series `KBT-01`)
 - **Core Chip**: `chip_agon` (Ancient Series Vanguard Core `G0-001`)
 - **Combat Style**: Frontline heavy flipping, pneumatic catapult thrusts, and high-traction defense.
+
+![Luccas 'Luk' Tirio and Kabuto-Horn](/images/characters/luccas_luk_tirio_n_kabuto_horn.jpg)

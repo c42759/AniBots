@@ -562,6 +562,7 @@
     "preferred_chip": "chip_templar",
     "affinity": "SUPPORT",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Templar Chip",
+    "image": "/images/anibots/TMP-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_halo_emitter",
@@ -799,6 +800,7 @@
     "preferred_chip": "chip_bard",
     "affinity": "SUPPORT",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Bard Chip",
+    "image": "/images/anibots/BRD-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_tuning_fork",

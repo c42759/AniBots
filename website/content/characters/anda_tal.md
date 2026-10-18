@@ -29,3 +29,5 @@ Anda represents the disciplined, analytical academy counterpart to Kura's street
 - **Chassis**: `anibot_ancient_wyrm` (Astral Series `DRC-01`)
 - **Core Chip**: `chip_draco` (Astral Overclock Matrix)
 - **Combat Style**: Draconic overclock surges, high-precision thermal beams, and rapid aerial positioning.
+
+![Luccas 'Luk' Tirio and Kabuto-Horn](/images/characters/anda_tal_n_ancient_wyrm.jpg)

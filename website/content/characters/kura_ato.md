@@ -28,3 +28,5 @@ Highly intelligent, practical, fiercely protective of his family and friends. Kn
 - **Chassis**: `anibot_zerdata`
 - **Core Chip**: `chip_vulpes_zerda` (Ancient Series `G0-004`)
 - **Combat Style**: Acoustic radar tracking, high-evasion sonic counters, and precision disruption strikes.
+
+![Kura Ato and Zerdata](/images/characters/kura_ato_n_zerdata.jpg)

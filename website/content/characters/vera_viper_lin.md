@@ -22,3 +22,5 @@ In the story's branching paths, Handlers who venture into the Badlands must face
 - **Chassis**: `anibot_serpent_coil` (Primal Series `ANA-01`)
 - **Core Chip**: `chip_corrosive` (Kinetic Acid Controller)
 - **Combat Style**: Constriction grapples, neuro-toxic chemical sprays, and terrain-ignoring slither mobility.
+
+![Vera 'Viper' Lin and Serpent-Coil](/images/characters/vera_viper_lin_n_serpent_coil.jpg)

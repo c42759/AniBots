@@ -18,3 +18,10 @@ Born in **2965 AD**, Dr. Aris Thorne is the legendary architect of the **176 Anc
 - **3005 AD (Age 40)**: Completes the 176 Ancient Series Chips (G0-001 through G0-176).
 - **3010 AD (Age 45)**: Governing council orders Gen-0 decommission due to fears of uncapped learning abilities. Refusing to allow his creations to be melted down, Dr. Thorne secretly unlocked Vault 7 security, enabling Agon, Biggon, and Cygon to escape with 7 saved cores.
 - **3047 AD (Age 82 — Present)**: Living in secluded scholar exile in Oakhaven Basin, acting as Kura's mentor for Ancient Relic Excavation Quests.
+
+## Partner Machine
+- **Chassis**: `anibot_holyvanguard`
+- **Core Chip**: `chip_templar`
+- **Combat Style**: High-speed defense, precision strikes, and support capabilities.
+
+![Dr. Aris Thorne and Holy-Vanguard](/images/characters/dr_aris_thorne_n_holyvanguard.jpg)
