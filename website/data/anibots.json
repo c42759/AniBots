@@ -1435,6 +1435,7 @@
     "preferred_chip": "chip_corrosive",
     "affinity": "ACID",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Corrosive Chip",
+    "image":"/images/anibots/CRS-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_hazard_mask",
