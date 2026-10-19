@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { getAllLoreSections } from '../../utils/markdown';
 import { SiteHeader } from '../../components/SiteHeader';
+import { SiteFooter } from '../../components/SiteFooter';
 import { LoreNavList } from './LoreNavList';
 
 export const metadata = {
@@ -45,6 +46,9 @@ export default function LoreLayout({ children }) {
           {children}
         </main>
       </div>
+
+      <SiteFooter />
     </div>
   );
 }
+

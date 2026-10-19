@@ -9,6 +9,7 @@ import { FilterBar } from './FilterBar';
 import { AniBotCard } from './AniBotCard';
 import { ChipCard } from './ChipCard';
 import { PartCard } from './PartCard';
+import { SiteFooter } from '../SiteFooter';
 import { AniBotDetailModal } from './AniBotDetailModal';
 import { ChipDetailModal } from './ChipDetailModal';
 import { PartDetailModal } from './PartDetailModal';
@@ -319,45 +320,8 @@ export const DexView = ({ mode = 'anibots' }) => {
         </div>
       </main>
 
-      {/* Editorial Footer matching website */}
-      <footer className="border-t border-border bg-surface/50 py-10 font-mono text-xs text-muted">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2.5">
-            <span className="w-2 h-2 bg-accent inline-block" />
-            <span className="text-foreground font-semibold">ANIDEX PROTOCOL</span>
-            <span>— ANIBOTS DATABANK SYSTEM</span>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <Link href="/" className="text-foreground hover:text-accent font-semibold transition-colors">
-              ← Main Portal
-            </Link>
-            <Link href="/dex/bots/" className="hover:text-foreground transition-colors">
-              Bots
-            </Link>
-            <Link href="/dex/chips/" className="hover:text-foreground transition-colors">
-              Chips
-            </Link>
-            <Link href="/dex/parts/" className="hover:text-foreground transition-colors">
-              Parts
-            </Link>
-            <a href={GITHUB_REPO} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              GitHub
-            </a>
-            <a href={GITHUB_DISCUSSIONS} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              Discussions
-            </a>
-            <a href={GITHUB_ISSUES} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              Issues
-            </a>
-            <a href={DISCORD_INVITE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-              Discord
-            </a>
-          </div>
-
-          <div>MIT LICENSE • GODOT 4.X</div>
-        </div>
-      </footer>
+      {/* Universal Site Footer */}
+      <SiteFooter />
 
       {/* Modals */}
       <AniBotDetailModal

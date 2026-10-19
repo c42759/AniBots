@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { getAllCharacters } from '../../utils/markdown';
 import { SiteHeader } from '../../components/SiteHeader';
+import { SiteFooter } from '../../components/SiteFooter';
 import { CharacterNavList } from './CharacterNavList';
 
 export const metadata = {
@@ -45,6 +46,9 @@ export default function CharactersLayout({ children }) {
           {children}
         </main>
       </div>
+
+      <SiteFooter />
     </div>
   );
 }
+

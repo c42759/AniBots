@@ -8,6 +8,7 @@ const GITHUB_REPO = 'https://github.com/c42759/AniBots/';
 
 export const Header = ({ mode, botCount, chipCount, partCount }) => {
   const [audioActive, setAudioActive] = useState(isSoundEnabled());
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const handleSoundToggle = () => {
     const nextState = toggleSound();
@@ -46,8 +47,36 @@ export const Header = ({ mode, botCount, chipCount, partCount }) => {
           </Link>
         </div>
 
-        {/* Center Category Navigation */}
-        <nav className="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-muted">
+        {/* Global Nav Links (Always: Characters, Lore, Battle Demo, Dex) */}
+        <nav className="hidden lg:flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-muted">
+          <Link
+            href="/characters/"
+            className="hover:text-foreground transition-colors"
+          >
+            Characters
+          </Link>
+          <Link
+            href="/lore/"
+            className="hover:text-foreground transition-colors"
+          >
+            Lore
+          </Link>
+          <Link
+            href="/demo/"
+            className="hover:text-foreground transition-colors"
+          >
+            Battle Demo
+          </Link>
+          <Link
+            href="/dex/"
+            className="text-foreground font-bold border-b-2 border-accent pb-0.5"
+          >
+            Dex
+          </Link>
+        </nav>
+
+        {/* Center Category Navigation (Desktop) */}
+        <div className="hidden xl:flex items-center gap-6 text-xs font-mono uppercase tracking-wider text-muted border-l border-border pl-6">
           <Link
             href="/dex/bots/"
             onClick={() => playSelectSound()}
@@ -57,7 +86,7 @@ export const Header = ({ mode, botCount, chipCount, partCount }) => {
                 : 'hover:text-foreground'
             }`}
           >
-            01. Anibots ({botCount})
+            01. Bots ({botCount})
           </Link>
           <Link
             href="/dex/chips/"
@@ -81,9 +110,9 @@ export const Header = ({ mode, botCount, chipCount, partCount }) => {
           >
             03. Parts ({partCount})
           </Link>
-        </nav>
+        </div>
 
-        {/* Right Controls: Audio FX, Theme Toggle, Main Site, GitHub */}
+        {/* Right Controls: Audio FX, Theme Toggle, Main Site, GitHub, Mobile Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={handleSoundToggle}
@@ -101,7 +130,7 @@ export const Header = ({ mode, botCount, chipCount, partCount }) => {
                 audioActive ? 'bg-accent' : 'bg-muted/50'
               }`}
             />
-            <span>{audioActive ? 'FX ON' : 'FX OFF'}</span>
+            <span className="hidden sm:inline">{audioActive ? 'FX ON' : 'FX OFF'}</span>
           </button>
 
           <button
@@ -115,23 +144,146 @@ export const Header = ({ mode, botCount, chipCount, partCount }) => {
             <span className="hidden dark:inline">Dark</span>
           </button>
 
-          <Link
-            href="/"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-border bg-background hover:border-foreground text-foreground text-xs font-mono uppercase tracking-wider font-medium transition-colors"
-          >
-            ← Portal
-          </Link>
-
           <a
             href={GITHUB_REPO}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3.5 py-1.5 bg-foreground text-background hover:bg-accent hover:text-white text-xs font-mono uppercase tracking-wider font-medium transition-colors"
+            className="hidden sm:inline-flex px-3.5 py-1.5 bg-foreground text-background hover:bg-accent hover:text-white text-xs font-mono uppercase tracking-wider font-medium transition-colors"
           >
             GitHub ↗
           </a>
+
+          {/* Mobile Burger Menu Button */}
+          <button
+            type="button"
+            onClick={() => setIsMobileOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileOpen}
+            className="lg:hidden p-2 border border-border bg-surface hover:border-foreground text-foreground flex flex-col justify-center items-center gap-1 w-9 h-9 cursor-pointer transition-colors"
+          >
+            <span
+              className={`w-4 h-0.5 bg-foreground transition-transform duration-200 ${
+                isMobileOpen ? 'rotate-45 translate-y-1.5' : ''
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-foreground transition-opacity duration-200 ${
+                isMobileOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-foreground transition-transform duration-200 ${
+                isMobileOpen ? '-rotate-45 -translate-y-1.5' : ''
+              }`}
+            />
+          </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Menu */}
+      {isMobileOpen && (
+        <div className="lg:hidden border-t border-border bg-background/98 backdrop-blur-md px-4 py-4 flex flex-col gap-2 font-mono text-xs uppercase tracking-wider shadow-lg">
+          <Link
+            href="/characters/"
+            onClick={() => setIsMobileOpen(false)}
+            className="px-3 py-2 border border-transparent hover:bg-surface text-muted hover:text-foreground transition-colors flex items-center justify-between"
+          >
+            <span>Characters</span>
+            <span className="text-[10px] text-muted font-normal">Databank</span>
+          </Link>
+          <Link
+            href="/lore/"
+            onClick={() => setIsMobileOpen(false)}
+            className="px-3 py-2 border border-transparent hover:bg-surface text-muted hover:text-foreground transition-colors flex items-center justify-between"
+          >
+            <span>Lore</span>
+            <span className="text-[10px] text-muted font-normal">Canon Bible</span>
+          </Link>
+          <Link
+            href="/demo/"
+            onClick={() => setIsMobileOpen(false)}
+            className="px-3 py-2 border border-transparent hover:bg-surface text-muted hover:text-foreground transition-colors flex items-center justify-between"
+          >
+            <span>Battle Demo</span>
+            <span className="text-[10px] text-muted font-normal">1v1 Combat</span>
+          </Link>
+          <Link
+            href="/dex/"
+            onClick={() => setIsMobileOpen(false)}
+            className="px-3 py-2 border border-accent bg-accent/10 text-foreground font-bold transition-colors flex items-center justify-between"
+          >
+            <span>Dex</span>
+            <span className="text-[10px] text-accent font-semibold">Active</span>
+          </Link>
+
+          {/* Dex Category Sub-links in Mobile Menu */}
+          <div className="pt-2 border-t border-border flex flex-col gap-1">
+            <span className="text-[10px] text-muted px-3">Dex Categories:</span>
+            <div className="grid grid-cols-3 gap-1">
+              <Link
+                href="/dex/bots/"
+                onClick={() => {
+                  playSelectSound();
+                  setIsMobileOpen(false);
+                }}
+                className={`px-2 py-1.5 text-center border text-[11px] ${
+                  mode === 'anibots'
+                    ? 'border-accent bg-accent/10 text-foreground font-bold'
+                    : 'border-border bg-surface text-muted hover:text-foreground'
+                }`}
+              >
+                Bots ({botCount})
+              </Link>
+              <Link
+                href="/dex/chips/"
+                onClick={() => {
+                  playSelectSound();
+                  setIsMobileOpen(false);
+                }}
+                className={`px-2 py-1.5 text-center border text-[11px] ${
+                  mode === 'chips'
+                    ? 'border-accent bg-accent/10 text-foreground font-bold'
+                    : 'border-border bg-surface text-muted hover:text-foreground'
+                }`}
+              >
+                Chips ({chipCount})
+              </Link>
+              <Link
+                href="/dex/parts/"
+                onClick={() => {
+                  playSelectSound();
+                  setIsMobileOpen(false);
+                }}
+                className={`px-2 py-1.5 text-center border text-[11px] ${
+                  mode === 'parts'
+                    ? 'border-accent bg-accent/10 text-foreground font-bold'
+                    : 'border-border bg-surface text-muted hover:text-foreground'
+                }`}
+              >
+                Parts ({partCount})
+              </Link>
+            </div>
+          </div>
+
+          <div className="pt-2 mt-1 border-t border-border flex items-center justify-between gap-2">
+            <Link
+              href="/"
+              onClick={() => setIsMobileOpen(false)}
+              className="px-3 py-1.5 text-muted hover:text-foreground text-[11px]"
+            >
+              ← Overview
+            </Link>
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-foreground text-background text-[11px] font-medium"
+            >
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

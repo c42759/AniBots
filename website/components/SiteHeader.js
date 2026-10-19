@@ -1,9 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
+const GITHUB_REPO = 'https://github.com/c42759/AniBots/';
+
 export const SiteHeader = ({ currentSection = '' }) => {
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+
   const toggleTheme = () => {
     const isCurrentlyDark = document.documentElement.classList.contains('dark');
     const nextTheme = isCurrentlyDark ? 'light' : 'dark';
@@ -31,16 +35,8 @@ export const SiteHeader = ({ currentSection = '' }) => {
           </Link>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="flex items-center gap-5 sm:gap-8 text-xs font-mono uppercase tracking-wider text-muted">
-          <Link
-            href="/"
-            className={`transition-colors hidden md:inline-block ${
-              currentSection === 'home' ? 'text-foreground font-semibold' : 'hover:text-foreground'
-            }`}
-          >
-            Overview
-          </Link>
+        {/* Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-muted">
           <Link
             href="/characters/"
             className={`transition-colors ${
@@ -79,7 +75,7 @@ export const SiteHeader = ({ currentSection = '' }) => {
                 : 'hover:text-foreground'
             }`}
           >
-            AniDex ↗
+            Dex
           </Link>
         </nav>
 
@@ -97,15 +93,112 @@ export const SiteHeader = ({ currentSection = '' }) => {
           </button>
 
           <a
-            href="https://github.com/c42759/AniBots/"
+            href={GITHUB_REPO}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-flex px-3.5 py-1.5 bg-foreground text-background hover:bg-accent hover:text-white text-xs font-mono uppercase tracking-wider font-medium transition-colors"
           >
             GitHub ↗
           </a>
+
+          {/* Mobile Burger Menu Button */}
+          <button
+            type="button"
+            onClick={() => setIsMobileOpen((prev) => !prev)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileOpen}
+            className="md:hidden p-2 border border-border bg-surface hover:border-foreground text-foreground flex flex-col justify-center items-center gap-1 w-9 h-9 cursor-pointer transition-colors"
+          >
+            <span
+              className={`w-4 h-0.5 bg-foreground transition-transform duration-200 ${
+                isMobileOpen ? 'rotate-45 translate-y-1.5' : ''
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-foreground transition-opacity duration-200 ${
+                isMobileOpen ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            <span
+              className={`w-4 h-0.5 bg-foreground transition-transform duration-200 ${
+                isMobileOpen ? '-rotate-45 -translate-y-1.5' : ''
+              }`}
+            />
+          </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Menu */}
+      {isMobileOpen && (
+        <div className="md:hidden border-t border-border bg-background/98 backdrop-blur-md px-4 py-4 flex flex-col gap-2 font-mono text-xs uppercase tracking-wider shadow-lg">
+          <Link
+            href="/characters/"
+            onClick={() => setIsMobileOpen(false)}
+            className={`px-3 py-2.5 border transition-colors flex items-center justify-between ${
+              currentSection === 'characters'
+                ? 'border-accent bg-accent/10 text-foreground font-bold'
+                : 'border-transparent hover:bg-surface text-muted hover:text-foreground'
+            }`}
+          >
+            <span>Characters</span>
+            <span className="text-[10px] text-muted font-normal">Databank</span>
+          </Link>
+          <Link
+            href="/lore/"
+            onClick={() => setIsMobileOpen(false)}
+            className={`px-3 py-2.5 border transition-colors flex items-center justify-between ${
+              currentSection === 'lore'
+                ? 'border-accent bg-accent/10 text-foreground font-bold'
+                : 'border-transparent hover:bg-surface text-muted hover:text-foreground'
+            }`}
+          >
+            <span>Lore</span>
+            <span className="text-[10px] text-muted font-normal">Canon Bible</span>
+          </Link>
+          <Link
+            href="/demo/"
+            onClick={() => setIsMobileOpen(false)}
+            className={`px-3 py-2.5 border transition-colors flex items-center justify-between ${
+              currentSection === 'demo'
+                ? 'border-accent bg-accent/10 text-foreground font-bold'
+                : 'border-transparent hover:bg-surface text-muted hover:text-foreground'
+            }`}
+          >
+            <span>Battle Demo</span>
+            <span className="text-[10px] text-muted font-normal">1v1 Combat</span>
+          </Link>
+          <Link
+            href="/dex/"
+            onClick={() => setIsMobileOpen(false)}
+            className={`px-3 py-2.5 border transition-colors flex items-center justify-between ${
+              currentSection === 'dex'
+                ? 'border-accent bg-accent/10 text-foreground font-bold'
+                : 'border-transparent hover:bg-surface text-muted hover:text-foreground'
+            }`}
+          >
+            <span>Dex</span>
+            <span className="text-[10px] text-accent font-semibold">AniDex ↗</span>
+          </Link>
+
+          <div className="pt-2 mt-1 border-t border-border flex items-center justify-between gap-2">
+            <Link
+              href="/"
+              onClick={() => setIsMobileOpen(false)}
+              className="px-3 py-1.5 text-muted hover:text-foreground text-[11px]"
+            >
+              ← Overview
+            </Link>
+            <a
+              href={GITHUB_REPO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-foreground text-background text-[11px] font-medium"
+            >
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

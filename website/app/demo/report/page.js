@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '../../../components/SiteHeader';
+import { SiteFooter } from '../../../components/SiteFooter';
 import anibotsData from '../../../data/anibots.json';
 import chipsData from '../../../data/anima_chips.json';
 import { simulateHeadlessBattle, getBotAvatarUrl } from '../../../utils/combatEngine';
@@ -641,6 +642,8 @@ export default function SimulationReportPage() {
           onClose={() => setSelectedChipModal(null)}
         />
       )}
+
+      <SiteFooter />
     </div>
   );
 }

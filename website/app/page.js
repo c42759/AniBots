@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { SiteHeader } from '../components/SiteHeader';
+import { SiteFooter } from '../components/SiteFooter';
 
 
 const GITHUB_REPO = 'https://github.com/c42759/AniBots/';
@@ -231,71 +233,7 @@ export default function Home() {
     return (
         <div className='min-h-screen flex flex-col bg-background text-foreground selection:bg-accent selection:text-white'>
             {/* Top Editorial Masthead */}
-            <header className='sticky top-0 z-50 bg-background/95 backdrop-blur-xs border-b border-border'>
-                <div className='max-w-7xl mx-auto px-4 sm:px-8 h-16 flex items-center justify-between'>
-                    <div className='flex items-center gap-6'>
-                        <a href='#' className='flex items-baseline gap-2.5 group'>
-                            <span className='w-2.5 h-2.5 bg-accent inline-block transition-transform group-hover:scale-125' />
-                            <span className='font-bold tracking-tight text-lg uppercase'>AniBots</span>
-                            <span className='font-mono text-[11px] text-muted hidden sm:inline-block'>
-                                SPEC // GODOT 4.X
-                            </span>
-                        </a>
-                    </div>
-
-                    <nav className='hidden lg:flex items-center gap-7 text-xs font-mono uppercase tracking-wider text-muted'>
-                        <a href='#overview' className='hover:text-foreground transition-colors'>
-                            Overview
-                        </a>
-                        <Link href='/characters/' className='hover:text-foreground transition-colors font-semibold text-foreground/90'>
-                            Characters
-                        </Link>
-                        <Link href='/lore/' className='hover:text-foreground transition-colors font-semibold text-foreground/90'>
-                            Lore
-                        </Link>
-                        <a href='#architecture' className='hover:text-foreground transition-colors'>
-                            Architecture
-                        </a>
-                        <a href='#contributors' className='text-foreground font-semibold hover:text-accent transition-colors'>
-                            Contributors
-                        </a>
-                        <a href='#directory' className='hover:text-foreground transition-colors'>
-                            Directory
-                        </a>
-                    </nav>
-
-                    <div className='flex items-center gap-2 sm:gap-3'>
-                        <button
-                            onClick={toggleTheme}
-                            type='button'
-                            aria-label='Toggle color theme'
-                            className='px-3 py-1.5 border border-border bg-surface hover:border-foreground text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer flex items-center gap-2'
-                        >
-                            <span className='w-2 h-2 rounded-full bg-amber-500 dark:bg-foreground' />
-                            <span className='dark:hidden'>Light</span>
-                            <span className='hidden dark:inline'>Dark</span>
-                        </button>
-
-                        <a
-                            href={ANIDEX_URL}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-accent/40 bg-accent/10 hover:bg-accent hover:text-white text-accent text-xs font-mono uppercase tracking-wider font-semibold transition-colors'
-                        >
-                            AniDex ↗
-                        </a>
-
-                        <a
-                            href={GITHUB_REPO}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            className='px-3.5 py-1.5 bg-foreground text-background hover:bg-accent hover:text-white text-xs font-mono uppercase tracking-wider font-medium transition-colors'
-                        >
-                            GitHub ↗
-                        </a>
-                    </div>
-                </div>
-            </header>
+            <SiteHeader currentSection='home' />
 
             <main className='flex-1'>
                 {/* SECTION 01: EDITORIAL HERO */}
@@ -1068,35 +1006,7 @@ export default function Home() {
             </main>
 
             {/* Editorial Footer */}
-            <footer className='border-t border-border bg-surface/50 py-10 font-mono text-xs text-muted'>
-                <div className='max-w-7xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4'>
-                    <div className='flex items-center gap-2.5'>
-                        <span className='w-2 h-2 bg-accent inline-block' />
-                        <span className='text-foreground font-semibold'>ANIBOTS PROJECT</span>
-                        <span>— OPEN SOURCE TACTICAL RPG</span>
-                    </div>
-
-                    <div className='flex items-center gap-6'>
-                        <a href={ANIDEX_URL} target='_blank' rel='noopener noreferrer' className='text-foreground hover:text-accent font-semibold transition-colors'>
-                            AniDex ↗
-                        </a>
-                        <a href={GITHUB_REPO} target='_blank' rel='noopener noreferrer' className='hover:text-foreground transition-colors'>
-                            GitHub
-                        </a>
-                        <a href={GITHUB_DISCUSSIONS} target='_blank' rel='noopener noreferrer' className='hover:text-foreground transition-colors'>
-                            Discussions
-                        </a>
-                        <a href={GITHUB_ISSUES} target='_blank' rel='noopener noreferrer' className='hover:text-foreground transition-colors'>
-                            Issues
-                        </a>
-                        <a href={DISCORD_INVITE_URL} target='_blank' rel='noopener noreferrer' className='hover:text-foreground transition-colors'>
-                            Discord
-                        </a>
-                    </div>
-
-                    <div>MIT LICENSE • GODOT 4.X</div>
-                </div>
-            </footer>
+            <SiteFooter />
         </div>
     );
 }
