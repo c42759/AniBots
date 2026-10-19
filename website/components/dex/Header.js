@@ -75,43 +75,6 @@ export const Header = ({ mode, botCount, chipCount, partCount }) => {
           </Link>
         </nav>
 
-        {/* Center Category Navigation (Desktop) */}
-        <div className="hidden xl:flex items-center gap-6 text-xs font-mono uppercase tracking-wider text-muted border-l border-border pl-6">
-          <Link
-            href="/dex/bots/"
-            onClick={() => playSelectSound()}
-            className={`transition-colors ${
-              mode === 'anibots'
-                ? 'text-foreground font-semibold'
-                : 'hover:text-foreground'
-            }`}
-          >
-            01. Bots ({botCount})
-          </Link>
-          <Link
-            href="/dex/chips/"
-            onClick={() => playSelectSound()}
-            className={`transition-colors ${
-              mode === 'chips'
-                ? 'text-foreground font-semibold'
-                : 'hover:text-foreground'
-            }`}
-          >
-            02. Chips ({chipCount})
-          </Link>
-          <Link
-            href="/dex/parts/"
-            onClick={() => playSelectSound()}
-            className={`transition-colors ${
-              mode === 'parts'
-                ? 'text-foreground font-semibold'
-                : 'hover:text-foreground'
-            }`}
-          >
-            03. Parts ({partCount})
-          </Link>
-        </div>
-
         {/* Right Controls: Audio FX, Theme Toggle, Main Site, GitHub, Mobile Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
           <button
@@ -215,55 +178,6 @@ export const Header = ({ mode, botCount, chipCount, partCount }) => {
             <span>Dex</span>
             <span className="text-[10px] text-accent font-semibold">Active</span>
           </Link>
-
-          {/* Dex Category Sub-links in Mobile Menu */}
-          <div className="pt-2 border-t border-border flex flex-col gap-1">
-            <span className="text-[10px] text-muted px-3">Dex Categories:</span>
-            <div className="grid grid-cols-3 gap-1">
-              <Link
-                href="/dex/bots/"
-                onClick={() => {
-                  playSelectSound();
-                  setIsMobileOpen(false);
-                }}
-                className={`px-2 py-1.5 text-center border text-[11px] ${
-                  mode === 'anibots'
-                    ? 'border-accent bg-accent/10 text-foreground font-bold'
-                    : 'border-border bg-surface text-muted hover:text-foreground'
-                }`}
-              >
-                Bots ({botCount})
-              </Link>
-              <Link
-                href="/dex/chips/"
-                onClick={() => {
-                  playSelectSound();
-                  setIsMobileOpen(false);
-                }}
-                className={`px-2 py-1.5 text-center border text-[11px] ${
-                  mode === 'chips'
-                    ? 'border-accent bg-accent/10 text-foreground font-bold'
-                    : 'border-border bg-surface text-muted hover:text-foreground'
-                }`}
-              >
-                Chips ({chipCount})
-              </Link>
-              <Link
-                href="/dex/parts/"
-                onClick={() => {
-                  playSelectSound();
-                  setIsMobileOpen(false);
-                }}
-                className={`px-2 py-1.5 text-center border text-[11px] ${
-                  mode === 'parts'
-                    ? 'border-accent bg-accent/10 text-foreground font-bold'
-                    : 'border-border bg-surface text-muted hover:text-foreground'
-                }`}
-              >
-                Parts ({partCount})
-              </Link>
-            </div>
-          </div>
 
           <div className="pt-2 mt-1 border-t border-border flex items-center justify-between gap-2">
             <Link
