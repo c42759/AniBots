@@ -67,7 +67,6 @@ export const BattleArenaScene = ({
   ]);
 
   const [commandMenuOpen, setCommandMenuOpen] = useState(false);
-  const [selectedTargetSlot, setSelectedTargetSlot] = useState(PartSlot.HEAD);
   const [countdown, setCountdown] = useState(3);
   const [damagedPartFlash, setDamagedPartFlash] = useState(null);
 
@@ -257,7 +256,6 @@ export const BattleArenaScene = ({
     // 3. Support Scanner Buff
     if (!attacker.isUlt && actType === AttackType.SUPPORT && (part.payload || 0) <= 0) {
       attacker.guaranteedCritNext = true;
-      attacker.overclockGauge = Math.min(100, attacker.overclockGauge + 30);
       addLog(`📡 ${attacker.name} activated [${part.name}]! Next attack is 100% Critical!`);
       battleAudio.playClick();
       syncHud();
@@ -265,9 +263,7 @@ export const BattleArenaScene = ({
     }
 
     // 4. Attack Strike Resolution
-    const targetSlot = isPlayer
-      ? selectedTargetSlot
-      : evaluateUtilityAITargetSlot(attacker.chip, defender);
+    const targetSlot = evaluateUtilityAITargetSlot(attacker.chip, defender);
 
     const result = resolveCenterLineClash({
       attacker,
@@ -330,8 +326,12 @@ export const BattleArenaScene = ({
 
     triggerDamageFlash(!isPlayer, result.targetSlot);
 
+    const ocTelemetry = result.isUlt
+      ? ' [⚡ OVERCLOCK EXPENDED]'
+      : ` [+5% OC to ${result.attackerName}, +${result.defenderOcGain}% OC to ${result.defenderName}]`;
+
     addLog(
-      `⚔️ ${result.attackerName} strikes with ${result.actionName}${result.isCrit ? ' [CRITICAL!]' : ''}! Dealt ${result.damage} damage to ${result.defenderName}'s ${result.targetSlotName}!${result.wasDiverted ? ' [AUTONOMOUS HEAD GUARD: Intercepted by limb]' : ''}`
+      `⚔️ ${result.attackerName} strikes with ${result.actionName}${result.isCrit && !result.isUlt ? ' [CRITICAL!]' : ''}! Dealt ${result.damage} damage to ${result.defenderName}'s ${result.targetSlotName}!${result.wasDiverted ? ' [AUTONOMOUS HEAD GUARD: Intercepted by limb]' : ''}${ocTelemetry}`
     );
 
     syncHud();
@@ -340,13 +340,16 @@ export const BattleArenaScene = ({
       addLog(`💀 CRITICAL SYSTEM FAILURE! ${result.defenderName}'s Head destroyed!`);
       handleMatchEnd(isPlayer);
     }
-  }, [selectedTargetSlot, addLog, handleMatchEnd, syncHud, triggerDamageFlash]);
+  }, [addLog, handleMatchEnd, syncHud, triggerDamageFlash]);
 
   // Execute Command & Initiate Sprint
   const executeCommand = useCallback((unit, slot, isUlt) => {
     let partData = {};
     if (isUlt) {
       const ult = unit.chip?.ultimate_abilities?.[0] || {};
+      const cost = ult.gauge_cost || 50;
+      unit.overclockGauge = Math.max(0, unit.overclockGauge - cost);
+      syncHud();
       partData = {
         name: ult.name || 'Overclock Blitz',
         payload: ult.power || 75,
@@ -354,7 +357,7 @@ export const BattleArenaScene = ({
         execution_time: 1.2,
         latency: 2.2,
       };
-      addLog(`⚡ ${unit.name} UNLEASHES ULTIMATE: [${partData.name}]!`);
+      addLog(`⚡ ${unit.name} UNLEASHES ULTIMATE: [${partData.name}]! (-${cost}% Overclock)`);
       battleAudio.playLaser();
     } else {
       let raw = {};
@@ -724,20 +727,9 @@ export const BattleArenaScene = ({
               <span className="font-bold text-accent uppercase text-[11px] tracking-wider">
                 {'Tactical Command Menu // Select Action Payload'}
               </span>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] text-muted uppercase">Target Part:</span>
-                <select
-                  value={selectedTargetSlot}
-                  onChange={(e) => setSelectedTargetSlot(Number(e.target.value))}
-                  className="bg-surface border border-border px-2 py-0.5 text-[10px] text-foreground focus:outline-accent"
-                >
-                  <option value={PartSlot.HEAD}>HEAD (System Core)</option>
-                  <option value={PartSlot.LEFT_ARM}>LEFT ARM</option>
-                  <option value={PartSlot.RIGHT_ARM}>RIGHT ARM</option>
-                  <option value={PartSlot.TORSO}>TORSO (Armor Chassis)</option>
-                  <option value={PartSlot.LEGS}>LEGS (Mobility Base)</option>
-                </select>
-              </div>
+              <span className="text-[10px] text-muted font-mono uppercase">
+                Autonomous Target Lock: {playerHud.chip?.name || 'Anima Core'}
+              </span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -786,9 +778,16 @@ export const BattleArenaScene = ({
                 onClick={() => handleSelectAction(PartSlot.HEAD, true)}
                 className="p-2 border border-amber-500 bg-amber-500/10 hover:bg-amber-500 hover:text-black text-left disabled:opacity-30 transition-colors cursor-pointer font-bold"
               >
-                <div className="truncate text-amber-500 hover:text-black">⚡ OVERCLOCK ULTIMATE</div>
-                <div className="text-[9px] mt-1">
-                  {(playerHud.overclockGauge ?? 0) >= 100 ? 'READY TO FIRE!' : `Gauge: ${Math.round(playerHud.overclockGauge ?? 0)}%`}
+                <div className="flex items-center justify-between">
+                  <span className="truncate text-amber-500 hover:text-black">⚡ OVERCLOCK ULTIMATE</span>
+                  <span className="text-[10px] text-amber-400 font-mono">
+                    Cost: {playerHud.chip?.ultimate_abilities?.[0]?.gauge_cost || 50}%
+                  </span>
+                </div>
+                <div className="text-[9px] mt-1 text-muted">
+                  {(playerHud.overclockGauge ?? 0) >= 100
+                    ? 'READY TO FIRE! (Requires 100%)'
+                    : `Gauge: ${Math.round(playerHud.overclockGauge ?? 0)}% (Requires 100%)`}
                 </div>
               </button>
             </div>

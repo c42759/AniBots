@@ -355,7 +355,7 @@ export function evaluateAIPartChoice(botUnit, opponentUnit, centerLineTrapActive
 }
 
 /**
- * Medabots-style part targeting with autonomous Head Protection:
+ * AniBots (Medabots-style) part targeting with autonomous Head Protection:
  * Based on Chip Level 30 reflex engrams, defender evasion, and attacker precision.
  * Arms, Torso, and Legs radiate/intercept attacks to protect the vulnerable Head.
  */
@@ -397,7 +397,7 @@ export function calculateTargetPartWithHeadProtection(attacker, defender, reques
     return { targetSlot: requestedTargetSlot, wasDiverted: false };
   }
 
-  // Otherwise, Medabots weighted random distribution:
+  // Otherwise, AniBots weighted random distribution:
   // Legs: 35%, Left Arm: 25%, Right Arm: 25%, Torso: 10%, Head: 5%
   const pool = [];
   if (activeLegs) {
@@ -465,13 +465,20 @@ export function resolveCenterLineClash({
   const newHP = Math.max(0, curHP - damage);
   defender.integrities[targetSlot] = newHP;
 
-  // Overclock charges
+  // Overclock charges:
+  // 1. int(damage_taken * 0.15) for defender (only normal attacks, not OVERCLOCK attacks)
+  // 2. Each attack successfully made: +5% for attacker on normal attacks (Ultimate cost deducted at activation)
+  let attackerOcGain = 0;
+  let defenderOcGain = 0;
+
   if (isUlt) {
-    attacker.overclockGauge = 0;
+    // Overclock cost already deducted upon activation; defender gains 0% from ultimate
   } else {
-    attacker.overclockGauge = Math.min(100, attacker.overclockGauge + 20);
+    attackerOcGain = 5;
+    defenderOcGain = Math.floor(damage * 0.15);
+    attacker.overclockGauge = Math.min(100, attacker.overclockGauge + attackerOcGain);
+    defender.overclockGauge = Math.min(100, defender.overclockGauge + defenderOcGain);
   }
-  defender.overclockGauge = Math.min(100, defender.overclockGauge + 25);
 
   const isHeadDestroyed = (defender.integrities[PartSlot.HEAD] || 0) <= 0;
   const isPartDestroyed = newHP <= 0;
@@ -488,6 +495,8 @@ export function resolveCenterLineClash({
     attackerName: attacker.name,
     defenderName: defender.name,
     actionName: actionPart.name || 'Strike',
+    attackerOcGain,
+    defenderOcGain,
   };
 }
 
@@ -568,6 +577,11 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
           unit.selectedActionSlot = choice.slot;
           unit.selectedActionPart = partData;
           unit.isUlt = choice.isUlt;
+          if (choice.isUlt) {
+            const ult = unit.chip?.ultimate_abilities?.[0] || {};
+            const cost = ult.gauge_cost || 50;
+            unit.overclockGauge = Math.max(0, unit.overclockGauge - cost);
+          }
           unit.currentPhase = CombatPhase.RUN;
           unit.trackProgress = 0;
         }
@@ -598,7 +612,6 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
               else traps.trapA = part;
             } else if (!unit.isUlt && actType === AttackType.SUPPORT && (part.payload || 0) <= 0) {
               unit.guaranteedCritNext = true;
-              unit.overclockGauge = Math.min(100, unit.overclockGauge + 30);
             } else {
               const targetSlot = evaluateUtilityAITargetSlot(unit.chip, opponent);
               resolveCenterLineClash({
