@@ -13,6 +13,8 @@ import {
   evaluateAIPartChoice,
   resolveCenterLineClash,
   getBotAvatarUrl,
+  TERRAINS,
+  getTerrainModifiers,
 } from '../../utils/combatEngine';
 import { battleAudio } from '../../utils/battleAudio';
 import { BattleCanvas } from './BattleCanvas';
@@ -20,6 +22,7 @@ import { BattleCanvas } from './BattleCanvas';
 export const BattleArenaScene = ({
   playerConfig,
   opponentConfig,
+  terrain,
   autoBattle,
   onToggleAutoBattle,
   isMuted,
@@ -31,6 +34,7 @@ export const BattleArenaScene = ({
   // Initial unit models
   const initialPlayerUnit = useMemo(() => createCombatUnitState(playerConfig.botConfig, playerConfig.chipConfig, true), [playerConfig]);
   const initialEnemyUnit = useMemo(() => createCombatUnitState(opponentConfig.botConfig, opponentConfig.chipConfig, false), [opponentConfig]);
+  const activeTerrain = useMemo(() => terrain || opponentConfig?.terrain || TERRAINS[0], [terrain, opponentConfig]);
 
   // Mutable simulation refs for 60 FPS Canvas rendering without React lag
   const playerUnitRef = useRef(initialPlayerUnit);
@@ -212,6 +216,35 @@ export const BattleArenaScene = ({
     const part = attacker.selectedActionPart || {};
     const actType = parseAttackType(part.type, attacker.selectedActionSlot);
 
+    // 1.5. NO FEATURE: Part destroyed mid-sprint before reaching center line (Medabots canonical rule)
+    if (!attacker.isUlt && (attacker.integrities[attacker.selectedActionSlot] ?? 0) <= 0) {
+      const destroyedSlotName = SlotNames[attacker.selectedActionSlot] || 'PART';
+      addLog(`⚠️ NO FEATURE! ${attacker.name}'s [${part.name || destroyedSlotName}] was destroyed mid-sprint! Action failed.`);
+      battleAudio.playClick();
+      fxRef.current.popups.push({
+        x: centerX,
+        y: 110,
+        damage: 'NO FEATURE',
+        slotName: destroyedSlotName,
+        isCrit: false,
+        life: 1.2,
+      });
+      for (let i = 0; i < 6; i++) {
+        fxRef.current.particles.push({
+          x: centerX + (Math.random() - 0.5) * 20,
+          y: 135 + (Math.random() - 0.5) * 20,
+          vx: (Math.random() - 0.5) * 2,
+          vy: -Math.random() * 2,
+          type: 'spark',
+          size: 3,
+          color: '#71717a',
+          life: 0.8,
+        });
+      }
+      syncHud();
+      return;
+    }
+
     // 2. Logic Trap Placement
     if (!attacker.isUlt && actType === AttackType.TRAP) {
       if (isPlayer) traps.enemyTrap = part;
@@ -382,6 +415,8 @@ export const BattleArenaScene = ({
         case CombatPhase.WAIT: {
           const legs = unit.parts.legs;
           let clockSpeed = legs?.clock_speed || 1.5;
+          const tMod = getTerrainModifiers(legs?.protocol, activeTerrain.id, unit.chip?.id);
+          clockSpeed *= tMod.speedMult;
           if (unit.integrities[PartSlot.LEGS] <= 0) clockSpeed *= 0.4;
           if (unit.chip?.id === 'chip_spark') clockSpeed *= 1.25;
 
@@ -414,6 +449,8 @@ export const BattleArenaScene = ({
         case CombatPhase.RUN: {
           const execTime = Math.max(0.8, unit.selectedActionPart?.execution_time || 2.0);
           let runSpeed = 0.8 / execTime;
+          const tMod = getTerrainModifiers(unit.parts.legs?.protocol, activeTerrain.id, unit.chip?.id);
+          runSpeed *= tMod.speedMult;
           if (unit.integrities[PartSlot.LEGS] <= 0) runSpeed *= 0.4;
 
           unit.trackProgress = Math.min(1.0, unit.trackProgress + runSpeed * delta);
@@ -483,7 +520,7 @@ export const BattleArenaScene = ({
         <div className="flex items-center gap-3">
           <span className="w-2.5 h-2.5 bg-accent animate-pulse" />
           <span className="font-bold text-foreground uppercase tracking-wider text-[11px]">
-            1v1 Combat Relay // GPU Hardware-Accelerated Arena
+            1v1 Combat Relay // {activeTerrain.icon} {activeTerrain.name}
           </span>
         </div>
 
@@ -676,6 +713,7 @@ export const BattleArenaScene = ({
             enemyUnitRef={enemyUnitRef}
             trapsRef={trapsRef}
             fxRef={fxRef}
+            terrain={activeTerrain}
           />
         </div>
 

@@ -35,6 +35,126 @@ export const CombatPhase = {
   COOLDOWN: 3,  // Returning from Center Line to Base Line
 };
 
+export const TerrainType = {
+  CITY: 'CITY',
+  RUBBLE: 'RUBBLE',
+  MUD: 'MUD',
+  FLOODED: 'FLOODED',
+  ROCKY: 'ROCKY',
+};
+
+export const TERRAINS = [
+  {
+    id: 'CITY',
+    name: 'City / Paved Asphalt',
+    shortName: 'City Asphalt',
+    description: 'High-traction paved city streets. Optimized for Bipedal (+10%) and Wheeled (+25%) frames.',
+    icon: '🏙️',
+    texture: '/images/terrains/terrain_city.jpg',
+    themeColor: '#38bdf8',
+  },
+  {
+    id: 'RUBBLE',
+    name: 'Rubble / Junkyard',
+    shortName: 'Scrapyard Rubble',
+    description: 'Debris-littered junkyard ruins. Wheeled slowed (-20%), Tracks gain armor (+3), Multi-Leg stable (+10% eva).',
+    icon: '🏚️',
+    texture: '/images/terrains/terrain_rubble.jpg',
+    themeColor: '#f59e0b',
+  },
+  {
+    id: 'MUD',
+    name: 'Mud / Swamp / Sand',
+    shortName: 'Swamp Mud',
+    description: 'Deep toxic bog and sludge trench. Severe penalty for Wheeled (-40%) and Bipedal (-15%). Tracks & Hover immune.',
+    icon: '🪵',
+    texture: '/images/terrains/terrain_mud.jpg',
+    themeColor: '#84cc16',
+  },
+  {
+    id: 'FLOODED',
+    name: 'Flooded / Water Base',
+    shortName: 'Flooded Aquatic',
+    description: 'Submerged grid platform. Heavy drag for standard frames; Aquatic frames surge (+30% speed, +15% eva).',
+    icon: '🌊',
+    texture: '/images/terrains/terrain_flooded.jpg',
+    themeColor: '#06b6d4',
+  },
+  {
+    id: 'ROCKY',
+    name: 'Rocky Peaks / Slopes',
+    shortName: 'Rocky Slopes',
+    description: 'Craggy basalt and magma fissures. Multi-Leg units excel (+15% eva, +4 armor); Aquatic and Wheeled penalized.',
+    icon: '⛰️',
+    texture: '/images/terrains/terrain_rocky.jpg',
+    themeColor: '#f97316',
+  },
+];
+
+/**
+ * Terrain Interaction Matrix modifiers (PARTS.md Section 4).
+ */
+export function getTerrainModifiers(protocolStr = 'BIPEDAL', terrainId = 'CITY', chipId = '') {
+  let proto = String(protocolStr || 'BIPEDAL').toUpperCase();
+  if (chipId === 'chip_pegasus') {
+    proto = 'HOVER'; // Celestial Hover negates all terrain penalties
+  }
+  let speedMult = 1.0;
+  let evasionBonus = 0;
+  let armorBonus = 0;
+
+  switch (terrainId) {
+    case TerrainType.CITY:
+      if (proto === 'BIPEDAL') speedMult = 1.10;
+      else if (proto === 'WHEELED') speedMult = 1.25;
+      else if (proto === 'AQUATIC') speedMult = 0.80;
+      break;
+
+    case TerrainType.RUBBLE:
+      if (proto === 'WHEELED') speedMult = 0.80;
+      else if (proto === 'TRACKS') armorBonus = 3;
+      else if (proto === 'AQUATIC') speedMult = 0.70;
+      else if (proto === 'MULTI_LEG') evasionBonus = 10;
+      break;
+
+    case TerrainType.MUD:
+      if (proto === 'BIPEDAL') speedMult = 0.85;
+      else if (proto === 'WHEELED') speedMult = 0.60;
+      // TRACKS and HOVER immune
+      break;
+
+    case TerrainType.FLOODED:
+      if (proto === 'BIPEDAL') speedMult = 0.75;
+      else if (proto === 'WHEELED') speedMult = 0.50;
+      else if (proto === 'TRACKS') speedMult = 0.80;
+      else if (proto === 'MULTI_LEG') speedMult = 0.90;
+      else if (proto === 'AQUATIC') {
+        speedMult = 1.30;
+        evasionBonus = 15;
+      }
+      break;
+
+    case TerrainType.ROCKY:
+      if (proto === 'BIPEDAL') speedMult = 0.90;
+      else if (proto === 'WHEELED') speedMult = 0.70;
+      else if (proto === 'AQUATIC') speedMult = 0.60;
+      else if (proto === 'MULTI_LEG') {
+        evasionBonus = 15;
+        armorBonus = 4;
+      }
+      break;
+
+    default:
+      break;
+  }
+
+  if (chipId === 'chip_ranger' && speedMult < 1.0) {
+    speedMult = 1.0; // Ranger chip terrain mastery
+  }
+
+  return { speedMult, evasionBonus, armorBonus };
+}
+
 /**
  * Integrity calculation based on condition percentage (PARTS.md Section 1).
  */
@@ -467,6 +587,8 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
             unit.integrities[PartSlot.LEGS] = Math.max(0, (unit.integrities[PartSlot.LEGS] || 0) - trapDmg);
             if (isA) traps.trapA = null;
             else traps.trapB = null;
+          } else if (!unit.isUlt && (unit.integrities[unit.selectedActionSlot] ?? 0) <= 0) {
+            // NO FEATURE: Action aborted because executing part was destroyed mid-transit
           } else {
             const part = unit.selectedActionPart || {};
             const actType = parseAttackType(part.type, unit.selectedActionSlot);

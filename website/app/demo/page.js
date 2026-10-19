@@ -104,6 +104,7 @@ export default function DemoPage() {
             <BattleArenaScene
               playerConfig={playerBot}
               opponentConfig={opponentBot}
+              terrain={opponentBot?.terrain}
               autoBattle={autoBattle}
               onToggleAutoBattle={() => setAutoBattle((v) => !v)}
               isMuted={isMuted}
