@@ -62,6 +62,16 @@ export const SiteHeader = ({ currentSection = '' }) => {
             Lore
           </Link>
           <Link
+            href="/demo/"
+            className={`transition-colors ${
+              currentSection === 'demo'
+                ? 'text-foreground font-bold border-b-2 border-accent pb-0.5'
+                : 'hover:text-foreground'
+            }`}
+          >
+            Battle Demo
+          </Link>
+          <Link
             href="/dex/"
             className={`transition-colors ${
               currentSection === 'dex'

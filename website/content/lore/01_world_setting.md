@@ -8,6 +8,8 @@ order: 1
 ## The Global Landscape
 By the year **3047 AD**, human society has advanced dramatically in technology while committing to global environmental restoration. Cities are futuristic eco-hybrids - soaring multi-story architecture interwoven with dense green canopies, blooming flora, and expansive public parks. Citizens wear modern attire and live connected lives through handheld smart devices.
 
+![Anibots 3047 AD](/images/lore/anibots_brand_3047ad.jpg)
+
 ```txt
                    GLOBAL POPULATION (10 BILLION)
 ┌──────────────────────┬──────────────────────┬──────────────────────┬──────────────────────┐

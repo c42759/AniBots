@@ -780,6 +780,64 @@ static func get_terrain_modifiers(protocol_str: String, terrain: int, chip_id: S
 		"armor_bonus": armor_bonus
 	}
 
+# 6. Medabots-Style Head Protection & Autonomous Interception Formula (Level 30 Chip Reflexes)
+static func calculate_target_part_with_head_protection(
+	att_chip_id: String,
+	attacker_is_ult: bool,
+	attacker_has_crit_lock: bool,
+	attacker_precision: int,
+	defender_evasion: int,
+	def_integrities: Dictionary,
+	requested_slot: int = -1
+) -> Dictionary:
+	var active_arms_torso: Array = []
+	for s in [PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM, PartSlot.TORSO]:
+		var val: int = int(def_integrities.get(s, def_integrities.get(str(s), 0)))
+		if val > 0:
+			active_arms_torso.append(s)
+	
+	var legs_hp: int = int(def_integrities.get(PartSlot.LEGS, def_integrities.get(str(PartSlot.LEGS), 0)))
+	var has_other_parts: bool = (active_arms_torso.size() > 0 or legs_hp > 0)
+	
+	if not has_other_parts:
+		return {"target_slot": PartSlot.HEAD, "was_diverted": false}
+		
+	var has_sniper_bypass: bool = (att_chip_id == "chip_orion" or attacker_is_ult or attacker_has_crit_lock)
+	
+	if requested_slot == PartSlot.HEAD:
+		if active_arms_torso.size() > 0:
+			# Autonomous defense reflex (calibrated for Chip Level 30)
+			# Base 70% + defender evasion modifier - attacker precision modifier
+			var intercept_chance: float = clampf(0.70 + (float(defender_evasion) * 0.005) - (float(attacker_precision) * 0.003), 0.35, 0.90)
+			if has_sniper_bypass:
+				intercept_chance = maxf(0.20, intercept_chance - 0.45)
+			if randf() < intercept_chance:
+				var chosen_shield: int = int(active_arms_torso[randi() % active_arms_torso.size()])
+				return {"target_slot": chosen_shield, "was_diverted": true}
+		return {"target_slot": PartSlot.HEAD, "was_diverted": false}
+		
+	if requested_slot != -1:
+		var cur_hp: int = int(def_integrities.get(requested_slot, def_integrities.get(str(requested_slot), 0)))
+		if cur_hp > 0:
+			return {"target_slot": requested_slot, "was_diverted": false}
+			
+	# Weighted random Medabots distribution: Legs 35%, Left Arm 25%, Right Arm 25%, Torso 10%, Head 5%
+	var pool: Array = []
+	if legs_hp > 0:
+		for i in range(35): pool.append(PartSlot.LEGS)
+	for arm_s in [PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM]:
+		if int(def_integrities.get(arm_s, def_integrities.get(str(arm_s), 0))) > 0:
+			for i in range(25): pool.append(arm_s)
+	if int(def_integrities.get(PartSlot.TORSO, def_integrities.get(str(PartSlot.TORSO), 0))) > 0:
+		for i in range(10): pool.append(PartSlot.TORSO)
+	if int(def_integrities.get(PartSlot.HEAD, def_integrities.get(str(PartSlot.HEAD), 0))) > 0:
+		var head_weight: int = 5 if active_arms_torso.size() > 0 else 50
+		for i in range(head_weight): pool.append(PartSlot.HEAD)
+		
+	if pool.is_empty():
+		return {"target_slot": PartSlot.HEAD, "was_diverted": false}
+	return {"target_slot": int(pool[randi() % pool.size()]), "was_diverted": false}
+
 # Character Customization Options
 const CUSTOMIZATION_DATA: Dictionary = {
 	"hair_styles": [

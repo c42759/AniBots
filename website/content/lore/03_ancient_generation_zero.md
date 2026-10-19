@@ -5,6 +5,8 @@ subtitle: The 176 Experimental Cores, Vault 7 Escape & Surviving Legends
 order: 3
 ---
 
+![Anibots Gen 0](/images/lore/anibots_brand_0.jpg)
+
 ## The 176 Ancient Series Chips
 Developed in early laboratory trials around **2750 AD**, only **176 Ancient Series Chips** were ever produced.
 - **Hardware Specs**: Unrivaled processing headroom, massive memory banks, near-infinite adaptive potential.

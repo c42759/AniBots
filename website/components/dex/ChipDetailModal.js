@@ -74,58 +74,57 @@ export const ChipDetailModal = ({ chip, allBots, onClose, onSelectBot }) => {
 
         {/* Modal Scrollable Body */}
         <div className="p-6 sm:p-8 overflow-y-auto space-y-8">
-          {/* Top Grid: Schematic + Core Specs */}
-          <div className="grid lg:grid-cols-12 border border-border">
-            <div className="lg:col-span-7 p-4 bg-surface/40 lg:border-r border-b lg:border-b-0 border-border flex items-center justify-center">
-              <ItemImage
-                id={chip.id}
-                name={chip.name}
-                src={chip.image}
-                alt={chip.name}
-                type="chip"
-                diodeColor={diodeColor}
-                aspectRatio="aspect-video"
-                objectFit="contain"
-              />
-            </div>
+          {/* Hero Image (Single Line / Full Width) */}
+          <div className="w-full border border-border p-4 bg-surface/40 flex items-center justify-center">
+            <ItemImage
+              id={chip.id}
+              name={chip.name}
+              src={chip.image}
+              alt={chip.name}
+              type="chip"
+              diodeColor={diodeColor}
+              aspectRatio="aspect-video"
+              objectFit="contain"
+            />
+          </div>
 
-            <div className="lg:col-span-5 p-5 flex flex-col justify-between bg-background">
-              <div>
-                <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold pb-2 border-b border-border">
-                  PERSONALITY &amp; VOICE ENGRAM
-                </div>
-                <p className="mt-3 text-xs sm:text-sm text-muted leading-relaxed">
-                  {chip.personality}
-                </p>
-
-                {chip.quote && (
-                  <div className="mt-4 p-3 bg-surface border border-border italic text-foreground text-xs leading-relaxed">
-                    &quot;{chip.quote}&quot;
-                  </div>
-                )}
+          {/* Personality & Voice Engram Dossier */}
+          <div className="border border-border bg-background p-5">
+            <div>
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold pb-2 border-b border-border">
+                PERSONALITY &amp; VOICE ENGRAM // {chip.personality_engram}
               </div>
+              <p className="mt-3 text-xs sm:text-sm text-muted leading-relaxed">
+                {chip.personality}
+              </p>
 
-              <dl className="mt-6 divide-y divide-border border-t border-border font-mono text-xs">
-                <div className="py-2.5 flex justify-between items-center gap-4">
-                  <dt className="text-muted">DIODE SPECTRUM</dt>
-                  <dd className="flex items-center gap-2 text-foreground font-bold">
-                    <span
-                      className="w-3 h-3 border border-border inline-block"
-                      style={{ backgroundColor: diodeColor }}
-                    />
-                    {diodeColor}
-                  </dd>
+              {chip.quote && (
+                <div className="mt-4 p-3 bg-surface border border-border italic text-foreground text-xs leading-relaxed">
+                  &quot;{chip.quote}&quot;
                 </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <dt className="text-muted">TARGET PRIORITY</dt>
-                  <dd className="text-foreground font-bold text-right">{chip.target_priority}</dd>
-                </div>
-                <div className="py-2.5 flex justify-between gap-4">
-                  <dt className="text-muted">VOICE STYLE</dt>
-                  <dd className="text-foreground font-medium text-right">{chip.voice_style}</dd>
-                </div>
-              </dl>
+              )}
             </div>
+
+            <dl className="mt-6 grid grid-cols-1 sm:grid-cols-3 border-t border-l border-border font-mono text-xs">
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">DIODE SPECTRUM</dt>
+                <dd className="flex items-center gap-2 text-foreground font-bold">
+                  <span
+                    className="w-3 h-3 border border-border inline-block"
+                    style={{ backgroundColor: diodeColor }}
+                  />
+                  {diodeColor}
+                </dd>
+              </div>
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">TARGET PRIORITY</dt>
+                <dd className="text-foreground font-bold">{chip.target_priority}</dd>
+              </div>
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">VOICE STYLE</dt>
+                <dd className="text-foreground font-medium">{chip.voice_style}</dd>
+              </div>
+            </dl>
           </div>
 
           {/* Base Stats Gauges */}
