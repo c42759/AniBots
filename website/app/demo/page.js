@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
+import { SiteFooter } from '../../components/SiteFooter';
 import { BotSelectionScene } from '../../components/demo/BotSelectionScene';
 import { OpponentSelectionScene } from '../../components/demo/OpponentSelectionScene';
 import { BattleArenaScene } from '../../components/demo/BattleArenaScene';
@@ -104,6 +105,7 @@ export default function DemoPage() {
             <BattleArenaScene
               playerConfig={playerBot}
               opponentConfig={opponentBot}
+              terrain={opponentBot?.terrain}
               autoBattle={autoBattle}
               onToggleAutoBattle={() => setAutoBattle((v) => !v)}
               isMuted={isMuted}
@@ -142,6 +144,8 @@ export default function DemoPage() {
           </div>
         </div>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }

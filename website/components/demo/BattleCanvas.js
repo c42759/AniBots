@@ -8,8 +8,20 @@ export const BattleCanvas = ({
   enemyUnitRef,
   trapsRef,
   fxRef,
+  terrain,
 }) => {
   const canvasRef = useRef(null);
+  const terrainImgRef = useRef(null);
+
+  // Preload and cache terrain texture image
+  useEffect(() => {
+    if (!terrain?.texture) return;
+    const img = new Image();
+    img.src = terrain.texture;
+    img.onload = () => {
+      terrainImgRef.current = img;
+    };
+  }, [terrain?.texture]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -51,12 +63,19 @@ export const BattleCanvas = ({
       ctx.clearRect(0, 0, width, height);
       ctx.translate(shakeX, shakeY);
 
-      // --- 1. Draw Battlefield Relay Grid & Ground ---
-      ctx.fillStyle = '#0a0a09';
-      ctx.fillRect(0, 0, width, height);
+      // --- 1. Draw Battlefield Terrain Ground & Texture ---
+      if (terrainImgRef.current && terrainImgRef.current.complete && terrainImgRef.current.naturalWidth > 0) {
+        ctx.drawImage(terrainImgRef.current, 0, 0, width, height);
+        // Vignette & dark atmospheric tint to ensure runners and particles contrast sharply
+        ctx.fillStyle = 'rgba(10, 10, 9, 0.42)';
+        ctx.fillRect(0, 0, width, height);
+      } else {
+        ctx.fillStyle = '#0a0a09';
+        ctx.fillRect(0, 0, width, height);
+      }
 
-      // Grid Perspective Lines
-      ctx.strokeStyle = '#222220';
+      // Grid Perspective Lines with terrain accent tint
+      ctx.strokeStyle = terrain?.themeColor ? `${terrain.themeColor}2e` : 'rgba(255, 255, 255, 0.08)';
       ctx.lineWidth = 1;
       const gridSpacing = 32;
       trackOffset = (trackOffset + 0.4) % gridSpacing;
@@ -317,13 +336,20 @@ export const BattleCanvas = ({
 
         ctx.save();
         ctx.globalAlpha = Math.min(1.0, pop.life * 1.5);
-        ctx.font = pop.isCrit ? 'bold 15px monospace' : 'bold 13px monospace';
-        ctx.fillStyle = pop.isCrit ? '#f59e0b' : '#ef4444';
-        ctx.textAlign = 'center';
-        ctx.fillText(`-${pop.damage} HP [${pop.slotName}]`, pop.x, pop.y);
-        if (pop.isCrit) {
-          ctx.font = 'bold 9px monospace';
-          ctx.fillText('[CRITICAL!]', pop.x, pop.y - 12);
+        if (typeof pop.damage === 'string') {
+          ctx.font = 'bold 13px monospace';
+          ctx.fillStyle = '#f59e0b';
+          ctx.textAlign = 'center';
+          ctx.fillText(`⚠️ ${pop.damage} [${pop.slotName}]`, pop.x, pop.y);
+        } else {
+          ctx.font = pop.isCrit ? 'bold 15px monospace' : 'bold 13px monospace';
+          ctx.fillStyle = pop.isCrit ? '#f59e0b' : '#ef4444';
+          ctx.textAlign = 'center';
+          ctx.fillText(`-${pop.damage} HP [${pop.slotName}]`, pop.x, pop.y);
+          if (pop.isCrit) {
+            ctx.font = 'bold 9px monospace';
+            ctx.fillText('[CRITICAL!]', pop.x, pop.y - 12);
+          }
         }
         ctx.restore();
       }

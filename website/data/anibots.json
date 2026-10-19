@@ -9,6 +9,7 @@
     "preferred_chip": "chip_ronin",
     "affinity": "MELEE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Ronin Chip",
+    "image": "/images/anibots/RON-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_zen_cowl",
@@ -88,6 +89,7 @@
     "preferred_chip": "chip_dragoon",
     "affinity": "MELEE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Dragoon Chip",
+    "image": "/images/anibots/DGN-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_dragon_crest",
@@ -327,6 +329,7 @@
     "preferred_chip": "chip_artificer",
     "affinity": "TRAP",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Artificer Chip",
+    "image": "/images/anibots/GEN-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_logic_bomb",
@@ -406,6 +409,7 @@
     "preferred_chip": "chip_gunslinger",
     "affinity": "SHOOTING",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Gunslinger Chip",
+    "image": "/images/anibots/GSL-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_stetson_optics",
@@ -485,6 +489,7 @@
     "preferred_chip": "chip_berserker",
     "affinity": "MELEE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Berserker Chip",
+    "image": "/images/anibots/BSK-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_horned_fury",
@@ -644,6 +649,7 @@
     "preferred_chip": "chip_ranger",
     "affinity": "SHOOTING",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Ranger Chip",
+    "image": "/images/anibots/RNG-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_topo_scanner",
@@ -723,6 +729,7 @@
     "preferred_chip": "chip_gladiator",
     "affinity": "MELEE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Gladiator Chip",
+    "image": "/images/anibots/GLD-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_roar_mask",
@@ -882,6 +889,7 @@
     "preferred_chip": "chip_shinobi",
     "affinity": "EVASION",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Shinobi Chip",
+    "image": "/images/anibots/SHN-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_smoke_shroud",
@@ -961,6 +969,7 @@
     "preferred_chip": "chip_spark",
     "affinity": "SPEED",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Spark Chip",
+    "image": "/images/anibots/CKT-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_surge_node",
@@ -1040,6 +1049,7 @@
     "preferred_chip": "chip_magma",
     "affinity": "MELEE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Magma Chip",
+    "image": "/images/anibots/MGM-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_caldera_vent",
@@ -1119,6 +1129,7 @@
     "preferred_chip": "chip_frost",
     "affinity": "CONTROL",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Frost Chip",
+    "image": "/images/anibots/FRS-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_cryo_emitter",
@@ -1198,6 +1209,7 @@
     "preferred_chip": "chip_gale",
     "affinity": "SPEED",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Gale Chip",
+    "image": "/images/anibots/GAL-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_turbine_crest",
@@ -1357,6 +1369,7 @@
     "preferred_chip": "chip_torrent",
     "affinity": "COOLING",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Torrent Chip",
+    "image": "/images/anibots/TOR-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_sonar_periscope",
@@ -1516,6 +1529,7 @@
     "preferred_chip": "chip_photon",
     "affinity": "SHOOTING",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Photon Chip",
+    "image": "/images/anibots/PHT-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_prismatic_lens",
@@ -1595,6 +1609,7 @@
     "preferred_chip": "chip_void",
     "affinity": "CONTROL",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Void Chip",
+    "image": "/images/anibots/VOI-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_dark_matter_eye",
@@ -1674,6 +1689,7 @@
     "preferred_chip": "chip_sonic",
     "affinity": "DISRUPTION",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Sonic Chip",
+    "image": "/images/anibots/SNC-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_mega_speaker",
@@ -1753,6 +1769,7 @@
     "preferred_chip": "chip_plasma",
     "affinity": "BURST_DAMAGE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Plasma Chip",
+    "image": "/images/anibots/PLS-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_plasma_torch",
@@ -1990,6 +2007,7 @@
     "preferred_chip": "chip_gemini",
     "affinity": "DUAL_WIELD",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Gemini Chip",
+    "image": "/images/anibots/GEM-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_twin_sensor",
@@ -2069,6 +2087,7 @@
     "preferred_chip": "chip_ursa",
     "affinity": "DEFENSE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Ursa Chip",
+    "image": "/images/anibots/URS-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_grizzly_mask",
@@ -2148,6 +2167,7 @@
     "preferred_chip": "chip_leo",
     "affinity": "LEADERSHIP",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Leo Chip",
+    "image": "/images/anibots/LEO-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_lion_mane",
@@ -2227,6 +2247,7 @@
     "preferred_chip": "chip_cygnus",
     "affinity": "CRITICAL",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Cygnus Chip",
+    "image": "/images/anibots/CYG-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_swan_tiara",
@@ -2386,6 +2407,7 @@
     "preferred_chip": "chip_pegasus",
     "affinity": "MOBILITY",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Pegasus Chip",
+    "image": "/images/anibots/PEG-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_celestial_wings",
@@ -2465,6 +2487,7 @@
     "preferred_chip": "chip_scorpio",
     "affinity": "COUNTER",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Scorpio Chip",
+    "image": "/images/anibots/SCP-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_scorpio_crown",
@@ -2544,6 +2567,7 @@
     "preferred_chip": "chip_lyra",
     "affinity": "COMBO",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Lyra Chip",
+    "image": "/images/anibots/LYR-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_lyre_crest",
@@ -2623,6 +2647,7 @@
     "preferred_chip": "chip_aries",
     "affinity": "INTERCEPT",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Aries Chip",
+    "image": "/images/anibots/ARI-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_curled_horns",
@@ -2702,6 +2727,7 @@
     "preferred_chip": "chip_libra",
     "affinity": "BALANCE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Libra Chip",
+    "image": "/images/anibots/LIB-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_scale_fulcrum",
@@ -2781,6 +2807,7 @@
     "preferred_chip": "chip_andromeda",
     "affinity": "MARTYR",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Andromeda Chip",
+    "image": "/images/anibots/AND-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_shackle_tiara",
@@ -2860,6 +2887,7 @@
     "preferred_chip": "chip_torrent",
     "affinity": "COOLING",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Torrent Chip",
+    "image": "/images/anibots/HYD-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_sonar_dredge",
@@ -3339,6 +3367,7 @@
     "preferred_chip": "chip_torrent",
     "affinity": "BURST_DAMAGE",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Torrent Chip",
+    "image": "/images/anibots/CRK-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_croc_snout",
@@ -3418,6 +3447,7 @@
     "preferred_chip": "chip_harpia_harpyja",
     "affinity": "PRECISION",
     "affinity_synergy_bonus": "+10% boost to all stats when equipped with Harpia Harpyja Chip",
+    "image": "/images/anibots/EAG-01.jpg",
     "parts": {
       "head": {
         "id": "part_head_raptor_beak",
@@ -4840,6 +4870,86 @@
         "packet_loss": 2,
         "protocol": "BIPEDAL",
         "description": "Wide, reinforced legs with low center of gravity. Engineered for maximum stability and recoil resistance, allowing Biggon to remain steadfast even under massive impact."
+      }
+    }
+  },
+  {
+    "id": "anibot_apex_nis",
+    "model_code": "APX-07",
+    "name": "Apex-Nis",
+    "series": "ANIBOTS",
+    "archetype": "Mono-Wheel Guardian Counter-Lancer",
+    "description": "A mono-wheel guardian unit specializing in frontline defense and precise counterattacks. Combines high mobility with exceptional shielding and close-to-mid range combat capability.",
+    "preferred_chip": "chip_phalanx",
+    "affinity": "DEFENSE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Phalanx Chip",
+    "image": "/images/anibots/APX-07.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_apex_visor",
+        "name": "Apex Guard Visor",
+        "slot": "HEAD",
+        "type": "DEFENSE",
+        "integrity": 75,
+        "payload": 0,
+        "precision": 94,
+        "execution_time": 1.2,
+        "latency": 1.8,
+        "weight": 6,
+        "cache": 3,
+        "description": "Streamlined sensory visor with dual tactical swept antennas, pre-calculating incoming projectile trajectories to shield critical components."
+      },
+      "torso": {
+        "id": "part_torso_apex_chassis",
+        "name": "Apex-Nis Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 190,
+        "max_loadout": 36,
+        "firewall": 16,
+        "cooling": 1.8,
+        "description": "Heavy composite chassis featuring angular purple chevron energy manifolds and reinforced pauldrons for frontline shock absorption."
+      },
+      "left_arm": {
+        "id": "part_arm_l_diamond_shield",
+        "name": "Diamond Bulwark Shield",
+        "slot": "LEFT_ARM",
+        "type": "DEFENSE",
+        "integrity": 85,
+        "payload": 18,
+        "precision": 90,
+        "execution_time": 1.4,
+        "latency": 2.0,
+        "weight": 11,
+        "cache": -1,
+        "description": "Faceted high-density diamond armor shield equipped with an energy field generator that mitigates incoming ballistic and laser damage."
+      },
+      "right_arm": {
+        "id": "part_arm_r_bident_spear",
+        "name": "Apex Bident Spear",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 70,
+        "payload": 42,
+        "precision": 88,
+        "execution_time": 2.2,
+        "latency": 3.0,
+        "weight": 10,
+        "cache": -1,
+        "description": "Multi-purpose triton bident lance utilizing rotational wheel momentum for devastating piercing thrusts and wide sweeping strikes."
+      },
+      "legs": {
+        "id": "part_legs_apex_monowheel",
+        "name": "Apex Mono-Wheel",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 135,
+        "clock_speed": 1.55,
+        "direct_connect": 12,
+        "remote_uplink": -5,
+        "packet_loss": 8,
+        "protocol": "WHEELED",
+        "description": "Heavy-duty armored mono-wheel platform engineered with dual hydraulic forks and high-torque gyros for high-speed charges and responsive drift maneuvers."
       }
     }
   }
