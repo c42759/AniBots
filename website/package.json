@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"start": "next start",
+		"start": "serve build",
 		"lint": "eslint",
 		"dev:vinext": "vite dev --port 3001",
 		"build:vinext": "vite build",
@@ -21,6 +21,7 @@
 		"@tailwindcss/postcss": "^4",
 		"eslint": "^9",
 		"eslint-config-next": "16.3.4",
+		"serve": "^14.2.6",
 		"tailwindcss": "^4"
 	}
 }

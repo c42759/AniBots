@@ -303,23 +303,26 @@ func _tick_cooldown_phase(delta: float) -> void:
 	var eff_cooling := get_effective_cooling()
 	var eff_latency := Types.calculate_effective_latency(base_latency, eff_cooling, is_overweight())
 	
-	var return_speed := 1.8 / maxf(1.0, eff_latency)
+	# Paced return (2.5 - 4.0s based on latency)
+	var return_speed := 0.55 / maxf(1.5, eff_latency)
 	if int(part_integrities.get(Types.PartSlot.LEGS, 0)) <= 0:
 		return_speed *= 0.5
 		
 	track_progress -= return_speed * delta
 	position.x = lerp(base_line_x, center_line_x, track_progress)
 	
-	action_bar = clampf(track_progress * 100.0, 0.0, 100.0)
+	# Return trip IS the recharge: fills 0 to 100% as bot runs back to base
+	action_bar = clampf((1.0 - track_progress) * 100.0, 0.0, 100.0)
 	
 	if track_progress <= 0.0:
 		track_progress = 0.0
 		position.x = base_line_x
-		action_bar = 0.0
+		action_bar = 100.0
 		override_guard_active = false
-		current_phase = Types.CombatPhase.WAIT
+		current_phase = Types.CombatPhase.COMMAND
 		phase_changed.emit(self, current_phase)
 		returned_to_base.emit(self)
+		command_ready.emit(self)
 
 func assign_command(slot: int, is_overclock: bool, opponent: CombatUnit3D = null) -> void:
 	selected_action_slot = slot

@@ -194,18 +194,22 @@ func _apply_damage_and_resolve() -> Dictionary:
 		
 	var damage: int = maxi(int(pwr - int(firewall * 0.5)), 5)
 	
-	# Use Utility AI target_override if valid and above 0 HP, else pick surviving slot
-	var valid_slots: Array = []
-	for s in [Types.PartSlot.HEAD, Types.PartSlot.LEFT_ARM, Types.PartSlot.RIGHT_ARM, Types.PartSlot.LEGS, Types.PartSlot.TORSO]:
-		var cur_val: int = int(def_integrities.get(s, def_integrities.get(str(s), 50)))
-		if cur_val > 0:
-			valid_slots.append(s)
-			
-	var target_slot: int = Types.PartSlot.HEAD
-	if target_override in valid_slots:
-		target_slot = target_override
-	elif valid_slots.size() > 0:
-		target_slot = int(valid_slots[randi() % valid_slots.size()])
+	var att_chip_id: String = str(att_state.get("config", {}).get("chip_id", att_state.get("chip_id", "")))
+	var def_legs_id: String = str(def_state.get("config", {}).get("parts", {}).get("legs", {}).get("part_id", ""))
+	var def_legs_cat: Dictionary = Types.PARTS_CATALOG.get(def_legs_id, {})
+	var def_eva: int = int(def_legs_cat.get("packet_loss", 15))
+	var att_precision: int = int(action_part.get("precision", 90))
+	var target_result: Dictionary = Types.calculate_target_part_with_head_protection(
+		att_chip_id,
+		is_ult,
+		bool(att_state.get("guaranteed_crit_next", false)),
+		att_precision,
+		def_eva,
+		def_integrities,
+		target_override
+	)
+	var target_slot: int = int(target_result.get("target_slot", Types.PartSlot.HEAD))
+	var was_diverted: bool = bool(target_result.get("was_diverted", false))
 	
 	var cur_hp: int = int(def_integrities.get(target_slot, def_integrities.get(str(target_slot), 50)))
 	var new_hp: int = maxi(0, cur_hp - damage)
@@ -237,13 +241,15 @@ func _apply_damage_and_resolve() -> Dictionary:
 	var att_name: String = str(attacker_config.get("bot_name", "AniBot"))
 	var def_name: String = str(defender_config.get("bot_name", "Opponent"))
 	var crit_tag := " [CRIT!]" if is_crit else ""
-	var log_msg := "%s strikes with %s%s! Dealt %d damage to %s's %s!" % [
+	var guard_tag := " [AUTONOMOUS HEAD GUARD: Intercepted by %s!]" % slot_name if was_diverted else ""
+	var log_msg := "%s strikes with %s%s! Dealt %d damage to %s's %s!%s" % [
 		att_name,
 		action_part.get("name", "Attack"),
 		crit_tag,
 		damage,
 		def_name,
-		slot_name
+		slot_name,
+		guard_tag
 	]
 	if is_destroyed:
 		log_msg += " [%s DISABLED!]" % slot_name
