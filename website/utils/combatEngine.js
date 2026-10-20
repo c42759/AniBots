@@ -587,22 +587,30 @@ export function resolveCenterLineClash({
  * For blank-slate custom bots, the avatar is derived from the head slot origin chassis.
  */
 export function getBotAvatarUrl(botConfig, anibotsList = []) {
-  if (!botConfig) return '/images/anibots/SCB-01.jpg';
-  if (botConfig.image) return botConfig.image;
+  if (!botConfig) return '/images/anibots/SCB-01_avatar.jpg';
+  if (botConfig.avatar) return botConfig.avatar;
+  
   const modelCode = botConfig.model_code || botConfig.modelCode;
   if (modelCode && modelCode !== 'MOD-CUSTOM') {
-    return `/images/anibots/${modelCode}.jpg`;
+    return `/images/anibots/${modelCode}_avatar.jpg`;
   }
 
   // Blank-slate custom bot: base avatar on head slot selected
   const headBotName = botConfig.parts?.head?.botName;
   if (headBotName && anibotsList.length > 0) {
     const matched = anibotsList.find((b) => b.name === headBotName);
-    if (matched?.image) return matched.image;
-    if (matched?.model_code) return `/images/anibots/${matched.model_code}.jpg`;
+    if (matched?.avatar) return matched.avatar;
+    if (matched?.model_code) return `/images/anibots/${matched.model_code}_avatar.jpg`;
+    if (matched?.image) return matched.image.replace('.jpg', '_avatar.jpg');
   }
 
-  return '/images/anibots/SCB-01.jpg';
+  if (botConfig.image) {
+    return botConfig.image.includes('_avatar.jpg')
+      ? botConfig.image
+      : botConfig.image.replace('.jpg', '_avatar.jpg');
+  }
+
+  return '/images/anibots/SCB-01_avatar.jpg';
 }
 
 /**

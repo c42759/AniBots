@@ -485,17 +485,41 @@ export default function SimulationReportPage() {
             </div>
 
             {/* Currently Simulating Matchup Sub-HUD */}
-            {currentMatchup && (
-              <div className="text-[11px] font-mono text-muted flex items-center justify-between pt-0.5">
-                <span>
-                  Simulating: <span className="text-foreground font-semibold">{currentMatchup.botA}</span> vs{' '}
-                  <span className="text-foreground font-semibold">{currentMatchup.botB}</span>
-                </span>
-                <span>
-                  Round {currentMatchup.round} / {currentMatchup.totalRounds}
-                </span>
-              </div>
-            )}
+            {currentMatchup && (() => {
+              const botAObj = anibotsData.find((b) => b.name === currentMatchup.botA);
+              const botBObj = anibotsData.find((b) => b.name === currentMatchup.botB);
+              return (
+                <div className="text-[11px] font-mono text-muted flex items-center justify-between pt-0.5">
+                  <div className="flex items-center gap-2">
+                    <span>Simulating:</span>
+                    <div className="flex items-center gap-1">
+                      {botAObj && (
+                        <img
+                          src={getBotAvatarUrl(botAObj, anibotsData)}
+                          alt={botAObj.name}
+                          className="w-4 h-4 rounded-xs object-cover border border-border"
+                        />
+                      )}
+                      <span className="text-foreground font-semibold">{currentMatchup.botA}</span>
+                    </div>
+                    <span className="text-accent font-bold">VS</span>
+                    <div className="flex items-center gap-1">
+                      {botBObj && (
+                        <img
+                          src={getBotAvatarUrl(botBObj, anibotsData)}
+                          alt={botBObj.name}
+                          className="w-4 h-4 rounded-xs object-cover border border-border"
+                        />
+                      )}
+                      <span className="text-foreground font-semibold">{currentMatchup.botB}</span>
+                    </div>
+                  </div>
+                  <span>
+                    Round {currentMatchup.round} / {currentMatchup.totalRounds}
+                  </span>
+                </div>
+              );
+            })()}
           </div>
         </div>
 
