@@ -9,6 +9,8 @@ quote: If the council finds out what Vault 7 truly holds, neither humans nor mac
 order: 6
 ---
 
+![Ty Ato](/images/characters/ty_ato.jpg)
+
 ## The Legacy of 3043 AD
 Four years prior to the events of AniBots, Kura's father vanished and was later confirmed dead under suspicious circumstances. Formerly a brilliant robotics researcher and investigator, he had spent years probing the Anode Group's black-market hardware smuggling and the suppressed history of the 176 Ancient Series cores.
 

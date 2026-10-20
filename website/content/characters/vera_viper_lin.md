@@ -12,6 +12,8 @@ quote: "You think your shiny city rules matter in The Pit? Let's see your machin
 order: 8
 ---
 
+![Vera 'Viper' Lin](/images/characters/vera_viper_lin.jpg)
+
 ## Overview
 Vera "Viper" Lin is Magnus's top enforcer and the ruthless ringmaster of **The Pit**, the most notorious illegal underground combat circuit in Rust-Ridge. Sharp-tongued, observant, and deadly with chemical weaponry, Vera weeds out weak contenders and recruits desperate talent for the syndicate.
 

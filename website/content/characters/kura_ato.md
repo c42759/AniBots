@@ -12,6 +12,10 @@ quote: "Bare metal is just hardware. The Anima Chip is the soul that wakes the b
 order: 1
 ---
 
+![Kura Ato](/images/characters/kura_ato.jpg)
+
+![Kura Ato](/images/characters/kura_ato_2.jpg)
+
 ## Overview
 Kura is an independent, resourceful 16-year-old living with his mother in Neo Metropolis District 4. His father passed away under mysterious circumstances 4 years prior (3043 AD), leaving behind an unpowered AniBot chassis (`anibot_zerdata`). To support his family, Kura works odd delivery and construction jobs while working as a talented freelance AniBot mechanic for locals.
 

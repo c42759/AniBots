@@ -10,6 +10,8 @@ quote: Your father always said the heart of a machine reflects the heart of the 
 order: 5
 ---
 
+![Raya Ato](/images/characters/raya_ato.jpg)
+
 ## Overview
 Raya Ato is Kura's warm, resilient mother. Following her husband's tragic and mysterious death 4 years prior (3043 AD), Raya has fought tirelessly to keep the Ato Family Workshop open, managing inventory accounts and taking on customer relations while Kura handles physical repairs.
 

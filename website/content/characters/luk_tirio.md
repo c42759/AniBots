@@ -12,6 +12,8 @@ quote: One day, Kura, we are gonna settle this on the grand stage of the World C
 order: 3
 ---
 
+![Luccas 'Luk' Tirio](/images/characters/luccas_luk_tirio.jpg)
+
 ## Overview
 Luccas "Luk" Tirio is Kura's energetic, competitive best friend and rival. Coming from a well-to-do family, Luk could easily afford elite commercial gear, but prefers earning his victories through intense training and honorable battles. He frequently volunteers to help Kura on odd jobs at the workshop, stubbornly refusing any financial compensation.
 

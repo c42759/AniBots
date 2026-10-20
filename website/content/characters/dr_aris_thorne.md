@@ -9,6 +9,8 @@ quote: They called them tools. But on the day Vault 7 opened, I saw they were ou
 order: 9
 ---
 
+![Dr. Aris Thorne](/images/characters/dr_aris_thorne.jpg)
+
 ## Overview
 Born in **2965 AD**, Dr. Aris Thorne is the legendary architect of the **176 Ancient Series AniChips**. Appointed Lead Scientist of the Generation 0 Initiative in 2995 AD, he unlocked the stabilization of geological Anima Stones.
 
