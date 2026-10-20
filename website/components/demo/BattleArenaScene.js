@@ -696,15 +696,23 @@ export const BattleArenaScene = ({
                     : 'border-border bg-surface/80'
                 }`}
               >
-                <div className="flex items-center justify-between text-[10px] mb-0.5">
-                  <span className="font-bold text-foreground truncate flex items-center gap-1">
-                    {u.isLeader && <span>👑</span>}
-                    {u.name}
-                  </span>
+                <div className="flex items-center justify-between text-[10px] mb-1 gap-1">
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <img
+                      src={getBotAvatarUrl(u, anibotsData)}
+                      alt={u.name}
+                      className="w-5 h-5 rounded-xs object-cover border border-border/80 shrink-0 bg-background"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                    <span className="font-bold text-foreground truncate flex items-center gap-1">
+                      {u.isLeader && <span>👑</span>}
+                      {u.name}
+                    </span>
+                  </div>
                   {isDead ? (
-                    <span className="text-[8px] text-rose-400 font-bold">DISABLED</span>
+                    <span className="text-[8px] text-rose-400 font-bold shrink-0">DISABLED</span>
                   ) : (
-                    <span className="text-[9px] text-accent font-semibold">{u.overclockGauge}% OC</span>
+                    <span className="text-[9px] text-accent font-semibold shrink-0">{u.overclockGauge}% OC</span>
                   )}
                 </div>
                 {/* 5 Part Mini Integrity Bars */}
@@ -752,16 +760,24 @@ export const BattleArenaScene = ({
                   isDead ? 'border-border/40 bg-surface/30 opacity-60' : 'border-border bg-surface/80'
                 }`}
               >
-                <div className="flex items-center justify-between text-[10px] mb-0.5">
+                <div className="flex items-center justify-between text-[10px] mb-1 gap-1">
                   {isDead ? (
-                    <span className="text-[8px] text-rose-400 font-bold">DISABLED</span>
+                    <span className="text-[8px] text-rose-400 font-bold shrink-0">DISABLED</span>
                   ) : (
-                    <span className="text-[9px] text-rose-400 font-semibold">{u.overclockGauge}% OC</span>
+                    <span className="text-[9px] text-rose-400 font-semibold shrink-0">{u.overclockGauge}% OC</span>
                   )}
-                  <span className="font-bold text-foreground truncate flex items-center gap-1">
-                    {u.name}
-                    {u.isLeader && <span>👑</span>}
-                  </span>
+                  <div className="flex items-center gap-1.5 min-w-0 justify-end">
+                    <span className="font-bold text-foreground truncate flex items-center gap-1">
+                      {u.name}
+                      {u.isLeader && <span>👑</span>}
+                    </span>
+                    <img
+                      src={getBotAvatarUrl(u, anibotsData)}
+                      alt={u.name}
+                      className="w-5 h-5 rounded-xs object-cover border border-border/80 shrink-0 bg-background"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                    />
+                  </div>
                 </div>
                 {/* 5 Part Mini Integrity Bars */}
                 <div className="grid grid-cols-5 gap-1">
