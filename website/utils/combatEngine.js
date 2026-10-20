@@ -218,6 +218,88 @@ export function parseAttackType(typeStr, slot) {
 }
 
 /**
+ * Extract canonical affinity array for a part.
+ */
+export function getPartAffinities(part, slot) {
+  if (Array.isArray(part?.affinity) && part.affinity.length > 0) {
+    return part.affinity.map((a) => String(a).toUpperCase());
+  }
+  if (typeof part?.affinity === 'string' && part.affinity.trim()) {
+    return [part.affinity.trim().toUpperCase()];
+  }
+  const fallbackType = parseAttackType(part?.type, slot);
+  return [fallbackType];
+}
+
+/**
+ * Resolves attack target bot and part slot based on Part Affinity Matching rule:
+ * 1. Checks all living parts on all living opponent bots for shared affinity.
+ * 2. If >= 1 matching parts found across opponent team, pick one at random.
+ * 3. If none found, pick a random living bot and random living part on that bot.
+ */
+export function resolveAffinityTarget(actionPart, actionSlot, livingOpponents) {
+  if (!livingOpponents || livingOpponents.length === 0) return null;
+
+  const attackerAffinities = getPartAffinities(actionPart, actionSlot);
+  const matchingCandidates = [];
+  const allActiveCandidates = [];
+
+  livingOpponents.forEach((opp) => {
+    const activeSlots = [
+      PartSlot.HEAD,
+      PartSlot.LEFT_ARM,
+      PartSlot.RIGHT_ARM,
+      PartSlot.TORSO,
+      PartSlot.LEGS,
+    ].filter((s) => (opp.integrities[s] || 0) > 0);
+
+    activeSlots.forEach((slot) => {
+      let partObj = null;
+      if (slot === PartSlot.HEAD) partObj = opp.parts.head;
+      else if (slot === PartSlot.LEFT_ARM) partObj = opp.parts.leftArm;
+      else if (slot === PartSlot.RIGHT_ARM) partObj = opp.parts.rightArm;
+      else if (slot === PartSlot.TORSO) partObj = opp.parts.torso;
+      else if (slot === PartSlot.LEGS) partObj = opp.parts.legs;
+
+      const oppAffinities = getPartAffinities(partObj, slot);
+      const isMatch = attackerAffinities.some((a) => oppAffinities.includes(a));
+
+      const candidate = {
+        targetBot: opp,
+        targetBotIndex: opp.teamIndex,
+        targetSlot: slot,
+        targetPart: partObj,
+        isAffinityMatch: isMatch,
+      };
+
+      allActiveCandidates.push(candidate);
+      if (isMatch) {
+        matchingCandidates.push(candidate);
+      }
+    });
+  });
+
+  // If >= 1 matching parts found across opponent squad, choose randomly among them
+  if (matchingCandidates.length > 0) {
+    const chosen = matchingCandidates[Math.floor(Math.random() * matchingCandidates.length)];
+    return chosen;
+  }
+
+  // Fallback: choose a random living bot, and a random living part on that bot
+  if (allActiveCandidates.length > 0) {
+    const randomBot = livingOpponents[Math.floor(Math.random() * livingOpponents.length)];
+    const randomBotActive = allActiveCandidates.filter((c) => c.targetBotIndex === randomBot.teamIndex);
+    const chosen =
+      randomBotActive.length > 0
+        ? randomBotActive[Math.floor(Math.random() * randomBotActive.length)]
+        : allActiveCandidates[Math.floor(Math.random() * allActiveCandidates.length)];
+    return { ...chosen, isAffinityMatch: false };
+  }
+
+  return null;
+}
+
+/**
  * Initialize a combat unit state from bot config and chip.
  */
 export function createCombatUnitState(botConfig, chipConfig, isPlayerSide) {

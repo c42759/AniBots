@@ -15,14 +15,19 @@ import {
   getBotAvatarUrl,
   TERRAINS,
   getTerrainModifiers,
+  resolveAffinityTarget,
+  getPartAffinities,
 } from '../../utils/combatEngine';
 import { battleAudio } from '../../utils/battleAudio';
 import { BattleCanvas } from './BattleCanvas';
 
 export const BattleArenaScene = ({
   playerConfig,
+  playerTeam,
   opponentConfig,
+  opponentTeam,
   terrain,
+  teamSize = 1,
   autoBattle,
   onToggleAutoBattle,
   isMuted,
@@ -31,42 +36,79 @@ export const BattleArenaScene = ({
   onToggleFullscreen,
   onBattleEnd,
 }) => {
-  // Initial unit models
-  const initialPlayerUnit = useMemo(() => createCombatUnitState(playerConfig.botConfig, playerConfig.chipConfig, true), [playerConfig]);
-  const initialEnemyUnit = useMemo(() => createCombatUnitState(opponentConfig.botConfig, opponentConfig.chipConfig, false), [opponentConfig]);
-  const activeTerrain = useMemo(() => terrain || opponentConfig?.terrain || TERRAINS[0], [terrain, opponentConfig]);
+  // Normalize team arrays
+  const initialPlayerConfigs = useMemo(() => {
+    if (playerTeam && playerTeam.length > 0) return playerTeam;
+    return [playerConfig];
+  }, [playerTeam, playerConfig]);
 
-  // Mutable simulation refs for 60 FPS Canvas rendering without React lag
-  const playerUnitRef = useRef(initialPlayerUnit);
-  const enemyUnitRef = useRef(initialEnemyUnit);
+  const initialOpponentConfigs = useMemo(() => {
+    if (opponentTeam && opponentTeam.length > 0) return opponentTeam;
+    return [opponentConfig];
+  }, [opponentTeam, opponentConfig]);
+
+  const initialPlayerUnits = useMemo(() => {
+    return initialPlayerConfigs.map((cfg, idx) => {
+      const u = createCombatUnitState(cfg.botConfig, cfg.chipConfig, true);
+      u.isLeader = idx === 0;
+      u.teamIndex = idx;
+      return u;
+    });
+  }, [initialPlayerConfigs]);
+
+  const initialEnemyUnits = useMemo(() => {
+    return initialOpponentConfigs.map((cfg, idx) => {
+      const u = createCombatUnitState(cfg.botConfig, cfg.chipConfig, false);
+      u.isLeader = idx === 0;
+      u.teamIndex = idx;
+      return u;
+    });
+  }, [initialOpponentConfigs]);
+
+  const activeTerrain = useMemo(() => {
+    return terrain || initialOpponentConfigs[0]?.terrain || TERRAINS[0];
+  }, [terrain, initialOpponentConfigs]);
+
+  // Simulation Refs
+  const playerUnitsRef = useRef(initialPlayerUnits);
+  const enemyUnitsRef = useRef(initialEnemyUnits);
   const trapsRef = useRef({ playerTrap: null, enemyTrap: null });
   const fxRef = useRef({ shake: 0, particles: [], popups: [] });
 
-  // Discrete React state for HUD ribbons and command menu
-  const [playerHud, setPlayerHud] = useState(() => ({
-    name: initialPlayerUnit.name,
-    chip: initialPlayerUnit.chip,
-    parts: initialPlayerUnit.parts,
-    integrities: { ...initialPlayerUnit.integrities },
-    maxIntegrities: { ...initialPlayerUnit.maxIntegrities },
-    overclockGauge: initialPlayerUnit.overclockGauge,
-    headCacheRemaining: initialPlayerUnit.headCacheRemaining,
-  }));
+  // HUD State for all team members
+  const [playerHudUnits, setPlayerHudUnits] = useState(() => {
+    return initialPlayerUnits.map((u) => ({
+      name: u.name,
+      chip: u.chip,
+      parts: u.parts,
+      integrities: { ...u.integrities },
+      maxIntegrities: { ...u.maxIntegrities },
+      overclockGauge: u.overclockGauge,
+      headCacheRemaining: u.headCacheRemaining,
+      isLeader: u.isLeader,
+      teamIndex: u.teamIndex,
+    }));
+  });
 
-  const [enemyHud, setEnemyHud] = useState(() => ({
-    name: initialEnemyUnit.name,
-    chip: initialEnemyUnit.chip,
-    integrities: { ...initialEnemyUnit.integrities },
-    maxIntegrities: { ...initialEnemyUnit.maxIntegrities },
-    overclockGauge: initialEnemyUnit.overclockGauge,
-  }));
+  const [enemyHudUnits, setEnemyHudUnits] = useState(() => {
+    return initialEnemyUnits.map((u) => ({
+      name: u.name,
+      chip: u.chip,
+      integrities: { ...u.integrities },
+      maxIntegrities: { ...u.maxIntegrities },
+      overclockGauge: u.overclockGauge,
+      isLeader: u.isLeader,
+      teamIndex: u.teamIndex,
+    }));
+  });
 
-  const [combatLogs, setCombatLogs] = useState([
-    `[RELAY ARENA] 1v1 Sparring Duel initiated: ${playerConfig.botConfig.name} vs ${opponentConfig.botConfig.name}!`,
-    `[TERRAIN] Neo Metropolis Street (Paved Asphalt). Ready your AniBots!`,
+  const [combatLogs, setCombatLogs] = useState(() => [
+    `[RELAY ARENA] ${teamSize}v${teamSize} Combat initiated: ${initialPlayerUnits[0].name} Squad vs ${initialEnemyUnits[0].name} Squad!`,
+    `[LEADER RULE] Eliminating the enemy Leader Head (👑 Unit 1) wins the match immediately!`,
+    `[TERRAIN] ${activeTerrain.name}. Ready your AniBots!`,
   ]);
 
-  const [commandMenuOpen, setCommandMenuOpen] = useState(false);
+  const [commandUnitIndex, setCommandUnitIndex] = useState(null); // Which player unit is awaiting command
   const [countdown, setCountdown] = useState(3);
   const [damagedPartFlash, setDamagedPartFlash] = useState(null);
 
@@ -77,9 +119,9 @@ export const BattleArenaScene = ({
   const hitStopRef = useRef(0);
   const damageFlashTimerRef = useRef(null);
 
-  const triggerDamageFlash = useCallback((isDefenderPlayer, slot) => {
+  const triggerDamageFlash = useCallback((isDefenderPlayer, unitIdx, slot) => {
     if (damageFlashTimerRef.current) clearTimeout(damageFlashTimerRef.current);
-    setDamagedPartFlash({ isPlayer: isDefenderPlayer, slot });
+    setDamagedPartFlash({ isPlayer: isDefenderPlayer, unitIdx, slot });
     damageFlashTimerRef.current = setTimeout(() => {
       setDamagedPartFlash(null);
     }, 1400);
@@ -128,22 +170,30 @@ export const BattleArenaScene = ({
   }, []);
 
   const syncHud = useCallback(() => {
-    setPlayerHud({
-      name: playerUnitRef.current.name,
-      chip: playerUnitRef.current.chip,
-      parts: playerUnitRef.current.parts,
-      integrities: { ...playerUnitRef.current.integrities },
-      maxIntegrities: { ...playerUnitRef.current.maxIntegrities },
-      overclockGauge: playerUnitRef.current.overclockGauge,
-      headCacheRemaining: playerUnitRef.current.headCacheRemaining,
-    });
-    setEnemyHud({
-      name: enemyUnitRef.current.name,
-      chip: enemyUnitRef.current.chip,
-      integrities: { ...enemyUnitRef.current.integrities },
-      maxIntegrities: { ...enemyUnitRef.current.maxIntegrities },
-      overclockGauge: enemyUnitRef.current.overclockGauge,
-    });
+    setPlayerHudUnits(
+      playerUnitsRef.current.map((u) => ({
+        name: u.name,
+        chip: u.chip,
+        parts: u.parts,
+        integrities: { ...u.integrities },
+        maxIntegrities: { ...u.maxIntegrities },
+        overclockGauge: u.overclockGauge,
+        headCacheRemaining: u.headCacheRemaining,
+        isLeader: u.isLeader,
+        teamIndex: u.teamIndex,
+      }))
+    );
+    setEnemyHudUnits(
+      enemyUnitsRef.current.map((u) => ({
+        name: u.name,
+        chip: u.chip,
+        integrities: { ...u.integrities },
+        maxIntegrities: { ...u.maxIntegrities },
+        overclockGauge: u.overclockGauge,
+        isLeader: u.isLeader,
+        teamIndex: u.teamIndex,
+      }))
+    );
   }, []);
 
   useEffect(() => {
@@ -158,25 +208,61 @@ export const BattleArenaScene = ({
     setTimeout(() => {
       onBattleEnd({
         playerWon,
-        playerUnit: playerUnitRef.current,
-        enemyUnit: enemyUnitRef.current,
+        playerUnit: playerUnitsRef.current[0],
+        playerTeam: playerUnitsRef.current,
+        enemyUnit: enemyUnitsRef.current[0],
+        enemyTeam: enemyUnitsRef.current,
       });
     }, 1800);
   }, [onBattleEnd]);
 
   // Center-Line Clash Resolution
-  const handleReachedCenterLine = useCallback((attacker, isPlayer) => {
-    const defender = isPlayer ? enemyUnitRef.current : playerUnitRef.current;
-    const traps = trapsRef.current;
-    const centerX = 360; // relative canvas mid
+  const handleReachedCenterLine = useCallback((attacker, isPlayer, attackerIdx) => {
+    const opponentUnits = isPlayer ? enemyUnitsRef.current : playerUnitsRef.current;
+    const livingOpponents = opponentUnits.filter((u) => (u.integrities[PartSlot.HEAD] || 0) > 0);
 
-    // 1. Trap check
+    if (livingOpponents.length === 0) {
+      handleMatchEnd(isPlayer);
+      return;
+    }
+
+    const part = attacker.selectedActionPart || {};
+    const actType = parseAttackType(part.type, attacker.selectedActionSlot);
+
+    // Resolve Affinity Targeting across ALL living opponent units
+    const targetResult = resolveAffinityTarget(
+      part,
+      attacker.selectedActionSlot,
+      livingOpponents
+    );
+
+    let defender = null;
+    let targetSlotOverride = undefined;
+
+    if (targetResult) {
+      defender = targetResult.targetBot;
+      targetSlotOverride = targetResult.targetSlot;
+      if (targetResult.isAffinityMatch) {
+        addLog(
+          `🎯 [AFFINITY LOCK] ${attacker.name}'s ${part.name} [${SlotNames[attacker.selectedActionSlot]}] matched & targeted ${defender.name}'s ${SlotNames[targetSlotOverride]}!`
+        );
+      } else {
+        addLog(
+          `🎲 [RANDOM RETARGET] No matching affinity found. ${attacker.name}'s ${part.name} randomly targeted ${defender.name}'s ${SlotNames[targetSlotOverride]}!`
+        );
+      }
+    } else {
+      defender = livingOpponents.find((u) => u.isLeader) || livingOpponents[0];
+    }
+
+    const traps = trapsRef.current;
+    const centerX = 360;
+
+    // Trap check
     const activeTrap = isPlayer ? traps.playerTrap : traps.enemyTrap;
     if (activeTrap) {
       battleAudio.playTrapExplosion();
       fxRef.current.shake = 1.0;
-
-      // Add shockwave ring particle
       fxRef.current.particles.push({
         x: centerX,
         y: 135,
@@ -204,117 +290,101 @@ export const BattleArenaScene = ({
         life: 1.0,
       });
 
-      triggerDamageFlash(isPlayer, PartSlot.LEGS);
+      triggerDamageFlash(isPlayer, attackerIdx, PartSlot.LEGS);
       syncHud();
-      if (attacker.integrities[PartSlot.HEAD] <= 0) {
+
+      // Check if Leader Head was destroyed by trap
+      if (attacker.isLeader && attacker.integrities[PartSlot.HEAD] <= 0) {
+        addLog(`💀 CRITICAL SYSTEM FAILURE! ${attacker.name}'s Leader Head destroyed by trap!`);
         handleMatchEnd(!isPlayer);
       }
       return;
     }
 
-    const part = attacker.selectedActionPart || {};
-    const actType = parseAttackType(part.type, attacker.selectedActionSlot);
-
-    // 1.5. NO FEATURE: Part destroyed mid-sprint before reaching center line (Medabots canonical rule)
+    // Part destroyed mid-sprint
     if (!attacker.isUlt && (attacker.integrities[attacker.selectedActionSlot] ?? 0) <= 0) {
       const destroyedSlotName = SlotNames[attacker.selectedActionSlot] || 'PART';
-      addLog(`⚠️ NO FEATURE! ${attacker.name}'s [${part.name || destroyedSlotName}] was destroyed mid-sprint! Action failed.`);
-      battleAudio.playClick();
+      addLog(`⚠️ ACTION ABORTED! ${attacker.name}'s ${destroyedSlotName} was destroyed in transit! Strike failed.`);
+      battleAudio.playDefeat();
       fxRef.current.popups.push({
         x: centerX,
         y: 110,
-        damage: 'NO FEATURE',
+        damage: 'BROKEN',
         slotName: destroyedSlotName,
         isCrit: false,
         life: 1.2,
       });
-      for (let i = 0; i < 6; i++) {
-        fxRef.current.particles.push({
-          x: centerX + (Math.random() - 0.5) * 20,
-          y: 135 + (Math.random() - 0.5) * 20,
-          vx: (Math.random() - 0.5) * 2,
-          vy: -Math.random() * 2,
-          type: 'spark',
-          size: 3,
-          color: '#71717a',
-          life: 0.8,
-        });
-      }
       syncHud();
       return;
     }
 
-    // 2. Logic Trap Placement
-    if (!attacker.isUlt && actType === AttackType.TRAP) {
-      if (isPlayer) traps.enemyTrap = part;
-      else traps.playerTrap = part;
-      addLog(`⚙️ ${attacker.name} deployed [${part.name}] on the Center Line!`);
-      battleAudio.playClick();
-      return;
-    }
-
-    // 3. Support Scanner Buff
-    if (!attacker.isUlt && actType === AttackType.SUPPORT && (part.payload || 0) <= 0) {
-      attacker.guaranteedCritNext = true;
-      addLog(`📡 ${attacker.name} activated [${part.name}]! Next attack is 100% Critical!`);
-      battleAudio.playClick();
+    // Support Abilities
+    if (actType === AttackType.SUPPORT) {
+      battleAudio.playVictory();
+      const healAmt = part.payload || 35;
+      const targetHealSlot = PartSlot.TORSO;
+      attacker.integrities[targetHealSlot] = Math.min(
+        attacker.maxIntegrities[targetHealSlot],
+        (attacker.integrities[targetHealSlot] || 0) + healAmt
+      );
+      addLog(`💚 ${attacker.name} activated ${part.name || 'Emergency Repair'}! Restored +${healAmt} HP to Torso.`);
+      fxRef.current.popups.push({
+        x: isPlayer ? 100 : 620,
+        y: 120,
+        damage: `+${healAmt} HP`,
+        slotName: 'TORSO',
+        isCrit: true,
+        life: 1.0,
+      });
       syncHud();
       return;
     }
 
-    // 4. Attack Strike Resolution
-    const targetSlot = evaluateUtilityAITargetSlot(attacker.chip, defender);
+    // Trap Deployment
+    if (actType === AttackType.TRAP) {
+      battleAudio.playClick();
+      if (isPlayer) traps.playerTrap = part;
+      else traps.enemyTrap = part;
+      addLog(`⚡ ${attacker.name} laid ${part.name} across the Center Line! Enemy sprint will detonate on contact.`);
+      syncHud();
+      return;
+    }
 
+    // Execute Offensive Clash against Defender
     const result = resolveCenterLineClash({
       attacker,
       defender,
       actionPart: part,
       isUlt: attacker.isUlt,
-      targetSlotOverride: targetSlot,
+      targetSlotOverride,
     });
 
-    // Sound FX & animations
-    if (result.isCrit || attacker.isUlt) battleAudio.playCrit();
-    else if (actType === AttackType.MELEE) battleAudio.playSlash();
-    else battleAudio.playHit();
-
-    fxRef.current.shake = result.isCrit ? 0.9 : 0.5;
-
-    // Add Canvas Combat Particles (Central clash plane)
-    const targetX = isPlayer ? 390 : 330;
-    const targetY = 135;
-
-    if (actType === AttackType.MELEE || attacker.isUlt) {
-      fxRef.current.particles.push({
-        x: targetX,
-        y: targetY,
-        vx: 0,
-        vy: 0,
-        type: 'slash',
-        radius: 28,
-        angle: isPlayer ? -0.8 : 2.2,
-        color: result.isCrit ? '#f59e0b' : '#38bdf8',
-        life: 1.0,
-      });
+    if (result.isCrit) {
+      battleAudio.playCrit();
+      fxRef.current.shake = 1.0;
+    } else {
+      battleAudio.playLaser();
+      fxRef.current.shake = 0.5;
     }
 
-    // Hit sparks
+    // Visual particles
+    const targetX = isPlayer ? 580 : 140;
+    const targetY = 120;
     for (let i = 0; i < 8; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = 2 + Math.random() * 4;
       fxRef.current.particles.push({
         x: targetX,
         y: targetY,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        type: 'spark',
-        size: 2.5,
-        color: result.isCrit ? '#fbbf24' : '#ef4444',
+        vx: (Math.random() - 0.5) * 6,
+        vy: (Math.random() - 0.5) * 6,
+        type: result.isCrit ? 'slash' : 'spark',
+        radius: 20,
+        angle: Math.random() * Math.PI * 2,
+        color: result.isCrit ? '#f59e0b' : '#ef4444',
         life: 1.0,
+        size: 3 + Math.random() * 3,
       });
     }
 
-    // Canvas Floating Damage
     fxRef.current.popups.push({
       x: targetX,
       y: targetY - 20,
@@ -324,26 +394,36 @@ export const BattleArenaScene = ({
       life: 1.0,
     });
 
-    triggerDamageFlash(!isPlayer, result.targetSlot);
+    triggerDamageFlash(!isPlayer, defender.teamIndex, result.targetSlot);
 
     const ocTelemetry = result.isUlt
       ? ' [⚡ OVERCLOCK EXPENDED]'
       : ` [+5% OC to ${result.attackerName}, +${result.defenderOcGain}% OC to ${result.defenderName}]`;
 
     addLog(
-      `⚔️ ${result.attackerName} strikes with ${result.actionName}${result.isCrit && !result.isUlt ? ' [CRITICAL!]' : ''}! Dealt ${result.damage} damage to ${result.defenderName}'s ${result.targetSlotName}!${result.wasDiverted ? ' [AUTONOMOUS HEAD GUARD: Intercepted by limb]' : ''}${ocTelemetry}`
+      `⚔️ ${result.attackerName} strikes ${result.defenderName} with ${result.actionName}${result.isCrit && !result.isUlt ? ' [CRITICAL!]' : ''}! Dealt ${result.damage} damage to ${result.targetSlotName}!${result.wasDiverted ? ' [AUTONOMOUS HEAD GUARD]' : ''}${ocTelemetry}`
     );
 
     syncHud();
 
+    // LEADER ELIMINATION WIN/LOSS RULE
     if (result.isHeadDestroyed) {
-      addLog(`💀 CRITICAL SYSTEM FAILURE! ${result.defenderName}'s Head destroyed!`);
-      handleMatchEnd(isPlayer);
+      if (defender.isLeader) {
+        addLog(`💀 CRITICAL SYSTEM FAILURE! ${isPlayer ? 'Enemy' : 'Player'} LEADER [${defender.name}] Head Destroyed!`);
+        handleMatchEnd(isPlayer);
+      } else {
+        addLog(`⚠️ SUPPORT UNIT DISABLED! [${defender.name}] Head destroyed! Unit incapacitated.`);
+        // Check if all opponent units are defeated anyway
+        const remainingLiving = opponentUnits.filter((u) => (u.integrities[PartSlot.HEAD] || 0) > 0);
+        if (remainingLiving.length === 0) {
+          handleMatchEnd(isPlayer);
+        }
+      }
     }
   }, [addLog, handleMatchEnd, syncHud, triggerDamageFlash]);
 
   // Execute Command & Initiate Sprint
-  const executeCommand = useCallback((unit, slot, isUlt) => {
+  const executeCommand = useCallback((unit, slot, isUlt, targetUnitIdx = 0) => {
     let partData = {};
     if (isUlt) {
       const ult = unit.chip?.ultimate_abilities?.[0] || {};
@@ -377,11 +457,12 @@ export const BattleArenaScene = ({
     unit.selectedActionSlot = slot;
     unit.selectedActionPart = partData;
     unit.isUlt = isUlt;
+    unit.targetUnitIndex = targetUnitIdx;
     unit.currentPhase = CombatPhase.RUN;
     unit.trackProgress = 0;
-  }, [addLog]);
+  }, [addLog, syncHud]);
 
-  // Decoupled 60 FPS Physics Simulation Loop (Zero React Rerenders in Motion!)
+  // Decoupled 60 FPS Physics Simulation Loop
   useEffect(() => {
     let lastTime = performance.now();
     let animId;
@@ -390,13 +471,11 @@ export const BattleArenaScene = ({
       const delta = Math.min((currentTime - lastTime) / 1000, 0.1);
       lastTime = currentTime;
 
-      // Pause ATB during pre-battle 3-2-1 countdown
       if (countdownActiveRef.current) {
         animId = requestAnimationFrame(physicsLoop);
         return;
       }
 
-      // Hit-stop impact pause: freeze movement for 1.4s so players see what just happened
       if (hitStopRef.current > 0) {
         hitStopRef.current -= delta;
         animId = requestAnimationFrame(physicsLoop);
@@ -404,15 +483,23 @@ export const BattleArenaScene = ({
       }
 
       if (!battleOverRef.current) {
-        tickUnit(playerUnitRef.current, delta, true);
-        tickUnit(enemyUnitRef.current, delta, false);
+        playerUnitsRef.current.forEach((u, idx) => {
+          if ((u.integrities[PartSlot.HEAD] || 0) > 0) {
+            tickUnit(u, delta, true, idx);
+          }
+        });
+        enemyUnitsRef.current.forEach((u, idx) => {
+          if ((u.integrities[PartSlot.HEAD] || 0) > 0) {
+            tickUnit(u, delta, false, idx);
+          }
+        });
       }
 
       animId = requestAnimationFrame(physicsLoop);
     };
 
-    const tickUnit = (unit, delta, isPlayer) => {
-      if (unit.integrities[PartSlot.HEAD] <= 0) return;
+    const tickUnit = (unit, delta, isPlayer, unitIdx) => {
+      if ((unit.integrities[PartSlot.HEAD] || 0) <= 0) return;
 
       switch (unit.currentPhase) {
         case CombatPhase.WAIT: {
@@ -424,23 +511,27 @@ export const BattleArenaScene = ({
           if (unit.chip?.id === 'chip_spark') clockSpeed *= 1.25;
 
           const fillRate = clockSpeed * 28.0;
-          unit.actionBar = Math.min(100, unit.actionBar + fillRate * delta);
+          unit.actionBar = Math.min(100, (unit.actionBar || 0) + fillRate * delta);
 
           if (unit.actionBar >= 100) {
             if (isPlayer) {
               if (autoBattleRef.current) {
-                const choice = evaluateAIPartChoice(unit, enemyUnitRef.current, Boolean(trapsRef.current.enemyTrap));
-                executeCommand(unit, choice.slot, choice.isUlt);
+                const livingEnemies = enemyUnitsRef.current.filter((e) => (e.integrities[PartSlot.HEAD] || 0) > 0);
+                const targetDef = livingEnemies[0] || enemyUnitsRef.current[0];
+                const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.enemyTrap));
+                executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
               } else {
                 unit.currentPhase = CombatPhase.COMMAND;
                 syncHud();
-                setCommandMenuOpen(true);
+                setCommandUnitIndex(unitIdx);
                 battleAudio.playClick();
                 addLog(`[ATB CHARGED] ${unit.name} ready for command!`);
               }
             } else {
-              const choice = evaluateAIPartChoice(unit, playerUnitRef.current, Boolean(trapsRef.current.playerTrap));
-              executeCommand(unit, choice.slot, choice.isUlt);
+              const livingPlayers = playerUnitsRef.current.filter((p) => (p.integrities[PartSlot.HEAD] || 0) > 0);
+              const targetDef = livingPlayers[0] || playerUnitsRef.current[0];
+              const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.playerTrap));
+              executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
             }
           }
           break;
@@ -456,12 +547,12 @@ export const BattleArenaScene = ({
           runSpeed *= tMod.speedMult;
           if (unit.integrities[PartSlot.LEGS] <= 0) runSpeed *= 0.4;
 
-          unit.trackProgress = Math.min(1.0, unit.trackProgress + runSpeed * delta);
+          unit.trackProgress = Math.min(1.0, (unit.trackProgress || 0) + runSpeed * delta);
           if (unit.trackProgress >= 1.0) {
-            handleReachedCenterLine(unit, isPlayer);
+            handleReachedCenterLine(unit, isPlayer, unitIdx);
             unit.trackProgress = 1.0;
             unit.currentPhase = CombatPhase.COOLDOWN;
-            hitStopRef.current = 1.4; // 1.4s hit-stop impact freeze
+            hitStopRef.current = 1.4;
           }
           break;
         }
@@ -473,7 +564,7 @@ export const BattleArenaScene = ({
           let returnSpeed = 0.55 / effLatency;
           if (unit.integrities[PartSlot.LEGS] <= 0) returnSpeed *= 0.5;
 
-          unit.trackProgress = Math.max(0.0, unit.trackProgress - returnSpeed * delta);
+          unit.trackProgress = Math.max(0.0, (unit.trackProgress || 0) - returnSpeed * delta);
           unit.actionBar = Math.min(100, (1.0 - unit.trackProgress) * 100);
 
           if (unit.trackProgress <= 0.0) {
@@ -483,18 +574,22 @@ export const BattleArenaScene = ({
 
             if (isPlayer) {
               if (autoBattleRef.current) {
-                const choice = evaluateAIPartChoice(unit, enemyUnitRef.current, Boolean(trapsRef.current.enemyTrap));
-                executeCommand(unit, choice.slot, choice.isUlt);
+                const livingEnemies = enemyUnitsRef.current.filter((e) => (e.integrities[PartSlot.HEAD] || 0) > 0);
+                const targetDef = livingEnemies[0] || enemyUnitsRef.current[0];
+                const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.enemyTrap));
+                executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
               } else {
                 unit.currentPhase = CombatPhase.COMMAND;
                 syncHud();
-                setCommandMenuOpen(true);
+                setCommandUnitIndex(unitIdx);
                 battleAudio.playClick();
                 addLog(`[RECHARGED AT BASE] ${unit.name} returned home & ready for command!`);
               }
             } else {
-              const choice = evaluateAIPartChoice(unit, playerUnitRef.current, Boolean(trapsRef.current.playerTrap));
-              executeCommand(unit, choice.slot, choice.isUlt);
+              const livingPlayers = playerUnitsRef.current.filter((p) => (p.integrities[PartSlot.HEAD] || 0) > 0);
+              const targetDef = livingPlayers[0] || playerUnitsRef.current[0];
+              const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.playerTrap));
+              executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
             }
           }
           break;
@@ -507,302 +602,317 @@ export const BattleArenaScene = ({
 
     animId = requestAnimationFrame(physicsLoop);
     return () => cancelAnimationFrame(animId);
-  }, [executeCommand, handleReachedCenterLine, addLog, syncHud]);
+  }, [executeCommand, handleReachedCenterLine, addLog, syncHud, activeTerrain]);
 
-  // Player manual command handlers
+  // Player manual command handler
   const handleSelectAction = (slot, isUlt) => {
-    setCommandMenuOpen(false);
-    executeCommand(playerUnitRef.current, slot, isUlt);
+    if (commandUnitIndex === null) return;
+    const unit = playerUnitsRef.current[commandUnitIndex];
+    if (!unit) return;
+
+    // Pick target: active enemy leader or first living enemy
+    const livingEnemies = enemyUnitsRef.current.filter((e) => (e.integrities[PartSlot.HEAD] || 0) > 0);
+    const targetIdx = livingEnemies[0]?.teamIndex ?? 0;
+
+    setCommandUnitIndex(null);
+    executeCommand(unit, slot, isUlt, targetIdx);
     syncHud();
   };
 
+  const activeCommandUnit = commandUnitIndex !== null ? playerUnitsRef.current[commandUnitIndex] : null;
+
   return (
-    <div className="relative w-full h-full flex flex-col justify-between p-3 sm:p-5 bg-background font-mono text-xs overflow-hidden select-none">
-      {/* Top Match HUD Bar */}
-      <div className="flex items-center justify-between border-b border-border pb-2 bg-surface/80 px-3 py-1.5 z-20">
-        <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 bg-accent animate-pulse" />
-          <span className="font-bold text-foreground uppercase tracking-wider text-[11px]">
-            1v1 Combat Relay // {activeTerrain.icon} {activeTerrain.name}
+    <div className="relative w-full h-full flex flex-col justify-between p-2.5 sm:p-4 bg-background font-mono text-xs overflow-hidden select-none">
+      {/* Top Telemetry Header Ribbon */}
+      <div className="flex items-center justify-between border-b border-border pb-2 z-10 bg-background/80 backdrop-blur-xs">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[10px] uppercase font-bold text-muted">
+            Relay Arena • {teamSize}v{teamSize} Match • Terrain: {activeTerrain.name}
           </span>
         </div>
-
         <div className="flex items-center gap-2">
-          {/* Auto Battle Button */}
           <button
+            type="button"
             onClick={onToggleAutoBattle}
-            className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
+            className={`px-2.5 py-1 text-[10px] uppercase font-bold border transition-colors cursor-pointer ${
               autoBattle
-                ? 'bg-accent text-white border-accent shadow-sm'
-                : 'bg-background text-muted border-border hover:text-foreground'
+                ? 'bg-amber-500/20 border-amber-500 text-amber-400'
+                : 'bg-surface border-border text-muted hover:text-foreground'
             }`}
           >
-            Auto Battle: {autoBattle ? 'ON' : 'OFF'}
+            {autoBattle ? '🤖 Auto: ON' : '🎮 Auto: OFF'}
           </button>
-
-          {/* Sound Mute Button */}
           <button
+            type="button"
             onClick={onToggleMute}
-            className="px-2 py-1 text-[10px] uppercase border border-border bg-background text-muted hover:text-foreground cursor-pointer"
+            className="px-2 py-1 text-[10px] border border-border bg-surface text-muted hover:text-foreground cursor-pointer"
           >
-            {isMuted ? '🔇 Muted' : '🔊 SFX'}
+            {isMuted ? '🔇' : '🔊'}
           </button>
-
-          {/* Fullscreen Button */}
           <button
+            type="button"
             onClick={onToggleFullscreen}
-            className="px-2 py-1 text-[10px] uppercase border border-border bg-background text-muted hover:text-foreground cursor-pointer"
+            className="px-2 py-1 text-[10px] border border-border bg-surface text-muted hover:text-foreground cursor-pointer"
           >
-            {isFullscreen ? 'Exit Full' : '⛶ Fullscreen'}
+            {isFullscreen ? 'Exit Full' : '⛶'}
           </button>
         </div>
       </div>
 
-      {/* Main Relay Battlefield View (16:9 Aspect Canvas Arena) */}
-      <div className="relative flex-1 flex flex-col justify-between my-2 border border-border bg-black overflow-hidden">
-        {/* Pre-Battle Countdown Overlay */}
+      {/* Main Battle Canvas Viewport with Vertically Stacked Lanes */}
+      <div className="relative flex-1 my-1 border border-border bg-background overflow-hidden min-h-[220px]">
+        <BattleCanvas
+          playerUnitsRef={playerUnitsRef}
+          enemyUnitsRef={enemyUnitsRef}
+          trapsRef={trapsRef}
+          fxRef={fxRef}
+          terrain={activeTerrain}
+          teamSize={teamSize}
+        />
+
+        {/* 3-2-1 Countdown Overlay */}
         {countdown !== null && (
-          <div className="absolute inset-0 z-40 flex items-center justify-center bg-background/50 backdrop-blur-[2px] pointer-events-none select-none">
-            <div className="text-center animate-in zoom-in-75 duration-200">
-              <span className="text-[11px] uppercase tracking-widest text-muted block mb-1">
-                SYSTEM LINK ESTABLISHED // STANDBY
-              </span>
+          <div className="absolute inset-0 bg-background/70 backdrop-blur-xs flex items-center justify-center z-30">
+            <div className="text-4xl sm:text-6xl font-black text-accent tracking-widest uppercase animate-bounce">
+              {countdown}
+            </div>
+          </div>
+        )}
+
+        {/* Player Squad Ribbons (Left HUD) */}
+        <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-20 pointer-events-none max-w-[190px]">
+          {playerHudUnits.map((u, i) => {
+            const isDead = (u.integrities[PartSlot.HEAD] || 0) <= 0;
+            const isCommanding = commandUnitIndex === i;
+            return (
               <div
-                className={`font-black tracking-wider drop-shadow-[0_0_25px_rgba(255,79,51,0.8)] ${
-                  countdown === 'BATTLE!'
-                    ? 'text-5xl sm:text-7xl text-accent animate-bounce'
-                    : 'text-6xl sm:text-8xl text-foreground'
+                key={i}
+                className={`p-1.5 border backdrop-blur-md transition-all ${
+                  isCommanding
+                    ? 'border-accent bg-accent/20 ring-1 ring-accent'
+                    : isDead
+                    ? 'border-border/40 bg-surface/30 opacity-60'
+                    : 'border-border bg-surface/80'
                 }`}
               >
-                {countdown}
+                <div className="flex items-center justify-between text-[10px] mb-0.5">
+                  <span className="font-bold text-foreground truncate flex items-center gap-1">
+                    {u.isLeader && <span>👑</span>}
+                    {u.name}
+                  </span>
+                  {isDead ? (
+                    <span className="text-[8px] text-rose-400 font-bold">DISABLED</span>
+                  ) : (
+                    <span className="text-[9px] text-accent font-semibold">{u.overclockGauge}% OC</span>
+                  )}
+                </div>
+                {/* 5 Part Mini Integrity Bars */}
+                <div className="grid grid-cols-5 gap-1">
+                  {[PartSlot.HEAD, PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM, PartSlot.TORSO, PartSlot.LEGS].map(
+                    (slot) => {
+                      const cur = u.integrities[slot] || 0;
+                      const max = u.maxIntegrities[slot] || 50;
+                      const pct = Math.max(0, Math.min(100, (cur / max) * 100));
+                      const isFlash = damagedPartFlash?.isPlayer && damagedPartFlash?.unitIdx === i && damagedPartFlash?.slot === slot;
+                      return (
+                        <div key={slot} className="flex flex-col gap-0.5">
+                          <div className="w-full h-1 bg-background border border-border/60 overflow-hidden">
+                            <div
+                              className={`h-full transition-all ${
+                                isFlash
+                                  ? 'bg-rose-500'
+                                  : pct > 50
+                                  ? 'bg-emerald-400'
+                                  : pct > 20
+                                  ? 'bg-amber-400'
+                                  : 'bg-rose-500'
+                              }`}
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
               </div>
-            </div>
-          </div>
-        )}
-
-        {/* Both Units Top Stats Ribbon */}
-        <div className="grid grid-cols-2 gap-4 z-10 p-3 pointer-events-none">
-          {/* Player Unit Card */}
-          <div className="border border-border bg-background/90 p-2 text-[10px]">
-            <div className="flex items-center justify-between border-b border-border pb-1 mb-1.5">
-              <div className="flex items-center gap-2">
-                <img
-                  src={getBotAvatarUrl(playerConfig.botConfig, anibotsData)}
-                  alt={playerHud.name}
-                  className="w-7 h-7 rounded-sm object-cover border border-border shrink-0 bg-surface"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-                <span className="font-bold text-foreground text-xs">{playerHud.name}</span>
-              </div>
-              <span className="text-accent uppercase font-semibold">
-                Core: {playerHud.chip?.name?.replace(' Chip', '')}
-              </span>
-            </div>
-            {/* 5-Slot HP Bars */}
-            <div className="grid grid-cols-5 gap-1 text-[9px] text-center">
-              {[PartSlot.HEAD, PartSlot.TORSO, PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM, PartSlot.LEGS].map((slot) => {
-                const hp = playerHud.integrities[slot] || 0;
-                const max = playerHud.maxIntegrities[slot] || 1;
-                const pct = Math.round((hp / max) * 100);
-                const isHead = slot === PartSlot.HEAD;
-                const isDamagedFlash =
-                  damagedPartFlash &&
-                  damagedPartFlash.isPlayer === true &&
-                  damagedPartFlash.slot === slot;
-                return (
-                  <div
-                    key={slot}
-                    className={`border p-1 transition-all ${
-                      isDamagedFlash
-                        ? 'animate-pulse bg-red-600 border-red-500 text-white shadow-[0_0_12px_#ef4444] font-black'
-                        : 'border-border/80 bg-surface'
-                    }`}
-                  >
-                    <span className={`block text-[8px] ${isDamagedFlash ? 'text-white' : 'text-muted'}`}>{SlotNames[slot]}</span>
-                    <div className="w-full bg-border h-1.5 mt-0.5 overflow-hidden">
-                      <div
-                        className={`h-full ${
-                          hp <= 0 ? 'bg-zinc-600' : isHead ? 'bg-accent' : pct > 40 ? 'bg-emerald-500' : 'bg-amber-500'
-                        }`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                    <span className={`font-mono text-[8px] font-semibold ${isDamagedFlash ? 'text-white' : 'text-foreground'}`}>{hp}</span>
-                  </div>
-                );
-              })}
-            </div>
-            {/* Overclock Gauge */}
-            <div className="mt-1.5 flex items-center gap-2">
-              <span className="text-[9px] text-amber-500 font-bold uppercase">Overclock</span>
-              <div className="flex-1 bg-border h-1.5 overflow-hidden">
-                <div
-                  className="h-full bg-amber-500 transition-all duration-200"
-                  style={{ width: `${playerHud.overclockGauge}%` }}
-                />
-              </div>
-              <span className="text-[9px] font-bold text-amber-500">{Math.round(playerHud.overclockGauge)}%</span>
-            </div>
-          </div>
-
-          {/* Enemy Unit Card */}
-          <div className="border border-border bg-background/90 p-2 text-[10px]">
-            <div className="flex items-center justify-between border-b border-border pb-1 mb-1.5">
-              <div className="flex items-center gap-2">
-                <img
-                  src={getBotAvatarUrl(opponentConfig.botConfig, anibotsData)}
-                  alt={enemyHud.name}
-                  className="w-7 h-7 rounded-sm object-cover border border-border shrink-0 bg-surface"
-                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                />
-                <span className="font-bold text-accent text-xs">{enemyHud.name}</span>
-              </div>
-              <span className="text-muted uppercase font-semibold">
-                Core: {enemyHud.chip?.name?.replace(' Chip', '')}
-              </span>
-            </div>
-            {/* 5-Slot HP Bars */}
-            <div className="grid grid-cols-5 gap-1 text-[9px] text-center">
-              {[PartSlot.HEAD, PartSlot.TORSO, PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM, PartSlot.LEGS].map((slot) => {
-                const hp = enemyHud.integrities[slot] || 0;
-                const max = enemyHud.maxIntegrities[slot] || 1;
-                const pct = Math.round((hp / max) * 100);
-                const isHead = slot === PartSlot.HEAD;
-                const isDamagedFlash =
-                  damagedPartFlash &&
-                  damagedPartFlash.isPlayer === false &&
-                  damagedPartFlash.slot === slot;
-                return (
-                  <div
-                    key={slot}
-                    className={`border p-1 transition-all ${
-                      isDamagedFlash
-                        ? 'animate-pulse bg-red-600 border-red-500 text-white shadow-[0_0_12px_#ef4444] font-black'
-                        : 'border-border/80 bg-surface'
-                    }`}
-                  >
-                    <span className={`block text-[8px] ${isDamagedFlash ? 'text-white' : 'text-muted'}`}>{SlotNames[slot]}</span>
-                    <div className="w-full bg-border h-1.5 mt-0.5 overflow-hidden">
-                      <div
-                        className={`h-full ${
-                          hp <= 0 ? 'bg-zinc-600' : isHead ? 'bg-accent' : pct > 40 ? 'bg-emerald-500' : 'bg-amber-500'
-                        }`}
-                        style={{ width: `${pct}%` }}
-                      />
-                    </div>
-                    <span className={`font-mono text-[8px] font-semibold ${isDamagedFlash ? 'text-white' : 'text-foreground'}`}>{hp}</span>
-                  </div>
-                );
-              })}
-            </div>
-            {/* Overclock Gauge */}
-            <div className="mt-1.5 flex items-center gap-2">
-              <span className="text-[9px] text-amber-500 font-bold uppercase">Overclock</span>
-              <div className="flex-1 bg-border h-1.5 overflow-hidden">
-                <div
-                  className="h-full bg-amber-500 transition-all duration-200"
-                  style={{ width: `${enemyHud.overclockGauge}%` }}
-                />
-              </div>
-              <span className="text-[9px] font-bold text-amber-500">{Math.round(enemyHud.overclockGauge)}%</span>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
-        {/* Central GPU Hardware-Accelerated 2D Canvas Area */}
-        <div className="absolute inset-0 z-0">
-          <BattleCanvas
-            playerUnitRef={playerUnitRef}
-            enemyUnitRef={enemyUnitRef}
-            trapsRef={trapsRef}
-            fxRef={fxRef}
-            terrain={activeTerrain}
-          />
-        </div>
-
-        {/* Command Selection Modal for Player */}
-        {commandMenuOpen && !autoBattle && (
-          <div className="absolute inset-x-4 bottom-3 z-30 bg-background/95 border-2 border-accent p-3 shadow-2xl animate-in fade-in">
-            <div className="flex items-center justify-between border-b border-border pb-1.5 mb-2">
-              <span className="font-bold text-accent uppercase text-[11px] tracking-wider">
-                {'Tactical Command Menu // Select Action Payload'}
-              </span>
-              <span className="text-[10px] text-muted font-mono uppercase">
-                Autonomous Target Lock: {playerHud.chip?.name || 'Anima Core'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {/* Head Cache action */}
-              <button
-                disabled={(playerHud.integrities?.[PartSlot.HEAD] ?? 0) <= 0 || (playerHud.headCacheRemaining ?? 0) <= 0}
-                onClick={() => handleSelectAction(PartSlot.HEAD, false)}
-                className="p-2 border border-border bg-surface hover:border-accent text-left disabled:opacity-40 transition-colors cursor-pointer"
+        {/* Rival Squad Ribbons (Right HUD) */}
+        <div className="absolute top-2 right-2 flex flex-col gap-1.5 z-20 pointer-events-none max-w-[190px]">
+          {enemyHudUnits.map((u, i) => {
+            const isDead = (u.integrities[PartSlot.HEAD] || 0) <= 0;
+            return (
+              <div
+                key={i}
+                className={`p-1.5 border backdrop-blur-md transition-all ${
+                  isDead ? 'border-border/40 bg-surface/30 opacity-60' : 'border-border bg-surface/80'
+                }`}
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-foreground truncate">{playerHud.parts?.head?.name}</span>
-                  <span className="text-[9px] text-accent">Uses: {playerHud.headCacheRemaining}</span>
-                </div>
-                <div className="text-[9px] text-muted mt-1">
-                  Type: {playerHud.parts?.head?.type} | Pwr: {playerHud.parts?.head?.payload || 0}
-                </div>
-              </button>
-
-              {/* Left Arm action */}
-              <button
-                disabled={(playerHud.integrities?.[PartSlot.LEFT_ARM] ?? 0) <= 0}
-                onClick={() => handleSelectAction(PartSlot.LEFT_ARM, false)}
-                className="p-2 border border-border bg-surface hover:border-accent text-left disabled:opacity-40 transition-colors cursor-pointer"
-              >
-                <div className="font-bold text-foreground truncate">{playerHud.parts?.leftArm?.name}</div>
-                <div className="text-[9px] text-muted mt-1">
-                  Pwr: {playerHud.parts?.leftArm?.payload} | Lat: {playerHud.parts?.leftArm?.latency}s
-                </div>
-              </button>
-
-              {/* Right Arm action */}
-              <button
-                disabled={(playerHud.integrities?.[PartSlot.RIGHT_ARM] ?? 0) <= 0}
-                onClick={() => handleSelectAction(PartSlot.RIGHT_ARM, false)}
-                className="p-2 border border-border bg-surface hover:border-accent text-left disabled:opacity-40 transition-colors cursor-pointer"
-              >
-                <div className="font-bold text-foreground truncate">{playerHud.parts?.rightArm?.name}</div>
-                <div className="text-[9px] text-muted mt-1">
-                  Pwr: {playerHud.parts?.rightArm?.payload} | Lat: {playerHud.parts?.rightArm?.latency}s
-                </div>
-              </button>
-
-              {/* Overclock Ultimate */}
-              <button
-                disabled={(playerHud.overclockGauge ?? 0) < 100}
-                onClick={() => handleSelectAction(PartSlot.HEAD, true)}
-                className="p-2 border border-amber-500 bg-amber-500/10 hover:bg-amber-500 hover:text-black text-left disabled:opacity-30 transition-colors cursor-pointer font-bold"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="truncate text-amber-500 hover:text-black">⚡ OVERCLOCK ULTIMATE</span>
-                  <span className="text-[10px] text-amber-400 font-mono">
-                    Cost: {playerHud.chip?.ultimate_abilities?.[0]?.gauge_cost || 50}%
+                <div className="flex items-center justify-between text-[10px] mb-0.5">
+                  {isDead ? (
+                    <span className="text-[8px] text-rose-400 font-bold">DISABLED</span>
+                  ) : (
+                    <span className="text-[9px] text-rose-400 font-semibold">{u.overclockGauge}% OC</span>
+                  )}
+                  <span className="font-bold text-foreground truncate flex items-center gap-1">
+                    {u.name}
+                    {u.isLeader && <span>👑</span>}
                   </span>
                 </div>
-                <div className="text-[9px] mt-1 text-muted">
-                  {(playerHud.overclockGauge ?? 0) >= 100
-                    ? 'READY TO FIRE! (Requires 100%)'
-                    : `Gauge: ${Math.round(playerHud.overclockGauge ?? 0)}% (Requires 100%)`}
+                {/* 5 Part Mini Integrity Bars */}
+                <div className="grid grid-cols-5 gap-1">
+                  {[PartSlot.HEAD, PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM, PartSlot.TORSO, PartSlot.LEGS].map(
+                    (slot) => {
+                      const cur = u.integrities[slot] || 0;
+                      const max = u.maxIntegrities[slot] || 50;
+                      const pct = Math.max(0, Math.min(100, (cur / max) * 100));
+                      const isFlash = !damagedPartFlash?.isPlayer && damagedPartFlash?.unitIdx === i && damagedPartFlash?.slot === slot;
+                      return (
+                        <div key={slot} className="flex flex-col gap-0.5">
+                          <div className="w-full h-1 bg-background border border-border/60 overflow-hidden">
+                            <div
+                              className={`h-full transition-all ${
+                                isFlash
+                                  ? 'bg-rose-500'
+                                  : pct > 50
+                                  ? 'bg-rose-400'
+                                  : pct > 20
+                                  ? 'bg-amber-400'
+                                  : 'bg-rose-600'
+                              }`}
+                              style={{ width: `${pct}%` }}
+                            />
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
-              </button>
-            </div>
-          </div>
-        )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Bottom Real-time Telemetry & Combat Log */}
-      <div className="h-20 border border-border bg-background p-2 overflow-y-auto text-[10px] space-y-0.5 z-10">
-        {combatLogs.map((log, idx) => (
-          <div key={idx} className="text-muted leading-tight font-mono">
-            <span className="text-foreground/80">{log}</span>
-          </div>
-        ))}
-        <div ref={logsEndRef} />
+      {/* Bottom Command Dock & Combat Log Panel */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-2 max-h-[140px] z-10">
+        {/* Combat Relay Terminal Logs */}
+        <div className="md:col-span-6 bg-surface border border-border p-2 overflow-y-auto max-h-[125px] font-mono text-[10px] leading-relaxed">
+          {combatLogs.map((log, index) => (
+            <div key={index} className="text-muted hover:text-foreground">
+              {log}
+            </div>
+          ))}
+          <div ref={logsEndRef} />
+        </div>
+
+        {/* Interactive Command Panel (When a player unit is charged) */}
+        <div className="md:col-span-6 bg-surface border border-border p-2 flex flex-col justify-between">
+          {commandUnitIndex !== null && activeCommandUnit ? (
+            <div className="flex flex-col justify-between h-full gap-1.5">
+              <div className="flex items-center justify-between text-[11px] pb-1 border-b border-border">
+                <span className="font-bold text-accent flex items-center gap-1.5 uppercase">
+                  <span>{activeCommandUnit.isLeader ? '👑 Leader Command:' : 'Support Command:'}</span>
+                  <span className="text-foreground">{activeCommandUnit.name}</span>
+                </span>
+                <span className="text-[10px] text-muted">Select Part to Attack</span>
+              </div>
+
+              {/* Action Buttons: Head, Left Arm, Right Arm, Ultimate */}
+              <div className="grid grid-cols-4 gap-1.5">
+                {/* Head Part */}
+                <button
+                  type="button"
+                  disabled={
+                    (activeCommandUnit.integrities[PartSlot.HEAD] || 0) <= 0 ||
+                    activeCommandUnit.headCacheRemaining <= 0
+                  }
+                  onClick={() => handleSelectAction(PartSlot.HEAD, false)}
+                  className="p-1.5 border border-border bg-background hover:border-accent disabled:opacity-40 disabled:cursor-not-allowed text-left cursor-pointer transition-colors"
+                >
+                  <div className="text-[9px] text-muted uppercase font-bold flex items-center justify-between">
+                    <span>Head</span>
+                    <span>x{activeCommandUnit.headCacheRemaining}</span>
+                  </div>
+                  <div className="text-[10px] font-bold text-foreground truncate">
+                    {activeCommandUnit.parts.head?.name}
+                  </div>
+                  <div className="text-[9px] text-accent flex items-center justify-between mt-0.5">
+                    <span>Pwr: {activeCommandUnit.parts.head?.payload || 40}</span>
+                    <span className="text-[8px] px-1 py-0.2 bg-surface border border-border/80 text-muted uppercase font-mono">
+                      {getPartAffinities(activeCommandUnit.parts.head, PartSlot.HEAD)[0]}
+                    </span>
+                  </div>
+                </button>
+
+                {/* Left Arm Part */}
+                <button
+                  type="button"
+                  disabled={(activeCommandUnit.integrities[PartSlot.LEFT_ARM] || 0) <= 0}
+                  onClick={() => handleSelectAction(PartSlot.LEFT_ARM, false)}
+                  className="p-1.5 border border-border bg-background hover:border-accent disabled:opacity-40 disabled:cursor-not-allowed text-left cursor-pointer transition-colors"
+                >
+                  <div className="text-[9px] text-muted uppercase font-bold flex items-center justify-between">
+                    <span>L-Arm</span>
+                    <span className="text-[8px] px-1 py-0.2 bg-surface border border-border/80 text-muted uppercase font-mono">
+                      {getPartAffinities(activeCommandUnit.parts.leftArm, PartSlot.LEFT_ARM)[0]}
+                    </span>
+                  </div>
+                  <div className="text-[10px] font-bold text-foreground truncate">
+                    {activeCommandUnit.parts.leftArm?.name}
+                  </div>
+                  <div className="text-[9px] text-accent mt-0.5">Pwr: {activeCommandUnit.parts.leftArm?.payload || 25}</div>
+                </button>
+
+                {/* Right Arm Part */}
+                <button
+                  type="button"
+                  disabled={(activeCommandUnit.integrities[PartSlot.RIGHT_ARM] || 0) <= 0}
+                  onClick={() => handleSelectAction(PartSlot.RIGHT_ARM, false)}
+                  className="p-1.5 border border-border bg-background hover:border-accent disabled:opacity-40 disabled:cursor-not-allowed text-left cursor-pointer transition-colors"
+                >
+                  <div className="text-[9px] text-muted uppercase font-bold flex items-center justify-between">
+                    <span>R-Arm</span>
+                    <span className="text-[8px] px-1 py-0.2 bg-surface border border-border/80 text-muted uppercase font-mono">
+                      {getPartAffinities(activeCommandUnit.parts.rightArm, PartSlot.RIGHT_ARM)[0]}
+                    </span>
+                  </div>
+                  <div className="text-[10px] font-bold text-foreground truncate">
+                    {activeCommandUnit.parts.rightArm?.name}
+                  </div>
+                  <div className="text-[9px] text-accent mt-0.5">Pwr: {activeCommandUnit.parts.rightArm?.payload || 25}</div>
+                </button>
+
+                {/* Overclock Ultimate */}
+                <button
+                  type="button"
+                  disabled={activeCommandUnit.overclockGauge < 100}
+                  onClick={() => handleSelectAction(-1, true)}
+                  className="p-1.5 border border-amber-500/60 bg-amber-500/10 hover:bg-amber-500/20 disabled:opacity-30 disabled:cursor-not-allowed text-left cursor-pointer transition-colors"
+                >
+                  <div className="text-[9px] text-amber-400 uppercase font-bold">⚡ Ultimate</div>
+                  <div className="text-[10px] font-bold text-amber-300 truncate">
+                    {activeCommandUnit.chip?.ultimate_abilities?.[0]?.name || 'Overclock Blitz'}
+                  </div>
+                  <div className="text-[9px] text-amber-400">
+                    {activeCommandUnit.overclockGauge >= 100 ? 'READY (100%)' : `${activeCommandUnit.overclockGauge}%`}
+                  </div>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-full text-center text-muted text-[11px] py-3">
+              <span className="text-accent font-semibold uppercase tracking-wider mb-0.5">
+                {autoBattle ? '🤖 Autonomous AI Pilot Active' : '⏱ ATB Clock Charging at Base'}
+              </span>
+              <span>Fastest AniBot reaching center line acts first. Destroy enemy Leader Head to win!</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

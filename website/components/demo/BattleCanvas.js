@@ -1,14 +1,17 @@
 'use client';
 
 import React, { useRef, useEffect } from 'react';
-import { CombatPhase } from '../../utils/combatEngine';
+import { CombatPhase, PartSlot } from '../../utils/combatEngine';
 
 export const BattleCanvas = ({
   playerUnitRef,
   enemyUnitRef,
+  playerUnitsRef,
+  enemyUnitsRef,
   trapsRef,
   fxRef,
   terrain,
+  teamSize = 1,
 }) => {
   const canvasRef = useRef(null);
   const terrainImgRef = useRef(null);
@@ -67,7 +70,7 @@ export const BattleCanvas = ({
       if (terrainImgRef.current && terrainImgRef.current.complete && terrainImgRef.current.naturalWidth > 0) {
         ctx.drawImage(terrainImgRef.current, 0, 0, width, height);
         // Vignette & dark atmospheric tint to ensure runners and particles contrast sharply
-        ctx.fillStyle = 'rgba(10, 10, 9, 0.42)';
+        ctx.fillStyle = 'rgba(10, 10, 9, 0.45)';
         ctx.fillRect(0, 0, width, height);
       } else {
         ctx.fillStyle = '#0a0a09';
@@ -92,27 +95,48 @@ export const BattleCanvas = ({
         ctx.stroke();
       }
 
-      // --- 2. Track Lanes & Chevron Runways ---
-      const laneY = height * 0.5;
+      // Resolve Units arrays
+      const playerUnits = playerUnitsRef?.current || (playerUnitRef?.current ? [playerUnitRef.current] : []);
+      const enemyUnits = enemyUnitsRef?.current || (enemyUnitRef?.current ? [enemyUnitRef.current] : []);
+      const activeCount = Math.max(playerUnits.length, enemyUnits.length, teamSize);
+
+      // --- 2. Track Lanes & Chevron Runways (Stacked Vertically) ---
+      // New bots are placed BELOW the current position of preceding bots
+      const laneYPositions =
+        activeCount === 3
+          ? [height * 0.28, height * 0.50, height * 0.72]
+          : activeCount === 2
+          ? [height * 0.38, height * 0.64]
+          : [height * 0.50];
+
       const baseLeftX = width * 0.12;
       const baseRightX = width * 0.88;
       const centerX = width * 0.5;
+      const trackThickness = activeCount > 1 ? 24 : 32;
 
-      // Player Half Track Highway (Blue neon lane)
-      ctx.strokeStyle = 'rgba(30, 58, 138, 0.3)';
-      ctx.lineWidth = 32;
-      ctx.beginPath();
-      ctx.moveTo(baseLeftX, laneY);
-      ctx.lineTo(centerX, laneY);
-      ctx.stroke();
+      laneYPositions.forEach((laneY, idx) => {
+        // Player Half Track Highway (Blue neon lane)
+        ctx.strokeStyle = 'rgba(30, 58, 138, 0.28)';
+        ctx.lineWidth = trackThickness;
+        ctx.beginPath();
+        ctx.moveTo(baseLeftX, laneY);
+        ctx.lineTo(centerX, laneY);
+        ctx.stroke();
 
-      // Enemy Half Track Highway (Red neon lane)
-      ctx.strokeStyle = 'rgba(127, 29, 29, 0.3)';
-      ctx.lineWidth = 32;
-      ctx.beginPath();
-      ctx.moveTo(centerX, laneY);
-      ctx.lineTo(baseRightX, laneY);
-      ctx.stroke();
+        // Enemy Half Track Highway (Red neon lane)
+        ctx.strokeStyle = 'rgba(127, 29, 29, 0.28)';
+        ctx.lineWidth = trackThickness;
+        ctx.beginPath();
+        ctx.moveTo(centerX, laneY);
+        ctx.lineTo(baseRightX, laneY);
+        ctx.stroke();
+
+        // Lane Designation Watermark
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.font = 'bold 8px monospace';
+        ctx.textAlign = 'left';
+        ctx.fillText(idx === 0 ? '👑 LANE 1 [LEADER]' : `LANE ${idx + 1} [SUPPORT]`, baseLeftX - 70, laneY + 3);
+      });
 
       // Base Lines
       // Player Base Line (Blue neon)
@@ -141,151 +165,227 @@ export const BattleCanvas = ({
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Center Line Glow
-      ctx.fillStyle = '#FF4F33';
-      ctx.beginPath();
-      ctx.arc(centerX, laneY, 6, 0, Math.PI * 2);
-      ctx.fill();
+      // Center Line Lane Points
+      laneYPositions.forEach((laneY) => {
+        ctx.fillStyle = '#FF4F33';
+        ctx.beginPath();
+        ctx.arc(centerX, laneY, 5, 0, Math.PI * 2);
+        ctx.fill();
+      });
 
       // --- 3. Active Traps On Center Line ---
       const traps = trapsRef.current || {};
       if (traps.playerTrap || traps.enemyTrap) {
-        ctx.save();
-        ctx.fillStyle = '#f59e0b';
-        ctx.strokeStyle = '#fbbf24';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(centerX, laneY, 14, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.stroke();
+        laneYPositions.forEach((laneY) => {
+          ctx.save();
+          ctx.fillStyle = '#f59e0b';
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(centerX, laneY, 12, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.stroke();
 
-        ctx.fillStyle = '#000000';
-        ctx.font = 'bold 9px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('TRAP', centerX, laneY + 3);
-        ctx.restore();
+          ctx.fillStyle = '#000000';
+          ctx.font = 'bold 8px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('TRAP', centerX, laneY + 3);
+          ctx.restore();
+        });
       }
 
       // --- 4. Render Runners ---
-      const player = playerUnitRef.current;
-      const enemy = enemyUnitRef.current;
       const time = performance.now() * 0.005;
 
-      // Draw Player Runner (Starts left at baseLeftX, charges right to centerX)
-      if (player) {
+      // Draw Player Runners
+      playerUnits.forEach((player, idx) => {
+        if (!player) return;
+        const laneY = laneYPositions[idx] || laneYPositions[0];
+        const isDead = (player.integrities?.[PartSlot.HEAD] || 0) <= 0;
+
+        if (isDead) {
+          // Deactivated/Defeated Unit representation
+          const px = baseLeftX;
+          const py = laneY;
+
+          ctx.fillStyle = 'rgba(0,0,0,0.5)';
+          ctx.beginPath();
+          ctx.ellipse(px, py + 14, 14, 5, 0, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#1e293b';
+          ctx.strokeStyle = '#475569';
+          ctx.lineWidth = 1.5;
+          ctx.fillRect(px - 12, py - 14, 24, 24);
+          ctx.strokeRect(px - 12, py - 14, 24, 24);
+
+          // Smoking sparks
+          ctx.fillStyle = '#64748b';
+          ctx.beginPath();
+          ctx.arc(px + (Math.sin(time * 5 + idx) * 4), py - 18 - (Math.abs(Math.sin(time * 3)) * 8), 2.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = 'bold 8px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(`${player.name} [DISABLED]`, px, py - 20);
+          return;
+        }
+
         const pProgress = player.trackProgress || 0;
         const px = baseLeftX + (centerX - baseLeftX) * pProgress;
         const py = laneY;
         const isRunning = player.currentPhase === CombatPhase.RUN;
         const isRetreating = player.currentPhase === CombatPhase.COOLDOWN;
         const isMoving = isRunning || isRetreating;
-        const bob = isMoving ? Math.sin(time * 12) * 4 : 0;
-        // When retreating home, player faces left towards base; otherwise faces right
+        const bob = isMoving ? Math.sin(time * 12 + idx) * 3 : 0;
         const facingRight = !isRetreating;
 
         // Runner Shadow
         ctx.fillStyle = 'rgba(0,0,0,0.45)';
         ctx.beginPath();
-        ctx.ellipse(px, py + 16, 16, 6, 0, 0, Math.PI * 2);
+        ctx.ellipse(px, py + 14, 15, 5, 0, 0, Math.PI * 2);
         ctx.fill();
 
         // Thruster / Speed Particles
         if (isMoving) {
           ctx.fillStyle = isRunning ? '#38bdf8' : '#f59e0b';
-          for (let i = 0; i < 3; i++) {
-            // If facing right, exhaust sprays left. If facing left (retreating), exhaust sprays right!
-            const partX = facingRight
-              ? px - 18 - Math.random() * 12
-              : px + 18 + Math.random() * 12;
-            const partY = py + (Math.random() - 0.5) * 10;
+          for (let i = 0; i < 2; i++) {
+            const partX = facingRight ? px - 16 - Math.random() * 10 : px + 16 + Math.random() * 10;
+            const partY = py + (Math.random() - 0.5) * 8;
             ctx.beginPath();
-            ctx.arc(partX, partY, 2 + Math.random() * 2, 0, Math.PI * 2);
+            ctx.arc(partX, partY, 2 + Math.random() * 1.5, 0, Math.PI * 2);
             ctx.fill();
           }
         }
 
         // Runner Chassis Box (Chibi Mech)
         ctx.fillStyle = '#2563eb';
-        ctx.strokeStyle = '#60a5fa';
-        ctx.lineWidth = 2;
-        ctx.fillRect(px - 14, py - 16 + bob, 28, 28);
-        ctx.strokeRect(px - 14, py - 16 + bob, 28, 28);
+        ctx.strokeStyle = idx === 0 ? '#fbbf24' : '#60a5fa';
+        ctx.lineWidth = idx === 0 ? 2.5 : 2;
+        ctx.fillRect(px - 13, py - 15 + bob, 26, 26);
+        ctx.strokeRect(px - 13, py - 15 + bob, 26, 26);
 
-        // Core Diode Eye (Positioned on the side the bot is facing)
+        // Core Diode Eye
         ctx.fillStyle = player.chip?.diode_color || '#00E5FF';
-        const eyeX = facingRight ? px - 4 : px - 10;
-        ctx.fillRect(eyeX, py - 8 + bob, 14, 6);
+        const eyeX = facingRight ? px - 3 : px - 9;
+        ctx.fillRect(eyeX, py - 7 + bob, 12, 5);
 
-        // Name Tag & Mini ATB Bar
+        // Leader Crown / Tag
+        if (idx === 0) {
+          ctx.fillStyle = '#fbbf24';
+          ctx.font = 'bold 8px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('👑 LEADER', px, py - 26 + bob);
+        }
+
+        // Name Tag
         ctx.fillStyle = '#f8fafc';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 9px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(player.name, px, py - 22 + bob);
+        ctx.fillText(player.name, px, py - (idx === 0 ? 17 : 19) + bob);
 
         // Mini ATB Bar
         ctx.fillStyle = '#1e293b';
-        ctx.fillRect(px - 18, py + 22, 36, 4);
+        ctx.fillRect(px - 16, py + 18, 32, 3.5);
         ctx.fillStyle = '#3b82f6';
-        ctx.fillRect(px - 18, py + 22, (player.actionBar / 100) * 36, 4);
-      }
+        ctx.fillRect(px - 16, py + 18, ((player.actionBar || 0) / 100) * 32, 3.5);
+      });
 
-      // Draw Enemy Runner (Starts right at baseRightX, charges left to centerX)
-      if (enemy) {
+      // Draw Enemy Runners
+      enemyUnits.forEach((enemy, idx) => {
+        if (!enemy) return;
+        const laneY = laneYPositions[idx] || laneYPositions[0];
+        const isDead = (enemy.integrities?.[PartSlot.HEAD] || 0) <= 0;
+
+        if (isDead) {
+          // Deactivated/Defeated Unit representation
+          const ex = baseRightX;
+          const ey = laneY;
+
+          ctx.fillStyle = 'rgba(0,0,0,0.5)';
+          ctx.beginPath();
+          ctx.ellipse(ex, ey + 14, 14, 5, 0, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#1e293b';
+          ctx.strokeStyle = '#475569';
+          ctx.lineWidth = 1.5;
+          ctx.fillRect(ex - 12, ey - 14, 24, 24);
+          ctx.strokeRect(ex - 12, ey - 14, 24, 24);
+
+          // Smoking sparks
+          ctx.fillStyle = '#64748b';
+          ctx.beginPath();
+          ctx.arc(ex + (Math.sin(time * 5 + idx) * 4), ey - 18 - (Math.abs(Math.sin(time * 3)) * 8), 2.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = 'bold 8px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText(`${enemy.name} [DISABLED]`, ex, ey - 20);
+          return;
+        }
+
         const eProgress = enemy.trackProgress || 0;
         const ex = baseRightX - (baseRightX - centerX) * eProgress;
         const ey = laneY;
         const isRunning = enemy.currentPhase === CombatPhase.RUN;
         const isRetreating = enemy.currentPhase === CombatPhase.COOLDOWN;
         const isMoving = isRunning || isRetreating;
-        const bob = isMoving ? Math.sin(time * 12) * 4 : 0;
-        // When retreating home, enemy faces right towards base; otherwise faces left
+        const bob = isMoving ? Math.sin(time * 12 + idx) * 3 : 0;
         const facingLeft = !isRetreating;
 
         // Runner Shadow
         ctx.fillStyle = 'rgba(0,0,0,0.45)';
         ctx.beginPath();
-        ctx.ellipse(ex, ey + 16, 16, 6, 0, 0, Math.PI * 2);
+        ctx.ellipse(ex, ey + 14, 15, 5, 0, 0, Math.PI * 2);
         ctx.fill();
 
         // Thruster / Speed Particles
         if (isMoving) {
           ctx.fillStyle = isRunning ? '#ef4444' : '#f59e0b';
-          for (let i = 0; i < 3; i++) {
-            // If facing left, exhaust sprays right. If facing right (retreating), exhaust sprays left!
-            const partX = facingLeft
-              ? ex + 18 + Math.random() * 12
-              : ex - 18 - Math.random() * 12;
-            const partY = ey + (Math.random() - 0.5) * 10;
+          for (let i = 0; i < 2; i++) {
+            const partX = facingLeft ? ex + 16 + Math.random() * 10 : ex - 16 - Math.random() * 10;
+            const partY = ey + (Math.random() - 0.5) * 8;
             ctx.beginPath();
-            ctx.arc(partX, partY, 2 + Math.random() * 2, 0, Math.PI * 2);
+            ctx.arc(partX, partY, 2 + Math.random() * 1.5, 0, Math.PI * 2);
             ctx.fill();
           }
         }
 
         // Runner Chassis Box (Chibi Mech)
         ctx.fillStyle = '#dc2626';
-        ctx.strokeStyle = '#f87171';
-        ctx.lineWidth = 2;
-        ctx.fillRect(ex - 14, ey - 16 + bob, 28, 28);
-        ctx.strokeRect(ex - 14, ey - 16 + bob, 28, 28);
+        ctx.strokeStyle = idx === 0 ? '#f59e0b' : '#f87171';
+        ctx.lineWidth = idx === 0 ? 2.5 : 2;
+        ctx.fillRect(ex - 13, ey - 15 + bob, 26, 26);
+        ctx.strokeRect(ex - 13, ey - 15 + bob, 26, 26);
 
-        // Core Diode Eye (Positioned on the side the bot is facing)
+        // Core Diode Eye
         ctx.fillStyle = enemy.chip?.diode_color || '#FFA500';
-        const eyeX = facingLeft ? ex - 10 : ex - 4;
-        ctx.fillRect(eyeX, ey - 8 + bob, 14, 6);
+        const eyeX = facingLeft ? ex - 9 : ex - 3;
+        ctx.fillRect(eyeX, ey - 7 + bob, 12, 5);
 
-        // Name Tag & Mini ATB Bar
+        // Leader Crown / Tag
+        if (idx === 0) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.font = 'bold 8px monospace';
+          ctx.textAlign = 'center';
+          ctx.fillText('👑 RIVAL LEADER', ex, ey - 26 + bob);
+        }
+
+        // Name Tag
         ctx.fillStyle = '#f8fafc';
-        ctx.font = 'bold 10px monospace';
+        ctx.font = 'bold 9px monospace';
         ctx.textAlign = 'center';
-        ctx.fillText(enemy.name, ex, ey - 22 + bob);
+        ctx.fillText(enemy.name, ex, ey - (idx === 0 ? 17 : 19) + bob);
 
         // Mini ATB Bar
         ctx.fillStyle = '#1e293b';
-        ctx.fillRect(ex - 18, ey + 22, 36, 4);
+        ctx.fillRect(ex - 16, ey + 18, 32, 3.5);
         ctx.fillStyle = '#ef4444';
-        ctx.fillRect(ex - 18, ey + 22, (enemy.actionBar / 100) * 36, 4);
-      }
+        ctx.fillRect(ex - 16, ey + 18, ((enemy.actionBar || 0) / 100) * 32, 3.5);
+      });
 
       // --- 5. Kinetic Combat Particles & Attack Animations ---
       const particles = fxRef.current.particles || [];
@@ -337,18 +437,19 @@ export const BattleCanvas = ({
         ctx.save();
         ctx.globalAlpha = Math.min(1.0, pop.life * 1.5);
         if (typeof pop.damage === 'string') {
-          ctx.font = 'bold 13px monospace';
+          ctx.font = 'bold 12px monospace';
           ctx.fillStyle = '#f59e0b';
           ctx.textAlign = 'center';
           ctx.fillText(`⚠️ ${pop.damage} [${pop.slotName}]`, pop.x, pop.y);
         } else {
-          ctx.font = pop.isCrit ? 'bold 15px monospace' : 'bold 13px monospace';
+          ctx.font = pop.isCrit ? 'bold 14px monospace' : 'bold 12px monospace';
           ctx.fillStyle = pop.isCrit ? '#f59e0b' : '#ef4444';
           ctx.textAlign = 'center';
           ctx.fillText(`-${pop.damage} HP [${pop.slotName}]`, pop.x, pop.y);
           if (pop.isCrit) {
             ctx.font = 'bold 9px monospace';
-            ctx.fillText('[CRITICAL!]', pop.x, pop.y - 12);
+            ctx.fillStyle = '#fbbf24';
+            ctx.fillText('CRITICAL!', pop.x, pop.y - 14);
           }
         }
         ctx.restore();
@@ -364,12 +465,11 @@ export const BattleCanvas = ({
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [playerUnitRef, enemyUnitRef, trapsRef, fxRef]);
+  }, [terrain, teamSize, playerUnitRef, enemyUnitRef, playerUnitsRef, enemyUnitsRef, trapsRef, fxRef]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="w-full h-full block rounded-sm bg-black"
-    />
+    <div className="relative w-full h-full overflow-hidden bg-background">
+      <canvas ref={canvasRef} className="w-full h-full block" />
+    </div>
   );
 };

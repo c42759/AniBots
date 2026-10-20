@@ -4,6 +4,24 @@ import React, { useEffect, useState } from 'react';
 import { playBeep, playSelectSound } from '../../utils/audio';
 import { ItemImage } from './ItemImage';
 
+const renderAffinities = (affinity) => {
+  if (!affinity) return null;
+  const list = Array.isArray(affinity) ? affinity : [affinity];
+  if (list.length === 0) return null;
+  return (
+    <div className="flex flex-wrap items-center gap-1">
+      {list.map((aff) => (
+        <span
+          key={aff}
+          className="font-mono text-[9px] bg-accent/10 border border-accent/40 text-accent font-semibold px-1.5 py-0.5 uppercase tracking-wider"
+        >
+          {aff}
+        </span>
+      ))}
+    </div>
+  );
+};
+
 export const AniBotDetailModal = ({ bot, onClose, onSelectChip }) => {
   const [activePartTab, setActivePartTab] = useState('all');
 
@@ -198,14 +216,17 @@ export const AniBotDetailModal = ({ bot, onClose, onSelectChip }) => {
               {/* TORSO */}
               {(activePartTab === 'all' || activePartTab === 'torso') && bot.parts?.torso && (
                 <div className="p-5 border-r border-b border-border bg-background space-y-3">
-                  <div className="flex items-center justify-between border-b border-border pb-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-2">
                     <span className="font-mono text-xs font-bold text-foreground">
                       <span className="text-accent mr-1.5">SLT-02</span>
                       TORSO: {bot.parts.torso.name}
                     </span>
-                    <span className="font-mono text-[10px] bg-surface border border-border px-2 py-0.5 text-foreground uppercase">
-                      {bot.parts.torso.type}
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="font-mono text-[10px] bg-surface border border-border px-2 py-0.5 text-foreground uppercase">
+                        {bot.parts.torso.type}
+                      </span>
+                      {renderAffinities(bot.parts.torso.affinity)}
+                    </div>
                   </div>
                   <p className="text-xs text-muted leading-relaxed">
                     {bot.parts.torso.description}
@@ -244,14 +265,17 @@ export const AniBotDetailModal = ({ bot, onClose, onSelectChip }) => {
               {/* LEGS */}
               {(activePartTab === 'all' || activePartTab === 'legs') && bot.parts?.legs && (
                 <div className="p-5 border-r border-b border-border bg-background space-y-3 col-span-1 md:col-span-2">
-                  <div className="flex items-center justify-between border-b border-border pb-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-2">
                     <span className="font-mono text-xs font-bold text-foreground">
                       <span className="text-accent mr-1.5">SLT-05</span>
                       LEGS: {bot.parts.legs.name}
                     </span>
-                    <span className="font-mono text-[10px] bg-surface border border-border px-2 py-0.5 text-foreground uppercase">
-                      {bot.parts.legs.protocol || bot.parts.legs.type}
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="font-mono text-[10px] bg-surface border border-border px-2 py-0.5 text-foreground uppercase">
+                        {bot.parts.legs.protocol || bot.parts.legs.type}
+                      </span>
+                      {renderAffinities(bot.parts.legs.affinity)}
+                    </div>
                   </div>
                   <p className="text-xs text-muted leading-relaxed">
                     {bot.parts.legs.description}
@@ -313,14 +337,17 @@ export const AniBotDetailModal = ({ bot, onClose, onSelectChip }) => {
 
 const PartSubCard = ({ code, title, part }) => (
   <div className="p-5 border-r border-b border-border bg-background space-y-3">
-    <div className="flex items-center justify-between border-b border-border pb-2">
+    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-2">
       <span className="font-mono text-xs font-bold text-foreground">
         <span className="text-accent mr-1.5">{code}</span>
         {title}: {part.name}
       </span>
-      <span className="font-mono text-[10px] bg-surface border border-border px-2 py-0.5 text-foreground uppercase">
-        {part.type}
-      </span>
+      <div className="flex items-center gap-1.5 flex-wrap">
+        <span className="font-mono text-[10px] bg-surface border border-border px-2 py-0.5 text-foreground uppercase">
+          {part.type}
+        </span>
+        {renderAffinities(part.affinity)}
+      </div>
     </div>
     <p className="text-xs text-muted leading-relaxed">{part.description}</p>
     <div className="grid grid-cols-4 border-t border-l border-border font-mono text-xs">

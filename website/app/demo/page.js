@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { SiteHeader } from '../../components/SiteHeader';
 import { SiteFooter } from '../../components/SiteFooter';
+import { ModeSelectionScene } from '../../components/demo/ModeSelectionScene';
 import { BotSelectionScene } from '../../components/demo/BotSelectionScene';
 import { OpponentSelectionScene } from '../../components/demo/OpponentSelectionScene';
 import { BattleArenaScene } from '../../components/demo/BattleArenaScene';
@@ -11,15 +12,17 @@ import { OutcomeScene } from '../../components/demo/OutcomeScene';
 import { battleAudio } from '../../utils/battleAudio';
 
 export default function DemoPage() {
-  const [scene, setScene] = useState('SELECT_PLAYER'); // 'SELECT_PLAYER' | 'SELECT_OPPONENT' | 'BATTLE' | 'OUTCOME'
-  const [playerBot, setPlayerBot] = useState(null);
-  const [opponentBot, setOpponentBot] = useState(null);
+  const [battleMode, setBattleMode] = useState('1v1'); // '1v1' | '2v2' | '3v3'
+  const [scene, setScene] = useState('SELECT_MODE'); // 'SELECT_MODE' | 'SELECT_PLAYER' | 'SELECT_OPPONENT' | 'BATTLE' | 'OUTCOME'
+  const [playerTeam, setPlayerTeam] = useState([]);
+  const [opponentTeam, setOpponentTeam] = useState([]);
   const [battleResult, setBattleResult] = useState(null);
 
   const [autoBattle, setAutoBattle] = useState(false);
   const [isMuted, setIsMuted] = useState(battleAudio.isMuted);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const teamSize = battleMode === '3v3' ? 3 : battleMode === '2v2' ? 2 : 1;
   const gameContainerRef = useRef(null);
 
   // Fullscreen change listener
@@ -55,10 +58,19 @@ export default function DemoPage() {
           <div>
             <span className="text-accent font-bold uppercase tracking-wider text-[11px]">Browser Combat Testbed</span>
             <h1 className="text-lg font-bold tracking-tight text-foreground uppercase">
-              AniBots 1v1 Battle Demo
+              AniBots {battleMode} Battle Arena
             </h1>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                battleAudio.playClick();
+                setScene('SELECT_MODE');
+              }}
+              className="px-3 py-1.5 border border-border bg-surface hover:border-foreground text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              Mode: {battleMode}
+            </button>
             <Link
               href="/demo/report/"
               className="px-3 py-1.5 border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent text-xs font-mono uppercase tracking-wider transition-colors flex items-center gap-1.5"
@@ -81,20 +93,41 @@ export default function DemoPage() {
             isFullscreen ? 'max-w-none max-h-none w-screen h-screen' : ''
           }`}
         >
+          {scene === 'SELECT_MODE' && (
+            <ModeSelectionScene
+              onSelectMode={(mode) => {
+                setBattleMode(mode);
+                setScene('SELECT_PLAYER');
+              }}
+            />
+          )}
+
           {scene === 'SELECT_PLAYER' && (
             <BotSelectionScene
-              onSelectBot={(selected) => {
-                setPlayerBot(selected);
+              teamSize={teamSize}
+              onSelectTeam={(team) => {
+                setPlayerTeam(team);
                 setScene('SELECT_OPPONENT');
               }}
+              onSelectBot={(bot) => {
+                setPlayerTeam([bot]);
+                setScene('SELECT_OPPONENT');
+              }}
+              onBack={() => setScene('SELECT_MODE')}
             />
           )}
 
           {scene === 'SELECT_OPPONENT' && (
             <OpponentSelectionScene
-              playerBot={playerBot}
+              teamSize={teamSize}
+              playerTeam={playerTeam}
+              playerBot={playerTeam[0]}
+              onSelectOpponents={(opponents) => {
+                setOpponentTeam(opponents);
+                setScene('BATTLE');
+              }}
               onSelectOpponent={(opponent) => {
-                setOpponentBot(opponent);
+                setOpponentTeam([opponent]);
                 setScene('BATTLE');
               }}
               onBack={() => setScene('SELECT_PLAYER')}
@@ -103,9 +136,12 @@ export default function DemoPage() {
 
           {scene === 'BATTLE' && (
             <BattleArenaScene
-              playerConfig={playerBot}
-              opponentConfig={opponentBot}
-              terrain={opponentBot?.terrain}
+              playerTeam={playerTeam}
+              playerConfig={playerTeam[0]}
+              opponentTeam={opponentTeam}
+              opponentConfig={opponentTeam[0]}
+              terrain={opponentTeam[0]?.terrain}
+              teamSize={teamSize}
               autoBattle={autoBattle}
               onToggleAutoBattle={() => setAutoBattle((v) => !v)}
               isMuted={isMuted}
@@ -126,7 +162,7 @@ export default function DemoPage() {
               enemyUnit={battleResult?.enemyUnit}
               onRematch={() => setScene('BATTLE')}
               onNewOpponent={() => setScene('SELECT_OPPONENT')}
-              onRebuildBot={() => setScene('SELECT_PLAYER')}
+              onRebuildBot={() => setScene('SELECT_MODE')}
             />
           )}
         </div>
@@ -137,10 +173,10 @@ export default function DemoPage() {
             <strong className="text-foreground">Speed ATB:</strong> Clock speed dictates wait phase. Fastest bot reaching center line acts first.
           </div>
           <div>
-            <strong className="text-foreground">Win Condition:</strong> Destroy the enemy Head (System Failure) to achieve victory.
+            <strong className="text-foreground">Leader Win Condition:</strong> Destroy the enemy Leader Head (👑 Unit 1) to achieve instant victory!
           </div>
           <div>
-            <strong className="text-foreground">Auto Battle:</strong> Toggle the Auto Battle button during combat to let Anima Chip AI pilot moves automatically.
+            <strong className="text-foreground">Multi-Lane Relay:</strong> Bots are deployed on stacked parallel tracks. Support bots stay disabled if eliminated.
           </div>
         </div>
       </main>
