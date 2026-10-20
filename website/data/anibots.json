@@ -93,7 +93,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/RON-01_avatar.jpg"
   },
   {
     "id": "anibot_wyrm_paladin",
@@ -190,7 +191,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/DGN-01_avatar.jpg"
   },
   {
     "id": "anibot_black_beard",
@@ -288,7 +290,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/CSR-01_avatar.jpg"
   },
   {
     "id": "anibot_aegis_wall",
@@ -384,7 +387,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/PLX-01_avatar.jpg"
   },
   {
     "id": "anibot_genesis_1",
@@ -481,7 +485,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GEN-01_avatar.jpg"
   },
   {
     "id": "anibot_peacemaker_6",
@@ -577,7 +582,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GSL-01_avatar.jpg"
   },
   {
     "id": "anibot_valhalla_fury",
@@ -673,7 +679,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/BSK-01_avatar.jpg"
   },
   {
     "id": "anibot_holy_vanguard",
@@ -770,7 +777,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/TMP-01_avatar.jpg"
   },
   {
     "id": "anibot_hawkeye_scout",
@@ -866,7 +874,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/RNG-01_avatar.jpg"
   },
   {
     "id": "anibot_colosseum_king",
@@ -962,7 +971,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GLD-01_avatar.jpg"
   },
   {
     "id": "anibot_symphony_prime",
@@ -1058,7 +1068,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/BRD-01_avatar.jpg"
   },
   {
     "id": "anibot_shadow_fang",
@@ -1153,7 +1164,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/SHN-01_avatar.jpg"
   },
   {
     "id": "anibot_circuit_breaker",
@@ -1248,7 +1260,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/CKT-01_avatar.jpg"
   },
   {
     "id": "anibot_inferno_gorgon",
@@ -1345,7 +1358,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/MGM-01_avatar.jpg"
   },
   {
     "id": "anibot_glacier_zero",
@@ -1440,7 +1454,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/FRS-01_avatar.jpg"
   },
   {
     "id": "anibot_zephyr_storm",
@@ -1535,7 +1550,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GAL-01_avatar.jpg"
   },
   {
     "id": "anibot_goliath_titan",
@@ -1633,7 +1649,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/TER-01_avatar.jpg"
   },
   {
     "id": "anibot_tide_crusher",
@@ -1728,7 +1745,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/TOR-01_avatar.jpg"
   },
   {
     "id": "anibot_bio_hazard",
@@ -1823,7 +1841,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/CRS-01_avatar.jpg"
   },
   {
     "id": "anibot_lumen_ray",
@@ -1919,7 +1938,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/PHT-01_avatar.jpg"
   },
   {
     "id": "anibot_singularity_core",
@@ -2014,7 +2034,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/VOI-01_avatar.jpg"
   },
   {
     "id": "anibot_decibel_crash",
@@ -2109,7 +2130,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/SNC-01_avatar.jpg"
   },
   {
     "id": "anibot_solar_flare",
@@ -2204,7 +2226,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/PLS-01_avatar.jpg"
   },
   {
     "id": "anibot_gaia_protector",
@@ -2301,7 +2324,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/FLR-01_avatar.jpg"
   },
   {
     "id": "anibot_nova_seeker",
@@ -2396,7 +2420,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/NOV-01_avatar.jpg"
   },
   {
     "id": "anibot_castor_pollux",
@@ -2491,7 +2516,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GEM-01_avatar.jpg"
   },
   {
     "id": "anibot_ursa_major",
@@ -2587,7 +2613,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/URS-01_avatar.jpg"
   },
   {
     "id": "anibot_regal_lion",
@@ -2682,7 +2709,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/LEO-01_avatar.jpg"
   },
   {
     "id": "anibot_swan_grace",
@@ -2777,7 +2805,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/CYG-01_avatar.jpg"
   },
   {
     "id": "anibot_ancient_wyrm",
@@ -2872,7 +2901,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/DRC-01_avatar.jpg"
   },
   {
     "id": "anibot_pegasus_flight",
@@ -2967,7 +2997,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/PEG-01_avatar.jpg"
   },
   {
     "id": "anibot_venom_stinger",
@@ -3062,7 +3093,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/SCP-01_avatar.jpg"
   },
   {
     "id": "anibot_celestial_harp",
@@ -3157,7 +3189,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/LYR-01_avatar.jpg"
   },
   {
     "id": "anibot_ram_buster",
@@ -3252,7 +3285,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/ARI-01_avatar.jpg"
   },
   {
     "id": "anibot_equilibrium_scale",
@@ -3347,7 +3381,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/LIB-01_avatar.jpg"
   },
   {
     "id": "anibot_martyr_chains",
@@ -3442,7 +3477,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/AND-01_avatar.jpg"
   },
   {
     "id": "anibot_iron_jaw",
@@ -3537,7 +3573,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/HYD-01_avatar.jpg"
   },
   {
     "id": "anibot_zerdata",
@@ -3632,7 +3669,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/G0-004_avatar.jpg"
   },
   {
     "id": "anibot_zerdata_v2",
@@ -3727,7 +3765,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/G0-004-B_avatar.jpg"
   },
   {
     "id": "anibot_tigris_fury",
@@ -3823,7 +3862,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/TGR-01_avatar.jpg"
   },
   {
     "id": "anibot_serpent_coil",
@@ -3918,7 +3958,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/ANA-01_avatar.jpg"
   },
   {
     "id": "anibot_behemoth_tusk",
@@ -4016,7 +4057,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/ELE-01_avatar.jpg"
   },
   {
     "id": "anibot_silverback_smash",
@@ -4112,7 +4154,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GOR-01_avatar.jpg"
   },
   {
     "id": "anibot_death_roll",
@@ -4207,7 +4250,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/CRK-01_avatar.jpg"
   },
   {
     "id": "anibot_sky_raptor",
@@ -4302,7 +4346,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/EAG-01_avatar.jpg"
   },
   {
     "id": "anibot_apex_mauler",
@@ -4399,7 +4444,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GRZ-01_avatar.jpg"
   },
   {
     "id": "anibot_chitin_cutter",
@@ -4496,7 +4542,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/ANT-01_avatar.jpg"
   },
   {
     "id": "anibot_kabuto_horn",
@@ -4591,7 +4638,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/KBT-01_avatar.jpg"
   },
   {
     "id": "anibot_kuwagata_pincer",
@@ -4686,7 +4734,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/KWG-01_avatar.jpg"
   },
   {
     "id": "anibot_razor_tusker",
@@ -4781,7 +4830,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/BOA-01_avatar.jpg"
   },
   {
     "id": "anibot_gaur_colossus",
@@ -4878,7 +4928,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/GAU-01_avatar.jpg"
   },
   {
     "id": "anibot_bone_crusher",
@@ -4973,7 +5024,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/HYN-01_avatar.jpg"
   },
   {
     "id": "anibot_black_death",
@@ -5070,7 +5122,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/BUF-01_avatar.jpg"
   },
   {
     "id": "anibot_prairie_titan",
@@ -5165,7 +5218,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/BSN-01_avatar.jpg"
   },
   {
     "id": "anibot_3m_speed",
@@ -5260,7 +5314,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/OTO-01_avatar.jpg"
   },
   {
     "id": "anibot_3m_armor",
@@ -5356,7 +5411,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/OTO-02_avatar.jpg"
   },
   {
     "id": "anibot_3m_damage",
@@ -5451,7 +5507,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/OTO-03_avatar.jpg"
   },
   {
     "id": "anibot_kogane",
@@ -5547,7 +5604,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/G0-011_avatar.jpg"
   },
   {
     "id": "anibot_agon",
@@ -5642,7 +5700,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/G0-001_avatar.jpg"
   },
   {
     "id": "anibot_grave_scarab",
@@ -5737,7 +5796,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/SCB-01_avatar.jpg"
   },
   {
     "id": "anibot_cygon",
@@ -5832,7 +5892,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/G0-003_avatar.jpg"
   },
   {
     "id": "anibot_biggon",
@@ -5928,7 +5989,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/G0-002_avatar.jpg"
   },
   {
     "id": "anibot_apex_nis",
@@ -6024,7 +6086,8 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/APX-07_avatar.jpg"
   },
   {
     "id": "anibot_apex_tim",
@@ -6120,6 +6183,7 @@
           "MOBILITY"
         ]
       }
-    }
+    },
+    "avatar": "/images/anibots/APX-08_avatar.jpg"
   }
 ]
