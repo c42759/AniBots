@@ -5924,5 +5924,85 @@
         ]
       }
     }
+  },
+  {
+    "id": "anibot_apex_nis",
+    "model_code": "APX-07",
+    "name": "Apex-Nis",
+    "series": "ANIBOTS",
+    "archetype": "Mono-Wheel Guardian Counter-Lancer",
+    "description": "A mono-wheel guardian unit specializing in frontline defense and precise counterattacks. Combines high mobility with exceptional shielding and close-to-mid range combat capability.",
+    "preferred_chip": "chip_phalanx",
+    "affinity": "DEFENSE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Phalanx Chip",
+    "image": "/images/anibots/APX-07.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_apex_visor",
+        "name": "Apex Guard Visor",
+        "slot": "HEAD",
+        "type": "DEFENSE",
+        "integrity": 75,
+        "payload": 0,
+        "precision": 94,
+        "execution_time": 1.2,
+        "latency": 1.8,
+        "weight": 6,
+        "cache": 3,
+        "description": "Streamlined sensory visor with dual tactical swept antennas, pre-calculating incoming projectile trajectories to shield critical components."
+      },
+      "torso": {
+        "id": "part_torso_apex_chassis",
+        "name": "Apex-Nis Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 190,
+        "max_loadout": 36,
+        "firewall": 16,
+        "cooling": 1.8,
+        "description": "Heavy composite chassis featuring angular purple chevron energy manifolds and reinforced pauldrons for frontline shock absorption."
+      },
+      "left_arm": {
+        "id": "part_arm_l_diamond_shield",
+        "name": "Diamond Bulwark Shield",
+        "slot": "LEFT_ARM",
+        "type": "DEFENSE",
+        "integrity": 85,
+        "payload": 18,
+        "precision": 90,
+        "execution_time": 1.4,
+        "latency": 2.0,
+        "weight": 11,
+        "cache": -1,
+        "description": "Faceted high-density diamond armor shield equipped with an energy field generator that mitigates incoming ballistic and laser damage."
+      },
+      "right_arm": {
+        "id": "part_arm_r_bident_spear",
+        "name": "Apex Bident Spear",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 70,
+        "payload": 42,
+        "precision": 88,
+        "execution_time": 2.2,
+        "latency": 3.0,
+        "weight": 10,
+        "cache": -1,
+        "description": "Multi-purpose triton bident lance utilizing rotational wheel momentum for devastating piercing thrusts and wide sweeping strikes."
+      },
+      "legs": {
+        "id": "part_legs_apex_monowheel",
+        "name": "Apex Mono-Wheel",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 135,
+        "clock_speed": 1.55,
+        "direct_connect": 12,
+        "remote_uplink": -5,
+        "packet_loss": 8,
+        "protocol": "WHEELED",
+        "description": "Heavy-duty armored mono-wheel platform engineered with dual hydraulic forks and high-torque gyros for high-speed charges and responsive drift maneuvers."
+      }
+    }
   }
 ]

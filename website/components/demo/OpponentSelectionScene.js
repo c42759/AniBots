@@ -326,6 +326,118 @@ export const OpponentSelectionScene = ({
               )}
             </div>
 
+            {/* Arena Battlefield Terrain Selection (PARTS.md Section 4) */}
+            <div className="border border-border p-2 bg-surface mt-2 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] text-accent font-bold uppercase tracking-wider flex items-center gap-1.5">
+                  <span>🌐 Arena Battlefield Terrain</span>
+                  <span className="text-[9px] text-muted font-normal">(PARTS.md Interaction Matrix)</span>
+                </span>
+                <span className="text-[9px] text-muted uppercase">
+                  {selectedTerrainId === 'RANDOM' ? '🎲 Random (Default)' : TERRAINS.find((t) => t.id === selectedTerrainId)?.shortName}
+                </span>
+              </div>
+
+              {/* Terrain Pills */}
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    battleAudio.playClick();
+                    setSelectedTerrainId('RANDOM');
+                  }}
+                  className={`p-1.5 border text-center transition-all cursor-pointer flex flex-col items-center justify-center ${
+                    selectedTerrainId === 'RANDOM'
+                      ? 'border-accent bg-accent/20 text-foreground font-bold shadow-sm'
+                      : 'border-border bg-background/60 text-muted hover:border-foreground/40 hover:text-foreground'
+                  }`}
+                >
+                  <span className="text-sm">🎲</span>
+                  <span className="text-[9px] uppercase tracking-wider mt-0.5 truncate w-full">Random</span>
+                </button>
+
+                {TERRAINS.map((t) => {
+                  const isSelected = selectedTerrainId === t.id;
+                  return (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => {
+                        battleAudio.playClick();
+                        setSelectedTerrainId(t.id);
+                      }}
+                      className={`relative p-1 border text-center transition-all cursor-pointer overflow-hidden flex flex-col items-center justify-center ${
+                        isSelected
+                          ? 'border-accent bg-accent/20 text-foreground font-bold shadow-sm ring-1 ring-accent'
+                          : 'border-border bg-background/60 text-muted hover:border-foreground/40 hover:text-foreground'
+                      }`}
+                    >
+                      <div className="w-full h-5 relative rounded-sm overflow-hidden mb-1 border border-border/50">
+                        <img
+                          src={t.texture}
+                          alt={t.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <span className="text-[8px] uppercase tracking-tighter truncate w-full leading-none">
+                        {t.icon} {t.shortName}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Selected Terrain Telemetry & Interaction Preview */}
+              {selectedTerrainId !== 'RANDOM' ? (
+                (() => {
+                  const curr = TERRAINS.find((t) => t.id === selectedTerrainId);
+                  const playerProto = playerBot?.parts?.legs?.protocol || playerBot?.botConfig?.parts?.legs?.protocol || 'BIPEDAL';
+                  const opponentProto = activeOpponent.parts?.legs?.protocol || 'BIPEDAL';
+                  const pMod = getTerrainModifiers(playerProto, curr.id, playerBot?.chipConfig?.id);
+                  const oMod = getTerrainModifiers(opponentProto, curr.id, opponentChip?.id);
+
+                  return (
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-2 p-1.5 bg-background border border-border/80 text-[9px]">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={curr.texture}
+                          alt={curr.name}
+                          className="w-8 h-8 rounded border border-border object-cover shrink-0"
+                        />
+                        <div>
+                          <div className="font-bold text-foreground flex items-center gap-1">
+                            <span>{curr.icon} {curr.name}</span>
+                          </div>
+                          <div className="text-muted text-[8px] line-clamp-1">{curr.description}</div>
+                        </div>
+                      </div>
+
+                      {/* Leg Protocol Modifiers comparison */}
+                      <div className="flex items-center gap-2 shrink-0 border-t sm:border-t-0 sm:border-l border-border/60 pt-1 sm:pt-0 sm:pl-2">
+                        <div className="text-right">
+                          <span className="text-muted block text-[8px]">YOU ({playerProto}):</span>
+                          <span className={`font-bold ${pMod.speedMult > 1.0 ? 'text-emerald-400' : pMod.speedMult < 1.0 ? 'text-rose-400' : 'text-foreground'}`}>
+                            {Math.round(pMod.speedMult * 100)}% Spd
+                          </span>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-muted block text-[8px]">RIVAL ({opponentProto}):</span>
+                          <span className={`font-bold ${oMod.speedMult > 1.0 ? 'text-emerald-400' : oMod.speedMult < 1.0 ? 'text-rose-400' : 'text-foreground'}`}>
+                            {Math.round(oMod.speedMult * 100)}% Spd
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()
+              ) : (
+                <div className="p-1.5 bg-background/60 border border-border/60 text-[9px] text-muted flex items-center justify-between">
+                  <span>🎲 <em>Battlefield terrain dynamically determined upon launch.</em></span>
+                  <span className="text-[8px] text-accent font-semibold">1 of 5 Environments</span>
+                </div>
+              )}
+            </div>
+
             <div className="p-2 border border-border bg-surface/50 text-[11px]">
               <span className="text-muted">Matchup:</span>{' '}
               <strong className="text-foreground">{playerLeader?.botConfig?.name || 'Player'}</strong> vs{' '}
