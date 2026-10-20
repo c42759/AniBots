@@ -6025,5 +6025,101 @@
         ]
       }
     }
+  },
+  {
+    "id": "anibot_apex_tim",
+    "model_code": "APX-08",
+    "name": "Apex-Tim",
+    "series": "ANIBOTS",
+    "archetype": "Elite Assault Skirmisher",
+    "description": "A high-mobility breach unit designed for precision assaults. Apex-Tim combines advanced close-range combat capabilities with high-intensity firepower, built for rapid engagement and target elimination.",
+    "preferred_chip": "chip_plasma",
+    "affinity": "BURST_DAMAGE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Plasma Chip",
+    "image": "/images/anibots/APX-08.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_apex_tri_node",
+        "name": "Tri-Node Optic System",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 70,
+        "payload": 0,
+        "precision": 96,
+        "execution_time": 1.1,
+        "latency": 1.5,
+        "weight": 5,
+        "cache": 4,
+        "description": "Spherical tactical sensor helmet with tri-node optical arrangement and lateral audio pods, providing wide situational awareness and instant target acquisition.",
+        "affinity": [
+          "SUPPORT",
+          "PRECISION"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_apex_reactor_core",
+        "name": "Apex-Tim Reactor Core",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 175,
+        "max_loadout": 34,
+        "firewall": 14,
+        "cooling": 2.4,
+        "description": "High-output reactor core chassis encased in layered assault composite plating, generating continuous energy to sustain high-mobility skirmishes.",
+        "affinity": [
+          "DEFENSE"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_apex_energized_claw",
+        "name": "Energized Combat Claw",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 65,
+        "payload": 38,
+        "precision": 92,
+        "execution_time": 1.2,
+        "latency": 1.6,
+        "weight": 7,
+        "cache": -1,
+        "description": "High-frequency energized twin pincer claw engineered for rapid armor breaching and devastating close-quarters rend strikes.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_apex_composite_cannon",
+        "name": "Apex Composite Cannon",
+        "slot": "RIGHT_ARM",
+        "type": "RANGED",
+        "integrity": 60,
+        "payload": 44,
+        "precision": 90,
+        "execution_time": 1.5,
+        "latency": 2.2,
+        "weight": 9,
+        "cache": -1,
+        "description": "Integrated high-output particle cannon with stabilized barrel dampers, delivering concentrated high-intensity energy blasts.",
+        "affinity": [
+          "SHOOTING"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_apex_assault_biped",
+        "name": "Apex Assault Striders",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 110,
+        "clock_speed": 1.85,
+        "direct_connect": 16,
+        "remote_uplink": 0,
+        "packet_loss": 18,
+        "protocol": "BIPEDAL",
+        "description": "Reinforced high-mobility assault bipedal legs equipped with directional ankle thrusters for rapid breach dashes and stable firing stances.",
+        "affinity": [
+          "MOBILITY"
+        ]
+      }
+    }
   }
 ]
