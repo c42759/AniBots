@@ -1,18 +1,47 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import anibotsData from '../../data/anibots.json';
 import chipsData from '../../data/anima_chips.json';
 import { getBotAvatarUrl, TERRAINS, getTerrainModifiers } from '../../utils/combatEngine';
 import { battleAudio } from '../../utils/battleAudio';
 
-export const OpponentSelectionScene = ({ playerBot, onSelectOpponent, onBack }) => {
-  const [selectedOpponentId, setSelectedOpponentId] = useState(
-    anibotsData.find((b) => b.id !== playerBot?.botConfig?.id)?.id || anibotsData[1]?.id
-  );
+export const OpponentSelectionScene = ({
+  playerBot,
+  playerTeam,
+  teamSize = 1,
+  onSelectOpponent,
+  onSelectOpponents,
+  onBack,
+}) => {
+  const playerLeader = playerTeam?.[0] || playerBot;
+
+  // Initialize rival roster
+  const [opponentRoster, setOpponentRoster] = useState(() => {
+    const available = anibotsData.filter((b) => b.id !== playerLeader?.botConfig?.id);
+    return Array.from({ length: teamSize }).map((_, idx) => {
+      return available[idx % available.length] || anibotsData[idx % anibotsData.length];
+    });
+  });
+
+  const [activeSlot, setActiveSlot] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [affinityFilter, setAffinityFilter] = useState('ALL');
   const [selectedTerrainId, setSelectedTerrainId] = useState('RANDOM');
+
+  // Keep roster synced with teamSize
+  useEffect(() => {
+    setOpponentRoster((prev) => {
+      const available = anibotsData.filter((b) => b.id !== playerLeader?.botConfig?.id);
+      return Array.from({ length: teamSize }).map((_, idx) => {
+        if (prev[idx]) return prev[idx];
+        return available[idx % available.length] || anibotsData[idx % anibotsData.length];
+      });
+    });
+  }, [teamSize, playerLeader]);
+
+  const activeOpponent = opponentRoster[activeSlot] || opponentRoster[0] || anibotsData[1];
+  const opponentChip = chipsData.find((c) => c.id === activeOpponent.preferred_chip) || chipsData[1];
 
   const affinities = useMemo(() => {
     const list = anibotsData.map((b) => b.affinity).filter(Boolean);
@@ -32,14 +61,22 @@ export const OpponentSelectionScene = ({ playerBot, onSelectOpponent, onBack }) 
     });
   }, [searchQuery, affinityFilter]);
 
-  const activeOpponent = anibotsData.find((b) => b.id === selectedOpponentId) || anibotsData[1];
-  const opponentChip = chipsData.find((c) => c.id === activeOpponent.preferred_chip) || chipsData[1];
+  const handleSelectOpponentForSlot = (bot) => {
+    setOpponentRoster((prev) => {
+      const next = [...prev];
+      next[activeSlot] = bot;
+      return next;
+    });
+  };
 
-  const handleRandomOpponent = () => {
+  const handleRandomOpponentTeam = () => {
     battleAudio.playClick();
-    const available = anibotsData.filter((b) => b.id !== playerBot?.botConfig?.id);
-    const randomBot = available[Math.floor(Math.random() * available.length)];
-    setSelectedOpponentId(randomBot.id);
+    const available = anibotsData.filter((b) => b.id !== playerLeader?.botConfig?.id);
+    const shuffled = [...available].sort(() => 0.5 - Math.random());
+    const newRoster = Array.from({ length: teamSize }).map((_, idx) => {
+      return shuffled[idx % shuffled.length];
+    });
+    setOpponentRoster(newRoster);
   };
 
   const handleLaunchBattle = () => {
@@ -49,31 +86,42 @@ export const OpponentSelectionScene = ({ playerBot, onSelectOpponent, onBack }) 
         ? TERRAINS[Math.floor(Math.random() * TERRAINS.length)]
         : TERRAINS.find((t) => t.id === selectedTerrainId) || TERRAINS[0];
 
-    onSelectOpponent({
-      botConfig: activeOpponent,
-      chipConfig: opponentChip,
+    const fullOpponents = opponentRoster.map((bot, idx) => ({
+      botConfig: bot,
+      chipConfig: chipsData.find((c) => c.id === bot.preferred_chip) || chipsData[0],
       terrain: resolvedTerrain,
-    });
+      isLeader: idx === 0,
+    }));
+
+    if (onSelectOpponents) {
+      onSelectOpponents(fullOpponents, resolvedTerrain);
+    } else if (onSelectOpponent) {
+      onSelectOpponent(fullOpponents[0]);
+    }
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between p-4 sm:p-6 bg-surface/50 font-mono text-xs overflow-y-auto">
+    <div className="w-full h-full flex flex-col justify-between p-3 sm:p-5 bg-surface/50 font-mono text-xs overflow-y-auto">
       {/* Top Banner */}
-      <div className="flex items-center justify-between border-b border-border pb-3">
+      <div className="flex items-center justify-between border-b border-border pb-2.5">
         <div>
-          <span className="text-[10px] tracking-widest uppercase text-accent font-bold">{'Scene 02 // Rival Matchmaking'}</span>
+          <span className="text-[10px] tracking-widest uppercase text-accent font-bold">
+            {'Scene 02 // Rival Matchmaking'}
+          </span>
           <h2 className="text-base sm:text-lg font-bold tracking-tight text-foreground uppercase">
-            Select Opponent AniBot
+            {teamSize > 1 ? `Select Rival Squad (${teamSize} AniBots)` : 'Select Opponent AniBot'}
           </h2>
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={handleRandomOpponent}
+            type="button"
+            onClick={handleRandomOpponentTeam}
             className="px-3 py-1.5 border border-border bg-background hover:border-foreground text-foreground text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"
           >
-            🎲 Random Opponent
+            🎲 {teamSize > 1 ? 'Randomize Rival Squad' : 'Random Opponent'}
           </button>
           <button
+            type="button"
             onClick={onBack}
             className="px-3 py-1.5 border border-border bg-surface text-muted hover:text-foreground text-xs uppercase tracking-wider transition-colors cursor-pointer"
           >
@@ -82,10 +130,41 @@ export const OpponentSelectionScene = ({ playerBot, onSelectOpponent, onBack }) 
         </div>
       </div>
 
+      {/* Multi-Bot Slot Selector Tabs (When teamSize > 1) */}
+      {teamSize > 1 && (
+        <div className="flex flex-wrap items-center gap-2 py-2 border-b border-border bg-surface/30">
+          <span className="text-[10px] uppercase font-bold text-muted pl-1">Rival Slot:</span>
+          {Array.from({ length: teamSize }).map((_, i) => {
+            const bot = opponentRoster[i];
+            const isSelected = activeSlot === i;
+            return (
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  battleAudio.playClick();
+                  setActiveSlot(i);
+                }}
+                className={`px-3 py-1.5 border text-xs font-mono uppercase cursor-pointer flex items-center gap-2 transition-all ${
+                  isSelected
+                    ? 'border-rose-500 bg-rose-500/15 text-rose-400 font-bold shadow-xs'
+                    : 'border-border bg-background text-muted hover:text-foreground'
+                }`}
+              >
+                <span>{i === 0 ? '👑 Rival Leader' : `Rival Support ${i}`}</span>
+                <span className="text-[10px] text-foreground font-semibold">
+                  [{bot?.name || 'Empty'}]
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {/* Matchup Duel Preview */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 my-auto py-2">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-3 my-auto py-2">
         {/* Opponent Bot List */}
-        <div className="md:col-span-5 max-h-[340px] flex flex-col border border-border bg-background p-2">
+        <div className="md:col-span-5 max-h-[300px] flex flex-col border border-border bg-background p-2">
           <div className="space-y-1.5 pb-2 mb-1.5 border-b border-border">
             <div className="flex items-center justify-between">
               <span className="text-[10px] text-muted uppercase tracking-wider font-semibold">
@@ -117,14 +196,17 @@ export const OpponentSelectionScene = ({ playerBot, onSelectOpponent, onBack }) 
               <div className="text-center py-6 text-muted text-[11px] italic">No rivals matching filter</div>
             ) : (
               filteredOpponents.map((bot) => {
-                const isSelected = bot.id === selectedOpponentId;
+                const isSelected = bot.id === activeOpponent.id;
                 return (
                   <button
                     key={bot.id}
-                    onClick={() => { battleAudio.playClick(); setSelectedOpponentId(bot.id); }}
+                    onClick={() => {
+                      battleAudio.playClick();
+                      handleSelectOpponentForSlot(bot);
+                    }}
                     className={`w-full text-left p-2 border transition-all flex items-center justify-between cursor-pointer ${
                       isSelected
-                        ? 'border-accent bg-accent/10 text-foreground font-bold'
+                        ? 'border-rose-500 bg-rose-500/10 text-foreground font-bold'
                         : 'border-border/60 bg-surface/40 hover:border-foreground/40 text-muted hover:text-foreground'
                     }`}
                   >
@@ -151,49 +233,97 @@ export const OpponentSelectionScene = ({ playerBot, onSelectOpponent, onBack }) 
         </div>
 
         {/* Rival Specs & Matchup card */}
-        <div className="md:col-span-7 border border-border bg-background p-4 flex flex-col justify-between">
+        <div className="md:col-span-7 border border-border bg-background p-3 flex flex-col justify-between">
           <div>
-            <div className="flex items-start justify-between border-b border-border pb-2 mb-3">
+            <div className="flex items-start justify-between border-b border-border pb-2 mb-2">
               <div className="flex items-center gap-3">
                 <img
                   src={getBotAvatarUrl(activeOpponent, anibotsData)}
                   alt={activeOpponent.name}
-                  className="w-12 h-12 rounded border border-border object-cover shadow-sm bg-surface shrink-0"
+                  className="w-12 h-12 rounded border border-border object-cover bg-surface shrink-0"
                   onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
                 <div>
-                  <span className="text-[10px] font-bold text-accent uppercase">{`AI CHALLENGER // ${activeOpponent.model_code}`}</span>
-                  <h3 className="text-base font-bold text-foreground">{activeOpponent.name}</h3>
-                  <p className="text-[11px] text-muted">{activeOpponent.archetype}</p>
+                  <h3 className="text-sm font-bold text-foreground uppercase tracking-tight flex items-center gap-2">
+                    <span>{activeOpponent.name}</span>
+                    {activeSlot === 0 && (
+                      <span className="text-[10px] px-1.5 py-0.2 bg-rose-500/15 border border-rose-500/40 text-rose-400 font-mono">
+                        👑 RIVAL LEADER
+                      </span>
+                    )}
+                  </h3>
+                  <div className="text-[10px] text-muted">
+                    {activeOpponent.model_code} • {activeOpponent.series} • {activeOpponent.archetype}
+                  </div>
                 </div>
               </div>
               <div className="text-right">
-                <span
-                  className="w-2.5 h-2.5 rounded-full inline-block mr-1.5"
-                  style={{ backgroundColor: opponentChip.diode_color || '#FFA500' }}
-                />
-                <span className="text-[11px] font-bold text-foreground">{opponentChip.name}</span>
-                <span className="text-[10px] text-muted block italic">&ldquo;{opponentChip.quote}&rdquo;</span>
+                <div className="text-[10px] text-rose-400 font-bold uppercase">{activeOpponent.affinity}</div>
+                <div className="text-[9px] text-muted">Weight: {activeOpponent.total_weight || 45}t</div>
               </div>
             </div>
 
-            {/* Armament summary */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[10px] mb-3">
-              <div className="border border-border p-2 bg-surface">
-                <span className="text-muted block text-[9px] uppercase">HEAD ARSENAL</span>
-                <div className="font-bold text-foreground truncate">{activeOpponent.parts?.head?.name}</div>
-                <div className="text-muted">Type: {activeOpponent.parts?.head?.type} (Cache: {activeOpponent.parts?.head?.cache ?? 3})</div>
+            {/* Anima Chip Preview */}
+            <div className="bg-surface border border-border p-2 mb-2">
+              <div className="flex items-center justify-between text-[10px] mb-1">
+                <span className="text-rose-400 font-bold uppercase">Anima Core: {opponentChip.name}</span>
+                <span className="text-muted font-mono">{opponentChip.affinity} Spec</span>
               </div>
-              <div className="border border-border p-2 bg-surface">
-                <span className="text-muted block text-[9px] uppercase">LEFT WEAPON</span>
-                <div className="font-bold text-foreground truncate">{activeOpponent.parts?.left_arm?.name}</div>
-                <div className="text-accent font-semibold">Pwr: {activeOpponent.parts?.left_arm?.payload}</div>
+              <div className="text-[10px] text-muted italic">&ldquo;{opponentChip.quote}&rdquo;</div>
+            </div>
+
+            {/* Battlefield Terrain Selector */}
+            <div className="bg-surface border border-border p-2 mb-2">
+              <div className="flex items-center justify-between text-[10px] mb-1.5">
+                <label htmlFor="terrain-select" className="text-accent font-bold uppercase flex items-center gap-1.5">
+                  <span>Battlefield Terrain Ground</span>
+                </label>
+                <span className="text-[9px] text-muted font-mono">Affects Protocol Speeds</span>
               </div>
-              <div className="border border-border p-2 bg-surface">
-                <span className="text-muted block text-[9px] uppercase">RIGHT WEAPON</span>
-                <div className="font-bold text-foreground truncate">{activeOpponent.parts?.right_arm?.name}</div>
-                <div className="text-accent font-semibold">Pwr: {activeOpponent.parts?.right_arm?.payload}</div>
-              </div>
+              <select
+                id="terrain-select"
+                value={selectedTerrainId}
+                onChange={(e) => {
+                  battleAudio.playClick();
+                  setSelectedTerrainId(e.target.value);
+                }}
+                className="w-full bg-background border border-border p-1 text-[11px] text-foreground focus:outline-accent font-mono cursor-pointer mb-1"
+              >
+                <option value="RANDOM">🎲 Randomize Terrain (Dynamic Environment)</option>
+                {TERRAINS.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.icon} {t.name}
+                  </option>
+                ))}
+              </select>
+
+              {selectedTerrainId !== 'RANDOM' ? (
+                (() => {
+                  const t = TERRAINS.find((item) => item.id === selectedTerrainId);
+                  const pProto = playerLeader?.botConfig?.parts?.legs?.protocol;
+                  const eProto = activeOpponent?.parts?.legs?.protocol;
+                  const pMod = getTerrainModifiers(pProto, t?.id, playerLeader?.chipConfig?.id);
+                  const eMod = getTerrainModifiers(eProto, t?.id, opponentChip?.id);
+                  return (
+                    <div className="p-1.5 bg-background/60 border border-border/60 text-[9px] space-y-0.5">
+                      <div className="text-muted leading-tight">{t?.description}</div>
+                      <div className="flex items-center justify-between pt-1 border-t border-border/40 font-mono text-[9px]">
+                        <span className={pMod.speedMult >= 1.0 ? 'text-emerald-400' : 'text-amber-400'}>
+                          Player ({pProto || 'BIPEDAL'}): {Math.round(pMod.speedMult * 100)}% Speed
+                        </span>
+                        <span className={eMod.speedMult >= 1.0 ? 'text-emerald-400' : 'text-amber-400'}>
+                          Rival ({eProto || 'BIPEDAL'}): {Math.round(eMod.speedMult * 100)}% Speed
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })()
+              ) : (
+                <div className="p-1.5 bg-background/60 border border-border/60 text-[9px] text-muted flex items-center justify-between">
+                  <span>🎲 <em>Battlefield terrain dynamically determined upon launch.</em></span>
+                  <span className="text-[8px] text-accent font-semibold">1 of 5 Environments</span>
+                </div>
+              )}
             </div>
 
             {/* Arena Battlefield Terrain Selection (PARTS.md Section 4) */}
@@ -310,16 +440,23 @@ export const OpponentSelectionScene = ({ playerBot, onSelectOpponent, onBack }) 
 
             <div className="p-2 border border-border bg-surface/50 text-[11px]">
               <span className="text-muted">Matchup:</span>{' '}
-              <strong className="text-foreground">{playerBot.botConfig.name}</strong> vs{' '}
-              <strong className="text-accent">{activeOpponent.name}</strong>
+              <strong className="text-foreground">{playerLeader?.botConfig?.name || 'Player'}</strong> vs{' '}
+              <strong className="text-rose-400">{opponentRoster[0]?.name || activeOpponent.name}</strong>
+              {teamSize > 1 && (
+                <span className="text-muted ml-2">
+                  (+ {teamSize - 1} support {teamSize - 1 === 1 ? 'unit' : 'units'})
+                </span>
+              )}
             </div>
           </div>
 
-          <div className="pt-3 border-t border-border mt-3 flex items-center justify-between">
-            <span className="text-[10px] text-muted">1v1 Speed Relay Combat • Standard Arena</span>
+          <div className="pt-2.5 border-t border-border mt-2 flex items-center justify-between">
+            <span className="text-[10px] text-muted">
+              {teamSize}v{teamSize} Relay Combat • Leader Elimination Rule
+            </span>
             <button
               onClick={handleLaunchBattle}
-              className="px-6 py-2.5 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider transition-transform active:scale-95 cursor-pointer flex items-center gap-2"
+              className="px-6 py-2.5 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider transition-transform active:scale-95 cursor-pointer flex items-center gap-2 shadow-sm"
             >
               <span>Engage In Battle</span>
               <span>⚔️</span>

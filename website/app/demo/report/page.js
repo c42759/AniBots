@@ -7,28 +7,35 @@ import { SiteHeader } from '../../../components/SiteHeader';
 import { SiteFooter } from '../../../components/SiteFooter';
 import anibotsData from '../../../data/anibots.json';
 import chipsData from '../../../data/anima_chips.json';
-import { simulateHeadlessBattle, getBotAvatarUrl } from '../../../utils/combatEngine';
+import { simulateHeadlessBattle, getBotAvatarUrl, TERRAINS } from '../../../utils/combatEngine';
 import { AniBotDetailModal } from '../../../components/dex/AniBotDetailModal';
 import { ChipDetailModal } from '../../../components/dex/ChipDetailModal';
 
 export default function SimulationReportPage() {
   const [roundsPerMatchup, setRoundsPerMatchup] = useState(10);
   const [status, setStatus] = useState('IDLE'); // 'IDLE' | 'RUNNING' | 'PAUSED' | 'COMPLETED'
+  const [useDefaultChip, setUseDefaultChip] = useState(false);
+  const [selectedTerrain, setSelectedTerrain] = useState('CITY'); // 'CITY' | 'RUBBLE' | 'MUD' | 'FLOODED' | 'ROCKY' | 'RANDOM'
   const [searchQuery, setSearchQuery] = useState('');
   const [affinityFilter, setAffinityFilter] = useState('ALL');
   const [sortBy, setSortBy] = useState('WIN_RATE_DESC'); // 'WIN_RATE_DESC' | 'WIN_RATE_ASC' | 'LOSE_RATE_DESC' | 'NAME_ASC' | 'NAME_DESC' | 'DEFAULT'
   const [selectedBotModal, setSelectedBotModal] = useState(null);
   const [selectedChipModal, setSelectedChipModal] = useState(null);
 
-  // Map each bot to its preferred chip
+  // Map each bot to its chip (either universal chip_default or bot's preferred chip)
   const botChipMap = useMemo(() => {
     const map = new Map();
+    const defaultChip = chipsData.find((c) => c.id === 'chip_default') || chipsData[0];
     anibotsData.forEach((bot) => {
-      const chip = chipsData.find((c) => c.id === bot.preferred_chip) || chipsData[0];
-      map.set(bot.id, chip);
+      if (useDefaultChip) {
+        map.set(bot.id, defaultChip);
+      } else {
+        const chip = chipsData.find((c) => c.id === bot.preferred_chip) || chipsData[0];
+        map.set(bot.id, chip);
+      }
     });
     return map;
-  }, []);
+  }, [useDefaultChip]);
 
   // Aggregated stats per bot: id -> { wins, losses, ties, total, winRate, loseRate }
   const [botStats, setBotStats] = useState(() => {
@@ -175,8 +182,14 @@ export default function SimulationReportPage() {
           totalRounds: roundsPerMatchup,
         };
 
+        // Determine terrain for this duel
+        const duelTerrainId =
+          selectedTerrain === 'RANDOM'
+            ? TERRAINS[Math.floor(Math.random() * TERRAINS.length)].id
+            : selectedTerrain;
+
         // Run one fast headless battle
-        const result = simulateHeadlessBattle(botA, chipA, botB, chipB);
+        const result = simulateHeadlessBattle(botA, chipA, botB, chipB, { terrainId: duelTerrainId });
 
         // Update stats
         const statA = currentStats[botA.id] || { wins: 0, losses: 0, ties: 0, total: 0 };
@@ -238,7 +251,7 @@ export default function SimulationReportPage() {
         scheduleNextBatch();
       }
     });
-  }, [anibotsData, botChipMap, roundsPerMatchup]);
+  }, [anibotsData, botChipMap, roundsPerMatchup, selectedTerrain]);
 
   // Filtered and Sorted Bots List
   const displayedBots = useMemo(() => {
@@ -315,27 +328,74 @@ export default function SimulationReportPage() {
         {/* Control Console */}
         <div className="border border-border bg-surface p-4 sm:p-5 flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            {/* Setting: Number of Battles per matchup */}
-            <div className="flex items-center gap-3">
-              <label htmlFor="battles-input" className="text-xs font-mono uppercase tracking-wider text-muted font-semibold">
-                Battles per Matchup:
-              </label>
-              <input
-                id="battles-input"
-                type="number"
-                min="1"
-                max="100"
-                disabled={status === 'RUNNING'}
-                value={roundsPerMatchup}
-                onChange={(e) => {
-                  const val = Math.max(1, Math.min(100, parseInt(e.target.value, 10) || 1));
-                  setRoundsPerMatchup(val);
-                }}
-                className="w-20 px-2.5 py-1.5 border border-border bg-background text-foreground font-mono text-sm focus:outline-none focus:border-accent disabled:opacity-50"
-              />
-              <span className="text-[11px] font-mono text-muted hidden sm:inline">
-                ({totalPairings} pairs × {roundsPerMatchup} = {totalBattlesGoal.toLocaleString()} total duels)
-              </span>
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+              {/* Setting: Number of Battles per matchup */}
+              <div className="flex items-center gap-2.5">
+                <label htmlFor="battles-input" className="text-xs font-mono uppercase tracking-wider text-muted font-semibold">
+                  Battles:
+                </label>
+                <input
+                  id="battles-input"
+                  type="number"
+                  min="1"
+                  max="100"
+                  disabled={status === 'RUNNING'}
+                  value={roundsPerMatchup}
+                  onChange={(e) => {
+                    const val = Math.max(1, Math.min(100, parseInt(e.target.value, 10) || 1));
+                    setRoundsPerMatchup(val);
+                  }}
+                  className="w-16 px-2 py-1.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-accent disabled:opacity-50"
+                />
+                <span className="text-[11px] font-mono text-muted hidden md:inline">
+                  ({totalPairings} × {roundsPerMatchup} = {totalBattlesGoal.toLocaleString()})
+                </span>
+              </div>
+
+              {/* Setting: Terrain Selection */}
+              <div className="flex items-center gap-2">
+                <label htmlFor="terrain-select" className="text-xs font-mono uppercase tracking-wider text-muted font-semibold">
+                  Terrain:
+                </label>
+                <select
+                  id="terrain-select"
+                  disabled={status === 'RUNNING'}
+                  value={selectedTerrain}
+                  onChange={(e) => {
+                    setSelectedTerrain(e.target.value);
+                    if (status !== 'IDLE') handleReset();
+                  }}
+                  className="px-2.5 py-1.5 border border-border bg-background text-foreground font-mono text-xs focus:outline-none focus:border-accent disabled:opacity-50 cursor-pointer"
+                >
+                  {TERRAINS.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.icon} {t.shortName || t.name} {t.id === 'CITY' ? '(Default)' : ''}
+                    </option>
+                  ))}
+                  <option value="RANDOM">🎲 Randomize Per Duel</option>
+                </select>
+              </div>
+
+              {/* Setting: Default Chip Toggle */}
+              <div className="flex items-center gap-2">
+                <label
+                  htmlFor="default-chip-toggle"
+                  className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-muted font-semibold cursor-pointer select-none"
+                >
+                  <input
+                    id="default-chip-toggle"
+                    type="checkbox"
+                    checked={useDefaultChip}
+                    disabled={status === 'RUNNING'}
+                    onChange={(e) => {
+                      setUseDefaultChip(e.target.checked);
+                      if (status !== 'IDLE') handleReset();
+                    }}
+                    className="w-4 h-4 accent-accent cursor-pointer disabled:opacity-50"
+                  />
+                  <span>Use Default Chip (chip_default)</span>
+                </label>
+              </div>
             </div>
 
             {/* Execution Buttons */}
@@ -403,6 +463,25 @@ export default function SimulationReportPage() {
                 className="h-full bg-accent transition-all duration-150 ease-out"
                 style={{ width: `${progressPercent}%` }}
               />
+            </div>
+
+            {/* Active Simulation Parameters Summary */}
+            <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-muted pt-0.5">
+              <span>
+                Terrain:{' '}
+                <strong className="text-foreground">
+                  {selectedTerrain === 'RANDOM'
+                    ? '🎲 Random Per Duel'
+                    : TERRAINS.find((t) => t.id === selectedTerrain)?.shortName || selectedTerrain}
+                </strong>
+              </span>
+              <span>•</span>
+              <span>
+                Chip Config:{' '}
+                <strong className={useDefaultChip ? 'text-amber-500 font-bold' : 'text-foreground'}>
+                  {useDefaultChip ? 'Standardized (chip_default)' : 'Preferred Spec'}
+                </strong>
+              </span>
             </div>
 
             {/* Currently Simulating Matchup Sub-HUD */}
@@ -580,8 +659,11 @@ export default function SimulationReportPage() {
 
                       {/* Chip Engram */}
                       <td className="py-2.5 px-3 text-center text-muted text-[11px]">
-                        <span className="truncate block max-w-[130px] mx-auto" title={chip?.name}>
-                          {chip?.name?.replace(' Chip', '') || 'Balanced'}
+                        <span
+                          className={`truncate block max-w-[130px] mx-auto ${useDefaultChip ? 'text-amber-500 font-semibold' : ''}`}
+                          title={chip?.name}
+                        >
+                          {chip?.name?.replace(' Chip', '') || 'Standard'}
                         </span>
                       </td>
 

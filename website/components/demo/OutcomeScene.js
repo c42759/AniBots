@@ -29,8 +29,8 @@ export const OutcomeScene = ({
         </h2>
         <p className="text-xs text-muted mt-1">
           {playerWon
-            ? `Opponent ${enemyUnit.name}'s Head was dismantled! Clean match victory achieved.`
-            : `Your AniBot ${playerUnit.name}'s Head was destroyed! Unit collapsed on the relay track.`}
+            ? `Opponent Leader ${enemyUnit?.name || 'Rival'}'s Head was dismantled! Clean match victory achieved.`
+            : `Your Leader ${playerUnit?.name || 'Unit'}'s Head was destroyed! Critical squad system failure.`}
         </p>
 
         {/* Combatant Final Status Grid */}
@@ -41,20 +41,22 @@ export const OutcomeScene = ({
               <div className="flex items-center gap-2.5">
                 <img
                   src={getBotAvatarUrl(playerUnit, anibotsData)}
-                  alt={playerUnit.name}
+                  alt={playerUnit?.name}
                   className="w-8 h-8 rounded-sm object-cover border border-border bg-surface shrink-0"
                   onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
                 <div>
-                  <span className="font-bold text-foreground text-xs block">{playerUnit.name} (Player)</span>
-                  <span className="text-[9px] text-muted">{playerUnit.chip?.name}</span>
+                  <span className="font-bold text-foreground text-xs block">
+                    👑 {playerUnit?.name} (Player Leader)
+                  </span>
+                  <span className="text-[9px] text-muted">{playerUnit?.chip?.name}</span>
                 </div>
               </div>
             </div>
             <div className="space-y-1 text-[10px]">
               {[PartSlot.HEAD, PartSlot.TORSO, PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM, PartSlot.LEGS].map((slot) => {
-                const hp = playerUnit.integrities[slot] || 0;
-                const max = playerUnit.maxIntegrities[slot] || 1;
+                const hp = playerUnit?.integrities?.[slot] || 0;
+                const max = playerUnit?.maxIntegrities?.[slot] || 1;
                 const pct = Math.max(0, Math.min(100, Math.round((hp / max) * 100)));
                 const isHead = slot === PartSlot.HEAD;
                 return (
@@ -85,20 +87,22 @@ export const OutcomeScene = ({
               <div className="flex items-center gap-2.5">
                 <img
                   src={getBotAvatarUrl(enemyUnit, anibotsData)}
-                  alt={enemyUnit.name}
+                  alt={enemyUnit?.name}
                   className="w-8 h-8 rounded-sm object-cover border border-border bg-surface shrink-0"
                   onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
                 <div>
-                  <span className="font-bold text-accent text-xs block">{enemyUnit.name} (Rival)</span>
-                  <span className="text-[9px] text-muted">{enemyUnit.chip?.name}</span>
+                  <span className="font-bold text-rose-400 text-xs block">
+                    👑 {enemyUnit?.name} (Rival Leader)
+                  </span>
+                  <span className="text-[9px] text-muted">{enemyUnit?.chip?.name}</span>
                 </div>
               </div>
             </div>
             <div className="space-y-1 text-[10px]">
               {[PartSlot.HEAD, PartSlot.TORSO, PartSlot.LEFT_ARM, PartSlot.RIGHT_ARM, PartSlot.LEGS].map((slot) => {
-                const hp = enemyUnit.integrities[slot] || 0;
-                const max = enemyUnit.maxIntegrities[slot] || 1;
+                const hp = enemyUnit?.integrities?.[slot] || 0;
+                const max = enemyUnit?.maxIntegrities?.[slot] || 1;
                 const pct = Math.max(0, Math.min(100, Math.round((hp / max) * 100)));
                 const isHead = slot === PartSlot.HEAD;
                 return (
@@ -129,7 +133,7 @@ export const OutcomeScene = ({
       <div className="pt-3 border-t border-border flex flex-wrap items-center justify-center gap-3">
         <button
           onClick={() => { battleAudio.playClick(); onRematch(); }}
-          className="px-5 py-2.5 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider transition-transform active:scale-95 cursor-pointer"
+          className="px-5 py-2.5 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider transition-transform active:scale-95 cursor-pointer shadow-sm"
         >
           ⚔️ Instant Rematch
         </button>
@@ -143,7 +147,7 @@ export const OutcomeScene = ({
           onClick={() => { battleAudio.playClick(); onRebuildBot(); }}
           className="px-4 py-2 border border-border bg-surface hover:border-foreground text-muted hover:text-foreground uppercase tracking-wider transition-colors cursor-pointer"
         >
-          Re-Assemble Player Bot
+          Reconfigure Format & Squad
         </button>
       </div>
     </div>

@@ -12,6 +12,8 @@ quote: "Laws are written for people who can't take what they want. In the Badlan
 order: 7
 ---
 
+![Magnus](/images/characters/magnus.jpg)
+
 ## Overview
 Magnus is the feared criminal mastermind commanding the **Anode Group**, the dominant syndicate controlling the Rust-Ridge Badlands. Cold, calculating, and ruthless, Magnus amassed fortune and influence through illegal overclock chips, untracked chassis smuggling, and clandestine combat rings.
 

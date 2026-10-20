@@ -13,6 +13,8 @@ tagline: Always one step ahead.
 order: 4
 ---
 
+![Anda Tal](/images/characters/anda_tal.jpg)
+
 ## Overview
 Anda Tal is a top-ranking academic student in Neo Metropolis. Unlike Kura, who balances freelance salvage work and mechanic repairs to keep his household afloat, Anda is exclusively focused on academic and competitive excellence ("Student Only"). He rejects sentimental camaraderie in favor of relentless performance, disciplined preparation, and technical perfection.
 

@@ -218,6 +218,88 @@ export function parseAttackType(typeStr, slot) {
 }
 
 /**
+ * Extract canonical affinity array for a part.
+ */
+export function getPartAffinities(part, slot) {
+  if (Array.isArray(part?.affinity) && part.affinity.length > 0) {
+    return part.affinity.map((a) => String(a).toUpperCase());
+  }
+  if (typeof part?.affinity === 'string' && part.affinity.trim()) {
+    return [part.affinity.trim().toUpperCase()];
+  }
+  const fallbackType = parseAttackType(part?.type, slot);
+  return [fallbackType];
+}
+
+/**
+ * Resolves attack target bot and part slot based on Part Affinity Matching rule:
+ * 1. Checks all living parts on all living opponent bots for shared affinity.
+ * 2. If >= 1 matching parts found across opponent team, pick one at random.
+ * 3. If none found, pick a random living bot and random living part on that bot.
+ */
+export function resolveAffinityTarget(actionPart, actionSlot, livingOpponents) {
+  if (!livingOpponents || livingOpponents.length === 0) return null;
+
+  const attackerAffinities = getPartAffinities(actionPart, actionSlot);
+  const matchingCandidates = [];
+  const allActiveCandidates = [];
+
+  livingOpponents.forEach((opp) => {
+    const activeSlots = [
+      PartSlot.HEAD,
+      PartSlot.LEFT_ARM,
+      PartSlot.RIGHT_ARM,
+      PartSlot.TORSO,
+      PartSlot.LEGS,
+    ].filter((s) => (opp.integrities[s] || 0) > 0);
+
+    activeSlots.forEach((slot) => {
+      let partObj = null;
+      if (slot === PartSlot.HEAD) partObj = opp.parts.head;
+      else if (slot === PartSlot.LEFT_ARM) partObj = opp.parts.leftArm;
+      else if (slot === PartSlot.RIGHT_ARM) partObj = opp.parts.rightArm;
+      else if (slot === PartSlot.TORSO) partObj = opp.parts.torso;
+      else if (slot === PartSlot.LEGS) partObj = opp.parts.legs;
+
+      const oppAffinities = getPartAffinities(partObj, slot);
+      const isMatch = attackerAffinities.some((a) => oppAffinities.includes(a));
+
+      const candidate = {
+        targetBot: opp,
+        targetBotIndex: opp.teamIndex,
+        targetSlot: slot,
+        targetPart: partObj,
+        isAffinityMatch: isMatch,
+      };
+
+      allActiveCandidates.push(candidate);
+      if (isMatch) {
+        matchingCandidates.push(candidate);
+      }
+    });
+  });
+
+  // If >= 1 matching parts found across opponent squad, choose randomly among them
+  if (matchingCandidates.length > 0) {
+    const chosen = matchingCandidates[Math.floor(Math.random() * matchingCandidates.length)];
+    return chosen;
+  }
+
+  // Fallback: choose a random living bot, and a random living part on that bot
+  if (allActiveCandidates.length > 0) {
+    const randomBot = livingOpponents[Math.floor(Math.random() * livingOpponents.length)];
+    const randomBotActive = allActiveCandidates.filter((c) => c.targetBotIndex === randomBot.teamIndex);
+    const chosen =
+      randomBotActive.length > 0
+        ? randomBotActive[Math.floor(Math.random() * randomBotActive.length)]
+        : allActiveCandidates[Math.floor(Math.random() * allActiveCandidates.length)];
+    return { ...chosen, isAffinityMatch: false };
+  }
+
+  return null;
+}
+
+/**
  * Initialize a combat unit state from bot config and chip.
  */
 export function createCombatUnitState(botConfig, chipConfig, isPlayerSide) {
@@ -531,6 +613,7 @@ export function getBotAvatarUrl(botConfig, anibotsList = []) {
 export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
   const delta = options.delta || 0.05;
   const maxTicks = options.maxTicks || 2000; // ~100s simulated combat timeout
+  const terrainId = options.terrainId || options.terrain || 'CITY';
 
   const uA = createCombatUnitState(botA, chipA, true);
   const uB = createCombatUnitState(botB, chipB, false);
@@ -544,6 +627,8 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
       case CombatPhase.WAIT: {
         const legs = unit.parts.legs;
         let clockSpeed = legs?.clock_speed || 1.5;
+        const tMod = getTerrainModifiers(legs?.protocol, terrainId, unit.chip?.id);
+        clockSpeed *= tMod.speedMult;
         if (unit.integrities[PartSlot.LEGS] <= 0) clockSpeed *= 0.4;
         if (unit.chip?.id === 'chip_spark') clockSpeed *= 1.25;
 
@@ -591,6 +676,8 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
       case CombatPhase.RUN: {
         const execTime = Math.max(0.8, unit.selectedActionPart?.execution_time || 2.0);
         let runSpeed = 0.8 / execTime;
+        const tMod = getTerrainModifiers(unit.parts.legs?.protocol, terrainId, unit.chip?.id);
+        runSpeed *= tMod.speedMult;
         if (unit.integrities[PartSlot.LEGS] <= 0) runSpeed *= 0.4;
 
         unit.trackProgress = Math.min(1.0, unit.trackProgress + runSpeed * delta);
@@ -610,10 +697,19 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
             if (!unit.isUlt && actType === AttackType.TRAP) {
               if (isA) traps.trapB = part;
               else traps.trapA = part;
-            } else if (!unit.isUlt && actType === AttackType.SUPPORT && (part.payload || 0) <= 0) {
-              unit.guaranteedCritNext = true;
+            } else if (!unit.isUlt && actType === AttackType.SUPPORT) {
+              const healAmt = part.payload || 35;
+              const targetHealSlot = PartSlot.TORSO;
+              unit.integrities[targetHealSlot] = Math.min(
+                unit.maxIntegrities[targetHealSlot],
+                (unit.integrities[targetHealSlot] || 0) + healAmt
+              );
+              if ((part.payload || 0) <= 0) {
+                unit.guaranteedCritNext = true;
+              }
             } else {
-              const targetSlot = evaluateUtilityAITargetSlot(unit.chip, opponent);
+              const affinityTarget = resolveAffinityTarget(part, unit.selectedActionSlot, [opponent]);
+              const targetSlot = affinityTarget?.targetSlot || evaluateUtilityAITargetSlot(unit.chip, opponent);
               resolveCenterLineClash({
                 attacker: unit,
                 defender: opponent,

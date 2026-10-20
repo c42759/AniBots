@@ -6,11 +6,53 @@ import chipsData from '../../data/anima_chips.json';
 import { isBuildOverweight, getBotAvatarUrl } from '../../utils/combatEngine';
 import { battleAudio } from '../../utils/battleAudio';
 
-export const BotSelectionScene = ({ onSelectBot }) => {
+export const BotSelectionScene = ({ onSelectBot, onSelectTeam, teamSize = 1, onBack }) => {
   const [tab, setTab] = useState('preset'); // 'preset' | 'custom'
-  const [selectedBotId, setSelectedBotId] = useState(anibotsData[0]?.id || '');
+  const [activeSlot, setActiveSlot] = useState(0);
+
+  // Initialize team array of length teamSize
+  const [team, setTeam] = useState(() => {
+    return Array.from({ length: teamSize }).map((_, idx) => {
+      const bot = anibotsData[idx % anibotsData.length];
+      const chip = chipsData.find((c) => c.id === bot.preferred_chip) || chipsData[0];
+      return {
+        botConfig: bot,
+        chipConfig: chip,
+        mode: 'preset',
+        isLeader: idx === 0,
+      };
+    });
+  });
+
+  // Keep team synchronized if teamSize changes
+  useEffect(() => {
+    setTeam((prev) => {
+      const updated = Array.from({ length: teamSize }).map((_, idx) => {
+        if (prev[idx]) return prev[idx];
+        const bot = anibotsData[idx % anibotsData.length];
+        const chip = chipsData.find((c) => c.id === bot.preferred_chip) || chipsData[0];
+        return {
+          botConfig: bot,
+          chipConfig: chip,
+          mode: 'preset',
+          isLeader: idx === 0,
+        };
+      });
+      return updated;
+    });
+  }, [teamSize]);
+
+  const currentSlotBot = team[activeSlot] || team[0];
+  const [selectedBotId, setSelectedBotId] = useState(currentSlotBot?.botConfig?.id || anibotsData[0]?.id || '');
   const [searchQuery, setSearchQuery] = useState('');
   const [affinityFilter, setAffinityFilter] = useState('ALL');
+
+  // Synchronize selectedBotId when switching active slots
+  useEffect(() => {
+    if (team[activeSlot]?.botConfig?.id) {
+      setSelectedBotId(team[activeSlot].botConfig.id);
+    }
+  }, [activeSlot, team]);
 
   const affinities = useMemo(() => {
     const list = anibotsData.map((b) => b.affinity).filter(Boolean);
@@ -110,13 +152,46 @@ export const BotSelectionScene = ({ onSelectBot }) => {
   const customMaxLoadout = activeCustomTorso?.max_loadout || 30;
   const isCustomOverweight = isBuildOverweight(activeCustomHead, activeCustomLArm, activeCustomRArm, activeCustomTorso);
 
-  const handleConfirmPreset = () => {
-    battleAudio.playClick();
-    onSelectBot({
-      botConfig: activePreset,
-      chipConfig: presetChip,
-      mode: 'preset',
+  // Assign a bot to activeSlot
+  const handleSelectPresetForSlot = (bot) => {
+    setSelectedBotId(bot.id);
+    const chip = chipsData.find((c) => c.id === bot.preferred_chip) || chipsData[0];
+    setTeam((prev) => {
+      const next = [...prev];
+      next[activeSlot] = {
+        botConfig: bot,
+        chipConfig: chip,
+        mode: 'preset',
+        isLeader: activeSlot === 0,
+      };
+      return next;
     });
+  };
+
+  const handleRandomizeTeam = () => {
+    battleAudio.playClick();
+    const shuffled = [...anibotsData].sort(() => 0.5 - Math.random());
+    const newTeam = Array.from({ length: teamSize }).map((_, idx) => {
+      const bot = shuffled[idx % shuffled.length];
+      const chip = chipsData.find((c) => c.id === bot.preferred_chip) || chipsData[0];
+      return {
+        botConfig: bot,
+        chipConfig: chip,
+        mode: 'preset',
+        isLeader: idx === 0,
+      };
+    });
+    setTeam(newTeam);
+    setSelectedBotId(newTeam[activeSlot]?.botConfig?.id || newTeam[0].botConfig.id);
+  };
+
+  const handleConfirmDeploy = () => {
+    battleAudio.playClick();
+    if (onSelectTeam) {
+      onSelectTeam(team);
+    } else if (onSelectBot) {
+      onSelectBot(team[0]);
+    }
   };
 
   const handleConfirmCustom = () => {
@@ -155,48 +230,117 @@ export const BotSelectionScene = ({ onSelectBot }) => {
         legs: activeCustomLegs,
       },
     };
-    onSelectBot({
+
+    const newUnit = {
       botConfig: customBot,
       chipConfig: activeCustomChip,
       mode: 'custom',
+      isLeader: activeSlot === 0,
+    };
+
+    setTeam((prev) => {
+      const next = [...prev];
+      next[activeSlot] = newUnit;
+      return next;
     });
+
+    if (teamSize === 1) {
+      if (onSelectTeam) onSelectTeam([newUnit]);
+      else if (onSelectBot) onSelectBot(newUnit);
+    }
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between p-4 sm:p-6 bg-surface/50 font-mono text-xs overflow-y-auto">
+    <div className="w-full h-full flex flex-col justify-between p-3 sm:p-5 bg-surface/50 font-mono text-xs overflow-y-auto">
       {/* Top Selector Banner */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-border pb-3 gap-2">
-        <div>
-          <span className="text-[10px] tracking-widest uppercase text-accent font-bold">{'Scene 01 // Configuration'}</span>
-          <h2 className="text-base sm:text-lg font-bold tracking-tight text-foreground uppercase">
-            Deploy Player AniBot
-          </h2>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-border pb-2.5 gap-2">
+        <div className="flex items-center gap-3">
+          {onBack && (
+            <button
+              type="button"
+              onClick={onBack}
+              className="px-2.5 py-1 border border-border bg-surface hover:border-foreground text-muted hover:text-foreground text-[10px] uppercase cursor-pointer"
+            >
+              ← Mode
+            </button>
+          )}
+          <div>
+            <span className="text-[10px] tracking-widest uppercase text-accent font-bold">
+              {'Scene 01 // Squad Configuration'}
+            </span>
+            <h2 className="text-base sm:text-lg font-bold tracking-tight text-foreground uppercase">
+              {teamSize > 1 ? `Deploy Player Squad (${teamSize} AniBots)` : 'Deploy Player AniBot'}
+            </h2>
+          </div>
         </div>
-        <div className="flex items-center gap-1 bg-background border border-border p-0.5">
-          <button
-            onClick={() => { battleAudio.playClick(); setTab('preset'); }}
-            className={`px-3 py-1 font-mono uppercase tracking-wider transition-colors cursor-pointer ${
-              tab === 'preset' ? 'bg-accent text-white font-bold' : 'text-muted hover:text-foreground'
-            }`}
-          >
-            Full-Set Preset
-          </button>
-          <button
-            onClick={() => { battleAudio.playClick(); setTab('custom'); }}
-            className={`px-3 py-1 font-mono uppercase tracking-wider transition-colors cursor-pointer ${
-              tab === 'custom' ? 'bg-accent text-white font-bold' : 'text-muted hover:text-foreground'
-            }`}
-          >
-            Blank-Slate Garage
-          </button>
+
+        <div className="flex items-center gap-2">
+          {teamSize > 1 && (
+            <button
+              type="button"
+              onClick={handleRandomizeTeam}
+              className="px-3 py-1 border border-border bg-background hover:border-foreground text-foreground text-[11px] uppercase font-semibold cursor-pointer"
+            >
+              🎲 Randomize Squad
+            </button>
+          )}
+          <div className="flex items-center gap-1 bg-background border border-border p-0.5">
+            <button
+              onClick={() => { battleAudio.playClick(); setTab('preset'); }}
+              className={`px-3 py-1 font-mono uppercase tracking-wider transition-colors cursor-pointer ${
+                tab === 'preset' ? 'bg-accent text-white font-bold' : 'text-muted hover:text-foreground'
+              }`}
+            >
+              Preset Catalog
+            </button>
+            <button
+              onClick={() => { battleAudio.playClick(); setTab('custom'); }}
+              className={`px-3 py-1 font-mono uppercase tracking-wider transition-colors cursor-pointer ${
+                tab === 'custom' ? 'bg-accent text-white font-bold' : 'text-muted hover:text-foreground'
+              }`}
+            >
+              Custom Garage
+            </button>
+          </div>
         </div>
       </div>
 
+      {/* Multi-Bot Slot Selector Tabs (When teamSize > 1) */}
+      {teamSize > 1 && (
+        <div className="flex flex-wrap items-center gap-2 py-2 border-b border-border bg-surface/30">
+          <span className="text-[10px] uppercase font-bold text-muted pl-1">Assign Slot:</span>
+          {Array.from({ length: teamSize }).map((_, i) => {
+            const unit = team[i];
+            const isSelected = activeSlot === i;
+            return (
+              <button
+                key={i}
+                type="button"
+                onClick={() => {
+                  battleAudio.playClick();
+                  setActiveSlot(i);
+                }}
+                className={`px-3 py-1.5 border text-xs font-mono uppercase cursor-pointer flex items-center gap-2 transition-all ${
+                  isSelected
+                    ? 'border-accent bg-accent/15 text-accent font-bold shadow-xs'
+                    : 'border-border bg-background text-muted hover:text-foreground'
+                }`}
+              >
+                <span>{i === 0 ? '👑 Leader (Slot 1)' : `Support (Slot ${i + 1})`}</span>
+                <span className="text-[10px] text-foreground font-semibold">
+                  [{unit?.botConfig?.name || 'Empty'}]
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {/* Main Mode Body */}
       {tab === 'preset' ? (
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 my-auto py-3">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 my-auto py-2">
           {/* Left: Bot List Scroll */}
-          <div className="md:col-span-5 max-h-[340px] flex flex-col border border-border bg-background p-2">
+          <div className="md:col-span-5 max-h-[300px] flex flex-col border border-border bg-background p-2">
             <div className="space-y-1.5 pb-2 mb-1.5 border-b border-border">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-muted uppercase tracking-wider font-semibold">
@@ -232,7 +376,10 @@ export const BotSelectionScene = ({ onSelectBot }) => {
                   return (
                     <button
                       key={bot.id}
-                      onClick={() => { battleAudio.playClick(); setSelectedBotId(bot.id); }}
+                      onClick={() => {
+                        battleAudio.playClick();
+                        handleSelectPresetForSlot(bot);
+                      }}
                       className={`w-full text-left p-2 border transition-all flex items-center justify-between cursor-pointer ${
                         isSelected
                           ? 'border-accent bg-accent/10 text-foreground font-bold'
@@ -248,11 +395,11 @@ export const BotSelectionScene = ({ onSelectBot }) => {
                         />
                         <div>
                           <div className="text-xs">{bot.name}</div>
-                          <div className="text-[10px] text-muted">{bot.model_code} • {bot.series}</div>
+                          <div className="text-[10px] text-muted">{bot.model_code} • {bot.affinity}</div>
                         </div>
                       </div>
                       <span className="text-[9px] px-1.5 py-0.5 bg-surface border border-border uppercase">
-                        {bot.affinity}
+                        {bot.series}
                       </span>
                     </button>
                   );
@@ -261,79 +408,91 @@ export const BotSelectionScene = ({ onSelectBot }) => {
             </div>
           </div>
 
-          {/* Right: Selected Bot Detailed Specs */}
-          <div className="md:col-span-7 border border-border bg-background p-4 flex flex-col justify-between">
+          {/* Right: Selected Bot Specs & Preview */}
+          <div className="md:col-span-7 border border-border bg-background p-3 flex flex-col justify-between">
             <div>
-              <div className="flex items-start justify-between border-b border-border pb-2 mb-3">
+              <div className="flex items-start justify-between border-b border-border pb-2 mb-2">
                 <div className="flex items-center gap-3">
                   <img
                     src={getBotAvatarUrl(activePreset, anibotsData)}
                     alt={activePreset.name}
-                    className="w-12 h-12 rounded border border-border object-cover shadow-sm bg-surface shrink-0"
+                    className="w-12 h-12 rounded border border-border object-cover bg-surface shrink-0"
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
                   <div>
-                    <span className="text-[10px] font-bold text-accent uppercase">{`${activePreset.model_code} // ${activePreset.series}`}</span>
-                    <h3 className="text-base font-bold text-foreground">{activePreset.name}</h3>
-                    <p className="text-[11px] text-muted line-clamp-1">{activePreset.archetype}</p>
+                    <h3 className="text-sm font-bold text-foreground uppercase tracking-tight flex items-center gap-2">
+                      <span>{activePreset.name}</span>
+                      {activeSlot === 0 && (
+                        <span className="text-[10px] px-1.5 py-0.2 bg-amber-500/15 border border-amber-500/40 text-amber-400 font-mono">
+                          👑 LEADER
+                        </span>
+                      )}
+                    </h3>
+                    <div className="text-[10px] text-muted">
+                      {activePreset.model_code} • {activePreset.series} • {activePreset.archetype}
+                    </div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="flex items-center gap-1.5 justify-end">
-                    <span
-                      className="w-2.5 h-2.5 rounded-full inline-block"
-                      style={{ backgroundColor: presetChip.diode_color || '#00E5FF' }}
-                    />
-                    <span className="text-[11px] font-bold text-foreground">{presetChip.name}</span>
-                  </div>
-                  <span className="text-[10px] text-muted block italic">&ldquo;{presetChip.quote}&rdquo;</span>
+                  <div className="text-[10px] text-accent font-bold uppercase">{activePreset.affinity}</div>
+                  <div className="text-[9px] text-muted">Weight: {activePreset.total_weight || 45}t</div>
                 </div>
               </div>
 
-              {/* 5-Slot Hardware Blueprint */}
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-[10px]">
-                <div className="border border-border p-2 bg-surface">
-                  <span className="text-muted block text-[9px] uppercase">HEAD</span>
-                  <div className="font-bold text-foreground truncate">{activePreset.parts?.head?.name}</div>
-                  <div className="text-muted mt-1">HP: {activePreset.parts?.head?.integrity}</div>
-                  <div className="text-accent font-semibold">Cache: {activePreset.parts?.head?.cache ?? 3}</div>
+              {/* Anima Chip Preview */}
+              <div className="bg-surface border border-border p-2 mb-2">
+                <div className="flex items-center justify-between text-[10px] mb-1">
+                  <span className="text-accent font-bold uppercase">Anima Core: {presetChip.name}</span>
+                  <span className="text-muted font-mono">{presetChip.affinity} Spec</span>
                 </div>
-                <div className="border border-border p-2 bg-surface">
-                  <span className="text-muted block text-[9px] uppercase">TORSO</span>
-                  <div className="font-bold text-foreground truncate">{activePreset.parts?.torso?.name}</div>
-                  <div className="text-muted mt-1">HP: {activePreset.parts?.torso?.integrity}</div>
-                  <div className="text-accent font-semibold">Armor: {activePreset.parts?.torso?.firewall}</div>
+                <div className="text-[10px] text-muted italic">&ldquo;{presetChip.quote}&rdquo;</div>
+              </div>
+
+              {/* 5 Part Loadout Cards */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-[10px]">
+                <div className="p-1.5 bg-surface border border-border/80">
+                  <div className="text-muted uppercase text-[9px] font-bold">Head</div>
+                  <div className="font-semibold text-foreground truncate">{activePreset.parts?.head?.name}</div>
+                  <div className="text-muted">HP: {activePreset.parts?.head?.integrity} | {activePreset.parts?.head?.type}</div>
                 </div>
-                <div className="border border-border p-2 bg-surface">
-                  <span className="text-muted block text-[9px] uppercase">L-ARM</span>
-                  <div className="font-bold text-foreground truncate">{activePreset.parts?.left_arm?.name}</div>
-                  <div className="text-muted mt-1">HP: {activePreset.parts?.left_arm?.integrity}</div>
-                  <div className="text-accent font-semibold">Pwr: {activePreset.parts?.left_arm?.payload}</div>
+
+                <div className="p-1.5 bg-surface border border-border/80">
+                  <div className="text-muted uppercase text-[9px] font-bold">Left Arm</div>
+                  <div className="font-semibold text-foreground truncate">{activePreset.parts?.left_arm?.name}</div>
+                  <div className="text-muted">Pwr: {activePreset.parts?.left_arm?.payload} | {activePreset.parts?.left_arm?.type}</div>
                 </div>
-                <div className="border border-border p-2 bg-surface">
-                  <span className="text-muted block text-[9px] uppercase">R-ARM</span>
-                  <div className="font-bold text-foreground truncate">{activePreset.parts?.right_arm?.name}</div>
-                  <div className="text-muted mt-1">HP: {activePreset.parts?.right_arm?.integrity}</div>
-                  <div className="text-accent font-semibold">Pwr: {activePreset.parts?.right_arm?.payload}</div>
+
+                <div className="p-1.5 bg-surface border border-border/80">
+                  <div className="text-muted uppercase text-[9px] font-bold">Right Arm</div>
+                  <div className="font-semibold text-foreground truncate">{activePreset.parts?.right_arm?.name}</div>
+                  <div className="text-muted">Pwr: {activePreset.parts?.right_arm?.payload} | {activePreset.parts?.right_arm?.type}</div>
                 </div>
-                <div className="border border-border p-2 bg-surface">
-                  <span className="text-muted block text-[9px] uppercase">LEGS</span>
-                  <div className="font-bold text-foreground truncate">{activePreset.parts?.legs?.name}</div>
-                  <div className="text-muted mt-1">HP: {activePreset.parts?.legs?.integrity}</div>
-                  <div className="text-accent font-semibold">Spd: {activePreset.parts?.legs?.clock_speed}</div>
+
+                <div className="p-1.5 bg-surface border border-border/80">
+                  <div className="text-muted uppercase text-[9px] font-bold">Torso</div>
+                  <div className="font-semibold text-foreground truncate">{activePreset.parts?.torso?.name}</div>
+                  <div className="text-muted">Max: {activePreset.parts?.torso?.max_loadout}t | Armor: {activePreset.parts?.torso?.firewall}</div>
+                </div>
+
+                <div className="p-1.5 bg-surface border border-border/80 col-span-2 sm:col-span-1">
+                  <div className="text-muted uppercase text-[9px] font-bold">Legs</div>
+                  <div className="font-semibold text-foreground truncate">{activePreset.parts?.legs?.name}</div>
+                  <div className="text-muted">Spd: {activePreset.parts?.legs?.clock_speed} | {activePreset.parts?.legs?.protocol}</div>
                 </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-border mt-3 flex items-center justify-between">
+            {/* Bottom Actions */}
+            <div className="pt-2 border-t border-border mt-2 flex items-center justify-between">
               <span className="text-[10px] text-muted">
                 Synergy: <strong className="text-foreground">{activePreset.affinity_synergy_bonus}</strong>
               </span>
               <button
-                onClick={handleConfirmPreset}
-                className="px-5 py-2 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider transition-transform active:scale-95 cursor-pointer"
+                type="button"
+                onClick={handleConfirmDeploy}
+                className="px-5 py-2 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider transition-transform active:scale-95 cursor-pointer shadow-sm"
               >
-                Confirm AniBot ➔
+                {teamSize > 1 ? `Deploy Squad (${teamSize} Units) ➔` : 'Confirm AniBot ➔'}
               </button>
             </div>
           </div>
@@ -341,9 +500,8 @@ export const BotSelectionScene = ({ onSelectBot }) => {
       ) : (
         /* Blank Slate Custom Assembly */
         <div className="my-auto py-2">
-          {/* Restore Saved Build Banner */}
           {showRestorePrompt && savedBuild && (
-            <div className="bg-accent/10 border border-accent p-2.5 mb-2.5 flex items-center justify-between animate-in fade-in">
+            <div className="bg-accent/10 border border-accent p-2.5 mb-2 flex items-center justify-between animate-in fade-in">
               <div className="flex items-center gap-2">
                 <span className="text-accent font-bold">💾</span>
                 <span className="text-[11px] text-foreground">
@@ -378,7 +536,7 @@ export const BotSelectionScene = ({ onSelectBot }) => {
               />
               <div className="flex-1">
                 <label className="text-[10px] uppercase font-bold text-accent block mb-1">
-                  Bot Designation (Custom Name)
+                  Bot Designation (Slot {activeSlot + 1}{activeSlot === 0 ? ' • LEADER' : ''})
                 </label>
                 <input
                   type="text"
@@ -424,16 +582,16 @@ export const BotSelectionScene = ({ onSelectBot }) => {
               >
                 {allParts.head.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} (HP: {p.integrity}, W: {p.weight})
+                    {p.name} ({p.type})
                   </option>
                 ))}
               </select>
-              <div className="mt-1 text-[10px] text-muted">Payload: {activeCustomHead.payload || 0} | Cache: {activeCustomHead.cache ?? 3}</div>
+              <div className="mt-1 text-[10px] text-muted">HP: {activeCustomHead.integrity}</div>
             </div>
 
             {/* Torso Picker */}
             <div>
-              <label className="text-[10px] uppercase font-bold text-muted block mb-1">Torso Chassis</label>
+              <label className="text-[10px] uppercase font-bold text-muted block mb-1">Torso Core</label>
               <select
                 value={customTorsoId}
                 onChange={(e) => setCustomTorsoId(e.target.value)}
@@ -441,11 +599,11 @@ export const BotSelectionScene = ({ onSelectBot }) => {
               >
                 {allParts.torso.map((p) => (
                   <option key={p.id} value={p.id}>
-                    {p.name} (MaxLoad: {p.max_loadout})
+                    {p.name} (Max {p.max_loadout}t)
                   </option>
                 ))}
               </select>
-              <div className="mt-1 text-[10px] text-muted">Firewall: {activeCustomTorso.firewall} | Cooling: {activeCustomTorso.cooling}</div>
+              <div className="mt-1 text-[10px] text-muted">Firewall: {activeCustomTorso.firewall}</div>
             </div>
 
             {/* Left Arm Picker */}
@@ -504,18 +662,30 @@ export const BotSelectionScene = ({ onSelectBot }) => {
           <div className="flex items-center justify-between bg-surface border border-border p-3 mt-3">
             <div className="flex items-center gap-4">
               <span className={`text-[11px] font-bold ${isCustomOverweight ? 'text-amber-500' : 'text-emerald-500'}`}>
-                Weight Load: {customWeight} / {customMaxLoadout} {isCustomOverweight && '(OVERWEIGHT +50% LATENCY PENALTY!)'}
+                Weight: {customWeight} / {customMaxLoadout} {isCustomOverweight && '(OVERWEIGHT +50% LATENCY PENALTY!)'}
               </span>
               <span className="text-[11px] text-muted">
                 Total Integrity: {(activeCustomHead?.integrity || 0) + (activeCustomTorso?.integrity || 0) + (activeCustomLArm?.integrity || 0) + (activeCustomRArm?.integrity || 0) + (activeCustomLegs?.integrity || 0)} HP
               </span>
             </div>
-            <button
-              onClick={handleConfirmCustom}
-              className="px-5 py-2 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider transition-transform active:scale-95 cursor-pointer"
-            >
-              Assemble & Deploy ➔
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={handleConfirmCustom}
+                className="px-4 py-2 border border-accent bg-accent/15 text-accent font-bold uppercase tracking-wider hover:bg-accent/25 cursor-pointer"
+              >
+                Save To Slot {activeSlot + 1}
+              </button>
+              {teamSize > 1 && (
+                <button
+                  type="button"
+                  onClick={handleConfirmDeploy}
+                  className="px-5 py-2 bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider cursor-pointer"
+                >
+                  Deploy Squad ➔
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
