@@ -697,10 +697,19 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
             if (!unit.isUlt && actType === AttackType.TRAP) {
               if (isA) traps.trapB = part;
               else traps.trapA = part;
-            } else if (!unit.isUlt && actType === AttackType.SUPPORT && (part.payload || 0) <= 0) {
-              unit.guaranteedCritNext = true;
+            } else if (!unit.isUlt && actType === AttackType.SUPPORT) {
+              const healAmt = part.payload || 35;
+              const targetHealSlot = PartSlot.TORSO;
+              unit.integrities[targetHealSlot] = Math.min(
+                unit.maxIntegrities[targetHealSlot],
+                (unit.integrities[targetHealSlot] || 0) + healAmt
+              );
+              if ((part.payload || 0) <= 0) {
+                unit.guaranteedCritNext = true;
+              }
             } else {
-              const targetSlot = evaluateUtilityAITargetSlot(unit.chip, opponent);
+              const affinityTarget = resolveAffinityTarget(part, unit.selectedActionSlot, [opponent]);
+              const targetSlot = affinityTarget?.targetSlot || evaluateUtilityAITargetSlot(unit.chip, opponent);
               resolveCenterLineClash({
                 attacker: unit,
                 defender: opponent,
