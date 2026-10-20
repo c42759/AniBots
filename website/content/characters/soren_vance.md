@@ -18,3 +18,5 @@ Soren Vance is the golden boy of Aegis Corporation, equipped with bespoke state-
 
 ## Tournament Rivalry
 Soren serves as the primary corporate antagonist in the Neo Metropolis qualifying tournaments, testing Kura's mechanical ingenuity against corporate-funded overwhelming firepower.
+
+![Soren Vance and Tigris-Fury](/images/characters/soren_vance_n_tigrisfury.jpg)
