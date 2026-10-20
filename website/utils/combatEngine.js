@@ -531,6 +531,7 @@ export function getBotAvatarUrl(botConfig, anibotsList = []) {
 export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
   const delta = options.delta || 0.05;
   const maxTicks = options.maxTicks || 2000; // ~100s simulated combat timeout
+  const terrainId = options.terrainId || options.terrain || 'CITY';
 
   const uA = createCombatUnitState(botA, chipA, true);
   const uB = createCombatUnitState(botB, chipB, false);
@@ -544,6 +545,8 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
       case CombatPhase.WAIT: {
         const legs = unit.parts.legs;
         let clockSpeed = legs?.clock_speed || 1.5;
+        const tMod = getTerrainModifiers(legs?.protocol, terrainId, unit.chip?.id);
+        clockSpeed *= tMod.speedMult;
         if (unit.integrities[PartSlot.LEGS] <= 0) clockSpeed *= 0.4;
         if (unit.chip?.id === 'chip_spark') clockSpeed *= 1.25;
 
@@ -591,6 +594,8 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
       case CombatPhase.RUN: {
         const execTime = Math.max(0.8, unit.selectedActionPart?.execution_time || 2.0);
         let runSpeed = 0.8 / execTime;
+        const tMod = getTerrainModifiers(unit.parts.legs?.protocol, terrainId, unit.chip?.id);
+        runSpeed *= tMod.speedMult;
         if (unit.integrities[PartSlot.LEGS] <= 0) runSpeed *= 0.4;
 
         unit.trackProgress = Math.min(1.0, unit.trackProgress + runSpeed * delta);
