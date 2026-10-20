@@ -80,7 +80,7 @@ export const ChipCard = ({ chip, onSelect }) => {
         <div>
           ACC: <span className="text-foreground font-semibold">{chip.base_stats?.target_accuracy}%</span>
           {' • '}
-          HP: <span className="text-foreground font-semibold">+{chip.base_stats?.integrity || 0}</span>
+          EVA: <span className="text-foreground font-semibold">{chip.base_stats?.evasion}%</span>
         </div>
 
         <span className="text-accent font-semibold uppercase">

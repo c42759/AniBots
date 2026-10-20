@@ -239,7 +239,11 @@ export const BattleArenaScene = ({
     let defender = null;
     let targetSlotOverride = undefined;
 
-    if (targetResult) {
+    if (
+      targetResult &&
+      (targetResult.targetBot?.integrities?.[PartSlot.HEAD] || 0) > 0 &&
+      (targetResult.targetBot?.integrities?.[targetResult.targetSlot] || 0) > 0
+    ) {
       defender = targetResult.targetBot;
       targetSlotOverride = targetResult.targetSlot;
       if (targetResult.isAffinityMatch) {
@@ -252,13 +256,50 @@ export const BattleArenaScene = ({
         );
       }
     } else {
-      defender = livingOpponents.find((u) => u.isLeader) || livingOpponents[0];
+      defender =
+        livingOpponents.find((u) => u.isLeader && (u.integrities?.[PartSlot.HEAD] || 0) > 0) ||
+        livingOpponents.find((u) => (u.integrities?.[PartSlot.HEAD] || 0) > 0) ||
+        livingOpponents[0];
     }
 
     const traps = trapsRef.current;
     const centerX = 360;
 
-    // Trap check
+    // OVERCLOCK CHARGE: Focus reactor (+25% OC) - not an ability, immune to ability traps!
+    if (attacker.isChargeOverclock) {
+      battleAudio.playLaser();
+      const currentOc = attacker.overclockGauge || 0;
+      const newOc = Math.min(100, currentOc + 25);
+      attacker.overclockGauge = newOc;
+      addLog(`⚡ [OVERCLOCK CHARGE] ${attacker.name} charged +25% Overclock! Reactor Gauge: ${Math.round(newOc)}%.`);
+      fxRef.current.popups.push({
+        x: centerX,
+        y: 110,
+        damage: '+25% OC',
+        slotName: 'REACTOR',
+        isCrit: true,
+        life: 1.2,
+      });
+      // Visual charging sparks
+      for (let i = 0; i < 10; i++) {
+        fxRef.current.particles.push({
+          x: centerX,
+          y: 125,
+          vx: (Math.random() - 0.5) * 5,
+          vy: (Math.random() - 0.5) * 5,
+          type: 'spark',
+          radius: 18,
+          color: '#38bdf8',
+          life: 1.0,
+          size: 3,
+        });
+      }
+      triggerDamageFlash(isPlayer, attackerIdx, PartSlot.TORSO);
+      syncHud();
+      return;
+    }
+
+    // Trap check (only triggers against attack/part abilities)
     const activeTrap = isPlayer ? traps.playerTrap : traps.enemyTrap;
     if (activeTrap) {
       battleAudio.playTrapExplosion();
@@ -423,9 +464,19 @@ export const BattleArenaScene = ({
   }, [addLog, handleMatchEnd, syncHud, triggerDamageFlash]);
 
   // Execute Command & Initiate Sprint
-  const executeCommand = useCallback((unit, slot, isUlt, targetUnitIdx = 0) => {
+  const executeCommand = useCallback((unit, slot, isUlt, targetUnitIdx = 0, isCharge = false) => {
     let partData = {};
-    if (isUlt) {
+    if (isCharge) {
+      partData = {
+        name: 'Overclock Charge',
+        payload: 0,
+        type: 'CHARGE',
+        execution_time: 1.0,
+        latency: 1.8,
+      };
+      addLog(`⚡ ${unit.name} concentrates reactor power to Charge Overclock (+25%)!`);
+      battleAudio.playLaser();
+    } else if (isUlt) {
       const ult = unit.chip?.ultimate_abilities?.[0] || {};
       const cost = ult.gauge_cost || 50;
       unit.overclockGauge = Math.max(0, unit.overclockGauge - cost);
@@ -457,6 +508,7 @@ export const BattleArenaScene = ({
     unit.selectedActionSlot = slot;
     unit.selectedActionPart = partData;
     unit.isUlt = isUlt;
+    unit.isChargeOverclock = isCharge;
     unit.targetUnitIndex = targetUnitIdx;
     unit.currentPhase = CombatPhase.RUN;
     unit.trackProgress = 0;
@@ -519,7 +571,7 @@ export const BattleArenaScene = ({
                 const livingEnemies = enemyUnitsRef.current.filter((e) => (e.integrities[PartSlot.HEAD] || 0) > 0);
                 const targetDef = livingEnemies[0] || enemyUnitsRef.current[0];
                 const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.enemyTrap));
-                executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
+                executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex, choice.isCharge);
               } else {
                 unit.currentPhase = CombatPhase.COMMAND;
                 syncHud();
@@ -531,7 +583,7 @@ export const BattleArenaScene = ({
               const livingPlayers = playerUnitsRef.current.filter((p) => (p.integrities[PartSlot.HEAD] || 0) > 0);
               const targetDef = livingPlayers[0] || playerUnitsRef.current[0];
               const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.playerTrap));
-              executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
+              executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex, choice.isCharge);
             }
           }
           break;
@@ -577,7 +629,7 @@ export const BattleArenaScene = ({
                 const livingEnemies = enemyUnitsRef.current.filter((e) => (e.integrities[PartSlot.HEAD] || 0) > 0);
                 const targetDef = livingEnemies[0] || enemyUnitsRef.current[0];
                 const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.enemyTrap));
-                executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
+                executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex, choice.isCharge);
               } else {
                 unit.currentPhase = CombatPhase.COMMAND;
                 syncHud();
@@ -589,7 +641,7 @@ export const BattleArenaScene = ({
               const livingPlayers = playerUnitsRef.current.filter((p) => (p.integrities[PartSlot.HEAD] || 0) > 0);
               const targetDef = livingPlayers[0] || playerUnitsRef.current[0];
               const choice = evaluateAIPartChoice(unit, targetDef, Boolean(trapsRef.current.playerTrap));
-              executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex);
+              executeCommand(unit, choice.slot, choice.isUlt, targetDef.teamIndex, choice.isCharge);
             }
           }
           break;
@@ -605,7 +657,7 @@ export const BattleArenaScene = ({
   }, [executeCommand, handleReachedCenterLine, addLog, syncHud, activeTerrain]);
 
   // Player manual command handler
-  const handleSelectAction = (slot, isUlt) => {
+  const handleSelectAction = (slot, isUlt, isCharge = false) => {
     if (commandUnitIndex === null) return;
     const unit = playerUnitsRef.current[commandUnitIndex];
     if (!unit) return;
@@ -615,7 +667,7 @@ export const BattleArenaScene = ({
     const targetIdx = livingEnemies[0]?.teamIndex ?? 0;
 
     setCommandUnitIndex(null);
-    executeCommand(unit, slot, isUlt, targetIdx);
+    executeCommand(unit, slot, isUlt, targetIdx, isCharge);
     syncHud();
   };
 
@@ -838,8 +890,8 @@ export const BattleArenaScene = ({
                 <span className="text-[10px] text-muted">Select Part to Attack</span>
               </div>
 
-              {/* Action Buttons: Head, Left Arm, Right Arm, Ultimate */}
-              <div className="grid grid-cols-4 gap-1.5">
+              {/* Action Buttons: Head, Left Arm, Right Arm, Charge Overclock, Ultimate */}
+              <div className="grid grid-cols-5 gap-1.5">
                 {/* Head Part */}
                 <button
                   type="button"
@@ -901,6 +953,21 @@ export const BattleArenaScene = ({
                     {activeCommandUnit.parts.rightArm?.name}
                   </div>
                   <div className="text-[9px] text-accent mt-0.5">Pwr: {activeCommandUnit.parts.rightArm?.payload || 25}</div>
+                </button>
+
+                {/* Charge Overclock (Reactor Focus: +25% Overclock Gauge, immune to ability traps) */}
+                <button
+                  type="button"
+                  disabled={
+                    (activeCommandUnit.integrities[PartSlot.HEAD] || 0) <= 0 ||
+                    activeCommandUnit.overclockGauge >= 100
+                  }
+                  onClick={() => handleSelectAction(-2, false, true)}
+                  className="p-1.5 border border-sky-500/60 bg-sky-500/10 hover:bg-sky-500/20 disabled:opacity-30 disabled:cursor-not-allowed text-left cursor-pointer transition-colors"
+                >
+                  <div className="text-[9px] text-sky-400 uppercase font-bold">⚡ Charge</div>
+                  <div className="text-[10px] font-bold text-sky-300 truncate">Reactor Focus</div>
+                  <div className="text-[9px] text-sky-400 mt-0.5">+25% Overclock</div>
                 </button>
 
                 {/* Overclock Ultimate */}

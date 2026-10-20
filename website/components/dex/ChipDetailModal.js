@@ -134,12 +134,7 @@ export const ChipDetailModal = ({ chip, allBots, onClose, onSelectBot }) => {
                 BASE CORE STATS &amp; OVERCLOCK PARAMETERS
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-l border-border">
-                <StatBar
-                  label="INTEGRITY (HP)"
-                  value={chip.base_stats.integrity}
-                  max={300}
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-3 border-l border-border">
                 <StatBar
                   label="ACCURACY"
                   value={chip.base_stats.target_accuracy}
