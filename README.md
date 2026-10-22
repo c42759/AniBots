@@ -1,6 +1,6 @@
 # AniBots
 
-![Anima Chips](./AnimaChip.png)
+![Anima Chips](./website/public/images/lore/02_anima_chips/anibots_anima_chip_hardware_2.jpg)
 
 Welcome to the **AniBots** repository!
 
@@ -62,7 +62,7 @@ To bridge the gap between RPG and management games, parts suffer permanent **Con
 
 The repository includes **AniDex**, a Next.js Pokédex-style web application located in the [`./dex`](./dex) directory for exploring, searching, and analyzing all AniBots (robot frames) and Anima Chips (AI cores).
 
-![Anima Dex](./AnimaDex.png)
+![Anima Dex](./website/public/images/lore/02_anima_chips/animadex_tactical_database_2.jpg)
 
 ### Features
 
