@@ -240,18 +240,24 @@ export function getPartAffinities(part, slot) {
 export function resolveAffinityTarget(actionPart, actionSlot, livingOpponents) {
   if (!livingOpponents || livingOpponents.length === 0) return null;
 
+  // Strictly filter opponents: unit must be active with living Head (> 0 HP)
+  const validOpponents = livingOpponents.filter(
+    (opp) => opp && (opp.integrities?.[PartSlot.HEAD] || 0) > 0
+  );
+  if (validOpponents.length === 0) return null;
+
   const attackerAffinities = getPartAffinities(actionPart, actionSlot);
   const matchingCandidates = [];
   const allActiveCandidates = [];
 
-  livingOpponents.forEach((opp) => {
+  validOpponents.forEach((opp) => {
     const activeSlots = [
       PartSlot.HEAD,
       PartSlot.LEFT_ARM,
       PartSlot.RIGHT_ARM,
       PartSlot.TORSO,
       PartSlot.LEGS,
-    ].filter((s) => (opp.integrities[s] || 0) > 0);
+    ].filter((s) => (opp.integrities?.[s] || 0) > 0);
 
     activeSlots.forEach((slot) => {
       let partObj = null;
@@ -287,7 +293,7 @@ export function resolveAffinityTarget(actionPart, actionSlot, livingOpponents) {
 
   // Fallback: choose a random living bot, and a random living part on that bot
   if (allActiveCandidates.length > 0) {
-    const randomBot = livingOpponents[Math.floor(Math.random() * livingOpponents.length)];
+    const randomBot = validOpponents[Math.floor(Math.random() * validOpponents.length)];
     const randomBotActive = allActiveCandidates.filter((c) => c.targetBotIndex === randomBot.teamIndex);
     const chosen =
       randomBotActive.length > 0
@@ -401,7 +407,12 @@ export function evaluateUtilityAITargetSlot(chip, defenderUnit) {
 export function evaluateAIPartChoice(botUnit, opponentUnit, centerLineTrapActive) {
   // If Overclock Gauge is full (100%), execute Ultimate!
   if (botUnit.overclockGauge >= 100) {
-    return { slot: PartSlot.HEAD, isUlt: true };
+    return { slot: PartSlot.HEAD, isUlt: true, isCharge: false };
+  }
+
+  // If opponent laid a trap, AI can charge overclock instead of triggering the ability trap!
+  if (centerLineTrapActive && botUnit.overclockGauge < 100 && Math.random() < 0.65) {
+    return { slot: -2, isUlt: false, isCharge: true };
   }
 
   const possibleSlots = [];
@@ -415,8 +426,17 @@ export function evaluateAIPartChoice(botUnit, opponentUnit, centerLineTrapActive
     possibleSlots.push(PartSlot.RIGHT_ARM);
   }
 
+  // If no weapons left, charge overclock rather than tackle if gauge < 100
   if (possibleSlots.length === 0) {
-    return { slot: PartSlot.LEGS, isUlt: false }; // fallback tackle
+    if (botUnit.overclockGauge < 100) {
+      return { slot: -2, isUlt: false, isCharge: true };
+    }
+    return { slot: PartSlot.LEGS, isUlt: false, isCharge: false }; // fallback tackle
+  }
+
+  // Tactical Overclock Charge: 15% random chance if overclock is below 75%
+  if (botUnit.overclockGauge <= 75 && Math.random() < 0.15) {
+    return { slot: -2, isUlt: false, isCharge: true };
   }
 
   // Artificer / Trap AI preference: place trap if empty
@@ -428,12 +448,12 @@ export function evaluateAIPartChoice(botUnit, opponentUnit, centerLineTrapActive
     !centerLineTrapActive &&
     possibleSlots.includes(PartSlot.HEAD)
   ) {
-    return { slot: PartSlot.HEAD, isUlt: false };
+    return { slot: PartSlot.HEAD, isUlt: false, isCharge: false };
   }
 
   // Random choice from surviving offensive weapons
   const chosen = possibleSlots[Math.floor(Math.random() * possibleSlots.length)];
-  return { slot: chosen, isUlt: false };
+  return { slot: chosen, isUlt: false, isCharge: false };
 }
 
 /**
@@ -645,7 +665,15 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
         if (unit.actionBar >= 100) {
           const choice = evaluateAIPartChoice(unit, opponent, Boolean(isA ? traps.trapB : traps.trapA));
           let partData = {};
-          if (choice.isUlt) {
+          if (choice.isCharge) {
+            partData = {
+              name: 'Overclock Charge',
+              payload: 0,
+              type: 'CHARGE',
+              execution_time: 1.0,
+              latency: 1.8,
+            };
+          } else if (choice.isUlt) {
             const ult = unit.chip?.ultimate_abilities?.[0] || {};
             partData = {
               name: ult.name || 'Overclock Blitz',
@@ -670,6 +698,7 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
           unit.selectedActionSlot = choice.slot;
           unit.selectedActionPart = partData;
           unit.isUlt = choice.isUlt;
+          unit.isChargeOverclock = Boolean(choice.isCharge);
           if (choice.isUlt) {
             const ult = unit.chip?.ultimate_abilities?.[0] || {};
             const cost = ult.gauge_cost || 50;
@@ -690,15 +719,19 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
 
         unit.trackProgress = Math.min(1.0, unit.trackProgress + runSpeed * delta);
         if (unit.trackProgress >= 1.0) {
-          const activeTrap = isA ? traps.trapA : traps.trapB;
-          if (activeTrap) {
-            const trapDmg = activeTrap.payload || 38;
-            unit.integrities[PartSlot.LEGS] = Math.max(0, (unit.integrities[PartSlot.LEGS] || 0) - trapDmg);
-            if (isA) traps.trapA = null;
-            else traps.trapB = null;
-          } else if (!unit.isUlt && (unit.integrities[unit.selectedActionSlot] ?? 0) <= 0) {
-            // NO FEATURE: Action aborted because executing part was destroyed mid-transit
+          if (unit.isChargeOverclock) {
+            // Overclock Charge (+25%) - not an ability, immune to ability traps
+            unit.overclockGauge = Math.min(100, (unit.overclockGauge || 0) + 25);
           } else {
+            const activeTrap = isA ? traps.trapA : traps.trapB;
+            if (activeTrap) {
+              const trapDmg = activeTrap.payload || 38;
+              unit.integrities[PartSlot.LEGS] = Math.max(0, (unit.integrities[PartSlot.LEGS] || 0) - trapDmg);
+              if (isA) traps.trapA = null;
+              else traps.trapB = null;
+            } else if (!unit.isUlt && (unit.integrities[unit.selectedActionSlot] ?? 0) <= 0) {
+              // NO FEATURE: Action aborted because executing part was destroyed mid-transit
+            } else {
             const part = unit.selectedActionPart || {};
             const actType = parseAttackType(part.type, unit.selectedActionSlot);
 
@@ -717,7 +750,10 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
               }
             } else {
               const affinityTarget = resolveAffinityTarget(part, unit.selectedActionSlot, [opponent]);
-              const targetSlot = affinityTarget?.targetSlot || evaluateUtilityAITargetSlot(unit.chip, opponent);
+              const targetSlot =
+                affinityTarget && affinityTarget.targetSlot !== undefined
+                  ? affinityTarget.targetSlot
+                  : evaluateUtilityAITargetSlot(unit.chip, opponent);
               resolveCenterLineClash({
                 attacker: unit,
                 defender: opponent,
@@ -727,6 +763,7 @@ export function simulateHeadlessBattle(botA, chipA, botB, chipB, options = {}) {
               });
             }
           }
+        }
 
           unit.trackProgress = 1.0;
           unit.currentPhase = CombatPhase.COOLDOWN;

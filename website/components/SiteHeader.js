@@ -58,6 +58,16 @@ export const SiteHeader = ({ currentSection = '' }) => {
             Lore
           </Link>
           <Link
+            href="/specs/"
+            className={`transition-colors ${
+              currentSection === 'specs'
+                ? 'text-foreground font-bold border-b-2 border-accent pb-0.5'
+                : 'hover:text-foreground'
+            }`}
+          >
+            Game Specs
+          </Link>
+          <Link
             href="/demo/"
             className={`transition-colors ${
               currentSection === 'demo'
@@ -154,6 +164,18 @@ export const SiteHeader = ({ currentSection = '' }) => {
           >
             <span>Lore</span>
             <span className="text-[10px] text-muted font-normal">Canon Bible</span>
+          </Link>
+          <Link
+            href="/specs/"
+            onClick={() => setIsMobileOpen(false)}
+            className={`px-3 py-2.5 border transition-colors flex items-center justify-between ${
+              currentSection === 'specs'
+                ? 'border-accent bg-accent/10 text-foreground font-bold'
+                : 'border-transparent hover:bg-surface text-muted hover:text-foreground'
+            }`}
+          >
+            <span>Game Specs</span>
+            <span className="text-[10px] text-muted font-normal">Architecture & Systems</span>
           </Link>
           <Link
             href="/demo/"

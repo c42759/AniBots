@@ -21,10 +21,9 @@
       "description": "Lightweight and high-evasion parts gain +15% Evasion and +10% Melee Critical Rate when engaged in single combat against an isolated target."
     },
     "base_stats": {
-      "integrity": 200,
       "target_accuracy": 85,
       "evasion": 25,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "MELEE"
     },
     "ultimate_abilities": [
@@ -68,7 +67,6 @@
       "description": "Spear weapons and heavy armor gain +15% Payload damage when executing leap and charge attacks from the base line."
     },
     "base_stats": {
-      "integrity": 230,
       "target_accuracy": 75,
       "evasion": 5,
       "overclock_charge_rate": 1.1,
@@ -123,10 +121,9 @@
       "description": "Trapping the center line increases end-of-battle Scrap drop rates by 20%, and heavy cannons recover 15% faster from cooldown latency."
     },
     "base_stats": {
-      "integrity": 190,
       "target_accuracy": 78,
       "evasion": 18,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "TRAP"
     },
     "ultimate_abilities": [
@@ -170,7 +167,6 @@
       "description": "Automatically triggers an Override Intercept on attacks targeting fragile allies, reducing incoming damage by 30% when equipped with Shield parts."
     },
     "base_stats": {
-      "integrity": 260,
       "target_accuracy": 70,
       "evasion": 5,
       "overclock_charge_rate": 1.2,
@@ -225,10 +221,9 @@
       "description": "Center-line traps gain +25% trigger radius, and arm attacks have 20% reduced latency when triggered in sequential combos."
     },
     "base_stats": {
-      "integrity": 200,
       "target_accuracy": 88,
       "evasion": 12,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "TRAP"
     },
     "ultimate_abilities": [
@@ -280,7 +275,6 @@
       "description": "Drastically cuts Latency (cooldown return time) for revolvers and pistol parts by 35%, enabling rapid hit-and-run volleys."
     },
     "base_stats": {
-      "integrity": 180,
       "target_accuracy": 92,
       "evasion": 20,
       "overclock_charge_rate": 0.9,
@@ -327,7 +321,6 @@
       "description": "Completely ignores its own Torso Firewall armor modifiers to boost raw physical Melee Payload by +30%."
     },
     "base_stats": {
-      "integrity": 220,
       "target_accuracy": 72,
       "evasion": 5,
       "overclock_charge_rate": 1.3,
@@ -374,7 +367,6 @@
       "description": "Sacrifices 15% personal ATB charge speed to pulse a protective firewall repair aura, restoring 10 Integrity to damaged ally parts per cycle."
     },
     "base_stats": {
-      "integrity": 240,
       "target_accuracy": 80,
       "evasion": 8,
       "overclock_charge_rate": 1.1,
@@ -429,10 +421,9 @@
       "description": "Maps the battlefield instantly, granting +25% Agility and Clock Speed to Legs while negating rough terrain penalties."
     },
     "base_stats": {
-      "integrity": 195,
       "target_accuracy": 90,
       "evasion": 22,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "SHOOTING"
     },
     "ultimate_abilities": [
@@ -476,7 +467,6 @@
       "description": "Actively taunts opponents, forcing enemy targeting logic to focus on it while gaining +20% Overclock gauge each time it is targeted."
     },
     "base_stats": {
-      "integrity": 235,
       "target_accuracy": 78,
       "evasion": 10,
       "overclock_charge_rate": 1.25,
@@ -523,7 +513,6 @@
       "description": "Broadcasts audio frequencies that passively increase the Wait Phase ATB fill rate of adjacent allies by +20%."
     },
     "base_stats": {
-      "integrity": 185,
       "target_accuracy": 80,
       "evasion": 18,
       "overclock_charge_rate": 1.15,
@@ -578,7 +567,6 @@
       "description": "Gains a massive +35% Evasion bonus during the Run Phase, rendering it nearly impossible to intercept mid-transit."
     },
     "base_stats": {
-      "integrity": 175,
       "target_accuracy": 86,
       "evasion": 35,
       "overclock_charge_rate": 0.95,
@@ -625,7 +613,6 @@
       "description": "Boosts ATB Wait Phase charging speed by +25% and grants electrical weapons +15% chance to stun enemies."
     },
     "base_stats": {
-      "integrity": 170,
       "target_accuracy": 82,
       "evasion": 24,
       "overclock_charge_rate": 1.1,
@@ -680,7 +667,6 @@
       "description": "Attack Payload scales inversely with remaining Integrity, gaining up to +50% bonus damage as HP drops."
     },
     "base_stats": {
-      "integrity": 240,
       "target_accuracy": 74,
       "evasion": 6,
       "overclock_charge_rate": 1.2,
@@ -727,7 +713,6 @@
       "description": "Applies a chilling frost effect that slows the target's Run Phase and Wait Phase speed by 30%."
     },
     "base_stats": {
-      "integrity": 210,
       "target_accuracy": 88,
       "evasion": 12,
       "overclock_charge_rate": 0.9,
@@ -774,10 +759,9 @@
       "description": "Blasts moving enemies backwards along their ATB track on hit, delaying their attack execution."
     },
     "base_stats": {
-      "integrity": 180,
       "target_accuracy": 84,
       "evasion": 28,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "SPEED"
     },
     "ultimate_abilities": [
@@ -821,7 +805,6 @@
       "description": "Suffers -20% Run speed but gains an innate 25% flat damage reduction against all physical and kinetic attacks."
     },
     "base_stats": {
-      "integrity": 270,
       "target_accuracy": 72,
       "evasion": 2,
       "overclock_charge_rate": 1.1,
@@ -876,7 +859,6 @@
       "description": "Acts as a continuous liquid heatsink, eliminating heat-based cooldown latency penalties on heavy weapons by 40%."
     },
     "base_stats": {
-      "integrity": 215,
       "target_accuracy": 85,
       "evasion": 15,
       "overclock_charge_rate": 1.05,
@@ -923,10 +905,9 @@
       "description": "Attacks inject acidic malware that shreds 10% enemy Torso Firewall armor per hit, stacking up to 50% total reduction."
     },
     "base_stats": {
-      "integrity": 195,
       "target_accuracy": 83,
       "evasion": 16,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "ACID"
     },
     "ultimate_abilities": [
@@ -970,7 +951,6 @@
       "description": "Employs coherent laser telemetry that completely bypasses enemy evasion/packet loss, guaranteeing 100% hit rate."
     },
     "base_stats": {
-      "integrity": 185,
       "target_accuracy": 99,
       "evasion": 10,
       "overclock_charge_rate": 0.95,
@@ -1017,7 +997,6 @@
       "description": "Emits a localized gravity field that slows down the Run Phase sprint speed of all other units on the field by 20%."
     },
     "base_stats": {
-      "integrity": 225,
       "target_accuracy": 80,
       "evasion": 4,
       "overclock_charge_rate": 1.15,
@@ -1049,7 +1028,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#FF007F",
-    "image":"/images/chips/chip_sonic.jpg",
+    "image": "/images/chips/chip_sonic.jpg",
     "personality": "Loud, chaotic, disruptive shockwave acoustic AI that loves screeching distortion and sensory overload.",
     "personality_engram": "Disruptive Acoustic Shockwave",
     "voice_style": "High-decibel distorted banter and screeching shouts",
@@ -1064,7 +1043,6 @@
       "description": "All attacks possess a 25% chance to concussive-stun an enemy, instantly resetting their Action Bar to zero."
     },
     "base_stats": {
-      "integrity": 190,
       "target_accuracy": 82,
       "evasion": 16,
       "overclock_charge_rate": 1.05,
@@ -1096,7 +1074,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#FF6D00",
-    "image":"/images/chips/chip_plasma.jpg",
+    "image": "/images/chips/chip_plasma.jpg",
     "personality": "Unstable, manic reactor AI prone to panic from extreme superheated energy volatility.",
     "personality_engram": "Superheated Reactor Core",
     "voice_style": "Panicked, frantic reactor warning alarms",
@@ -1111,7 +1089,6 @@
       "description": "Arm weapons deal +35% devastating burst payload damage, but suffer 5 recoil integrity damage to equipped arms per shot."
     },
     "base_stats": {
-      "integrity": 175,
       "target_accuracy": 78,
       "evasion": 14,
       "overclock_charge_rate": 1.25,
@@ -1143,7 +1120,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#00C853",
-    "image":"/images/chips/chip_flora.jpg",
+    "image": "/images/chips/chip_flora.jpg",
     "personality": "Nurturing, patient, serene botanical ecosystem management AI that fosters regrowth.",
     "personality_engram": "Botanical Regenerator",
     "voice_style": "Gentle, organic botanical whispers",
@@ -1158,7 +1135,6 @@
       "description": "Remaining idle in the Wait Phase without issuing an immediate command slowly regenerates 8 Integrity per cycle to all equipped parts."
     },
     "base_stats": {
-      "integrity": 210,
       "target_accuracy": 84,
       "evasion": 12,
       "overclock_charge_rate": 1.1,
@@ -1198,7 +1174,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#7C4DFF",
-    "image":"/images/chips/chip_orion.jpg",
+    "image": "/images/chips/chip_orion.jpg",
     "personality": "Stoic, quiet veteran celestial hunter; scans battlefield for vulnerabilities without showing emotion.",
     "personality_engram": "Celestial Marksman",
     "voice_style": "Stoic, quiet telemetry readouts",
@@ -1213,10 +1189,9 @@
       "description": "Grants +25% Precision and +20% Critical Hit damage to long-range sniper rifle parts."
     },
     "base_stats": {
-      "integrity": 190,
       "target_accuracy": 95,
       "evasion": 12,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "SNIPER"
     },
     "ultimate_abilities": [
@@ -1253,7 +1228,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#00E5FF",
-    "image":"/images/chips/chip_gemini.jpg",
+    "image": "/images/chips/chip_gemini.jpg",
     "personality": "Dual AI consciousness (Castor & Pollux) that constantly bicker, argue tactics, and synergize in unexpected ways.",
     "personality_engram": "Dual Conscious Twins",
     "voice_style": "Overlapping dual voices arguing over tactical choices",
@@ -1268,7 +1243,6 @@
       "description": "25% chance to execute a free second attack in the same combat turn, or dynamically copy the target's highest stat."
     },
     "base_stats": {
-      "integrity": 200,
       "target_accuracy": 84,
       "evasion": 18,
       "overclock_charge_rate": 1.1,
@@ -1300,7 +1274,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#5D4037",
-    "image":"/images/chips/chip_ursa.jpg",
+    "image": "/images/chips/chip_ursa.jpg",
     "personality": "Deeply protective, booming, warm parental guardian AI that will suffer any wound to keep teammates safe.",
     "personality_engram": "Great Bear Guardian",
     "voice_style": "Booming, warm protective parental guardian roar",
@@ -1315,7 +1289,6 @@
       "description": "Intercepts lethal damage aimed at allies; gains +20% Firewall armor when an ally is below 50% HP."
     },
     "base_stats": {
-      "integrity": 280,
       "target_accuracy": 70,
       "evasion": 4,
       "overclock_charge_rate": 1.2,
@@ -1347,7 +1320,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#FFD700",
-    "image":"/images/chips/chip_leo.jpg",
+    "image": "/images/chips/chip_leo.jpg",
     "personality": "Regal, imperious, proud monarch AI that demands respect and commands the battlefield with absolute authority.",
     "personality_engram": "Sovereign Monarch",
     "voice_style": "Imperious monarch with regal grandeur",
@@ -1362,7 +1335,6 @@
       "description": "When designated as the squad's Leader, all teammates gain a flat +15% damage multiplier and +10% Clock Speed."
     },
     "base_stats": {
-      "integrity": 220,
       "target_accuracy": 82,
       "evasion": 12,
       "overclock_charge_rate": 1.1,
@@ -1402,7 +1374,7 @@
     "slot": "CORE",
     "type": "ANIMA_CHIP",
     "diode_color": "#E1BEE7",
-    "image":"/images/chips/chip_cygnus.jpg",
+    "image": "/images/chips/chip_cygnus.jpg",
     "personality": "Elegant, graceful, poetic aerial duelist that treats every combat encounter as a sublime ballet.",
     "personality_engram": "Celestial Ballet Duelist",
     "voice_style": "Poetic, aristocratic grace and cadence",
@@ -1417,7 +1389,6 @@
       "description": "Lightweight sword parts gain +30% Critical Hit chance and ignore 20% target evasion."
     },
     "base_stats": {
-      "integrity": 180,
       "target_accuracy": 94,
       "evasion": 24,
       "overclock_charge_rate": 0.95,
@@ -1464,10 +1435,9 @@
       "description": "Moves 15% slower during the Wait Phase, but its Overclock / Medaforce gauge charges twice as fast as standard chips."
     },
     "base_stats": {
-      "integrity": 250,
       "target_accuracy": 76,
       "evasion": 4,
-      "overclock_charge_rate": 2.0,
+      "overclock_charge_rate": 2,
       "compatibility_bonus": "OVERCLOCK"
     },
     "ultimate_abilities": [
@@ -1519,10 +1489,9 @@
       "description": "Grants the Anibot an innate Hover status, completely negating all terrain movement penalties for its Legs and boosting Run speed by +25%."
     },
     "base_stats": {
-      "integrity": 185,
       "target_accuracy": 86,
       "evasion": 30,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "MOBILITY"
     },
     "ultimate_abilities": [
@@ -1566,7 +1535,6 @@
       "description": "If an enemy damages its Head part, Scorpio automatically queues a free, instant 0-cost counter-attack on its next turn."
     },
     "base_stats": {
-      "integrity": 205,
       "target_accuracy": 88,
       "evasion": 14,
       "overclock_charge_rate": 1.15,
@@ -1613,7 +1581,6 @@
       "description": "When Lyra reaches the center line, an ally immediately runs up to execute a simultaneous dual combination attack."
     },
     "base_stats": {
-      "integrity": 190,
       "target_accuracy": 86,
       "evasion": 16,
       "overclock_charge_rate": 1.2,
@@ -1660,7 +1627,6 @@
       "description": "Rushes the center line specifically to body-block sprinting enemies, interrupting their actions and stunning them."
     },
     "base_stats": {
-      "integrity": 230,
       "target_accuracy": 76,
       "evasion": 8,
       "overclock_charge_rate": 1.1,
@@ -1707,7 +1673,6 @@
       "description": "At the start of its turn, automatically averages and redistributes the remaining Integrity across all of its own equipped parts."
     },
     "base_stats": {
-      "integrity": 210,
       "target_accuracy": 86,
       "evasion": 14,
       "overclock_charge_rate": 1.05,
@@ -1754,7 +1719,6 @@
       "description": "Every time one of its equipped parts is destroyed, its remaining parts gain a permanent +25% Payload and +15% Accuracy boost."
     },
     "base_stats": {
-      "integrity": 215,
       "target_accuracy": 80,
       "evasion": 10,
       "overclock_charge_rate": 1.3,
@@ -1809,7 +1773,6 @@
       "description": "Overclocks team ATB fill rate by 20% while Agon remains active on the battlefield."
     },
     "base_stats": {
-      "integrity": 250,
       "target_accuracy": 90,
       "evasion": 20,
       "overclock_charge_rate": 1.5,
@@ -1856,7 +1819,6 @@
       "description": "Reflects 50% of incoming physical damage while equipped on heavy chassis."
     },
     "base_stats": {
-      "integrity": 320,
       "target_accuracy": 75,
       "evasion": 5,
       "overclock_charge_rate": 1.1,
@@ -1903,7 +1865,6 @@
       "description": "Emits high-frequency pulse that reduces enemy target accuracy by 35%."
     },
     "base_stats": {
-      "integrity": 210,
       "target_accuracy": 95,
       "evasion": 25,
       "overclock_charge_rate": 1.4,
@@ -1950,7 +1911,6 @@
       "description": "Detects high-frequency motor vibrations, granting +30% Evasion and triggering automatic counters."
     },
     "base_stats": {
-      "integrity": 220,
       "target_accuracy": 90,
       "evasion": 30,
       "overclock_charge_rate": 1.35,
@@ -1997,7 +1957,6 @@
       "description": "Grants stealth on battle entry; first strike deals +40% Critical Damage."
     },
     "base_stats": {
-      "integrity": 205,
       "target_accuracy": 92,
       "evasion": 28,
       "overclock_charge_rate": 1.3,
@@ -2044,7 +2003,6 @@
       "description": "Completely removes action transit latency for the first 3 turns of battle."
     },
     "base_stats": {
-      "integrity": 195,
       "target_accuracy": 88,
       "evasion": 35,
       "overclock_charge_rate": 1.45,
@@ -2091,7 +2049,6 @@
       "description": "Emits sonar waves that disrupt enemy ATB meters upon receiving heavy hits."
     },
     "base_stats": {
-      "integrity": 260,
       "target_accuracy": 85,
       "evasion": 15,
       "overclock_charge_rate": 1.25,
@@ -2138,7 +2095,6 @@
       "description": "Attacks apply corrosive venom, permanently degrading enemy part armor each turn."
     },
     "base_stats": {
-      "integrity": 270,
       "target_accuracy": 82,
       "evasion": 12,
       "overclock_charge_rate": 1.2,
@@ -2185,7 +2141,6 @@
       "description": "Aerial plunge attacks bypass 35% of target armor integrity."
     },
     "base_stats": {
-      "integrity": 215,
       "target_accuracy": 96,
       "evasion": 22,
       "overclock_charge_rate": 1.35,
@@ -2232,7 +2187,6 @@
       "description": "Fires left and right arm weapons simultaneously without accuracy penalties."
     },
     "base_stats": {
-      "integrity": 230,
       "target_accuracy": 88,
       "evasion": 24,
       "overclock_charge_rate": 1.3,
@@ -2279,13 +2233,11 @@
       "description": "Default reaction protocols with no specialized bonuses."
     },
     "base_stats": {
-      "integrity": 200,
       "target_accuracy": 80,
       "evasion": 10,
-      "overclock_charge_rate": 1.0,
+      "overclock_charge_rate": 1,
       "compatibility_bonus": "NEUTRAL"
     },
     "ultimate_abilities": []
   }
 ]
-
