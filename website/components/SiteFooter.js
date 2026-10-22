@@ -38,6 +38,9 @@ export const SiteFooter = () => {
             <Link href="/lore/" className="hover:text-foreground transition-colors">
               Lore
             </Link>
+            <Link href="/specs/" className="hover:text-foreground transition-colors">
+              Game Specs
+            </Link>
             <Link href="/demo/" className="hover:text-foreground transition-colors">
               Battle Demo
             </Link>

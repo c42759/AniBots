@@ -8,20 +8,20 @@ Welcome to the **AniBots** repository!
 
 ## 📚 Project Documentation
 
-The AniBots project is structured across modular, domain-specific documentation files:
+The AniBots project documentation is maintained under `website/content/` and browsable through the live web application:
 
-| Document | Focus & Domain |
-| :--- | :--- |
-| **[OVERVIEW.md](./OVERVIEW.md)** | **Game Design Document**: Core combat loop, attributes, autonomous utility AI targeting, degradation, and scrap economy. |
-| **[PARTS.md](./PARTS.md)** | **Modular Parts & Types Specification**: 5 physical slots, 5 payload types, 4 torso architectures, and 6 leg mobility protocols. |
-| **[GAME.md](./GAME.md)** | **Technical Implementation Specification**: Godot 4.x architecture, autoloads, composite sprites, and SQLite database schema. |
-| **[CHIPS.md](./CHIPS.md)** | **Anima Chips Catalog**: Canonical databank of 36 mass-market AI cores (Antiquity, Kinetic, Astral series). |
-| **[LORE.md](./LORE.md)** | **World Bible**: 3047 AD timeline, societal order, geography, main story arcs, and branching quest loops. |
-| **[CHARACTERS.md](./CHARACTERS.md)** | **Character & Frame Databank**: Cast bios, Zerdata 5-part chassis anatomy, supporting NPCs, and the 10 Ancient Series cores. |
-| **[CHARACTERS-DESIGN.md](./CHARACTERS-DESIGN.md)** | **Character Design Guidelines**: 100–120 cm chibi-mecha proportions, Neutral Under-Skeleton Anchor (no tinpet), Omni-Relay couplers, and 7 visor archetypes. |
-| **[INSPIRATION/README.md](./INSPIRATION/README.md)** | **Design Roots**: Analysis of classic robot-battler mechanics (Medabots GBA relay system). |
-| **[ai/AniChipDesignPrompt.md](./ai/AniChipDesignPrompt.md)** | **AI Art Standard**: Reusable ink schematic sketch prompts for chip illustrations. |
-| **[dex/README.md](./dex/README.md)** | **AniDex Web App**: Next.js Pokédex-style databank for browsing 36 frames and 46 chips. |
+| Document Section | Focus & Domain | Web Route / Source |
+| :--- | :--- | :--- |
+| **Game Overview** | **Game Design Document**: Core combat loop, attributes, autonomous utility AI targeting, degradation, and scrap economy. | [`/specs/01_overview`](./website/content/specs/01_overview.md) |
+| **Modular Parts** | **Modular Parts & Types Specification**: 5 physical slots, 5 payload types, 4 torso architectures, and 6 leg mobility protocols. | [`/specs/03_modular_parts`](./website/content/specs/03_modular_parts.md) |
+| **Technical Architecture** | **Technical Implementation Specification**: Godot 4.x architecture, autoloads, composite sprites, and SQLite database schema. | [`/specs/02_game_architecture`](./website/content/specs/02_game_architecture.md) |
+| **Anima Chips** | **Anima Chips Specification & AI Architecture**: Cognitive engine, utility AI scoring, personality engrams, and learning system. | [`/specs/04_anima_chips`](./website/content/specs/04_anima_chips.md) |
+| **Robot Design** | **Character & Frame Design Guidelines**: 100–120 cm chibi-mecha proportions, magnetic couplers, and art direction. | [`/specs/05_character_design`](./website/content/specs/05_character_design.md) |
+| **Testing Walkthrough** | **Testing & Stage Verification**: Import instructions, scene-by-scene checklists, garage assembly, and battle testing. | [`/specs/06_walkthrough`](./website/content/specs/06_walkthrough.md) |
+| **World Lore** | **Canon Bible**: 3047 AD timeline, societal order, geography, main story arcs, and branching quest loops. | [`/lore/`](./website/content/lore/) |
+| **Characters Databank** | **Character & Frame Databank**: Cast bios, Zerdata 5-part chassis anatomy, supporting NPCs, and the 10 Ancient Series cores. | [`/characters/`](./website/content/characters/) |
+| **Design Roots** | **Inspiration**: Analysis of classic robot-battler mechanics (Medabots GBA relay system). | [`INSPIRATION/README.md`](./INSPIRATION/README.md) |
+| **AniDex Web App** | **AniDex**: Live databank browser for 36 frames, 46 chips, and 190 modular parts. | [`/dex/`](./website/app/dex/) |
 
 ---
 
@@ -30,21 +30,21 @@ The AniBots project is structured across modular, domain-specific documentation 
 - **Game Engine:** Godot 4.x (GL Compatibility / Desktop & Switch target)
 - **Persistence:** SQLite Dual-Database (Static Catalog + ACID Save DB)
 
-For technical architecture details, autoload singletons, and complete SQL table schemas, see **[GAME.md](./GAME.md)**.
+For technical architecture details, autoload singletons, and complete SQL table schemas, see **[Technical Architecture](/specs/02_game_architecture)** ([`02_game_architecture.md`](./website/content/specs/02_game_architecture.md)).
 
 ---
 
 ## 🤖 Core Game Systems
 
-For comprehensive gameplay formulas, hardware equations, and utility AI algorithms, see **[OVERVIEW.md](./OVERVIEW.md)** and **[PARTS.md](./PARTS.md)**. Core systems include:
+For comprehensive gameplay formulas, hardware equations, and utility AI algorithms, see **[Game Design Overview](/specs/01_overview)** and **[Modular Parts Specification](/specs/03_modular_parts)**. Core systems include:
 
 ### 1. The Anima Chip (The AI "Soul")
 
-The Anima Chip is the central processor dictating autonomous targeting logic via a **Weighted Scoring System (Utility AI)**. Individual chip profiles and traits are cataloged in **[CHIPS.md](./CHIPS.md)** and **[CHARACTERS.md](./CHARACTERS.md#the-10-legendary-ancient-series-anichips-generation-0)**.
+The Anima Chip is the central processor dictating autonomous targeting logic via a **Weighted Scoring System (Utility AI)**. Individual chip profiles and traits are cataloged in **[AniDex Chips](/dex/chips/)** and **[World Lore: Ancient Generation Zero](/lore/03_ancient_generation_zero)**.
 
 ### 2. Modular Hardware Loadouts
 
-Anibots are assembled from customizable parts across 5 slots (detailed in **[PARTS.md](./PARTS.md)**), forcing players to balance weight, speed, and power:
+Anibots are assembled from customizable parts across 5 slots (detailed in **[Modular Parts Specification](/specs/03_modular_parts)**), forcing players to balance weight, speed, and power:
 
 - **Active Parts (Head, Arms):** Determine HP (Integrity), damage (Payload), speed (Execution/Latency), and accuracy (Precision).
 - **Torso (Chassis):** The motherboard that limits the **Max Loadout**, acting as the structural bottleneck to prevent overpowered builds.
@@ -104,7 +104,7 @@ We are building a highly tactical, system-driven RPG and actively welcome contri
 
 ### How to Get Started
 
-1. Read our core design documents: **[OVERVIEW.md](./OVERVIEW.md)** (mechanics), **[PARTS.md](./PARTS.md)** (modular parts specification), **[GAME.md](./GAME.md)** (technical architecture), **[CHIPS.md](./CHIPS.md)** (chips databank), **[LORE.md](./LORE.md)** (story bible), and **[CHARACTERS.md](./CHARACTERS.md)** (cast profiles).
+1. Read our core design documents: **[Game Design Specs](/specs/01_overview)**, **[Modular Parts](/specs/03_modular_parts)**, **[Technical Architecture](/specs/02_game_architecture)**, **[World Lore](/lore/)**, and **[Characters Databank](/characters/)**.
 2. Check existing Issues or open a new Discussion/Issue with your ideas or proposed changes.
 3. Fork the repository, create your feature branch, and submit a Pull Request.
 

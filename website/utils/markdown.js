@@ -46,6 +46,7 @@ function resolveContentDir(subdir) {
 
 const CHARACTERS_DIR = resolveContentDir('characters');
 const LORE_DIR = resolveContentDir('lore');
+const SPECS_DIR = resolveContentDir('specs');
 
 export function getAllCharacters() {
   if (!fs.existsSync(CHARACTERS_DIR)) return [];
@@ -97,6 +98,36 @@ export function getAllLoreSections() {
 
 export function getLoreSectionBySlug(slug) {
   const filePath = path.join(LORE_DIR, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const { frontmatter, content } = parseFrontmatter(raw);
+  return {
+    slug,
+    ...frontmatter,
+    content,
+  };
+}
+
+export function getAllSpecs() {
+  if (!fs.existsSync(SPECS_DIR)) return [];
+  const files = fs.readdirSync(SPECS_DIR).filter((f) => f.endsWith('.md'));
+
+  const list = files.map((file) => {
+    const slug = file.replace(/\.md$/, '');
+    const raw = fs.readFileSync(path.join(SPECS_DIR, file), 'utf8');
+    const { frontmatter, content } = parseFrontmatter(raw);
+    return {
+      slug,
+      ...frontmatter,
+      content,
+    };
+  });
+
+  return list.sort((a, b) => (a.order || 99) - (b.order || 99));
+}
+
+export function getSpecBySlug(slug) {
+  const filePath = path.join(SPECS_DIR, `${slug}.md`);
   if (!fs.existsSync(filePath)) return null;
   const raw = fs.readFileSync(filePath, 'utf8');
   const { frontmatter, content } = parseFrontmatter(raw);
