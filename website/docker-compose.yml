@@ -1,0 +1,16 @@
+services:
+    website:
+        container_name: anibots_website
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - ".:/app"
+        networks:
+            - anibots
+
+networks:
+    anibots:
+        driver: bridge
