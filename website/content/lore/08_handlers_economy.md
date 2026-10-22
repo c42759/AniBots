@@ -1,8 +1,8 @@
 ---
-id: 06_handlers_economy
+id: 08_handlers_economy
 title: "Handlers' Scrap Economy"
 subtitle: Scavenging, Quality Control Ratings & Secondhand Tuning
-order: 6
+order: 8
 ---
 
 ## The Scrapper Life

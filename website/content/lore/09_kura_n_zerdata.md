@@ -1,8 +1,8 @@
 ---
-id: 07_kura_n_zerdata
+id: 09_kura_n_zerdata
 title: Arc 1 - Kura & Zerdata (3047 AD)
 subtitle: My Father's AniBot
-order: 7
+order: 9
 ---
 
 # Arc 1: Kura & Zerdata

@@ -5,8 +5,8 @@ japanese_name: クラ アト
 role: Main Protagonist, Freelance Mechanic & Handler
 age: 16
 location: Neo Metropolis (District 4, Ato Family Workshop)
-partner_bot: Zerdata (anibot_zerdata)
-partner_chip: Vulpes Zerda (G0-004)
+partner_bot: Zerdata (G0-004)
+partner_chip: Vulpes Zerda
 avatar: /images/characters/kura_ato_avatar.jpg
 quote: "Bare metal is just hardware. The Anima Chip is the soul that wakes the beast."
 order: 1

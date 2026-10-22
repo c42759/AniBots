@@ -5,8 +5,8 @@ japanese_name: ゼルデータ
 role: "Kura's Partner Machine (Gen-0)"
 age: Ancient
 location: Neo Metropolis (District 4)
-partner_bot: anibot_zerdata
-partner_chip: chip_vulpes_zerda (G0-004)
+partner_bot: anibot_zerdata (G0-004)
+partner_chip: chip_vulpes_zerda 
 avatar: /images/anibots/G0-004.jpg
 quote: I hear every pulse of their motors... Kura, strike on my signal!
 order: 2

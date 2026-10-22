@@ -6,7 +6,7 @@ role: Supreme Boss of the Anode Group
 age: 48
 location: "Magnus's Citadel (Rust-Ridge Badlands)"
 partner_bot: Silverback-Smash (GOR-01)
-partner_chip: Gladiator (SER-A)
+partner_chip: Gladiator
 avatar: /images/characters/magnus_avatar.jpg
 quote: "Laws are written for people who can't take what they want. In the Badlands, horsepower is the only law."
 order: 7

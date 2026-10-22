@@ -1,8 +1,8 @@
 ---
-id: 04_factions_and_badlands
+id: 06_factions_and_badlands
 title: Factions & The Outlaw Badlands
 subtitle: The Anode Group, The Pit Arena & The Scrap Smuggling Syndicate
-order: 4
+order: 6
 ---
 
 ## The Anode Group

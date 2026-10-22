@@ -9,20 +9,77 @@ order: 2
 
 At its physical foundation, an AniBot frame is an assembly of inert hardware—servos, composite armor plating, actuators, and power conduits acting as bare metal. The **Anima Chip** provides the computational spark and autonomous intelligence that brings this skeleton to life.
 
-Inside every Anima Chip lies a microscopic fossilized mineral known as an **Anima Stone**. First excavated around **2750 AD** within deep subterranean tectonic strata, these crystalline gems are over 4 billion years old. When placed under quantum stimulation during chip initialization, each Anima Stone reacts uniquely, generating an immutable, non-duplicable personality engram—giving every AniBot distinct sentience, behavioral habits, and emotional cadence.
+![Anima Stone, Anima Core and Anima Chip](/images/lore/02_anima_chips/anima_crystal.jpg)
 
-![Anima Chip Hardware](/images/lore/02_anima_chips/anibots_anima_chip_hardware_2.jpg)
+### 1. Complete Form & Natural Variations
+
+Anima Stones are rare, naturally occurring geological crystals that contain condensed **Anima**—a primordial form of pure life energy dating back over 4 billion years:
+
+- **Physical Dimensions**: A complete, unharvested crystal measures approximately **70 mm (2.76 in)** in height by **30 mm (1.18 in)** in width.
+- **Natural Variations**: Anima Stones manifest in diverse geological formations—from pristine elongated hexagonal prisms to dense geode clusters and faceted shard aggregates.
+
+### 2. Internal Anatomy: Shell & Core
+
+When split open, an Anima Stone reveals a two-layer biological-crystalline architecture:
+
+```text
+┌────────────────────────────────────────────────────────┐
+│                 ANIMA STONE ANATOMY                    │
+├────────────────────────────────────────────────────────┤
+│ 1. OUTER SHELL                                         │
+│    Translucent crystalline facet structure that holds, │
+│    protects, and naturally channels internal energy.   │
+│                                                        │
+│ 2. THE CORE (ANIMA)                                    │
+│    A luminous, spherical energy nucleus measuring      │
+│    3 mm (0.12 in) in diameter situated at the center.  │
+│    The ultimate source of life energy and resonance.   │
+└────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## Physical Hardware Architecture
+## The Resonance Spectrum
 
-Physically, an Anima Chip is engineered as a ruggedized, solid-state memory cartridge reminiscent of early computing ROM modules:
+Every Anima Core vibrates with a distinct, non-duplicable frequency. **Resonance is a continuous spectrum with near-infinite variations**, ensuring that no two Anima Cores—even when harvested from the same geological vein—are ever identical.
 
-- **Reinforced Translucent Shell**: Impact-resistant polycarbonate casing protecting internal micro-circuits against high-G combat shock and heat dissipation up to 1,200°C.
-- **Exposed Contact Pins**: Hard-gold plated terminal bus interfacing directly with the AniBot's central spinal bus at extreme clock speeds.
-- **The Core Diode & Crest**: Centered on the cartridge is an illuminated diode crest that pulses rhythmically with the AniBot's operational cycle. Diode coloration indicates Series alignment, while the embossed insignia reflects the chip's personality archetype.
-- **Chassis Slotting Port**: Handlers initialize an AniBot by inserting the chip directly into the armored **CORE Slot** situated between the shoulder blade housings on the Torso chassis.
+While each core's wavelength is unique, frequencies broadly align into **five primary resonance categories**, which dictate the core's baseline temperament, cognitive traits, and the color of light it naturally emits:
+
+| Category | Primary Wavelength | Trait Focus | Personality & Combat Archetype |
+| :--- | :--- | :--- | :--- |
+| **CALM** | Cyan / Deep Blue | **Stability** | Serene, measured, and resilient under pressure; favors defensive posturing and counter-strikes. |
+| **ANALYTICAL** | Emerald Green | **Intelligence** | Methodical, calculation-heavy, and structured; optimizes action economy and center-line traps. |
+| **BOLD** | Amber / Gold | **Courage** | Confident, chivalric, and steadfast; commands frontline assaults and inspired morale. |
+| **INTUITIVE** | Amethyst / Violet | **Perception** | Perceptive, acoustic-sensitive, and agile; anticipates enemy vectors and exploits structural weak points. |
+| **FIERY** | Crimson / Ruby Red | **Passion** | Aggressive, hyperactive, and intense; excels at high-speed sprints and rapid-fire offensive surges. |
+
+---
+
+## Anima Chip Integration & Form Factor
+
+To harness the core's power for tactical robotics, the **3 mm Anima Core** is carefully extracted from the crystal shell and integrated into a standardized modular cartridge:
+
+![Anima Chip Hardware](/images/lore/02_anima_chips/anibots_anima_chip_hardware_2.jpg)
+
+### 1. Standard Cartridge Dimensions
+- **Length**: **45 mm (1.77 in)**
+- **Width**: **35 mm (1.38 in)**
+- **Thickness**: **5 mm (0.20 in)**
+
+### 2. Layered Cutaway Architecture
+1. **Top Polycarbonate Shell**: Transparent or tinted protective faceplate featuring the embossed Series insignia and model crest.
+2. **Core Placement**: The **3 mm Anima Core** is suspended directly behind the central emblem, projecting its resonant glow outward through the diode lens.
+3. **Internal Carrier Circuitry**: High-frequency substrate holding the core, regulating power draw, and translating biological resonance waves into digital neural directives.
+4. **Bottom Housing & Terminal Pins**: Hardened rear shell with exposed hard-gold contact bus pins interfacing with the AniBot's central spinal bus at extreme clock speeds.
+5. **Chassis Slotting Port**: Handlers initialize an AniBot by inserting the chip directly into the armored **CORE Slot** situated between the shoulder blade housings on the back of Torso chassis.
+
+---
+
+## Core Vitality, Lifespan & Depletion
+
+- **Average Lifespan (125 Years)**: Once removed from its native geological crystal shell and initialized inside an operational cartridge, an Anima Core has an average functional lifespan of **125 years**.
+- **The Active State (Core Alive)**: While the Anima Core lives, the chip pulses with continuous illumination matching its individual resonance color. This pulsing rhythm synchronizes with the AniBot's operational cycle like a heartbeat.
+- **The Inactive State (Core Depleted)**: When a core reaches the end of its 125-year lifespan or suffers catastrophic engram collapse from extreme trauma, the resonance fades and the light extinguishes. The cartridge enters a permanently inert **Inactive** state. Because Anima engrams are biologically unique, a depleted core cannot be recharged, cloned, or duplicated.
 
 ---
 
@@ -38,24 +95,23 @@ To prevent monopolistic corporate weaponization, the fabrication protocols for A
 
 ---
 
-## The 4 Canonical Chip Series
+## Chip Series Genealogy: From Lab Prototype to Corporate Industry
 
-Anima Chips are categorized into four distinct series, each reflecting specific historical data sets and combat specializations:
+The development of Anima Chips spans centuries, originating in government research laboratories before expanding into commercial robotics corporations:
 
-```txt
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                          ANIMA CHIP SERIES ROSTER                           │
-├────────────────────┬────────────────────┬────────────────────┬──────────────┤
-│ 1. ANTIQUITY       │ 2. KINETIC         │ 3. ASTRAL          │ 4. ANCIENT   │
-│ Historical Martial │ Elemental Forces   │ Celestial Science  │ Generation 0 │
-│ Disciplines & Trap │ & High-Speed Stuns │ & Precision Sniping│ Legendary 10 │
-└────────────────────┴────────────────────┴────────────────────┴──────────────┘
-```
+1. **Laboratory Origins (Ancient Series — Generation 0)**:
+   - Fabricated in **2750 AD** by human scientists and researchers in dedicated robotics laboratories.
+   - Only **176 prototype units** were produced before the initiative was decommissioned.
+   - Characterized by self-modifying code, learning absorption, and unmatched overclock headroom.
 
-1. **Antiquity Series (12 Chips)**: Programmed with historical martial philosophies, dueling ethics, and tactical combat disciplines. Handlers favor Antiquity chips for defensive formations, counter-attacks, and strategic center-line trapping (e.g., *Ronin, Dragoon, Corsair, Phalanx, Artificer*).
-2. **Kinetic Series (12 Chips)**: Industrial and raw-energy cores engineered for environmental manipulation, electrical surges, explosive impact, and high-speed interception (e.g., *Spark, Magma, Frost, Gale, Terra, Corrosive*).
-3. **Astral Series (12 Chips)**: High-altitude computational matrices mapped to celestial constellations. These cores excel at long-range target calculation, radar support, and guaranteed critical strikes (e.g., *Orion, Gemini, Ursa, Leo, Cygnus*).
-4. **Ancient Series (Generation 0 — 10 Surviving Units)**: The original experimental cores produced in 2750 AD at Research Center Zero. Unlike modern chips, Generation 0 cores possess self-modifying neural architectures capable of data absorption, exceptional overclock bandwidth, and deep instinctual memory (e.g., *Vulpes Zerda / Zerdata*, the Primordial Trio *Agon, Biggon, Cygon*).
+2. **Corporate Mass-Market Manufacturing**:
+   - Following the release of the Open-Source Anima Charter, competitive corporations industrialized production, establishing specialized branded series:
+     - **Aegis Corporation**: Engineers the **Antiquity Series** (historical martial disciplines) and **Primal Series** (beast combat instincts).
+     - **Atom Corp**: Engineers the **Kinetic Series** (industrial mobility & stuns) and **Astral Series** (celestial precision & optics).
+     - **ABFE (AniBots For Everyone)**: Engineers the **Neutral Series** (balanced civic utility) and **Pex Series** (modular expansion).
+
+> [!TIP]
+> For complete visual identity systems, color palettes, and frame rosters of all 7 series, see **[Chip Series Lore](/lore/04_chip_series)**. For deep dives on the three corporate giants, see **[Robotics Manufacturers](/lore/05_manufacturers)**.
 
 ---
 
