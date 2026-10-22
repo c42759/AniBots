@@ -1233,7 +1233,7 @@
     "personality_engram": "Dual Conscious Twins",
     "voice_style": "Overlapping dual voices arguing over tactical choices",
     "voice_gender": "DUAL",
-    "quote": "I'll strike left! — No, right arm cannon is ready! — Let's just fire both!",
+    "quote": "I'll strike left! \u2014 No, right arm cannon is ready! \u2014 Let's just fire both!",
     "affinity": "DUAL_WIELD",
     "bonus_text": "25% chance to attack twice in one turn or mirror target stats",
     "target_priority": "DUAL_TARGET",

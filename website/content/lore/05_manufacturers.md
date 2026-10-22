@@ -22,6 +22,13 @@ Following the release of the Open-Source Anima Charter in the late 28th century,
 └────────────────────┴────────────────────────┴───────────────────────────────┘
 ```
 
+### Corporate Chronology & Government Accords
+
+Commercial AniBot manufacturing is governed by strict international accords following the decommissioning of state-run research facilities:
+- **2972 AD**: **Atom Corp** is born and receives international government approval for commercial AniBot manufacturing.
+- **3000 AD**: **Aegis Corporation** is born and receives international government approval for heavy defense and security AniBot manufacturing.
+- **3031 AD**: **ABFE (AniBots For Everyone)** is born and receives international government approval for accessible community and modular AniBot manufacturing.
+
 ---
 
 ## 1. Aegis Corporation: Built to Protect What Matters
@@ -29,7 +36,7 @@ Following the release of the Open-Source Anima Charter in the late 28th century,
 ![Aegis Corporation Headquarters & Brand Identity](/images/lore/05_manufacturers/aegis_corporation.jpg)
 
 - **Headquarters**: Aegis High-Spire (Neo Metropolis Central District)
-- **Corporate Founding**: Trusted Worldwide since **3012 AD** (Corporate Identity System Version 7.3.1)
+- **Corporate Founding**: **3000 AD** (Approved by International Government for AniBot Manufacturing)
 - **Corporate Motto**: *"Built to Protect What Matters"* • *"People. Planet. Protect. Together."*
 - **Mission**: *"Protection through people, technology, and a cleaner tomorrow."*
 
@@ -60,6 +67,7 @@ Aegis values hierarchy, structural reliability, and duty. Their AniBots are favo
 ![Atom Corp Headquarters & Brand Identity](/images/lore/05_manufacturers/atom_corp.jpg)
 
 - **Headquarters**: Atom Global Campus (Eco-Hybrid City // 3047)
+- **Corporate Founding**: **2972 AD** (Approved by International Government for AniBot Manufacturing)
 - **Corporate Mission**: *"Powering Intelligent Motion"* • *"Energy. People. Robotics. A Cleaner Tomorrow"*
 - **Vision**: *"A more capable planet together. People, technology, and nature in sync."*
 
@@ -90,6 +98,7 @@ Atom Corp specializes in ultra-low latency cooling systems, wheeled and anti-gra
 ![ABFE Headquarters & Brand Identity](/images/lore/05_manufacturers/abfe.jpg)
 
 - **Headquarters**: ABFE Global Community Hub (Civic District 1)
+- **Corporate Founding**: **3031 AD** (Approved by International Government for AniBot Manufacturing)
 - **Brand System**: Version 2.0 (Year 3047 AD)
 - **Corporate Tagline**: *"Robotics For Every Life"* • *"Smart Help For Everyone"*
 - **Motto**: *"People first. Technology for brighter communities around the world."*
@@ -121,6 +130,7 @@ ABFE believes that every child, mechanic, delivery worker, and elder should have
 
 | Corporate Metric | Aegis Corporation | Atom Corp | ABFE (AniBots For Everyone) |
 | :--- | :--- | :--- | :--- |
+| **Founding & Gov Approval** | **3000 AD** | **2972 AD** | **3031 AD** |
 | **Corporate Slogan** | *Built to Protect What Matters* | *Powering Intelligent Motion* | *Robotics For Every Life* |
 | **Core Specialization** | Armor, Firewall, Heavy Defense | Speed, Clean Energy, Laser Optics | Modularity, Affordability, Community |
 | **Signature Series** | Antiquity Series & Primal Series | Kinetic Series & Astral Series | Neutral Series & Pex Series |

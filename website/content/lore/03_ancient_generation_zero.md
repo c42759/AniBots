@@ -8,7 +8,7 @@ order: 3
 ![Anibots Gen 0](/images/lore/03_ancient_generation_zero/anibots_brand_0.jpg)
 
 ## The 176 Ancient Series Chips
-Developed in early laboratory trials around **2750 AD**, only **176 Ancient Series Chips** were ever produced.
+Following the discovery of Anima Stones by archaeologist Samo Roy in **2622 AD** and the construction of humanity's first AniBot (**Agon**) in **2687 AD** at Research Center Zero in Aveiro, experimental laboratory trials culminated in **2750 AD** with the fabrication of exactly **176 Ancient Series Chips** (Generation 0).
 - **Hardware Specs**: Unrivaled processing headroom, massive memory banks, near-infinite adaptive potential.
 - **Unique Capability (Absorption)**: Ancient Chips can rewrite their own code by absorbing/migrating data from other AniChips. *Newer generation chips lack this capability.*
 - **Lifespan**: All AniChips have a maximum functional lifespan of **150 years**.

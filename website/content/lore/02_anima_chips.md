@@ -97,21 +97,25 @@ To prevent monopolistic corporate weaponization, the fabrication protocols for A
 
 ## Chip Series Genealogy: From Lab Prototype to Corporate Industry
 
-The development of Anima Chips spans centuries, originating in government research laboratories before expanding into commercial robotics corporations:
+The development of Anima Chips spans centuries, originating from deep archaeological discoveries and laboratory experiments before expanding into licensed commercial robotics corporations:
 
-1. **Laboratory Origins (Ancient Series — Generation 0)**:
-   - Fabricated in **2750 AD** by human scientists and researchers in dedicated robotics laboratories.
-   - Only **176 prototype units** were produced before the initiative was decommissioned.
-   - Characterized by self-modifying code, learning absorption, and unmatched overclock headroom.
+### Historical Chronology: 2622 AD – 3047 AD
 
-2. **Corporate Mass-Market Manufacturing**:
-   - Following the release of the Open-Source Anima Charter, competitive corporations industrialized production, establishing specialized branded series:
-     - **Aegis Corporation**: Engineers the **Antiquity Series** (historical martial disciplines) and **Primal Series** (beast combat instincts).
-     - **Atom Corp**: Engineers the **Kinetic Series** (industrial mobility & stuns) and **Astral Series** (celestial precision & optics).
-     - **ABFE (AniBots For Everyone)**: Engineers the **Neutral Series** (balanced civic utility) and **Pex Series** (modular expansion).
+| Year | Era / Milestone | Historical Event & Significance |
+| :--- | :--- | :--- |
+| **2622 AD** | Anima Stones Discovered | Archaeologist **Samo Roy** (55 years old) unearths the first documented Anima Stones during subterranean excavations. |
+| **2640 AD** | Anima Core Isolation | Scientists discover and isolate the crystalline **Anima Core** dormant inside the raw Anima Stone matrix. |
+| **2642 AD** | First Electronic Connection | Researchers achieve the first successful electronic and algorithmic interface between an Anima Core and digital circuits. |
+| **2650 AD** | Research Center Zero | Founding of **Research Center Zero** in Aveiro, Portugal, dedicated to Anima energy and robotic integration. |
+| **2687 AD** | First AniBot in History | Research Center Zero researchers successfully build the first bot in history: **Agon** (`G0-001`), inaugurating the AniBot era. |
+| **2750 AD** | The 176 AniBots Incident | 176 experimental Generation-0 cores fabricated; containment rebellion at Vault 7 leads to facility shutdown and surviving cores escaping. |
+| **2972 AD** | Atom Corp Born | **Atom Corp** receives international government approval to commercially manufacture AniBots (Kinetic & Astral Series). |
+| **3000 AD** | Aegis Corporation Born | **Aegis Corporation** receives international government approval to commercially manufacture AniBots (Antiquity & Primal Series). |
+| **3031 AD** | ABFE Born | **ABFE (AniBots For Everyone)** receives international government approval to commercially manufacture AniBots (Neutral & Pex Series). |
+| **3047 AD** | Modern Era | Contemporary AniBot universe, global league sports (World Cup), and competitive handler ecosystem. |
 
 > [!TIP]
-> For complete visual identity systems, color palettes, and frame rosters of all 7 series, see **[Chip Series Lore](/lore/04_chip_series)**. For deep dives on the three corporate giants, see **[Robotics Manufacturers](/lore/05_manufacturers)**.
+> For complete visual identity systems, color palettes, and frame rosters of all 7 series, see **[Chip Series Lore](/lore/04_chip_series)**. For deep dives on the three corporate giants, see **[Robotics Manufacturers](/lore/05_manufacturers)**. For the discoverer of Anima Stones, see **[Samo Roy](/characters/samo_roy)**.
 
 ---
 

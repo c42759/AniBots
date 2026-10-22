@@ -3968,9 +3968,9 @@
     "series": "PRIMAL",
     "archetype": "Siege Titan Fortress",
     "description": "Towering ultra-heavy frame plated in reinforced titanium-ceramic hide, wielding dual hydraulic tusks that demolish fortification lines.",
-    "preferred_chip": "chip_biggon",
+    "preferred_chip": "chip_phalanx",
     "affinity": "DEFENSE",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Biggon Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Phalanx Chip",
     "image": "/images/anibots/ELE-01.jpg",
     "parts": {
       "head": {
@@ -4552,9 +4552,9 @@
     "series": "PRIMAL",
     "archetype": "Heavy Vanguard Flipper",
     "description": "Iconic armored coleoptera frame equipped with a pneumatic forward catapult horn designed to uproot and flip enemy center lines.",
-    "preferred_chip": "chip_agon",
+    "preferred_chip": "chip_aries",
     "affinity": "INTERCEPT",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Agon Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Aries Chip",
     "image": "/images/anibots/KBT-01.jpg",
     "parts": {
       "head": {
@@ -6185,5 +6185,308 @@
       }
     },
     "avatar": "/images/anibots/APX-08_avatar.jpg"
+  },
+  {
+    "id": "anibot_volt_pouncer",
+    "model_code": "TGR-09",
+    "name": "Volt-Pouncer",
+    "series": "PRIMAL",
+    "archetype": "Plugtail Skirmisher",
+    "description": "Volt-Pouncer (TGR-09 / ELX-01) is a fast, playful skirmisher from the Neutral Series. It uses rapid pounces, electric discharge, and disruptive feints to overwhelm opponents. Always in motion, it turns the battlefield into a playground, striking before the enemy can react.",
+    "preferred_chip": "chip_acinonyx_jubatus",
+    "affinity": "SPEED",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Acinonyx Jubatus Chip",
+    "image": "/images/anibots/TGR-09.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_tgr09_visor",
+        "name": "Spark-Pounce Sensor Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 60,
+        "payload": 0,
+        "precision": 96,
+        "execution_time": 1.0,
+        "latency": 1.4,
+        "weight": 4,
+        "cache": 4,
+        "description": "Streamlined sensor helmet with high-sensitivity ear antennas, tracking electromagnetic surges and anticipating enemy attack vectors.",
+        "affinity": [
+          "SUPPORT",
+          "SPEED"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_tgr09_plugtail",
+        "name": "Plugtail Conductor Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 135,
+        "max_loadout": 28,
+        "firewall": 10,
+        "cooling": 2.8,
+        "description": "Agile skirmisher torso equipped with the signature Plugtail Conductor\u2014a flexible power tail storing and releasing electric energy for attacks, grapples, and disruptive feints.",
+        "affinity": [
+          "DEFENSE",
+          "SPEED"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_tgr09_pounce_claw",
+        "name": "Pounce Claws (L)",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 58,
+        "payload": 36,
+        "precision": 94,
+        "execution_time": 1.1,
+        "latency": 1.5,
+        "weight": 5,
+        "cache": -1,
+        "description": "High-output claw unit with electric charge, built for tearing, deflecting, and delivering shocking melee strikes.",
+        "affinity": [
+          "MELEE",
+          "SPEED"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_tgr09_pounce_claw",
+        "name": "Pounce Claws (R)",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 58,
+        "payload": 36,
+        "precision": 94,
+        "execution_time": 1.1,
+        "latency": 1.5,
+        "weight": 5,
+        "cache": -1,
+        "description": "High-output claw unit with electric charge, built for high-speed slashing feints and stunning electric shock strikes.",
+        "affinity": [
+          "MELEE",
+          "SPEED"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_tgr09_spark_step",
+        "name": "Spark Step Legs",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 90,
+        "clock_speed": 2.2,
+        "direct_connect": 20,
+        "remote_uplink": -4,
+        "packet_loss": 15,
+        "protocol": "BIPEDAL",
+        "description": "Lightweight, high-rebound legs optimized for explosive leaps, rapid directional changes, and high-speed pouncing action.",
+        "affinity": [
+          "MOBILITY",
+          "SPEED"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/TGR-09_avatar.jpg"
+  },
+  {
+    "id": "anibot_cyan",
+    "model_code": "PLS-09",
+    "name": "Cyan",
+    "series": "KINETIC",
+    "archetype": "Rapid-Fire Assault Unit",
+    "description": "Cyan (PLS-09 / BLT-01) is a high-mobility ranged assault Anibot built for rapid-fire suppression and precision strikes. Equipped with twin kinetic firearms, Cyan overwhelms targets with sustained bullet barrages, maintaining distance while exploiting openings with high-accuracy fire.",
+    "preferred_chip": "chip_plasma",
+    "affinity": "BURST_DAMAGE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Plasma Chip",
+    "image": "/images/anibots/PLS-09.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_pls09_volt_crest",
+        "name": "Volt Crest Sensor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 55,
+        "payload": 0,
+        "precision": 96,
+        "execution_time": 1.0,
+        "latency": 1.4,
+        "weight": 4,
+        "cache": 4,
+        "description": "Amplifies electrical signals and enhances combat awareness. Streams real-time battle data through a high-sensitivity sensor array.",
+        "affinity": [
+          "SUPPORT",
+          "PRECISION"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_pls09_rapid_assault",
+        "name": "Rapid-Fire Assault Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 85,
+        "max_loadout": 30,
+        "firewall": 10,
+        "cooling": 2.8,
+        "description": "High-mobility Kinetic series chassis featuring integrated recoil compensators, micro-capacitors, and stabilized ammo feeding conduits for sustained firing barrages.",
+        "affinity": [
+          "DEFENSE",
+          "BURST_DAMAGE"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_pls09_shock_baton",
+        "name": "Shock Baton Forearm",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 60,
+        "payload": 38,
+        "precision": 92,
+        "execution_time": 1.2,
+        "latency": 1.6,
+        "weight": 6,
+        "cache": -1,
+        "description": "Reinforced forearm housing with integrated shock dampers and auxiliary ammo storage for sustained engagements.",
+        "affinity": [
+          "MELEE",
+          "SUPPORT"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_pls09_kinetic_rifle",
+        "name": "Kinetic Bullet Rifle",
+        "slot": "RIGHT_ARM",
+        "type": "RANGED",
+        "integrity": 50,
+        "payload": 42,
+        "precision": 95,
+        "execution_time": 1.2,
+        "latency": 1.7,
+        "weight": 7,
+        "cache": -1,
+        "description": "High-velocity kinetic firearm with stabilized recoil control. Capable of rapid-fire bursts and precise single shot targeting.",
+        "affinity": [
+          "SHOOTING",
+          "BURST_DAMAGE"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_pls09_surge_runner",
+        "name": "Surge Runner Legs",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 85,
+        "clock_speed": 2.1,
+        "direct_connect": 18,
+        "remote_uplink": -2,
+        "packet_loss": 16,
+        "protocol": "BIPEDAL",
+        "description": "High-traction runners with reinforced pivot joints and stabilizers for steady aiming and rapid repositioning during ranged combat.",
+        "affinity": [
+          "MOBILITY",
+          "PRECISION"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/PLS-09_avatar.jpg"
+  },
+  {
+    "id": "anibot_honey_beam",
+    "model_code": "VOI-08",
+    "name": "Honey-Beam",
+    "series": "KINETIC",
+    "archetype": "Support Cannon Tank",
+    "description": "Honey-Beam (VOI-08 / BZZ-01) is a heavily armored support frame that suppresses enemies with rapid multi-barrel pulses and provides area denial through sticky resin rounds.",
+    "preferred_chip": "chip_void",
+    "affinity": "CONTROL",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Void Chip",
+    "image": "/images/anibots/VOI-08.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_voi08_cowl_visor",
+        "name": "Honey-Cowl Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 70,
+        "payload": 0,
+        "precision": 92,
+        "execution_time": 1.2,
+        "latency": 1.8,
+        "weight": 6,
+        "cache": 4,
+        "description": "Heavy domed cowl helmet with reinforced green optical sensor and twin antenna vents, calibrating multi-barrel targeting trajectories.",
+        "affinity": [
+          "SUPPORT",
+          "CONTROL"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_voi08_skirt_tank",
+        "name": "Reinforced Skirt Frame",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 165,
+        "max_loadout": 34,
+        "firewall": 14,
+        "cooling": 2.2,
+        "description": "Armored bell-skirt tank chassis housing auxiliary resin tanks and stabilized gravitational dampers to absorb heavy pulse recoil.",
+        "affinity": [
+          "DEFENSE",
+          "CONTROL"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_voi08_pulse_cannon",
+        "name": "Resin Pulse Cannon (L)",
+        "slot": "LEFT_ARM",
+        "type": "RANGED",
+        "integrity": 65,
+        "payload": 40,
+        "precision": 90,
+        "execution_time": 1.3,
+        "latency": 1.9,
+        "weight": 8,
+        "cache": -1,
+        "description": "Triple-barrel rotary forearm cannon firing rapid suppressive bursts and sticky resin rounds for area denial.",
+        "affinity": [
+          "SHOOTING",
+          "CONTROL"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_voi08_pulse_cannon",
+        "name": "Resin Pulse Cannon (R)",
+        "slot": "RIGHT_ARM",
+        "type": "RANGED",
+        "integrity": 65,
+        "payload": 40,
+        "precision": 90,
+        "execution_time": 1.3,
+        "latency": 1.9,
+        "weight": 8,
+        "cache": -1,
+        "description": "Triple-barrel rotary forearm cannon delivering high-volume suppressing fire and disruptive kinetic shockwaves.",
+        "affinity": [
+          "SHOOTING",
+          "CONTROL"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_voi08_thruster_pods",
+        "name": "Heavy Thruster Pods",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 120,
+        "clock_speed": 1.7,
+        "direct_connect": 14,
+        "remote_uplink": 2,
+        "packet_loss": 18,
+        "protocol": "BIPEDAL",
+        "description": "Bulbous armored pod legs equipped with high-thrust vectoring nozzles for sustained hover positioning and recoil stability.",
+        "affinity": [
+          "DEFENSE",
+          "MOBILITY"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/VOI-08_avatar.jpg"
   }
 ]

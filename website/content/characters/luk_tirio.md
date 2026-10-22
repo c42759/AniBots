@@ -6,7 +6,7 @@ role: "Kura's Best Friend & Primary Rival Handler"
 age: 16
 location: Neo Metropolis
 partner_bot: Kabuto-Horn (KBT-01)
-partner_chip: Agon (G0-001)
+partner_chip: Aries
 avatar: /images/characters/luccas_luk_tirio_avatar.jpg
 quote: One day, Kura, we are gonna settle this on the grand stage of the World Cup!
 order: 3
@@ -25,7 +25,7 @@ Luk firmly believes that he and Kura are destined to meet in the Grand Finals of
 
 ## Partner Machine: Kabuto-Horn
 - **Chassis**: `anibot_kabuto_horn` (Primal Series `KBT-01`)
-- **Core Chip**: `chip_agon` (Ancient Series Vanguard Core `G0-001`)
+- **Core Chip**: `chip_aries` (Astral Series Interceptor Core)
 - **Combat Style**: Frontline heavy flipping, pneumatic catapult thrusts, and high-traction defense.
 
 ![Luccas 'Luk' Tirio and Kabuto-Horn](/images/characters/luccas_luk_tirio_n_kabuto_horn.jpg)
