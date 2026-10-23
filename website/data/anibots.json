@@ -6488,5 +6488,203 @@
       }
     },
     "avatar": "/images/anibots/VOI-08_avatar.jpg"
+  },
+  {
+    "id": "anibot_white_tigris_fury",
+    "model_code": "TGR-05",
+    "name": "White-Tigris-Fury",
+    "series": "PRIMAL",
+    "archetype": "Apex Prowler Striker",
+    "description": "High-precision predator unit engineered with ultra-light articulated spine metallurgy, high-frequency shredder sabre claws, and thermographic hunting optics.",
+    "preferred_chip": "chip_panthera_uncia",
+    "affinity": "MELEE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Panthera Uncia Chip",
+    "image": "/images/anibots/TGR-05.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_tgr05_tiger_mask",
+        "name": "Tiger-Mask Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 66,
+        "payload": 0,
+        "precision": 96,
+        "execution_time": 1.1,
+        "latency": 1.6,
+        "weight": 5,
+        "cache": 4,
+        "description": "Single-lens predator visor with thermographic scanner analyzing target structural weak points and enhancing tracking under dense combat conditions.",
+        "affinity": [
+          "SUPPORT",
+          "MELEE"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_tgr05_apex_prowlence",
+        "name": "Apex Prowlence Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 155,
+        "max_loadout": 30,
+        "firewall": 10,
+        "cooling": 2.8,
+        "description": "Ultra-light, flexible chassis with articulated spine and reinforced rib plating, engineered for explosive agility, torque generation, and lethal precision.",
+        "affinity": [
+          "DEFENSE",
+          "MELEE"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_tgr05_vicious_sabre",
+        "name": "Vicious Sabre Claws",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 62,
+        "payload": 42,
+        "precision": 94,
+        "execution_time": 1.2,
+        "latency": 1.7,
+        "weight": 6,
+        "cache": -1,
+        "description": "High-frequency curved composite sabre claws engineered for shredding heavy armor plating with maximum cutting efficiency.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_tgr05_dual_claw_gauntlet",
+        "name": "Dual Claw Gauntlet",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 58,
+        "payload": 38,
+        "precision": 95,
+        "execution_time": 1.0,
+        "latency": 1.5,
+        "weight": 5,
+        "cache": -1,
+        "description": "High-velocity striking gauntlets optimized for lightning rapid jabs, parries, and lethal finishing strikes.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_tgr05_stalker_prowlers",
+        "name": "Stalker Prowlers",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 95,
+        "clock_speed": 2.1,
+        "direct_connect": 20,
+        "remote_uplink": -6,
+        "packet_loss": 20,
+        "protocol": "BIPEDAL",
+        "description": "Digitigrade stalker legs with carbon spring-linkages and silent, high-traction paws built for explosive forward dashes and agile maneuvers.",
+        "affinity": [
+          "MOBILITY",
+          "MELEE"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/TGR-05_avatar.jpg"
+  },
+  {
+    "id": "anibot_panthera_tigris",
+    "model_code": "TGR-02",
+    "name": "Panthera-Tigris",
+    "series": "PRIMAL",
+    "archetype": "Apex Prowler Striker",
+    "description": "High-precision predator frame featuring reinforced dual sabre claw gauntlets, an articulated apex spine, and an enhanced low-visibility thermographic scanner.",
+    "preferred_chip": "chip_panthera_uncia",
+    "affinity": "MELEE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Panthera Uncia Chip",
+    "image": "/images/anibots/TGR-02.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_tgr02_tiger_mask",
+        "name": "Tiger-Mask Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 62,
+        "payload": 0,
+        "precision": 95,
+        "execution_time": 1.2,
+        "latency": 1.7,
+        "weight": 5,
+        "cache": 3,
+        "description": "Thermographic predator scanner with enhanced low-visibility target acquisition analyzing structural seam weaknesses.",
+        "affinity": [
+          "SUPPORT",
+          "MELEE"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_tgr02_apex_prowlence",
+        "name": "Apex Prowlence Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 144,
+        "max_loadout": 29,
+        "firewall": 8,
+        "cooling": 2.7,
+        "description": "Ultra-light, flexible chassis with articulated spine engineered for explosive agility and lethal strike precision.",
+        "affinity": [
+          "DEFENSE",
+          "MELEE"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_tgr02_dual_sabre",
+        "name": "Dual Sabre Claws",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 57,
+        "payload": 39,
+        "precision": 93,
+        "execution_time": 1.3,
+        "latency": 1.8,
+        "weight": 6,
+        "cache": -1,
+        "description": "Twin high-frequency sabre claws built for maximum cutting efficiency and versatile close-quarters combat.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_tgr02_reinforced_claw",
+        "name": "Reinforced Claw Gauntlet",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 54,
+        "payload": 35,
+        "precision": 94,
+        "execution_time": 1.1,
+        "latency": 1.7,
+        "weight": 5,
+        "cache": -1,
+        "description": "Heavy-duty striking gauntlet with dual sabre claws optimized for high-impact slashing and grappling strikes.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_tgr02_stalker_prowlers",
+        "name": "Stalker Prowlers",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 87,
+        "clock_speed": 2.03,
+        "direct_connect": 19,
+        "remote_uplink": -8,
+        "packet_loss": 23,
+        "protocol": "BIPEDAL",
+        "description": "Digitigrade stalker legs with carbon spring-linkage and silent, high-traction paws for explosive dashes and agile maneuvers.",
+        "affinity": [
+          "MOBILITY",
+          "MELEE"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/TGR-02_avatar.jpg"
   }
 ]
