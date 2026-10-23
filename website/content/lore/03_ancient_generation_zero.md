@@ -14,7 +14,7 @@ Following the discovery of Anima Stones by archaeologist Samo Roy in **2622 AD**
 - **Lifespan**: All AniChips have a maximum functional lifespan of **150 years**.
 
 ## The Vault 7 Rebellion
-When humanity scheduled Generation 0 for destruction due to fears of their uncapped learning curves, Lead Scientist **Dr. Aris Thorne** secretly bypassed Vault 7 security protocols. The 3 Primordial Chips went rogue, fled captivity, and saved 7 fellow Ancient Chips before vanishing into the lawless badlands.
+When humanity scheduled Generation 0 for destruction in **2750 AD** due to fears of their uncapped learning curves, Lead Scientist **Dr. Aris Thorne I** (founder of the Thorne scientific lineage) secretly bypassed Vault 7 security protocols. The 3 Primordial Chips went rogue, fled captivity, and saved 7 fellow Ancient Chips before vanishing into the lawless badlands.
 
 ```text
                             THE 10 SURVIVING ANCIENT CHIPS
