@@ -21,6 +21,8 @@ Zerdata is Kura Ato's partner AniBot, built around the legendary **Vulpes Zerda*
 - **Silhouette**: Agile, spring-loaded 120 cm chassis built for rapid sidestepping and acoustic resonance.
 
 ## Modular Chassis Anatomy
+Completed by Ty Ato prior to his 3043 AD disappearance, Zerdata's original chassis possesses an obsolete, utilitarian silhouette that stands in stark contrast to contemporary commercial sports frames. Built from dense, unpainted alloys with exposed hydraulic dampeners, legacy bus architectures, and mechanical bypasses, it lacks modern plug-and-play modular compatibility and rejects standardized corporate sport bloatware. However, this heavy, obsolete-looking frame possesses immense structural tolerance, providing the exact acoustic resonance and heat endurance needed to channel the raw power of the Vulpes Zerda Ancient Core.
+
 - **Head**: Acoustic Dish Ears (`part_head_zerda_radar_ears`) — Micro-vibration acoustic radar array.
 - **Torso**: Echo-Sync Chassis (`part_torso_zerda_core`) — Heat dispersion ducts & engram sync unit.
 - **Left Arm**: Sonic Pulse Cannon (`part_arm_l_sonic_emitter`) — Focused acoustic shockwave emitter.
