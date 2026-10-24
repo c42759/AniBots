@@ -187,7 +187,7 @@ It stopped chasing Zerdata’s movements and cut off the escape paths instead. A
 
 The old AniBot rolled, came up on one knee, and raised its guard. Its damaged shoulder trembled under the strain.
 
-Soren’s voice carried across the field. “You can keep rebuilding it. But there are people who would be very interested in what you inherited from Ty Ato.”
+Soren’s voice carried across the field. “You can keep rebuilding it. But Magnus would be very interested in what you inherited from Ty Ato.”
 
 Kura froze for a fraction of a second.
 
