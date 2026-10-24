@@ -5,50 +5,336 @@ subtitle: History survives through generations.
 order: 15
 ---
 
-# Arc 07 - Research Center Zero
+## Part I - The Historical Mystery
 
-Main objective: Discover the origin of the Ancient Series and why Zerdata matters.
+### 1. District 4, As Usual
 
-**Part I - The Historical Mystery**
+Sammy had decided the practice bot was insulting her.
 
-1. Kura and Luk investigate the Generation 0 records recovered from Anode.
-2. Their research leads to the abandoned Research Center Zero in Old Aveiro.
-3. They discover references to the original Generation 0 program, Vault 7, and the 176 Ancient cores.
-4. Several important research documents carry the name Dr. Aris Thorne.
-5. The records are more than 300 years old, yet Kura remembers meeting someone with the same name at the qualifiers.
-6. Kura and Luk begin questioning how this could be possible.
+“It keeps turning left,” she said, crouched beside the little courier frame in the District 4 plaza. “I told it to turn right.”
 
-**Part II - An Unexpected Guest**
+“You told it to follow the blue marker,” Spy said. He held his scanner upside down, its display blinking against his sleeve. “The blue marker is on the left.”
 
-Returning to District 4, Kura enters the family home and discovers the supposed Dr. Aris Thorne calmly drinking tea with Raya in the kitchen.
+Sammy looked at the bot, then at the marker. “Why is the marker on the left?”
 
-Raya is familiar with him, making the scene even more confusing for Kura.
+“Because that’s where the left is.”
 
-Thorne explains that he is a descendant of the original scientist. The family has preserved the name and its scientific knowledge across generations through a carefully maintained tradition of inheritance.
+Slow sat cross-legged on the paving stones, holding the courier’s loose wheel in both hands. Honey-Beam stood nearby with a toolbox balanced on its broad forearm. “Maybe the bot’s right is different from our right.”
 
-**Part III - The Truth About Zerdata**
+The little courier turned left again and bumped gently into Sammy’s boot.
 
-Thorne explains:
+She blew a pink bubble, then let it pop. “It’s doing this on purpose.”
 
-- Generation 0 AniChips are fundamentally different from contemporary AniChips.
-- Their original architecture was designed without the restrictive adaptive-learning limits implemented in later generations.
-- Vulpes Zerda is one of the original surviving cores.
-- Ty Ato understood enough about Generation 0 to develop a chassis compatible with its exceptional capabilities.
-- Ty's prototype appeared outdated because much of its engineering was based on unusual historical requirements rather than commercial design standards.
-- Ty tried to create the best body possible for Vulpes Zerda.
-- The Anode Group eventually learned that Ty possessed the Ancient chip.
-- Ty disappeared in 3043 AD and was never found.
+Kura and Luk had just come off the east canal path. They slowed when they saw the three of them surrounded by a small, patient audience of neighborhood kids. Sammy noticed them and stood up too quickly, nearly knocking the courier bot over.
 
-Part IV - Raya's Perspective
+“It’s a calibration issue,” Kura said, kneeling by the chassis. “The wheel encoder’s reading the turn backward.”
 
-Raya explains what she remembers from the years preceding Ty's disappearance.
+“I knew that,” Sammy said.
 
-She knew that Ty was undertaking increasingly secretive research but never understood the full technical or political implications.
+Spy lowered his scanner. “You said it was insulting you.”
 
-Thorne can confirm some details while admitting there are many things he still does not know.
+“It can be both.”
 
+Kura switched the encoder leads and ran a quick check. The courier rolled forward, made a tidy right turn, and stopped between two painted markers. The kids cheered. Spy bowed as if he had repaired it himself. Slow handed the wheel back to Honey-Beam, who placed it carefully in the toolbox.
 
+Sammy folded her arms. “We had it handled.”
 
-**Arc ending:** Kura understands why Zerdata is fundamentally different, but the locked memory sectors remain unexplained.
+“Sure,” Luk said. “You only needed to threaten the bot into changing direction.”
 
-**One important distinction:** the fact that the Thorne family preserved scientific knowledge does not mean the current Thorne knows everything the original researcher knew.
+“I was negotiating.”
+
+“You were glaring at it.”
+
+“That’s how I negotiate.”
+
+One of the children giggled. Sammy looked at them, then at Kura. For a second, the old challenge seemed ready to return. Instead, she tapped the courier’s roof with one knuckle.
+
+“Keep it away from the canal this time,” she told the child. “The repair shop charges extra for water damage.”
+
+Kura smiled. He did not make a thing of it. The Trouble Crew were still loud, still a little too proud of themselves, and still likely to turn a small errand into a performance. But around District 4, they had found a different use for all that energy.
+
+Spy hurried after Kura and Luk as they started toward the workshop. “I heard you were back. Also, I heard you found a secret old lab under the desert.”
+
+“Who told you that?” Luk asked.
+
+“Someone reliable.”
+
+“Who?”
+
+“Me. I heard myself say it.”
+
+Sammy dragged him back by the hood. “Go home, Spy.”
+
+“I was gathering information!”
+
+“Gather dinner.”
+
+Their argument faded behind the canal garden. The familiar noise of District 4 settled around Kura: market shutters opening, transit humming over the green basins, someone testing a repaired motor in a nearby garage. The life they had left behind had continued without them. He was glad of that.
+
+At the workshop, Raya had cleared the central table. The files copied from the Citadel were projected above it in layers: freight records, procurement indexes, catalog fragments, and a damaged map whose oldest markings were nearly three centuries out of date. Anda had joined from his academic terminal. Isabell sat beside Raya with Swan-Grace folded neatly at her chair.
+
+“We found the same reference in three separate files,” Anda said. “Old Aveiro. Research Center Zero.”
+
+Kura enlarged the map. The site lay on the remains of Portugal’s western coast, in a landscape reshaped by rising water, restoration work, and new settlement. The archive coordinates crossed a wide band of salt pans and tidal lagoons before ending at a small cluster of buildings.
+
+“Why build the first Anima research center there?” Luk asked. “It’s a long way from the old industrial capitals.”
+
+“Maybe the answer is in the original site records,” Isabell said. “The Anode files only have the location and a few catalog references.”
+
+Kura looked at the scattered documents. “Then we find the records that explain the choice. If Anode kept searching for the place, there may be more than a history archive there.”
+
+Raya looked over the route. “The facility was decommissioned a long time ago. You don’t know what condition it’s in.”
+
+“We’ll learn what we can before we go,” Kura said. “Luk and I will study the records. Anda, can you cross-reference the old maps with current coastal surveys?”
+
+“Already doing it.”
+
+“Isabell, could you compare the sensor mark from the wasteland with the files?”
+
+“I can. The signal pattern might help us identify the right building if the old layout is incomplete.”
+
+Raya held Kura’s gaze for a moment. The worry was there, but so was trust. “Take proper equipment. And don’t treat a dead facility as harmless just because it’s old.”
+
+“I won’t.”
+
+She set a small case on the table. Inside was Ty’s recovered sensor unit, cleaned and secured in a padded frame. The initials on its casing were faint beneath the corrosion, but unmistakable.
+
+“Your father left this for a reason,” Raya said. “Bring it back with you.”
+
+### 2. Why Old Aveiro?
+
+The first usable record was not a lab report. It was a site-selection memorandum from the years before Research Center Zero opened. Kura found it buried under a procurement index and pulled it up on the wall display.
+
+The document described a plan for a coastal research campus, written when sodium-based battery chemistry was becoming central to the new energy grid. The coast offered a steady supply of seawater. Salt extraction could provide the sodium compounds the batteries needed, while the treatment process produced fresh water for the facility’s large cooling systems.
+
+“So the same source supplied the batteries and the cooling loops,” Luk said.
+
+“That’s what the report says,” Kura replied. “They planned the power storage and the lab cooling together.”
+
+A second section discussed land. Portugal was a small country, but at the time the site was selected, there was extensive open space along the coast. The researchers could build a large campus without displacing a dense urban district. The plans included separate laboratories, test grounds, utility works, and a fortified island annex for the experimental chips.
+
+The last section described the local environment. The coastal weather was considered stable: mild seasonal changes, few sharp temperature swings, and predictable conditions for long-running tests. One engineer had written that stable ambient conditions would reduce variation in early Anima measurements and make the cooling system easier to calibrate.
+
+Kura read the paragraph again. “Salt, room to build, and steady weather. Three practical reasons.”
+
+“And they could keep the waterworks, the test yard, and the secure vault separated,” Anda said over the call. “The land gave them room to do that.”
+
+Luk leaned closer to the screen. “It sounds like they planned the whole place around what the research needed.”
+
+“Not just the building,” Kura said. “The coast was part of the equipment.”
+
+They found the official founding record next. Research Center Zero had opened in 2650 AD. Its earliest purpose was studying Anima Stones and how to couple them to electronic systems. By 2687, its researchers had built the first AniBot: Agon, G0-001. A later facility index named the fortified island complex Vault 176 Annex, where the 176 Generation 0 chips were fabricated and cataloged before the program’s end.
+
+The pieces lined up, but too many pages were missing. The files from Anode pointed toward the center because they had been searching for old components and records, yet the Citadel archive did not show which buildings were still standing or how to reach them safely.
+
+Kura opened a map from the 2750 decommissioning period. The outlines were clearer, but the coastline had changed since then. A thin route toward the archive wing disappeared under a modern tidal zone.
+
+“We can’t just follow this,” he said. “The causeway may be underwater. The ground around the annex could have shifted.”
+
+Luk nodded. “Then we don’t just bring a map. We find out what the site looks like now.”
+
+### 3. Three Nights of Preparation
+
+They did not leave the next morning.
+
+For the next several days, the workshop ran on its usual rhythm. Kura handled customer repairs and helped Raya with deliveries. Luk came by after his training and worked through the Anode files with him. Anda compared historical surveys to current land records, while Isabell examined the recovered sensor’s pulse against the archive’s old frequency tables.
+
+At night, they returned to Research Center Zero.
+
+The first night, Kura and Luk sorted the recovered records by date and subject. They separated site logistics from research notes, then matched the project codes against the list of Generation 0 cores. Several pages had been damaged, but repeated references made it possible to reconstruct the order of events: the founding of the center, the early Anima trials, Agon’s first frame, and the later expansion of the Vault 176 Annex.
+
+The second night, Anda sent them satellite images from several periods. The modern view showed the Old Aveiro lagoons and salt flats from above. The oldest available image caught the facility before its final decommissioning. Between them, Kura and Luk could see which structures had sunk, which sections remained above the tidal line, and where new land had formed.
+
+They marked the main archive, the old test yard, the island annex, and a service corridor that did not appear on the public map. Isabell overlaid the sensor’s signal readings on the image. Its strongest match came from below the western archive block, not the main laboratory.
+
+“That could be the lower equipment room,” she said during a late-night call. “Or a sealed sublevel. The frequency is weak, but it repeats at the same interval.”
+
+“Can you tell if the room is accessible?” Kura asked.
+
+“No. The satellite images show the roof and surrounding ground. They can’t tell us what happened to the interior.”
+
+The third night, they studied the records on the Vault 7 incident. The notes described the fear that Generation 0’s adaptive learning could exceed the limits set for later AniChips. In 2750, when the program was ordered decommissioned, the three Primordial cores—Agon, Biggon, and Cygon—escaped with seven other chips. The archive listed Vulpes Zerda among them.
+
+Kura stopped at the name. Zerdata stood nearby, its ears angled toward the speakers.
+
+“This says you were one of the seven,” Kura said.
+
+“I have no accessible memory of the event,” Zerdata replied. “The record is consistent with my core designation.”
+
+The author field on several documents read **Chief Researcher Aris Thorne**. Kura remembered the short, silver-haired scientist he had met at the qualifiers, the man who had looked at Zerdata’s chassis and told him to keep every repair record.
+
+“That can’t be the same person,” Luk said. “These documents are dated 2750.”
+
+“Maybe it’s a family name,” Kura said. “Or another researcher.”
+
+They searched the available personnel indexes, but the surviving pages only confirmed the dates. A current Thorne could not have led the Generation 0 program. Kura saved the question beside the map and moved on.
+
+Over the next two days, they refined the route. Satellite images gave them a safe approach from the higher ground, away from the most unstable salt banks. They identified a service road where a transport could unload without blocking the causeway. They packed water-quality sensors, a portable repeater, spare lights, an archive reader, insulated boots, and tools for opening manual gates. Kura added a compact line and two flotation packs in case the old route was flooded.
+
+Raya watched him check the list twice. “You’ve spent more time planning this than you spent packing for the Badlands.”
+
+“We know more about the Badlands than we did about the Citadel,” Kura said. “This place has been abandoned for centuries. I don’t want us guessing once we’re inside.”
+
+“Good,” she said. “Then go when you’re ready, not when you’re impatient.”
+
+By the end of the fourth day, the logs had become a usable history, and the satellite images had become a field plan. Kura and Luk left before dawn the next morning, with a copy of every record they had reconstructed and a route that accounted for both the old maps and the changing coast.
+
+### 4. The Center in the Tidal Flats
+
+The journey west took them beyond the bright civic loops of Neo Metropolis and through several changing transit zones. Green belts thinned into broad agricultural terraces, then into old coastal corridors where wind turbines stood above restored wetlands. At Old Aveiro, modern settlements clustered on higher ground. Below them, a maze of salt pans and tidal lagoons stretched toward the faded coordinates from the Anode archive.
+
+From the elevated approach, Research Center Zero looked less like a single building than a small industrial district swallowed by the coast. The old water-treatment works stood apart from the laboratory blocks. Beyond them, a narrow causeway led to the island annex. Kura recognized the shapes from the satellite images: the collapsed roof of the southern wing, the test yard’s circular outline, and the western archive block where the sensor signal had repeated.
+
+They followed their planned route to the service road and unloaded. The weather was calm, the wind steady off the water. The same conditions that had once made the site useful now gave them a clear view across the tidal flats.
+
+Kabuto-Horn tested the ground first, setting one heavy foot onto the causeway. Zerdata followed, its acoustic ears turning toward distant water and the loose metal panels shifting in the wind.
+
+“The eastern building is unstable,” Zerdata said. “The western structure has a powered signal.”
+
+Luk checked the field transceiver. “That matches the map. Archive block.”
+
+They crossed carefully. The gate had no active lock, only a rusted mechanism that resisted Luk’s first pull. Kabuto-Horn braced against the frame while Kura worked a manual release. The gate opened with a long, grinding groan.
+
+Inside, the air smelled of salt, dust, and old insulation. Their lamps revealed a corridor lined with faded safety markings. The facility’s original symbol appeared beside a sequence of numbers Kura recognized from the records: **Vault 176 Annex**.
+
+He stopped. “This is the right site.”
+
+They followed the corridor to the archive room. Most of its shelves had fallen, but a protected records terminal remained behind a sealed panel. Kura connected the portable reader. The display flickered, rejected the first power cell, then accepted the second. Rows of corrupted files began to resolve.
+
+The oldest documents described Anima Stone trials and early core integration. Another index listed the 176 experimental chips by number. Kura searched for G0-004. A line appeared, followed by a warning that the full record was restricted.
+
+“Try the research program index,” Luk said. “Maybe the individual files were moved.”
+
+Kura searched again. This time the terminal opened a directory marked **Vault 7 — Containment and Evacuation**. The files were incomplete, but their fragments matched what Kura and Luk had spent nights reconstructing.
+
+There had been a planned decommissioning. The surviving cores were not destroyed. Three units—Agon, Biggon, and Cygon—had breached containment and escaped with seven others. A list of those seven included Vulpes Zerda.
+
+Kura read the name twice.
+
+“They were people to the researchers,” Luk said quietly. “Not inventory.”
+
+The record’s author field showed: **Chief Researcher Aris Thorne**.
+
+Kura leaned closer. “That’s the same name as the scientist at the qualifiers.”
+
+“Could it be a family name?” Luk asked.
+
+“Maybe. But this file is more than three hundred years old.”
+
+A second document carried the same name. Its notes discussed acoustic compatibility, memory architecture, and the need to protect the cores from systems that could mistake adaptive behavior for a fault. The report did not mention Ty, and it did not explain how Vulpes Zerda reached Kura’s family. But several technical terms matched the unusual labels in Ty’s notebook.
+
+Kura copied the intact records and connected Ty’s sensor to the archive reader. A tone sounded once from the sensor. On the screen, an old facility map brightened at a secondary location below the western block.
+
+“Sublevel access,” Zerdata said. “The sensor is responding to a stored frequency.”
+
+The lower corridor had partially flooded. They reached a sealed equipment room, but its inner door had no power and no manual release. The sensor’s signal repeated when Kura brought it near the panel, then fell quiet.
+
+“I can’t force this without risking the archive,” Kura said.
+
+Luk nodded. “We know where it is. We can come back with the right equipment.”
+
+Kura photographed the controls, marked the location against the satellite plan, and saved the signal pattern for Isabell to analyze. The center had given them the beginning of the story, but the sealed room held another piece they were not ready to reach.
+
+Before they left, Kura ran one more search for the author’s name. A personnel record surfaced beneath a damaged directory: **Aris Thorne — Lead Researcher, Generation 0 Program**. The date range ended in 2750 AD.
+
+The Dr. Thorne they had met at the qualifiers could not have been the same person.
+
+## Part II - An Unexpected Guest
+
+On the return journey, Kura kept the old documents open on his tablet. He read each reference to the Ancient cores, then each note on the unusual architecture of G0-004. None of it explained the locked memory sectors inside Zerdata. None of it said how much Ty had known.
+
+By the time they reached District 4, night had settled over the canals. The workshop lights were still on. Kura carried the archive case inside while Luk took Kabuto-Horn’s transport harness to the storage rack.
+
+Raya called from the kitchen, “You’re back. Did you find anything useful?”
+
+“More than we expected.” Kura set the tablet on the counter. “And a name I didn’t expect.”
+
+He stepped through the doorway and stopped.
+
+Dr. Aris Thorne sat at the kitchen table with a cup of tea in his hands. He looked just as Kura remembered from the qualifiers: slight, silver-haired, and attentive in a way that made it feel as if he had already heard the question Kura was about to ask. Holy-Vanguard waited by the window, its pale armor reflecting the warm light.
+
+Kura glanced from him to Raya. “You know him?”
+
+“Of course,” Raya said. “Dr. Thorne and your father worked together.”
+
+Thorne set down his cup. “I expected you to find the name in the records eventually.”
+
+“You were at the qualifiers,” Kura said. “You looked at Zerdata like you recognized it.”
+
+“I recognized the design questions your father was trying to solve. The core itself is older than my work.”
+
+Kura placed the archive tablet on the table and opened the personnel record. “This says Aris Thorne led the Generation 0 program in 2750.”
+
+“Yes,” Thorne said. “That was my ancestor, Dr. Aris Thorne the First. My family preserved his research and his name. I am the current Dr. Aris Thorne, custodian of what remains of that work.”
+
+“So you didn’t build the original cores.”
+
+“No. I was born more than two centuries after the first trials. I studied the records that survived, but there are gaps in them. Some were destroyed. Others were sealed before my time. I know more than most people about the Generation 0 project, but I do not know everything my ancestor knew.”
+
+The distinction did not make Kura’s questions smaller. It made them more precise.
+
+## Part III - The Truth About Zerdata
+
+Thorne examined the files from Old Aveiro. “Generation 0 was built with far more adaptive capacity than modern chips. Later systems were designed with strict limits. The researchers feared what an uncapped learning system might become, and the governing council chose containment and decommissioning.”
+
+“But the ten survivors escaped,” Luk said.
+
+“With help from the original Thorne,” the doctor replied. “The three Primordials led the escape and saved seven other cores. Vulpes Zerda was among them.”
+
+Kura looked toward Zerdata, standing by the workshop door. “So what does that mean for it?”
+
+“It means the core is not a modern AniChip with an unusual personality. Its architecture was built for a different purpose, and it can adapt in ways contemporary systems cannot. Your father understood enough to make a frame that could support it.”
+
+“His chassis looked outdated,” Kura said. “The V2 is much more modern.”
+
+“Your father’s design was not a failed attempt at a commercial frame,” Thorne said. “It was a solution to a different engineering problem. He needed a body that could tolerate the core’s resonance and preserve its ability to respond. Modern standards would have made the chassis easier to manufacture, but they might also have constrained the very qualities he was trying to protect.”
+
+Kura remembered the exposed couplings of the first frame, the heat ducts, the mechanical bypasses, and the careful way Ty’s notes described every sound the chassis made. What had seemed like old-fashioned choices now looked deliberate.
+
+“Ty knew about the chip?” he asked.
+
+“Enough to recognize its nature and build around it. He was still investigating the limits of what it could do when we worked together.” Thorne’s expression tightened. “Anode learned that he possessed an Ancient core. I cannot tell you exactly when, or how much they knew. Ty disappeared in 3043. I have spent years trying to understand what happened, and I still do not have the full answer.”
+
+Kura looked at the records again. “Then why did you let me leave the qualifiers without explaining any of this?”
+
+“I knew your father’s work, but I did not know what Anode had found or what was in the Citadel files. I did not want to tell you a theory as if it were proof.” Thorne folded his hands. “You deserved evidence. Now we have more of it. We still do not have all of it.”
+
+Kura accepted that, though it did not make the answers easier to hear. The records had changed how he saw his father’s chassis, but they had not explained the locked sectors inside Zerdata or the final days before Ty vanished.
+
+## Part IV - What Raya Remembered
+
+Raya folded her hands around her cup. “Ty kept more of his work from me as those years went on. He said he was checking old research, and sometimes he would disappear into the office for a whole night. I knew he was worried. I didn’t know Anode had found out about Zerdata.”
+
+“Did he ever mention Research Center Zero?” Kura asked.
+
+“Not by that name. He kept a map in his notebook, but he told me it was an old field route. I thought it was connected to a repair job.” She looked toward the tablet. “I should have asked more.”
+
+“You couldn’t have known what he was carrying,” Thorne said gently. “There is much I didn’t know either. Your father chose what to share, perhaps to keep you both safe.”
+
+Raya’s eyes lowered. She did not argue.
+
+“Did he say what he was trying to find?” Kura asked.
+
+“Not clearly. He talked about an old frequency, about a record that had been moved, and about making sure the machine could survive whatever it remembered.” Raya paused. “At the time, I thought he was talking about the chassis. Maybe he was talking about both.”
+
+Thorne considered that. “It is possible. But I cannot confirm it from the records I have.”
+
+Kura moved to Zerdata’s diagnostic screen. “The archive records say there are memory restrictions. The files we found don’t explain the locked sectors.”
+
+Thorne studied the readout. “I recognize the architecture, but not this lock. The sector may have been sealed by the core itself, or by a safeguard Ty added. We should not force it open without understanding what it protects.”
+
+“So we still don’t know what’s inside.”
+
+“No,” Thorne said. “Not yet.”
+
+The answer disappointed Kura, but it also sounded honest. Thorne had not arrived with a complete explanation. He had brought knowledge, family records, and questions of his own.
+
+Kura saved a copy of every document from Old Aveiro and attached the sensor’s frequency map. Research Center Zero had given them the beginning of the story: why the center had been built by the tidal flats, where the Ancient cores came from, and why Ty had built Zerdata as he did. The part that mattered most to Kura—what his father had discovered before he vanished—remained out of reach.
+
+Outside, District 4’s evening traffic moved along the canal road. Somewhere nearby, Sammy’s laugh rose above Spy’s rapid objections and Slow’s unhurried reply. The neighborhood went on around the workshop, noisy and familiar.
+
+Kura looked at Zerdata. “We’ll find the next piece.”
+
+“I will continue listening,” Zerdata said. “The memory sectors remain silent.”
+
+For now, that was all the answer they had.
