@@ -803,17 +803,17 @@ They stayed until the annex lights shifted to their night setting. Beyond the gl
 
 “Do we go there tomorrow?” Luk asked.
 
-Thorne checked the access map. “We have clearance for this annex. We need proper access to Ato Labs, and we need to know what we are looking for before opening another set of empty directories.”
+Thorne checked the access map. “I have requested access to Ato Labs. While we wait for a response, we can compare what we found here and check the route in daylight.”
 
-Kura glanced at the copied records. The original engineering work would take days to sort against the home notebook and the championship logs. Anda and Isabell could help do that in Neo Metropolis while Thorne pursued the next authorization.
+Kura saved the final attachment and checked that the copy had completed. They would need the workshop’s championship logs beside these records, along with the comparison work Isabell and Anda had already begun.
 
-He wanted to follow the road now.
+He checked the annex terminal’s network connection.
 
-Instead, he saved the final attachment and checked that the copy had completed.
+The Internet link was still active.
 
-“Then we come back prepared.”
+“Let’s call home.”
 
-Before leaving the room, Zerdata asked to hear the third response once more.
+Before he opened the call, Zerdata asked to hear the third response once more.
 
 Kura played it.
 
@@ -827,36 +827,218 @@ Nothing answered from the speaker.
 
 He saved that response too, with Zerdata’s permission.
 
-Two days later, they were back in District 4. Raya had put the trophy on a shelf above the counter, where Spy could no longer accidentally knock it over. Customer machines filled the repair benches. Isabell had kept the sensor records ready, and Anda had already made a comparison index from the first files Thorne sent home.
+## 8. A Light in the Office
 
-They gathered at the central table that evening.
+Raya answered the video call from behind the workshop counter.
 
-The name of the attack still had no explanation beneath it. Ty’s engineering records gave them a better picture of the questions he had been asking, but none of them had found a way to reproduce the final. Zerdata could recognize pieces of an old conversation without remembering all the minds that had shared it.
+For a moment, the camera showed only the ceiling and the edge of the parts ledger. Then she propped the device against a tool case, and the familiar room settled into view.
 
-Kura placed the new record beside the documents from Zero.
+“Kura? Can you hear me?”
 
-“We knew the Primordials saved the seven cores,” he said. “Now we know they were part of the tests Zerdata remembers. Dad thought they could explain things the reports couldn’t.”
+“Clearly.”
 
-“If we can find them,” Anda said.
+“Good. Isabell, they’re calling.”
 
-“If they’re still alive,” Luk added, more quietly.
+Isabell hurried into view with a tablet beneath one arm. Behind her, Swan-Grace carried a shallow tray of labeled components toward the storage shelves.
 
-Thorne laid the pending Ato Labs request beside the map.
+“You found something?” she asked.
 
-“Ty carried this reference into his later work. We follow that trail first. It is the strongest one we have.”
+“Several things,” Kura said. “We’re sending the files now.”
 
-Zerdata looked at the three names on the screen.
+Luk pulled a second chair toward the annex terminal. Thorne sat beside him, and Zerdata moved into the camera’s view at Kura’s shoulder.
 
-“I would like to hear them answer again.”
+Raya’s expression softened when she saw them together.
 
-Kura moved his chair closer.
+“You all look tired.”
 
-“Then that’s who we look for.”
+“We’ve been reading Dad’s test records,” Kura said.
 
-Outside, the evening tram passed over the canal. Its vibration traveled through the workshop floor, familiar enough that Zerdata did not turn toward it.
+He shared the engineering drawings first, showing her the original torso supports and the calibration certificate with Ty’s signature. Raya leaned closer to the screen.
 
-Its attention remained on the old signals.
+“He always crossed his sevens like that,” she said.
+
+Kura looked at the handwritten correction again.
+
+“I’d forgotten.”
+
+She was quiet for a moment, then asked him to show her the next page.
+
+They explained the synchronization experiments, the failed mounting brackets, and the differences between the measurements Ty had recorded and the output seen in the World Cup final.
+
+“So these records still don’t explain the beam?” Isabell asked.
+
+“No,” Thorne replied. “They show that Ty was studying the relationship between the core’s changing responses and the frame carrying them. We have more of his engineering work now, but nothing here describes Anima Limit Breaker.”
+
+“The original measurements should help us check the comparison,” she said. “Anda has already started an index. I’ll send these to him as well.”
+
+Kura brought up the historical communication study.
+
+“We knew the Primordials saved the seven cores,” he said. “Now we know they were part of the tests Zerdata remembers. Dad thought their experience could explain things the reports couldn’t.”
+
+The three designations appeared beside the traces.
 
 Agon. Biggon. Cygon.
 
-For the first time, the next step was to find someone who might remember.
+“Do you remember them now?” Raya asked Zerdata.
+
+“Pieces,” it replied. “Cygon changed a signal. I remember trying to answer it. I do not remember everything that came before or after.”
+
+“But you recognized it.”
+
+“Yes.”
+
+Raya smiled gently. “Then that’s something you didn’t have yesterday.”
+
+Zerdata looked at the traces again.
+
+“I would like to hear them answer.”
+
+Kura rested a hand against its forearm. “We’ll keep looking.”
+
+As the files finished transferring, something moved behind Isabell. A delivery unit stood beside the workbench, its open casing surrounded by neatly arranged trays. Beyond it, two more customer machines waited near the storage door.
+
+Kura leaned toward the camera.
+
+“Is that the courier from the canal market?”
+
+Raya followed his gaze. “Its stabilizer started slipping again.”
+
+“I thought the replacement would last longer.”
+
+“It has been running extra routes.”
+
+“And the loader behind it?”
+
+“Came in this morning.”
+
+Kura looked at the stack of repair cases beside the counter.
+
+“We’ve already been away for days. If we stay here longer, all that work is going to pile up.”
+
+“Kura,” Isabell said, “don’t worry about the workshop. I’m helping your mother organize everything while you’re away.”
+
+She lifted her tablet and turned it toward the camera. The repair list had been sorted by delivery date, with separate notes for parts already available and jobs waiting on an order.
+
+“I’ve labeled the incoming machines, checked which components we have, and moved the urgent requests to the top. Swan-Grace is helping with the smaller deliveries. Anything that needs you will be ready for you when you come back.”
+
+“You’ve done all that?”
+
+“Your mother showed me the system.”
+
+“Isabell made it easier to use,” Raya said. “And I’m giving customers honest collection dates. Nobody is being promised a repair you haven’t had time to do.”
+
+Kura studied the list. The work was still there, but it had become something he could picture returning to, rather than a growing heap beyond his reach.
+
+“Thank you, Isa.”
+
+She smiled. “Find what you went there for. We’re managing here.”
+
+Luk leaned into the camera. “If you organize his tools too, he’ll never find anything again.”
+
+“I know where his tools go.”
+
+“That’s what makes it dangerous.”
+
+Kura laughed, then glanced around the office. The sound faded quickly into the empty corridor beyond the door.
+
+Raya noticed.
+
+“Have you spoken to anyone at the center?”
+
+“No,” Kura said.
+
+“No one at all?”
+
+“Not since we arrived,” Luk replied. “The gate let us in. The terminal knew about the inspection. But the duty office never answered.”
+
+Kura turned the camera toward the room. A few computers glowed beneath the dimmed ceiling lights. Through the inner window, status lamps blinked on a server cabinet in the adjoining equipment room.
+
+“Some computers are still working,” he said. “The local archive is available, and a few servers are running. There’s power, ventilation, even an Internet connection.”
+
+He turned the camera back.
+
+“But there are no signs of anyone using the place. No staff. No recent work left on the desks. We haven’t heard or seen another human.”
+
+“The buildings we passed look abandoned,” Thorne said. “Yet the center’s registration remains active, and its automated systems continue to operate.”
+
+Isabell frowned. “If everyone left, why wasn’t it deactivated?”
+
+“That’s what I’d like to know,” Kura said.
+
+“Could the machines just have kept running?” Raya asked.
+
+“Some of them could,” Thorne replied. “That would explain the equipment. It would not explain why the facility was never formally closed.”
+
+“Or why nobody answers for it,” Luk added.
+
+Thorne looked toward the server cabinet. “We should check the administrative records when we can. At present, we don’t know whether anyone is still responsible for the site.”
+
+For a moment, everyone listened to the ventilation through the call.
+
+“Where will you sleep?” Raya asked.
+
+“There’s an office beside the annex entrance,” Kura said. “Dry floor, a door we can secure, and enough space for the sleeping rolls. We’ll stay together.”
+
+“And take turns keeping watch,” Luk said. “We’re not all going to sleep at once in a place we haven’t checked.”
+
+Raya studied them, then nodded.
+
+“Send me the building and room number before you settle in. Call again in the morning.”
+
+“We will.”
+
+Isabell looked at Kura. “Try to actually get some sleep.”
+
+“I’ll try.”
+
+“That means closing the notebook.”
+
+Luk pointed at the screen. “Thank you. Someone had to say it.”
+
+They ended the call after agreeing on the next check-in. For a few seconds, the dark screen reflected the four figures gathered around it.
+
+Then Kura stood and began packing the equipment.
+
+The office was small, with two desks, a filing cabinet, and a window overlooking the covered path to the annex. They checked the adjoining rooms and the nearest exit before carrying their bags inside. Luk tested the door catch. Holy-Vanguard inspected the corridor with Thorne while Kabuto-Horn helped shift a desk far enough to make room for the sleeping rolls.
+
+Kura sent Raya their location and set his device to sound if she called.
+
+They divided the night into watches. Luk and Kabuto-Horn would take the first, Thorne and Holy-Vanguard the middle, and Kura and Zerdata the last. Whoever rested would keep their equipment close enough to reach without crossing the room.
+
+Luk sat beside the door with his back against the wall.
+
+“Go on. Before I change my mind and give you the whole night.”
+
+Kura sat on his sleeping roll. Through the window, he could see the lamps along the inland road. Somewhere beyond them stood Ato Labs.
+
+He opened Ty’s notebook to mark the references they needed in the morning.
+
+Luk cleared his throat.
+
+Kura looked up.
+
+“Isa said close it.”
+
+“I’m only marking a page.”
+
+“You’ve been marking pages for twenty minutes.”
+
+Thorne had already removed his spectacles. “The records will still be there after you sleep.”
+
+Kura slipped a paper marker between the pages and shut the cover.
+
+Zerdata settled beside him, its ears angled toward the corridor.
+
+“Wake me for our turn,” Kura said.
+
+“I will.”
+
+The office light clicked off. A thin strip of illumination remained beneath the door, broken now and then by Kabuto-Horn shifting beside Luk.
+
+Farther inside the annex, the servers continued their steady hum.
+
+Kura listened until he could distinguish it from the wind outside. There were no footsteps beyond their room, no voices, no sound of a researcher working late.
+
+He pulled his jacket over his shoulders and lay down.
+
+For now, Luk was watching the door. In a few hours, it would be his turn.
