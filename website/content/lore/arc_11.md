@@ -13,6 +13,8 @@ order: 19
 
 Inside the Eco Research archive, Kura finds several documents written by his father.
 
+Dr. Aris propose to go back to the ship, and the documents can be analyzed in the way back. It will take 2 days. Kura suggest for the Agon, Biggon and Cygon to come along.
+
 The documents establish that Ty was researching several interconnected subjects:
 
 - Generation 0 chip architecture and its relationship with Anima.
@@ -20,6 +22,7 @@ The documents establish that Ty was researching several interconnected subjects:
 - The adaptive abilities of Generation 0, including unrestricted learning.
 - The unusual resonance behavior of Vulpes Zerda.
 - The Anode Group's activities and growing interest in Ancient technology.
+- Aegis Corporation's involvement in the Research Center Ato.
 
 ### Chapter 11.2 - The Limits of Anima
 
@@ -81,7 +84,7 @@ Important narrative distinction: Ty entrusted the chip to Kura, but Kura's bond 
 
 ### Chapter 11.6 - The Destroyed Ancient
 
-The research also establishes that Ty possessed the wreckage of a Generation 0 AniBot destroyed during the Vault 7 events.
+The research also establishes that Ty possessed the wreckage of a Generation 0 AniChip destroyed during the Vault 7 events.
 
 I recommend preserving its identity as a mystery at this stage.
 
