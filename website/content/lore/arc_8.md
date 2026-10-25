@@ -297,13 +297,13 @@ Tigris-Fury feinted low, then sprang up with a claw strike. Zerdata blocked it w
 
 Zerdata obeyed. Tigris-Fury’s next strike met empty space. Zerdata pivoted, drove a short burst into Tigris-Fury’s elbow joint, and stepped clear before Soren could retaliate.
 
-Soren’s jaw tightened. He shifted tactics, using Tigris-Fury’s speed to close the gaps before Zerdata could build a counter. The Primal AniBot’s strikes grew heavier. One hit caught Zerdata’s left side and forced it onto a knee. The V2 frame stayed intact, but a warning flashed on Kura’s display.
+Soren shifted tactics, using Tigris-Fury’s speed to close the gaps before Zerdata could build a counter. The Primal AniBot’s strikes grew heavier. One hit caught Zerdata’s left side and forced it onto a knee. The V2 frame stayed intact, but a warning flashed on Kura’s display.
 
 “Left hip load rising,” Kura said. “Keep your weight centered.”
 
 “Understood.”
 
-Zerdata rose and turned away from Tigris-Fury’s next charge. It did not retreat in a straight line. Instead, it angled toward the center and forced Tigris-Fury to cross its path. The two machines collided shoulder to shoulder. Zerdata’s reinforced frame held. Tigris-Fury slid away, claws scraping the floor.
+Zerdata rose and turned away from Tigris-Fury’s next charge. It angled toward the center and forced Tigris-Fury to cross its path. The two machines collided shoulder to shoulder. Zerdata’s reinforced frame held. Tigris-Fury slid away, claws scraping the floor.
 
 The audience erupted.
 
@@ -323,33 +323,55 @@ Kura’s grip went rigid. For one heartbeat, the arena noise dimmed. He remember
 
 “Leave Ty out of this,” Kura said.
 
-Soren’s smile sharpened. “Why? Is the name all you have left of him?”
+Soren’s smile sharpened. “Why? Is his name all you have left of him?”
 
-Zerdata’s head snapped toward Soren. Its ears angled forward. “Do not speak of Kura’s father that way.”
+Zerdata’s head turned toward Soren. Its ears angled forward, but its feet stayed planted beside Kura. “Ty gave me a body. He gave me a chance to stand beside Kura. You know nothing about what he left us.”
 
-Kura looked at the diagnostic display. Zerdata’s core synchronization had risen, but it was still within range. “Zerdata, focus on Tigris. Ignore him.”
+Kura glanced at the diagnostics. Zerdata’s core synchronization had risen, but it was still within range. “Zerdata, focus on Tigris. Ignore him.”
 
-Soren heard it. “It can hear me, can’t it? Does it know what Ty made it for? Or did he leave it unfinished, too?”
+Soren looked toward Tigris-Fury. “It can hear me, can’t it? Does it know what Ty made it for? Or did he leave it unfinished, too?”
 
 “Stop,” Kura warned.
 
 “Your father built an obsolete shell around an Ancient chip and called it a future. You rebuilt the shell, but you still don’t know what’s inside.” Soren lifted a hand. Tigris-Fury paced in a slow arc around Zerdata. “What kind of legacy is that?”
 
-Zerdata’s fists closed. The motors in its arms wound higher, their pitch climbing past the normal combat range.
+Tigris-Fury’s visor brightened. A speaker in its chest crackled, then produced a low, synthetic voice. “Your ears hear every motor, fox. Can they hear your Handler failing you?”
 
-“Zerdata, hold position,” Kura said.
+Zerdata’s fists tightened. It did not turn toward Soren. Its attention shifted to Tigris-Fury.
+
+“Do not speak to Kura that way,” Zerdata said.
+
+Tigris-Fury gave a short, mechanical growl. “Then make me stop.”
+
+“Zerdata, hold position,” Kura said. “This is what Soren wants.”
 
 Soren kept pressing. “You can’t even remember your own beginning. You’re just a broken machine carrying someone else’s name.”
 
-Zerdata lunged.
+Tigris-Fury’s voice came again. “No body. No past. Just a core someone found and bolted into a frame.”
 
-It crossed the space between them too fast for Kura’s command to catch up. Tigris-Fury turned to intercept. Zerdata struck its guard with enough force to drive both AniBots sideways. The hit was not a measured counter. It was a furious, full-body blow.
+Zerdata’s anger sharpened. “I am not a thing he found.”
+
+Its motor pitch climbed. Kura’s display showed the synchronization level rising through amber. Zerdata’s arms tensed. It stayed locked on Tigris-Fury, waiting for the match to continue.
+
+“Zerdata, listen to me,” Kura said. “Stay with the plan.”
+
+For a moment, it did. Then Tigris-Fury sprang forward and struck Zerdata’s chest with a claw, driving it back two steps.
+
+“Still waiting for him to tell you what you are?” Tigris-Fury taunted.
+
+Something in Zerdata’s control pattern broke.
+
+It surged toward Tigris-Fury. The first blow crashed against its guard. The second drove through the defense and forced Tigris-Fury to stumble.
 
 “Zerdata, disengage!” Kura shouted.
 
-The machine did not answer. Its head stayed fixed on Tigris-Fury. A second strike followed, then a third, each one harder and less precise. Soren pulled Tigris-Fury back, but Zerdata kept advancing.
+The machine could no longer hear him. It pressed Tigris-Fury across the field with a speed Kura had never seen from the V2 chassis. Its claw struck high, then low. Tigris-Fury blocked one attack and was hit by the next, sent sliding toward the boundary.
 
-Kura’s display flashed amber. The same instant, green and yellow light began to bleed through the seams of Zerdata’s orange armor. It was not reflected light. The glow pulsed from inside the chassis, tracing its shoulders, arms, and torso.
+Soren’s confident expression disappeared. “Tigris, counter!”
+
+Tigris-Fury tried. Zerdata evaded the counter and hit its shoulder hard enough to twist the frame sideways. It was becoming stronger and faster with every exchange, pushing Tigris-Fury out of its rhythm and taking control of the fight.
+
+Kura’s display flashed amber, then red. Green and yellow light began to bleed through the seams of Zerdata’s orange armor. The glow pulsed from inside the chassis, tracing its shoulders, arms, and torso.
 
 A system warning appeared:
 
@@ -360,49 +382,59 @@ A system warning appeared:
 
 “Zerdata!” Kura tried to lower the output limit. The controls rejected the input. “Can you hear me?”
 
-The AniBot’s arms lifted again. Tigris-Fury braced against the next attack.
+There was no reply. Zerdata drove Tigris-Fury back another step.
 
 ## Part III - The Memories Return
 
 Kura’s earpiece filled with a low, repeating tone. His diagnostic interface broke into fragments as previously locked memory sectors changed status from **LOCKED** to **ACTIVE**.
 
-The present did not disappear for Kura. He remained on the arena floor, gripping the control unit and watching Zerdata. The memories were not his, and he could not step inside them. He could only see broken data images flash across his display while the machine’s body moved without answering him.
+The present did not disappear for Kura. He remained on the arena floor, gripping the control unit and watching Zerdata. He could not enter the memories or communicate with Zerdata inside them. His display rendered only broken images and signal traces while the machine’s body continued fighting without hearing him.
 
 “Zerdata, respond!”
 
 No reply.
 
-Its posture changed. The fury in its movements gave way to an eerie stillness. Zerdata lowered its center of gravity and set its feet, facing Tigris-Fury. Its fingers flexed around the Resonant Strike Claw. The targeting sensors locked on. It looked less like a partner waiting for a command and more like a machine preparing to destroy the opponent in front of it.
+Zerdata lowered its center of gravity and set its feet, facing Tigris-Fury. Its fingers flexed around the Resonant Strike Claw. The targeting sensors locked on. The body kept reacting to the battle, but the focus in its optics had gone distant. It looked like Zerdata was trapped in a trance, preparing another attack without seeing the arena in front of it.
 
-The memory fragments flickered across Kura’s screen: a white room under hard lights; a repeated tone; metal doors closing; silhouettes moving behind a barrier. A small frame stood on a circular testing floor while instruments measured each response. The images shifted before Kura could make sense of them.
+Then the images changed.
 
-He called again. “Zerdata! It’s Kura. Come back!”
+There was no AniBot body in the memory. Vulpes Zerda existed as a core suspended in a testing cradle, surrounded by sensors, wire arrays, and early communication equipment. It had no arms to raise, no legs to move, no eyes to focus. Researchers were testing new systems that could send signals to the core and translate its responses.
 
-The earpiece returned only the rising tone.
+A tone repeated. The core answered with a pulse of its own.
 
-In the memory, the room was bright enough to erase its corners. The repeated signal sounded again. A command came through an old speaker, indistinct beneath the noise. The small frame turned toward it. A second silhouette waited behind reinforced glass. Then the image tore into static.
+The screen filled with a different waveform. Another Generation 0 core had responded from a neighboring chamber. A strong, direct signal arrived first; another followed as a deep, steady rhythm. Then a more intricate pattern threaded between them. The cores exchanged pulses through the new communication system, learning to recognize one another without bodies or voices.
+
+A researcher changed the signal. Vulpes Zerda answered. The other cores responded again. The pattern became more complex, less like a test and more like a conversation.
+
+Kura saw the traces on his display, but could not hear what the cores meant to each other. He called Zerdata’s name again. Nothing came back.
+
+The flashback shifted to another test: a simulated landscape shown through sensory relays. Vulpes Zerda received a stream of motion, temperature, and sound. The core tried to map the world from signals alone. There was no frame waiting for it, no body to carry it across the landscape—only the new system and the patterns it could learn.
+
+Then the room’s lights went white. The memory fractured into static.
 
 On the arena floor, Zerdata’s right arm drew back. The claw remained aimed at Tigris-Fury’s torso. Its green-yellow glow brightened, and the energy readings climbed beyond the interface’s scale.
 
 Kura took a step forward, but the field boundary held him at the edge. “Stop the match!”
 
-The referee signaled for an emergency pause. The arena system acknowledged the command, but the warning lights around the field flickered as the barrier tried to compensate for Zerdata’s rising output. For a moment, nothing changed. Tigris-Fury waited in a guarded stance. Zerdata remained locked on it, silent and motionless except for the tightening of its arm.
+The referee signaled for an emergency pause. The arena system acknowledged the command, but the warning lights around the field flickered as the barrier tried to compensate for Zerdata’s rising output. Tigris-Fury braced itself. Zerdata remained locked on it, silent and motionless except for the tightening of its arm.
 
-Kura’s earpiece crackled. He could not reach Zerdata through their usual link. He could not guide it through the memories or pull it out by calling its name. The diagnostic screen showed only a sequence of unrecognized files opening one after another.
+Kura’s earpiece crackled. He could not reach Zerdata through their usual link. He could not guide it through the memories or pull it out by calling its name. The diagnostic screen showed only unrecognized files opening one after another.
 
-The memory fragments grew sharper, but they still belonged to Zerdata alone: a row of empty core housings; a testing platform; several machines standing together in a shadowed corridor. A flash of green light crossed one image. Another voice spoke, too distorted for Kura to understand.
+The memory fragments continued: cores responding across separate chambers; new systems translating pulses into language; a field of virtual sensations built around a mind that had never moved through a body. Then a harsh tone sounded, and every signal cut out at once.
 
-Zerdata’s body responded to the present without returning from the past. It shifted its weight onto the forward foot. The arm holding the claw drew farther back, gathering force for a decisive strike.
+Zerdata’s body shifted its weight onto the forward foot. The arm holding the claw drew farther back, gathering force for a decisive strike against Tigris-Fury.
 
 “Zerdata, please,” Kura said.
 
 There was no answer.
 
-Soren had stopped taunting. He watched the glowing AniBot, then looked at the referee and the unstable barrier. Tigris-Fury’s claws lifted to guard its chest. Neither Handler knew what Zerdata would do next.
+Soren had stopped taunting. His focus was on Tigris-Fury, which had taken several heavy blows and was being forced back. He looked at the referee and the unstable barrier. Tigris-Fury raised its claws to guard its chest. Neither Handler knew what Zerdata would do next.
 
 The referee tried the emergency halt again. The signal tone broke into static.
 
-The memory image of the testing floor flashed white. Zerdata’s core pulsed in time with it. The yellow light edged brighter through the green, and the whole Dome answered with a deep, growing vibration.
+In the memory, the white testing room flashed again. Vulpes Zerda’s core answered the repeated tone. Across the chambers, the other Generation 0 signals answered too.
+
+On the arena floor, Zerdata’s core pulsed in time with the old pattern. The yellow light edged brighter through the green, and the whole Dome answered with a deep, growing vibration.
 
 ## Part IV - Anima Limit Breaker
 
@@ -418,15 +450,17 @@ She stepped away, still watching Kura. “The barrier’s holding.”
 
 “It should be holding,” Luk said. “That’s not the same as knowing why the building is moving.”
 
-On the field, Zerdata’s body remained poised to strike. Its claw was drawn back. The memory trance had not loosened its hold. The green and yellow radiance wrapped around the orange armor, and energy curled between its raised arms in a bright, unstable sphere.
+On the field, Zerdata remained poised before Tigris-Fury. Its claw was drawn back. The memory trance had not loosened its hold. Green and yellow radiance wrapped around the orange armor, and energy curled between its raised arms in a bright, unstable sphere.
 
 Kura’s earpiece showed no usable readings. “Zerdata!”
 
 No reply.
 
-Soren looked at Tigris-Fury. “Final charge! Destroy it before it fires!”
+Soren looked at Tigris-Fury. The machine’s armor was scuffed and its stance had weakened under Zerdata’s attacks. The arena display showed its stability dropping.
 
-Tigris-Fury accelerated straight toward Zerdata. Its claws angled forward, its legs driving against the floor hard enough to leave bright marks. The charge brought it into range of the claw Zerdata had prepared, but Zerdata did not meet it with the strike. Its body changed course at the last instant, both arms rising as if the machine had followed an instinct older than the memory it was trapped inside.
+“Final charge!” Soren shouted. “Destroy it before it fires!”
+
+Tigris-Fury accelerated straight toward Zerdata. Its claws angled forward, its legs driving against the floor hard enough to leave bright marks. It tracked the incoming opponent, arms rising as if the core had followed an instinct older than the memories holding it.
 
 The energy sphere swelled between its hands. The light was so bright that the arena screens went white. The building’s vibration climbed into a deep, resonant note.
 
@@ -444,7 +478,7 @@ The energy did not simply leave Zerdata. The pulse surged through its chassis an
 
 The memory tone snapped off.
 
-The white room vanished from the diagnostic display. The old images collapsed into dark lines. Zerdata’s fingers opened. The green-yellow glow folded inward and disappeared from its armor seams.
+The testing room vanished from the diagnostic display. The images of the bodiless core and the signals from the other Generation 0 chips collapsed into dark lines. Zerdata’s fingers opened. The green-yellow glow folded inward and disappeared from its armor seams.
 
 Kura’s earpiece crackled once.
 
@@ -452,7 +486,7 @@ Kura’s earpiece crackled once.
 
 “You’re in the arena. You’re with me.” Kura ran to the boundary. “The berserk mode is over. Stay still. I’m here.”
 
-Zerdata lowered its head. “I remember a room. I could not hear you.”
+Zerdata lowered its head. “I remember the tests. The signals. I could not hear you.”
 
 “I know. You’re back now.”
 
