@@ -5,17 +5,13 @@ subtitle: Ancient friendships, rediscovery and unfinished promises.
 order: 18
 ---
 
-# ARC-10 - Primordial Awakening
-
 **Central conflict:** Kura seeks the surviving Primordials to understand the Limit Breaker, while Magnus accelerates his worldwide search for Generation 0 chips.
 
 ### Chapter 10.1 - Return to Research Center Ato
 
-Kura, Zerdata, Luk and Dr. Aris Thorne travel to Old New Zealand, seeking information concerning Zerdata's Anima Limit Breaker.
+Kura, Zerdata, Luk and Dr. Aris Thorne are at Research Center Ato in Old New Zealand, seeking information concerning Zerdata's Anima Limit Breaker.
 
-They arrive at Horizon Port, the coastal entrance to Research Center Ato.
-
-Although the facility was never officially deactivated following Ty Ato's disappearance in 3043 AD, its research buildings are deserted.
+Is morning, and the night past without incident.
 
 The group makes its way toward Ato Labs, the core-research division where Ty conducted his studies.
 
@@ -135,21 +131,6 @@ Among the old documents are Ty Ato's handwritten notebooks, technical drawings a
 They have finally found Ty's missing documentation.
 
 The arc ends with Kura opening the recovered research collection, setting up the next major discovery.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 **Arc ending:** Kura earns the trust of Agon, Biggon and Cygon. The alliance prepares to confront Magnus before he can acquire the surviving Ancient cores.
