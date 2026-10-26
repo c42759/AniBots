@@ -1,396 +1,1045 @@
 ---
 id: 20_magnus
 title: Magnus
-subtitle: The occupation of Neo Metropolis
+subtitle: The occupation of Neo Metropolis.
 order: 20
 ---
 
-# Arc 12 - Magnus
+## 1. The Streets They Knew
 
-### Chapter 12.1 - A City Under Control
+The first checkpoint stood where the canal market usually put its fruit stalls.
 
-Kura, Luk, Zerdata and Dr. Thorne return to District 4 following their expedition to Research Center Ato.
+Kura saw the empty awnings before he saw the AniBots. Two armored Aegis units occupied the crossing, their sensor heads turning toward every person who passed between the temporary barriers. A third machine waited beside a transport with darkened windows.
 
-But the familiar neighborhood has changed.
+The market lights were on. Almost every stall was closed.
 
-Aegis Corporation AniBots patrol streets that were previously filled with students, mechanics and local Handlers.
+Luk slowed beside him.
 
-Security checkpoints have appeared around the district.
+“That wasn’t here when we left.”
 
-Corporate surveillance systems scan passing AniBots and their Handlers.
+They had come through the passenger terminal without trouble and taken the district connection toward home. Now the familiar canal path ended at a white barrier carrying the Aegis shield.
 
-The patrols are specifically searching for Kura Ato and Zerdata.
+A man carrying a delivery crate presented his slate. The nearest security unit scanned it, then turned its optics toward the little courier at his feet.
 
-### Chapter 12.2 - Isabell's Warning
+The man waited without speaking.
 
-Before the group can reach the Ato Family Workshop, Isabell finds them.
+Kura’s device vibrated.
 
-She explains that a man named Magnus has taken full control of Aegis Corporation.
+*Don’t cross. Service passage behind the closed kiosk.*
 
-Magnus has used the company's robotics infrastructure to deploy security AniBots throughout the district.
+Isabell’s name appeared above the message.
 
-The patrols are questioning residents and detaining anyone suspected of possessing information concerning Kura or Zerdata.
+He looked toward the kiosk. A hand moved briefly in the shadow beside it.
 
-Those detained are being transported to Aegis Headquarters.
+“This way,” he said.
 
-Isabell warns the group that returning openly to the workshop would expose them immediately.
+The group turned before reaching the barrier. Biggon’s heavy steps sounded terribly loud against the paving stones. Agon moved behind it, keeping the cases out of the nearest sensor’s line of sight.
 
-### Chapter 12.3 - The Realization
+Isabell caught Kura’s sleeve as he entered the passage.
 
-Kura and Luk understand that the situation is far more serious than the conflicts they previously encountered in Rust-Ridge.
+For a moment, neither spoke.
 
-Magnus is no longer operating exclusively through illegal combat arenas, smugglers and hidden corporate collaborators.
+Then she pulled him into a tight embrace.
 
-He now commands Aegis's legitimate infrastructure.
+“You came the way you said.”
 
-Kura realizes that Magnus may be using the entire corporation to obtain Vulpes Zerda-and possibly the other surviving Generation 0 chips.
+“Isa? What happened?”
 
-Luk arrives at the same conclusion.
+She let go, though one hand remained on his arm.
 
-> Luk: "Kura... the Aegis patrols, the arrests, all of this..."
->
-> Kura: "Magnus."
->
-> Luk: "He's here."
->
-> Kura: "Then we know where to find him."
+Swan-Grace stood at the far end of the passage, watching the street.
 
-### Chapter 12.4 - The Ato Family Workshop
+“Magnus,” Isabell said. “He’s taken control of Aegis.”
 
-After escaping the patrols, Kura, Luk, Isabell, Zerdata and Dr. Thorne find a discreet route back to the Ato Family Workshop.
+Luk stared at her.
 
-Kura expects to find his mother frightened and isolated.
+“The corporation?”
 
-Instead, he discovers that Raya has already been organizing the neighborhood.
+She nodded. “The headquarters. The security network. They’re issuing orders through the company systems. It started after our last call.”
 
-Through the years of operating the workshop, Raya has established relationships with mechanics, delivery workers, merchants, young Handlers and other District 4 residents.
+Kura looked back toward the checkpoint.
 
-Those relationships have become an informal communication network.
+“Where’s Mom?”
 
-Residents share information about patrol movements, detained neighbors and which streets are still safe.
+“At the workshop. She’s safe.” Isabell tightened her grip before he could move. “You can’t go through the front. They’re searching for you and Zerdata.”
 
-Raya explains that people are frightened, but they are also angry. Many have had friends or relatives taken to Aegis Headquarters.
+She showed him a notice captured from a patrol terminal. His own face looked back at him above a scan profile of the Vulpes Zerda cartridge. Beneath it were instructions to detain anyone concealing information about his location.
 
-The district has been looking for a way to resist.
+“They’ve taken people,” she said. “Customers. Handlers. A delivery driver who wouldn’t tell them when you were coming back. They’re bringing them to Aegis Headquarters.”
 
-**Raya has already brought the people together. Now they need a reason to act.**
+Thorne leaned against the passage wall. Holy-Vanguard stood close to him, its shield turned toward the entrance.
 
-### Chapter 12.5 - The Call to Action
+“How far does the occupation extend?”
 
-At the workshop, Kura tells the gathered residents everything he has discovered.
+“We know about the district and the routes to the tower. Other places are reporting checkpoints too. We can’t verify all of them.”
 
-He explains the truth about Zerdata, the Generation 0 chips, Magnus's involvement with Anode Group, and the infiltration of Aegis Corporation.
+Cygon studied the notice without touching her device.
 
-He also explains that Magnus is now using Aegis technology to control their district and search for the Ancient chips.
+Agon’s voice was low. “He has stopped hiding.”
 
-Kura acknowledges that he cannot defeat the entire corporation alone.
+Luk looked at Kura.
 
-He asks for help.
+“Kura… the Aegis patrols, the arrests, all of this…”
 
-KEY DIALOGUE
+“Magnus.”
 
-> Kura: "I know some of you have lost your friends. Some of you have lost your families to those patrols. And I know they're here because of me and Zerdata.""But this is our home. These are our streets. And I'm not going to let Magnus decide how we live.""I can't get to him alone. I need your help."
->
-> Raya: "You heard him. We've been protecting each other for years. We're not going to stop now."
->
-> Luk: "Then we'll make sure Kura gets to Magnus. Whatever it takes."
+“He’s here.”
 
-The residents agree to march on Aegis Headquarters.
+Kura looked toward the skyline. Beyond the green canopies, Aegis High-Spire rose above the city, its upper floors bright in the morning sun.
 
-Raya becomes the central organizer, while Kura and his friends prepare for the confrontation.
+“Then we know where to find him.”
 
-### Chapter 12.6 - The March on Aegis
+Isabell stepped between him and the street.
 
-The march begins at District 4 and grows as more residents join.
+“First, we get you home.”
 
-Mechanics bring their AniBots. Local Handlers arrive with their partners. Merchants and workers join the crowd.
+## 2. Raya’s Workshop
 
-Kura and Zerdata remain hidden among the people because Aegis's detection systems are searching specifically for the Vulpes Zerda chip.
+They took a route Kura had used for deliveries since he was small.
 
-The goal is to reach the headquarters without revealing Kura's presence prematurely.
+It led behind the canal shops, through a maintenance court, and beneath the low bridge where service carts crossed between garages. Twice, Isabell stopped them while a patrol passed. Swan-Grace watched the open corners. Cygon kept its external transmissions quiet and followed the route she had marked.
 
-When Aegis security blocks the entrance, the march becomes a confrontation. The residents and their AniBots overcome the entrance defenses and force their way into the complex.
+At the workshop’s rear door, Isabell knocked.
 
-### Chapter 12.7–12.9 - The Ascent
+Raya opened it before the second knock.
 
-The headquarters should feel like an enormous, fortified corporate tower, with each section presenting a different obstacle.
+Kura had been ready for fear. For his mother alone behind the locked shutter, waiting for him to bring an answer.
 
-The District 4 residents secure the lower levels and free detained neighbors. This gives the community an objective beyond merely providing cover for Kura.
+Instead, the back room was full of people.
 
-Agon and Biggon remain behind to confront powerful security AniBots. Agon uses its firepower while Biggon protects the route.
+Maps covered the central table. Repair receipts lay beside handwritten lists of missing neighbors. A grocer was speaking quietly into a communicator. Two young handlers sorted charged power cells beneath Jax’s supervision.
 
-Cygon and Dr. Thorne reach the headquarters' command infrastructure and work to disrupt the systems Magnus is using to control Aegis's security network.
+Sammy stood on a stool, pinning a new note to the map.
 
-Isabell and Swan-Grace defend the group during one of the later confrontations. Isabell demonstrates how far she has progressed from the shy young Handler introduced in ARC-01.
+“The south crossing changed shifts early,” she said. “Don’t use yesterday’s time.”
 
-Luk and Kabuto-Horn are the final companions to remain behind, allowing Kura and Zerdata to reach Magnus.
+Spy looked up from a stack of delivery slips.
 
-Before separating, Luk reminds Kura of their long-standing rivalry:
+“He’s back.”
 
-> Luk: "Don't misunderstand this, Kura. I'm not letting you go ahead because you're better than me."
->
-> Kura: "Then why?"
->
-> Luk: "Because this is your fight. Mine is still waiting for us in the arena. So go finish this one!"
+The room turned.
 
-### Chapter 12.10 - The Final Door
+Raya put both arms around Kura and held him without saying a word.
 
-Kura and Zerdata finally reach the executive level.
+He closed his eyes.
 
-For the first time since entering Aegis Headquarters, they are alone.
+Then she released him enough to look at his face.
 
-Behind them, their friends continue fighting to hold the secured routes.
+“Any injuries?”
 
-Ahead, Magnus is waiting with Silverback-Smash.
+“No.”
 
-This is where the story returns to its central relationship: a young mechanic and the AniBot his father left behind.
+“Zerdata?”
 
-Kura did not reach Magnus through personal strength alone. Every friend, neighbor and AniBot who helped him has made this moment possible.
+“Repairable damage. We’ve checked it.”
 
-Magnus, who believes control over technology is the ultimate form of power, is about to confront someone whose strength comes from trust.
+“Good.” Her eyes moved past him to the three Primordials. “Come inside. All of you.”
 
-The final battle can begin here, while the precise combat sequence and revelations concerning Ty Ato remain available for further development.
+Biggon ducked through the doorway. The conversations stopped again, briefly.
 
-### Chapter 12.11 - The Overwhelming Force
+Slow looked up at the giant’s shoulders.
 
-Kura and Zerdata finally face **Magnus** at the top of Aegis HQ.
+“I can make more room.”
 
-Magnus deploys **Silverback-Smash**, and it is immediately clear this AniBot is on an entirely different level.
+He began moving a cabinet before anyone asked.
 
-Even stronger than **White-Tigris-Fury**, Silverback-Smash is a monster of brute force, armor density, and raw impact power.
+Anda stood beside the counter with Ancient-Wyrm. He looked tired, his cap pushed back and one sleeve rolled unevenly.
 
-#### Battle flow
+“Your timing is inconvenient,” he told Kura.
 
-1. Zerdata begins by trying to outmaneuver Silverback-Smash.
-2. Kura uses tactical precision, looking for weak points.
-3. Silverback-Smash proves far more durable than expected.
-4. Its attacks are devastating, forcing Zerdata back repeatedly.
-5. Magnus fights with complete confidence, almost amused.
-6. Eventually Zerdata is struck down and crashes to the ground.
+“I noticed.”
 
-At this stage:
+Anda held out a clean sensor lead. “We need Zerdata’s current profile. The patrol notice uses an older scan. I want to know what they can recognize.”
 
-- Zerdata is damaged
-- Kura is still conscious and thinking
-- Magnus appears fully in control
+Kura took it.
 
-This is important because the final victory must feel earned, not sudden.
+Raya returned to the table.
 
-### Chapter 12.12 - The Legacy of Ty Ato
+“Jax has been helping us keep people off the exposed roads. The delivery crews know the patrol movements. The market families are checking on anyone who hasn’t answered.”
 
-Silverback-Smash lunged forward like a collapsing fortress, its fists tearing through the air with enough force to crush steel.
+She touched one of the names on the list.
 
-Zerdata, battered and kneeling, struggled to rise.
+“At first, we thought they’d ask questions and leave. Yesterday, they took Mara’s brother from his repair stall.”
 
-Kura's breath trembled. His mind raced for an answer, but every tactical option had already been crushed under Magnus's overwhelming power.
+A woman near the wall lowered her eyes.
 
-Magnus stepped forward, a cruel smile spreading across his face.
+“He told them he’d only seen you on the broadcast,” she said. “They took him anyway.”
 
-> **Magnus:**
-> “I will have those chips... all of them.”
-> “Your father could not stop me.”
-> “You will share the same fate.”
-> “And when this is over... I will keep your father’s skull as a trophy.”
+Kura looked at the lists.
 
-Kura's eyes widened.
+“Because of us.”
 
-Then his expression changed.
+“Because Magnus ordered it,” Raya said.
 
-No fear. No hesitation.
+“He wants Zerdata.”
 
-Only conviction.
+“And he’s hurting our neighbors to get him.” She held Kura’s gaze. “We know who made that choice.”
 
-> **Kura:**
-> “You don’t understand... do you?”
-> “This is already his legacy...”
+Jax came over to inspect Zerdata’s forearm.
 
-A tremor of light pulsed through Zerdata's chassis.
+“Sit down,” he told the AniBot.
 
-Its fingers tightened against the floor.
+“We don’t have much time,” Kura said.
 
-Its visor flared brighter.
+“Then stop using it to argue.”
 
-> **Kura:**
-> “And I will make sure THIS WILL BE WRITTEN IN STONE FOR ALL ETERNITY!”
-> “ZERDATA!”
+Zerdata sat.
 
-At this moment, Zerdata begins to rise.
+While Jax opened the damaged guard, Kura set Ty’s notebook case on the table.
 
-### Chapter 12.13 - Resonance Unbound
+“There’s something everyone needs to hear.”
 
-A violent wave of energy burst from Zerdata's frame.
+## 3. A Request for Help
 
-Green and yellow light spiraled outward. The air shook. Metal screamed.
+They made room around the worktable.
 
-Slowly, Zerdata stood.
+Kura began with the Ancient cores. He explained what Zerdata was, who the three Primordials were, and what had happened at Research Center Ato. Thorne showed selected records from Ty’s collection. Anda placed the Anode manifests beside the Aegis correspondence they had already examined together.
 
-Its voice came low at first, then clear.
+The people asked practical questions.
 
-> **Zerdata:**
-> “Kura... I understand now...”
+How many patrols could Magnus command? Could their own AniBots be taken over? Were the detained residents still in the tower? What happened if Magnus got the cartridge?
 
-It turned its glowing visor toward him.
+Cygon answered what it could. Aegis’s security infrastructure gave Magnus authority over its deployed units, not effortless control of every independent AniBot in the city. The tower was issuing the district orders. Taking that authority away would matter.
 
-> **Zerdata:**
-> “This is the result of Resonance...”
-> “Mine and yours.”
+“We cannot promise every patrol will stop at once,” Thorne said. “But we can break the command chain he is using.”
 
-Magnus's smile disappeared.
+Raya showed them the detention transfers. Several delivery crews had recorded the same service entrance at headquarters. Names on those transfers matched names on the workshop list.
 
-Silverback-Smash roared forward for the final blow.
+The woman by the wall moved closer.
+
+“Then they’re there.”
+
+“We have reason to believe they are,” Raya said. “We’re going to look for them.”
+
+Kura stood beside Zerdata. Jax had fitted a temporary replacement guard and secured the damaged armor.
+
+“I know some of you have lost your friends. Some of you have lost your families to those patrols. And I know they’re here because of me and Zerdata.”
+
+He saw Raya draw breath, but she let him continue.
+
+“But this is our home. These are our streets. And I’m not going to let Magnus decide how we live.”
+
+His fingers rested against the scratched edge of the workbench.
+
+“I can’t get to him alone. I need your help.”
+
+No cheer answered him at first.
+
+People looked at one another. A mechanic put down the receipt she had been twisting between her fingers. The grocer checked the name of his assistant on Raya’s list.
+
+Then Mara stepped forward.
+
+“My brother comes home.”
+
+Raya nodded.
+
+“That’s the plan.”
+
+“Then I’m coming.”
+
+Others followed. Not everyone would fight. Some would guide people out, carry supplies, or stay to keep the neighborhood informed. Raya wrote down tasks as they volunteered, turning anger into work someone could actually do.
+
+“You heard him,” she said. “We’ve been protecting each other for years. We’re not going to stop now.”
+
+Luk planted a hand on Kura’s shoulder.
+
+“Then we’ll make sure Kura gets to Magnus. Whatever it takes.”
+
+Sammy stepped off her stool.
+
+“Spy. Slow. Get the others.”
+
+Spy tucked the verified route slips into his bag.
+
+“I know who to ask.”
+
+“Then ask them. Don’t invent a secret army on the way.”
+
+“I wasn’t going to.”
+
+Slow put on his jacket and went with them.
+
+Before they left, Jax caught Kura by the sleeve.
+
+“The frame is ready for ordinary work. That doesn’t mean it’s ready for everything you might ask of it.”
+
+“I know.”
+
+“Watch the readings. Listen to your partner.”
+
+Kura looked at Zerdata.
+
+“I will.”
+
+## 4. District Four Walks
+
+The march began with the workshop doors opening.
+
+People emerged into the street carrying tools, water, and handwritten lists. Their AniBots moved beside them. Some frames were polished tournament machines. Others wore repaired panels and mismatched limbs that Kura recognized from his own bench.
+
+More joined at the canal bridge.
+
+Then at the market.
+
+Then along the road toward the central transit avenue.
+
+Kura walked inside the group, his hood raised. Zerdata stayed beneath the folded side canopy of a repair trolley pushed by Jax and a market worker. Anda had reduced its external chatter and fitted a shielded service cover around the exposed diagnostic connections. It would not make a direct inspection harmless. The crowd kept them from offering one.
+
+Agon and Biggon traveled farther back with the heavier machines. Cygon remained near Thorne, its four support legs moving steadily over the paving stones.
+
+Raya walked at the front with the list of detainees.
+
+The first patrol ordered them to stop.
+
+“We’re going to headquarters,” she said. “Our people are there.”
+
+The security unit repeated the order.
+
+Behind Raya, the crowd filled the crossing.
+
+For several long seconds, the patrol tracked too many faces and too many machines to hold a single target. It withdrew toward the next junction while its operator called for instructions.
+
+The march kept moving.
+
+At the tower plaza, there was nowhere left for the security line to withdraw.
+
+Aegis Headquarters rose above them in tiers of glass, steel, and hanging gardens. Armored shutters covered the public entrances. Security AniBots stood across the steps beneath a screen declaring temporary protective measures.
+
+Raya stepped forward.
+
+“Release the people you’ve taken.”
+
+A loudspeaker told the crowd to disperse.
+
+“Give us someone who can answer for them.”
+
+The machines advanced instead.
+
+Biggon moved through the crowd and set its shield between the front rank and the first descending weapon arm.
+
+The impact rang across the plaza.
+
+People recoiled. Raya and the volunteers drew those without combat partners back toward the sheltered edge.
+
+“Keep the center clear!” she called. “Let the handlers through!”
+
+Kabuto-Horn rolled forward. Honey-Beam lifted its guard beside it. Volt-Pouncer crossed the steps in a sharp electric leap, drawing one security unit away from the people. Cyan’s controlled bursts struck weapon housings while Swan-Grace swept across the defenders’ flank.
+
+Ancient-Wyrm drove a precision shot into the shutter mechanism above the side entrance.
+
+The panel sagged and stopped closing.
+
+Agon raised its prism arm. A short, angled beam disabled the final guard’s launcher, and Biggon pushed the machine back from the opening.
+
+Jax pulled the trolley canopy aside.
+
+Kura and Zerdata stepped out.
+
+“Go,” Jax said.
+
+Behind them, the people of District 4 began carrying their neighbors into the shelter of the entrance hall.
+
+## 5. The Floors Below
+
+Inside, the tower was louder than the plaza.
+
+Alarms sounded beneath recorded instructions to remain calm. Glass partitions divided the lobby from darkened public galleries. The security system was trying to close doors around a building already full of people refusing to leave.
+
+Cygon reached the first directory terminal.
+
+“Detention transfers went through the lower service levels.”
+
+Raya brought the names closer.
+
+“Can you give us the rooms?”
+
+“I can give you the route. The local records need checking.”
+
+Anda took a copy of the map.
+
+“I’ll go with them.”
+
+Ancient-Wyrm moved beside him.
+
+Kura turned. “Anda—”
+
+“You’re going up. Someone competent should manage the other direction.”
+
+He glanced at Raya’s list, and his expression lost its sharpness.
+
+“We’ll find them.”
+
+Sammy, Spy, and Slow joined the lower-level group. Spy checked room labels against the transfers. Slow helped clear a fallen service barrier. Sammy stayed with the frightened people they found behind the first locked partition, speaking in a voice Kura had never heard her use with younger handlers.
+
+“Stay together. Your families are here.”
+
+Jax and the mechanics secured the entrance for the returning groups.
+
+Kura’s party climbed through a maintenance stair while the main lifts remained locked. Cygon identified a command access level several floors above them. If it and Thorne could reach that infrastructure, they could begin undoing Magnus’s orders.
+
+They reached the level below it before the heavy security units arrived.
+
+Two armored machines blocked the stair landing. Behind them, the service corridor opened into a broad machinery hall with more units advancing from the far end.
+
+Agon stepped past Kura.
+
+“Take the side passage.”
+
+Biggon planted its feet at the stair mouth.
+
+A heavy strike hit its shield. The landing shook.
+
+“We will hold this route.”
+
+Zerdata turned toward its old companions.
+
+Agon looked back.
+
+“Keep walking, Vulpes.”
+
+For a heartbeat, Zerdata did not move. Then it followed Kura into the side passage.
+
+Behind them came the clear note of Agon’s cannon and the deeper crash of Biggon meeting the next attack.
+
+## 6. Doors Held Open
+
+The command access room had no windows.
+
+Rows of terminals faced a central display showing patrol locations, checkpoint orders, and sections of the building marked for isolation. Cygon stopped at the threshold long enough to inspect the connected systems.
+
+“This is where his district instructions are being distributed.”
+
+Thorne set down his bag.
+
+“Then this is where we stay.”
+
+Holy-Vanguard raised its shield beside the door.
+
+Kura looked at the display. Red markers moved toward the route they had used.
+
+“Can you stop them?”
+
+“Some doors. Some orders,” Cygon said. “He has kept authority above this level. We will have to challenge each part of it.”
+
+Thorne was already examining the access records.
+
+“Go, Kura. We’ll keep the way open as long as we can.”
+
+The next door unlocked while they were still standing there.
+
+Cygon pointed toward it.
+
+“Start with that one.”
+
+Kura, Luk, and Isabell climbed on with their partners.
+
+By the upper garden level, Kura’s legs ached. Zerdata’s cooling fans ran steadily beside him. Beyond the glass walls, the city spread beneath them in bright terraces, beautiful and terribly far from the dark service rooms below.
+
+The security unit descended from a ceiling platform before they reached the next stair.
+
+Swan-Grace struck its weapon arm aside.
+
+“Keep moving!” Isabell called.
+
+A second machine emerged behind the garden partition.
+
+Kura stopped. “Isa, there are two.”
+
+“I can see them.”
+
+She moved behind a concrete planter as Swan-Grace landed between the machines. Its rapier flicked toward the first unit’s shoulder, forcing it to turn into the second unit’s line.
+
+Isabell watched their feet.
+
+“Swan, high. Take the support arm, then back to me.”
+
+Swan-Grace sprang over the first sweeping strike and cut across the second machine’s raised elbow. It landed where she had asked, clear of both weapons.
+
+Luk turned toward his sister.
+
+“We can help.”
+
+“You can get Kura to the next floor.”
+
+Her hands were steady around the communicator.
+
+Kura remembered a frightened voice asking what to do in a dark mountain lane. Now Isabell was already giving the next command.
+
+He met her eyes.
+
+“Come back,” she said.
+
+“I will.”
+
+She nodded once and turned to Swan-Grace.
+
+Kura and Luk reached the upper stair as a maintenance door opened behind her. Cygon’s voice sounded through their links.
+
+“I have an alternate retreat for Isabell. Continue.”
+
+One floor higher, Kabuto-Horn stopped in front of the final access corridor.
+
+A broad security frame stood between them and the executive lift. Its heavy shield covered the full width of the passage. Behind it, an indicator counted down toward a lockdown.
+
+Luk looked at the machine, then at the narrowing side opening.
+
+“Kabuto. With me.”
+
+The beetle charged.
+
+Its horn caught beneath the shield. The security unit braced, stopping the lift, but Kabuto-Horn’s treads kept driving. Metal scraped against both walls.
+
+The side opening remained clear for a few more seconds.
+
+Luk looked back at Kura.
+
+“Don’t misunderstand this, Kura. I’m not letting you go ahead because you’re better than me.”
+
+“Then why?”
+
+“Because this is your fight. Mine is still waiting for us in the arena. So go finish this one!”
+
+Kura gripped his friend’s shoulder once.
+
+“Grand finals.”
+
+“Grand finals.”
+
+Zerdata slipped through the opening. Kura followed as Kabuto-Horn’s piston struck the opposing guard and the corridor filled with the sound of the impact.
+
+The executive lift closed around them.
+
+For the first time since entering the building, they were alone.
+
+## 7. Magnus
+
+The lift opened into a chamber facing the city.
+
+Broad windows filled the far wall. A long executive table had been pushed aside, leaving open floor between the entrance and the raised command station. Beyond it, the tower’s communications displays showed a district refusing to settle back into order.
+
+Magnus stood at the station with Silverback-Smash beside him.
+
+Kura recognized the AniBot from the Anode records. The broad barrel chest, the heavy shoulders, the low, powerful arms.
+
+Seeing it move was different.
+
+Its knuckles touched the floor as it turned. Each joint settled with a weight that made Zerdata seem suddenly light beside it.
+
+“Ty Ato’s boy,” Magnus said.
+
+Kura stepped out of the lift.
+
+“Release the people downstairs.”
+
+Magnus looked toward the security display.
+
+“You brought half a district to my door.”
+
+“You took their families.”
+
+“I asked for information.”
+
+“They didn’t have it.”
+
+Magnus’s gaze moved to Zerdata.
+
+“And yet here it is.”
+
+Zerdata stepped level with Kura.
+
+“I am here.”
+
+The correction drew a small smile.
+
+“You can keep the frame,” Magnus told Kura. “It’s the cartridge I want.”
+
+“No.”
+
+“Your friends are still fighting their way through my building. How long do you think they can continue?”
+
+Kura could hear breathing over the link. A distant collision. Luk calling for Kabuto-Horn to hold.
+
+He kept his eyes on Magnus.
+
+“Long enough.”
+
+Magnus raised one hand.
+
+Silverback-Smash came forward.
+
+## 8. What the Armor Held
+
+“Angle right!”
+
+Zerdata sprang clear of the first fist.
+
+It struck the floor hard enough to break the polished surface. Fragments skittered across the chamber as Silverback-Smash turned into a second blow.
+
+Zerdata ducked and struck the exposed elbow with its Resonant Strike Claw.
+
+The joint did not buckle.
+
+Silverback-Smash pulled the arm through the impact and caught Zerdata across the torso with the back of its gauntlet.
+
+The fox frame hit the floor and rolled.
+
+“Status?” Kura asked.
+
+“Moving.”
+
+Zerdata came up beside the displaced table.
+
+Kura watched the opponent’s hips, shoulders, and planted supports. White-Tigris-Fury had won space through speed. Silverback-Smash barely needed space at all. Its long arms reached across the angles Zerdata normally used to escape.
+
+“Make it turn. Short pulse on the outside.”
+
+Zerdata moved across its front and fired into the flank.
+
+Silverback-Smash’s armor shuddered. Its foot moved half a step.
+
+Then it drove a fist into the floor beside Zerdata.
+
+The shock traveled through the surface before Zerdata could jump. Its landing broke sideways, and the second fist caught its raised guard.
+
+The replacement plate folded inward.
+
+Kura’s fingers tightened around the control grip.
+
+“Back! Keep the arm clear!”
+
+“You keep looking for a small flaw,” Magnus said. “Your father did that too.”
+
+Kura refused to look at him.
+
+“Left knee, Zerdata. When the weight moves.”
+
+Zerdata waited through the next strike, stepped inside, and landed a focused blow against the knee support. The outer cover cracked.
+
+Silverback-Smash dropped slightly on that side.
+
+Kura saw the opening.
+
+“Again—”
+
+The giant caught Zerdata’s forearm.
+
+Its grip closed with a harsh compression of metal.
+
+Zerdata fired a pulse at close range. The fingers loosened enough for it to wrench free, but Silverback-Smash struck it with the other arm before it could retreat.
+
+It crashed through the edge of the executive table.
+
+Kura ran along the wall to keep sight of it.
+
+“Zerdata!”
+
+“I hear you.”
+
+The voice steadied him. He checked the damaged arm, the rising hip load, the warning beside the torso mount.
+
+They still had movement. They still had the pulse.
+
+“Leave the right guard low. Draw it across. We’ll use the damaged knee.”
+
+Zerdata rose and shifted into the plan.
+
+Silverback-Smash followed, protecting the weakened joint with its forward arm. Kura changed the approach before Zerdata committed. A feint to the shoulder. A low pulse. A turn beneath the reaching fist.
+
+Zerdata reached the side housing and struck.
+
+The crack widened.
+
+Silverback-Smash roared. Its armored shoulder drove backward into Zerdata, crushing the space before the fox could leave it.
+
+Zerdata flew across the chamber and hit the base of the command platform.
+
+Its claw scraped the floor.
+
+It tried to stand.
+
+The left leg gave way.
+
+Kura reached the near edge of the platform, breathing hard.
+
+“Don’t force the hip. Brace on the good side.”
+
+Zerdata lifted its head.
+
+Silverback-Smash was already coming.
+
+Magnus walked behind it, almost leisurely.
+
+“I will have those chips. All of them.”
+
+Kura looked from the approaching machine to the damaged partner trying to rise.
+
+“Your father could not stop me,” Magnus said. “You will share the same fate.”
+
+Kura went still.
+
+Magnus’s smile sharpened.
+
+“And when this is over, I will keep your father’s skull as a trophy.”
+
+## 9. Resonance Mode
+
+For a moment, Kura heard only the fans inside Zerdata’s chest.
+
+He thought of the closed office. The note. The research cases carried across the sea. Biggon holding a doorway. Isabell turning back toward two opponents so he could keep going.
+
+His father’s work was here, alive and trying to stand.
+
+“You don’t understand, do you?” Kura said.
+
+Magnus stopped.
+
+“This is already his legacy.”
+
+Zerdata’s fingers tightened against the floor.
+
+A thin line of green light appeared beneath the broken armor.
+
+Kura saw it and caught his breath.
+
+“Zerdata?”
+
+“I hear you.”
+
+The answer came immediately.
+
+Yellow edged the green. The light spread through the harmonic supports, steady where the arena glow had surged without control.
+
+Kura lowered his voice.
+
+“Stay with me.”
+
+“I am here.”
+
+Silverback-Smash shifted its weight. The damaged knee clicked beneath its armor.
+
+Zerdata heard it too.
+
+Its claw found purchase against the floor. It raised its torso, then brought the good leg underneath it. Kura watched every movement. He could not make the power happen. He could still help his partner stand where it chose to stand.
+
+“And I will make sure this will be written in stone for all eternity,” Kura told Magnus.
+
+His voice rose.
+
+“ZERDATA!”
+
+The fox frame stood.
+
+Green and yellow light spiraled outward. Loose fragments trembled across the floor. Zerdata turned its glowing visor toward Kura.
+
+“Kura… I understand now.”
+
+There was no white testing room across the display. No lost connection. Kura heard the words through the same earpiece he had used in their first practice match.
+
+“This is the result of resonance,” Zerdata said. “Mine and yours.”
+
+Magnus’s smile disappeared.
+
+“Smash. Finish it.”
+
+Silverback-Smash charged.
+
+Kura saw the forward arm rise, the weakened knee settling beneath it.
+
+“We have the line,” he said. “Together.”
 
 Zerdata planted its feet.
 
-The energy around its body surged beyond anything seen before.
+Its arms lifted, drawing the light between them. This time, its eyes remained fixed on the opponent in front of it.
 
-> **Zerdata:**
-> “ANIMA LIMIT BREAKER... RESONANCE MODE!”
+“ANIMA LIMIT BREAKER… RESONANCE MODE!”
 
-At the instant Silverback-Smash struck, Zerdata released all of its energy at once.
+Silverback-Smash’s fist came down.
 
-A colossal beam of Anima light erupted from Zerdata, swallowing the battlefield.
+Zerdata released the beam.
 
-The impact blasted Silverback-Smash backward with catastrophic force, tearing through Magnus's defenses and engulfing the executive chamber in blinding radiance.
+Green and gold swallowed the charging frame. Its raised guard tore backward. The damaged knee collapsed under the force, and the massive body lifted from the floor.
 
-### Chapter 12.14 - The Last Confession
+The impact carried it across the chamber into the reinforced outer wall. Armor broke away in bright fragments. The command station behind Magnus burst into white sparks as the edge of the discharge tore through its defenses.
 
-> Magnus: "Impossible... this power..."
->
-> "Not from the chip alone..."
->
-> Kura: "No."
->
-> "From trust."
->
-> Magnus looks at Kura, recognizing the same determination he once saw in Ty Ato.
->
-> Magnus: "Your father said something similar... before he died."
->
-> Kura freezes.
->
-> Kura: "What did you say?"
->
-> Magnus: "That stubborn fool. I offered him everything. Money, protection, a laboratory without restrictions."
->
-> "All I wanted was the location of that chip."
->
-> Kura: "WHAT DID YOU DO TO HIM?!"
->
-> Magnus: "I made sure he was taken care of."
->
-> Kura: "You...!"
->
-> Silence fills the ruined chamber.
->
-> Magnus: "He should have told me where that damned chip was."
+Magnus fell beneath the collapsing shield of his console.
 
-Kura realizes that Ty's final words referred to the decision to entrust Vulpes to him.
+The beam continued for one terrible heartbeat.
 
-For years, Kura had wondered why his father had left the chip and chassis behind.
+“Clear,” Kura said. “Zerdata, it’s clear.”
 
-Now he finally understands.
+The light narrowed.
 
-Ty had already placed his faith in Kura before his own disappearance.
+Then it stopped.
 
-### Chapter 12.15 - Raya
+Kura staggered against the platform rail as the pressure left the room. Beyond the shattered interior panels, the outer structure held. Emergency shutters began lowering across the damaged windows.
 
-Raya reaches the top floor.
+Zerdata stood with its hands still raised.
 
-She sees the damaged Zerdata.
+“Kura?”
 
-Kura tells her they defeated Magnus - "Mom, he is finished!".
+“Here.”
 
-Kura explains what Magnus confessed and what the recovered evidence confirmed. Raya finally learns that Ty died protecting Vulpes Zerda and refusing to reveal the location of the other Ancient chips.
+Its arms lowered.
 
-She understands that the note Ty left for Kura was also an expression of his final hopes.
+“I heard you.”
 
-EPILOGUE
+Kura crossed the broken floor and caught its shoulder as its good leg began to shake.
 
-> Raya: "All these years... I kept wondering why he never came home."
->
-> Kura: "He tried to protect them, Mom. All of them."
->
-> Raya looks toward Zerdata.
->
-> Raya: "He always believed that AniBots were more than machines."
->
-> Kura lowers his head.
->
-> Kura: "I wish he could have seen what we accomplished."
->
-> Raya places a hand on his shoulder.
->
-> Raya: "I think he would have been very proud."
+“I know.”
 
+## 10. What Magnus Said
 
+Silverback-Smash lay against the far wall, its optics dark.
 
-### Chapter 12.16 - Ty
+Magnus pulled himself free of a broken panel. Blood marked the side of his face. He stared at Zerdata, unable for a moment to shape the anger into words.
 
-Kura and Raya to finally recover Ty's remains and arrange a memorial in District 4.
+“Impossible,” he said at last. “This power…”
 
-The ceremony should include Luk, Isabell, Master Jax, Dr. Thorne, and the three Primordials.
+Kura kept one hand against Zerdata’s back.
 
-Agon, Biggon and Cygon have a particular reason to attend: Ty was their friend, not merely a scientist helping them.
+“Not from the chip alone,” Magnus muttered.
 
-Zerdata stands beside Kura.
+“No,” Kura said. “From trust.”
 
-For the first time, the Ancient chip can honor the man who gave it a new body and a family.
+Magnus looked at him then, properly, as if something in the boy’s face had become familiar.
 
-A fitting inscription would be:
+“Your father said something similar before he died.”
 
-> ## TY ATO
->
-> Engineer · Researcher · Father
->
-> "He believed that life deserved freedom, no matter the form it took."
->
-> Remembered by those he protected.
+Kura froze.
 
-### Chapter 12.17  - The Return
+The failing consoles crackled behind them.
 
-Some time after Magnus's defeat.
+“What did you say?”
 
-District 4 is calm again.
+Magnus pushed himself upright against the ruined station.
 
-The Ato Family Workshop is alive once more.
+“That stubborn fool. I offered him everything. Money. Protection. A laboratory without restrictions.”
 
-Kura is at work inside the shop, repairing parts at the workbench. Zerdata is nearby, helping as usual.
+Kura’s hand fell from Zerdata’s shoulder.
 
-The mood is peaceful, ordinary - almost like life has finally begun to heal.
+“All I wanted was the location of that chip.”
 
-Kura is facing the workbench with his back to the door.
+“What did you do to him?”
 
-The shop bell rings softly.
+Magnus looked toward Silverback-Smash, then back at the open lift.
 
-A man steps into the doorway.
+“I made sure he was taken care of.”
 
-Beside him stands an AniBot.
+“WHAT DID YOU DO TO HIM?”
 
-Zerdata pauses.
+Kura took a step forward.
 
-Its visor flickers.
+Zerdata’s hand closed gently around his wrist.
 
-Then it says, quietly:
+He stopped, shaking.
 
-> **Zerdata:** “...Ty?”
+Magnus’s mouth twisted.
 
-Kura freezes.
+“He should have told me where that damned chip was. Or where the others were waiting.”
 
-Slowly, he turns around.
+The words settled into the gap after Ty’s last entry.
 
-He sees the man standing there.
+*I have made my decision.*
 
-His eyes widen.
+Kura had understood the protection on the ship. Now he heard what refusing to undo that decision had cost.
 
-> **Kura:** “...Dad?”
+He could not speak.
 
+Cygon’s voice broke through the link.
 
+“Kura. The executive authorization has failed. We have the district controls.”
 
-THE END
+Thorne spoke behind it. “Are you hurt?”
 
+Kura looked at Magnus.
 
+“He knew Dad.”
 
-**Arc ending:** The group turns its attention toward Aegis Headquarters, where Magnus is believed to be directing the occupation.
+The silence at the other end changed.
 
-**Final continuity rule:** Until this last scene, every character-including Magnus, Kura, Raya, and Dr. Thorne - believes Ty Ato died in 3043. The audience discovers the truth at the same moment as Kura.
+“Keep the recording,” Kura said. “All of it.”
 
+He stepped back beside Zerdata.
+
+Magnus tried to reach the remaining console. A lock engaged across its controls before his hand touched them.
+
+Cygon’s voice sounded from the chamber speakers.
+
+“Your orders are no longer being accepted.”
+
+Below them, doors began opening.
+
+## 11. The People Who Reached Him
+
+Luk arrived first, Kabuto-Horn’s guard hanging crookedly beside him.
+
+He stopped at the sight of the chamber.
+
+“Kura?”
+
+Kura turned.
+
+Luk crossed the room and gripped his shoulders. He looked at Zerdata, at the dark giant against the wall, then back at his friend.
+
+“You finished it.”
+
+Kura tried to answer and found he could only nod.
+
+Isabell followed with Swan-Grace. One sleeve of her jacket was torn. She went straight to Kura and held him, careful of the damaged AniBot leaning beside him.
+
+He bowed his head against her shoulder.
+
+No one teased them.
+
+The lift opened again. Raya stepped out with Jax and two of the people helping secure the upper floors.
+
+Her eyes found Kura first, then Zerdata.
+
+“Mom,” he said. “He’s finished.”
+
+She reached him as the words broke.
+
+Kura told her what Magnus had said. He could not tell it smoothly. Luk helped when he stopped, and Cygon preserved the recording while Thorne made his way up from the command room.
+
+Raya listened with one hand against Kura’s cheek.
+
+When he finished, she looked toward Magnus.
+
+He had no offer for her. No explanation that could return the years.
+
+She turned back to her son.
+
+“All these years,” she said, “I kept wondering why he never came home.”
+
+“He tried to protect them, Mom. All of them.”
+
+Raya looked at Zerdata.
+
+“He always believed that AniBots were more than machines.”
+
+Kura lowered his head.
+
+“I wish he could have seen what we accomplished.”
+
+She put her hand on his shoulder.
+
+“I think he would have been very proud.”
+
+Outside the chamber, footsteps filled the corridor. The lower-level volunteers had found the detained residents. Anda’s updates named people one by one as they reached the lobby and their families.
+
+Mara’s brother was among them.
+
+Thorne arrived with Holy-Vanguard. Agon and Biggon followed after the final heavy security units powered down. Cygon came last, leaving the restored controls in the hands of personnel who had been locked out under Magnus’s orders.
+
+When the district authorities reached the executive level, the evidence was waiting: the seized command records, the detention orders, the freight investigation, and Magnus’s recorded confession.
+
+He was taken from the chamber without Silverback-Smash.
+
+Kura watched until the lift closed.
+
+Then he sat beside Zerdata on the broken platform step and let the others come to them.
+
+## 12. Ty Ato
+
+The days afterward did not pass cleanly.
+
+There were statements to give, people still to locate, and machines that needed repair before they could help rebuild the streets. Aegis staff worked with the authorities to remove Magnus’s orders from the remaining systems. The checkpoints came down a section at a time.
+
+Raya kept the workshop open for the neighbors coming to ask about one another.
+
+Kura and Jax repaired Zerdata together.
+
+The damage was considerable. The energy release had left stressed supports and scorched channels beneath the armor. Zerdata could remember every part of the fight, including the moment Kura asked it to stop.
+
+Neither Thorne nor Cygon called that a complete explanation.
+
+For now, it was enough that Zerdata could tell them what it had experienced.
+
+The investigation followed Magnus’s records beyond the tower. A recovery team brought back remains identified in the recovered documentation as Ty Ato’s. The family received his effects and the account of what the investigators had found.
+
+For Raya and Kura, the waiting ended there.
+
+They arranged the memorial in District 4, near the canal path where Ty had once walked home from the workshop.
+
+Luk stood beside Isabell. Anda came without his cap. Jax held a small worn wrench until it was time to place it among Ty’s effects.
+
+Sammy, Spy, and Slow stood with the neighborhood handlers. Spy did not bring his speaker.
+
+Thorne spoke briefly about the engineer he had known. Agon spoke about a promise kept. Biggon placed one broad hand against the memorial stone, and Cygon remained beside it long after the words were finished.
+
+Ty had been their friend.
+
+Zerdata stood beside Kura.
+
+“He asked me what I could hear,” it said when Raya invited it to speak. “Before I had ears. Before I had a voice he could understand easily. He kept asking until the equipment was good enough to let me answer.”
+
+Its optics turned toward the inscription.
+
+“I wish I could tell him what I can hear now.”
+
+Kura took its hand.
+
+The stone read:
+
+**TY ATO**  
+Engineer · Researcher · Father
+
+*He believed that life deserved freedom, no matter the form it took.*
+
+*Remembered by those he protected.*
+
+After the ceremony, people stayed. They shared food, carried chairs, and told Raya stories she had heard before and a few she had not. The canal lights came on while they were still talking.
+
+Kura sat beside his mother until she was ready to leave.
+
+## 13. The Bell
+
+Some time later, the workshop sounded ordinary again.
+
+A courier drone clicked beneath Kura’s wrench. The parts shelf had acquired three new labels in Isabell’s handwriting. Luk had left a training schedule on the counter with the next match circled twice. Anda had corrected one of the dates and written a complaint beside it.
+
+Raya was in the back office, speaking to a customer about collection times.
+
+Outside, someone laughed beside the canal. The tram passed overhead. At the far end of the street, Slow helped a child lift a practice bot onto a trolley while Sammy argued with Spy about which direction it was supposed to turn.
+
+Zerdata stood beside the bench, holding a clean stabilizer assembly.
+
+“The left bearing,” it said.
+
+“I know.”
+
+“You are tightening the right one.”
+
+Kura looked down.
+
+“I’m checking it first.”
+
+“Of course.”
+
+He smiled and reached for the correct tool.
+
+The workshop bell rang softly behind him.
+
+A man stepped into the doorway.
+
+Beside him stood an AniBot.
+
+Zerdata stopped moving.
+
+Its visor flickered.
+
+Then it spoke, quietly.
+
+“…Ty?”
+
+Kura froze with his back to the door.
+
+Slowly, he turned.
+
+He saw the man standing there.
+
+His eyes widened.
+
+“…Dad?”
+
+**THE END**
