@@ -707,9 +707,7 @@ Kura saw it and caught his breath.
 
 The answer came immediately.
 
-Yellow edged the green. The light spread through the harmonic supports, steady where the arena glow had surged without control.
-
-Kura lowered his voice.
+Yellow edged the green. The light spread through the harmonic supports, faint at first, pulsing around the recessed cartridge between its shoulders.
 
 “Stay with me.”
 
@@ -719,7 +717,7 @@ Silverback-Smash shifted its weight. The damaged knee clicked beneath its armor.
 
 Zerdata heard it too.
 
-Its claw found purchase against the floor. It raised its torso, then brought the good leg underneath it. Kura watched every movement. He could not make the power happen. He could still help his partner stand where it chose to stand.
+Its claw found purchase against the floor. It raised its torso, then brought the good leg underneath it. The damaged hip trembled under the load.
 
 “And I will make sure this will be written in stone for all eternity,” Kura told Magnus.
 
@@ -729,27 +727,197 @@ His voice rose.
 
 The fox frame stood.
 
-Green and yellow light spiraled outward. Loose fragments trembled across the floor. Zerdata turned its glowing visor toward Kura.
+Silverback-Smash struck before it had fully straightened.
+
+“Turn with it!” Kura called.
+
+Zerdata caught the fist across its damaged guard and pivoted. The plate tore loose. The blow still drove it sideways, but this time its feet held long enough to answer.
+
+Its Resonant Strike Claw struck Silverback-Smash beneath the forward shoulder.
+
+The heavy frame rocked back a step.
+
+Magnus’s eyes narrowed.
+
+“Again.”
+
+Silverback-Smash drove forward with both arms. Zerdata slipped the first blow and met the second with its forearm. Metal rang through the chamber. Green-yellow light brightened around the contact, then traveled back along Zerdata’s arm toward its chest.
+
+“Low, on the turn!”
+
+Zerdata followed Kura’s call. Its claw hit the damaged knee housing. Silverback-Smash buckled, caught itself on one knuckle, and swung the other arm across the narrow space.
+
+The fist caught Zerdata in the ribs.
+
+A pale armor panel split. Zerdata skidded across the floor, leaving two bright grooves behind its heels.
+
+Kura’s display flashed red.
+
+“Torso mount damage. Zerdata, give it space!”
+
+Zerdata retreated as the next fist broke the floor in front of it. Its left arm hung lower now. Through the opened side panel, Kura could see the vibration of a stressed support.
+
+The light had grown brighter.
+
+The damage had not gone away.
+
+“Your hip is failing,” he said.
+
+“I know.”
+
+“We can fall back toward the lift.”
+
+Zerdata glanced toward the doors. Beyond them, Luk was still holding the corridor. Farther below, their friends were opening the rooms where Magnus had put their neighbors.
+
+“I want to continue,” it said. “With you. But I cannot take that strike again.”
+
+Kura forced himself to look at the whole chamber instead of the broken armor. Silverback-Smash was carrying more weight on its good leg. Its forward shoulder no longer settled smoothly after each swing.
+
+“All right. No more meeting it head-on. We make it turn toward the damaged knee.”
+
+Zerdata lowered its stance.
+
+“With you.”
+
+They moved together.
+
+Silverback-Smash followed the first feint, caught the second, and clipped Zerdata’s shoulder as it passed. Zerdata answered with a short sonic pulse into the joint it had just struck. The brawler’s arm jerked away from its body.
+
+For an instant, Kura saw its exposed side.
+
+“Claw!”
+
+Zerdata hit, then moved before the returning gauntlet could trap it.
+
+The green and yellow radiance spread farther down its legs. Light shone through the cracks in the orange armor and along the damaged forearm. Every movement carried a brighter pulse.
+
+Magnus looked at Kura’s warning-filled display.
+
+“You’re ruining it.”
+
+Kura kept his attention on Zerdata.
+
+“Back two steps.”
+
+Zerdata obeyed.
+
+“It’s an old machine,” Magnus continued. “It breaks, you replace it. You could have spared yourself all this trouble.”
+
+Kura turned toward him.
+
+“You think another machine would be Zerdata?”
+
+“I think every bot is replaceable.”
+
+Silverback-Smash’s damaged shoulder sagged. Its head turned slightly toward its Handler.
+
+“Left assembly compromised,” it reported.
+
+“Then use the right. Keep attacking.”
+
+Magnus did not look at the damaged arm.
+
+Kura felt anger rise through the fear.
+
+“All the time it’s spent with you,” he said. “Every battle. Every time it’s followed you into danger. Does any of that matter to you?”
+
+“It matters whether it wins.”
+
+Zerdata’s fingers tightened.
+
+Its voice came low and sharp.
+
+“You can replace an arm. You cannot replace someone who remembers standing beside you.”
+
+Silverback-Smash advanced. Zerdata moved to meet it, then checked the rush before it could carry it inside the gauntlet’s reach.
+
+Kura heard the change in its breathing fans.
+
+“Zerdata.”
+
+“I’m listening.”
+
+The anger remained. So did Kura’s voice.
+
+Zerdata waited for the fist, stepped outside it, and struck the weakened shoulder again. Silverback-Smash turned through the hit and drove its other gauntlet down.
+
+“Clear!”
+
+Zerdata leaped back. The floor burst between them.
+
+As the fragments settled, its memory offered something quieter than the room around it.
+
+Kura at the first workbench, taking his hands away when a memory scan hurt.
+
+Luk calling an end to a practice match so everyone could check their partners.
+
+Isabell staying late over a diagram. Raya bringing food. Jax refusing to let a strained joint pass inspection.
+
+Those memories did not pull Zerdata away from the chamber. They belonged beside what it was hearing now.
+
+Kura was still watching its damaged hip. Still leaving room for it to answer.
+
+Below them, people were fighting to bring their neighbors home.
+
+They had never reached this room by fighting only for themselves.
+
+“Kura,” Zerdata said.
+
+“I hear you.”
+
+“When you rebuilt me… you weren’t trying to make another machine.”
+
+“No. I wanted you back.”
+
+The pulse beneath the cartridge deepened.
+
+Zerdata felt it travel beyond the core housing, through the harmonic channels Ty had designed and the supports Kura had rebuilt. Its frame had always carried the core’s responses. Now Anima itself flowed outward with them, reaching into its arms, its torso, its trembling legs.
+
+The broken supports remained broken. It could feel their limits more clearly than before.
+
+But it could also feel the power reaching them.
+
+The light grew stronger.
+
+“This is why it comes,” Zerdata said. “The power.”
+
+Kura watched the radiance gather around its hands.
+
+“Zerdata?”
+
+“The memories. What we’ve built together. I’m not carrying them alone.”
+
+Its head turned toward the lift, then back to Kura.
+
+“We came for them. Your mother. Our friends. Everyone downstairs.”
+
+Kura nodded, his throat tight.
+
+“We get them home.”
+
+“Together.”
+
+Green and yellow light spiraled outward. Loose fragments trembled across the floor. Zerdata raised its damaged arm, slowly enough to keep the failing mount aligned.
 
 “Kura… I understand now.”
 
-There was no white testing room across the display. No lost connection. Kura heard the words through the same earpiece he had used in their first practice match.
+There was no white testing room across the display. No lost connection. Kura heard every word through the same earpiece he had used in their first practice match.
 
-“This is the result of resonance,” Zerdata said. “Mine and yours.”
+“This is the result of resonance,” Zerdata said. “Mine and yours. The Anima is flowing from my core into my body.”
 
-Magnus’s smile disappeared.
+Magnus stepped back toward the command station.
 
-“Smash. Finish it.”
+“Smash. Finish it!”
 
 Silverback-Smash charged.
 
-Kura saw the forward arm rise, the weakened knee settling beneath it.
+Kura saw the forward arm rise, the weakened knee settling beneath it. He knew the turn. They had worked for that opening through every exchange.
 
 “We have the line,” he said. “Together.”
 
 Zerdata planted its feet.
 
-Its arms lifted, drawing the light between them. This time, its eyes remained fixed on the opponent in front of it.
+Its arms lifted, drawing the light between them. Its eyes remained fixed on the opponent in front of it.
 
 “ANIMA LIMIT BREAKER… RESONANCE MODE!”
 
@@ -779,7 +947,7 @@ Zerdata stood with its hands still raised.
 
 “Here.”
 
-Its arms lowered.
+Its arms lowered. The light faded from the broken panels, revealing the strained supports beneath them.
 
 “I heard you.”
 
