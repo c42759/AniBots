@@ -3814,9 +3814,9 @@
     "series": "PRIMAL",
     "archetype": "Apex Prowler Striker",
     "description": "Aggressive predatory frame designed with hyper-torque claw actuators and low-profile stalker springs for deadly ambush strikes.",
-    "preferred_chip": "chip_panthera_uncia",
+    "preferred_chip": "chip_berserker",
     "affinity": "MELEE",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Panthera Uncia Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Berserker Chip",
     "image": "/images/anibots/TGR-01.jpg",
     "parts": {
       "head": {
@@ -4304,9 +4304,9 @@
     "series": "PRIMAL",
     "archetype": "High-Altitude Dive Interceptor",
     "description": "Aerodynamic carbon-composite frame equipped with vector-glide wing verniers and telescopic avian targeting arrays for lethal diving strikes.",
-    "preferred_chip": "chip_harpia_harpyja",
+    "preferred_chip": "chip_pegasus",
     "affinity": "PRECISION",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Harpia Harpyja Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Pegasus Chip",
     "image": "/images/anibots/EAG-01.jpg",
     "parts": {
       "head": {
@@ -6257,9 +6257,9 @@
     "series": "PRIMAL",
     "archetype": "Plugtail Skirmisher",
     "description": "Volt-Pouncer (TGR-09 / ELX-01) is a fast, playful skirmisher from the Neutral Series. It uses rapid pounces, electric discharge, and disruptive feints to overwhelm opponents. Always in motion, it turns the battlefield into a playground, striking before the enemy can react.",
-    "preferred_chip": "chip_acinonyx_jubatus",
+    "preferred_chip": "chip_spark",
     "affinity": "SPEED",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Acinonyx Jubatus Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Spark Chip",
     "image": "/images/anibots/TGR-09.jpg",
     "parts": {
       "head": {
@@ -6563,9 +6563,9 @@
     "series": "PRIMAL",
     "archetype": "Apex Prowler Striker",
     "description": "High-precision predator unit engineered with ultra-light articulated spine metallurgy, high-frequency shredder sabre claws, and thermographic hunting optics.",
-    "preferred_chip": "chip_panthera_uncia",
+    "preferred_chip": "chip_berserker",
     "affinity": "MELEE",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Panthera Uncia Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Berserker Chip",
     "image": "/images/anibots/TGR-05.jpg",
     "parts": {
       "head": {
@@ -6663,9 +6663,9 @@
     "series": "PRIMAL",
     "archetype": "Apex Prowler Striker",
     "description": "High-precision predator frame featuring reinforced dual sabre claw gauntlets, an articulated apex spine, and an enhanced low-visibility thermographic scanner.",
-    "preferred_chip": "chip_panthera_uncia",
+    "preferred_chip": "chip_berserker",
     "affinity": "MELEE",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Panthera Uncia Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Berserker Chip",
     "image": "/images/anibots/TGR-02.jpg",
     "parts": {
       "head": {

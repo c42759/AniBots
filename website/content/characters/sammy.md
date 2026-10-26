@@ -32,7 +32,7 @@ Aggressive, energetic, confident, and domineering. Sammy is a district bully who
 
 ## Partner Machine: Volt-Pouncer
 - **Chassis**: `anibot_volt_pouncer` (Primal Series `TGR-09`)
-- **Core Chip**: `chip_acinonyx_jubatus` (Ancient Series Speed Core)
+- **Core Chip**: `chip_spark` (Kinetic Series Spark Core)
 - **Combat Style**: Rapid pouncing acrobatics, high-voltage electric discharges, and disruptive Plugtail feints.
 
 ![Sammy and Volt-Pouncer](/images/characters/sammy_n_voltpouncer.jpg)
