@@ -94,7 +94,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/RON-01_avatar.jpg"
+    "avatar": "/images/anibots/RON-01_avatar.jpg",
+    "height": 108
   },
   {
     "id": "anibot_wyrm_paladin",
@@ -192,7 +193,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/DGN-01_avatar.jpg"
+    "avatar": "/images/anibots/DGN-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_black_beard",
@@ -291,7 +293,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CSR-01_avatar.jpg"
+    "avatar": "/images/anibots/CSR-01_avatar.jpg",
+    "height": 114
   },
   {
     "id": "anibot_aegis_wall",
@@ -388,7 +391,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PLX-01_avatar.jpg"
+    "avatar": "/images/anibots/PLX-01_avatar.jpg",
+    "height": 115
   },
   {
     "id": "anibot_genesis_1",
@@ -486,7 +490,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GEN-01_avatar.jpg"
+    "avatar": "/images/anibots/GEN-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_peacemaker_6",
@@ -583,7 +588,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GSL-01_avatar.jpg"
+    "avatar": "/images/anibots/GSL-01_avatar.jpg",
+    "height": 107
   },
   {
     "id": "anibot_valhalla_fury",
@@ -680,7 +686,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BSK-01_avatar.jpg"
+    "avatar": "/images/anibots/BSK-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_holy_vanguard",
@@ -778,7 +785,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TMP-01_avatar.jpg"
+    "avatar": "/images/anibots/TMP-01_avatar.jpg",
+    "height": 115
   },
   {
     "id": "anibot_hawkeye_scout",
@@ -875,7 +883,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/RNG-01_avatar.jpg"
+    "avatar": "/images/anibots/RNG-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_colosseum_king",
@@ -972,7 +981,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GLD-01_avatar.jpg"
+    "avatar": "/images/anibots/GLD-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_symphony_prime",
@@ -1069,7 +1079,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BRD-01_avatar.jpg"
+    "avatar": "/images/anibots/BRD-01_avatar.jpg",
+    "height": 106
   },
   {
     "id": "anibot_shadow_fang",
@@ -1165,7 +1176,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SHN-01_avatar.jpg"
+    "avatar": "/images/anibots/SHN-01_avatar.jpg",
+    "height": 102
   },
   {
     "id": "anibot_circuit_breaker",
@@ -1261,7 +1273,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CKT-01_avatar.jpg"
+    "avatar": "/images/anibots/CKT-01_avatar.jpg",
+    "height": 105
   },
   {
     "id": "anibot_inferno_gorgon",
@@ -1359,7 +1372,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/MGM-01_avatar.jpg"
+    "avatar": "/images/anibots/MGM-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_glacier_zero",
@@ -1455,7 +1469,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/FRS-01_avatar.jpg"
+    "avatar": "/images/anibots/FRS-01_avatar.jpg",
+    "height": 88
   },
   {
     "id": "anibot_zephyr_storm",
@@ -1551,7 +1566,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GAL-01_avatar.jpg"
+    "avatar": "/images/anibots/GAL-01_avatar.jpg",
+    "height": 82
   },
   {
     "id": "anibot_goliath_titan",
@@ -1650,7 +1666,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TER-01_avatar.jpg"
+    "avatar": "/images/anibots/TER-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_tide_crusher",
@@ -1746,7 +1763,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TOR-01_avatar.jpg"
+    "avatar": "/images/anibots/TOR-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_bio_hazard",
@@ -1842,7 +1860,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CRS-01_avatar.jpg"
+    "avatar": "/images/anibots/CRS-01_avatar.jpg",
+    "height": 100
   },
   {
     "id": "anibot_lumen_ray",
@@ -1939,7 +1958,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PHT-01_avatar.jpg"
+    "avatar": "/images/anibots/PHT-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_singularity_core",
@@ -2035,7 +2055,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/VOI-01_avatar.jpg"
+    "avatar": "/images/anibots/VOI-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_decibel_crash",
@@ -2131,7 +2152,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SNC-01_avatar.jpg"
+    "avatar": "/images/anibots/SNC-01_avatar.jpg",
+    "height": 109
   },
   {
     "id": "anibot_solar_flare",
@@ -2227,7 +2249,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PLS-01_avatar.jpg"
+    "avatar": "/images/anibots/PLS-01_avatar.jpg",
+    "height": 85
   },
   {
     "id": "anibot_gaia_protector",
@@ -2325,7 +2348,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/FLR-01_avatar.jpg"
+    "avatar": "/images/anibots/FLR-01_avatar.jpg",
+    "height": 113
   },
   {
     "id": "anibot_nova_seeker",
@@ -2421,7 +2445,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/NOV-01_avatar.jpg"
+    "avatar": "/images/anibots/NOV-01_avatar.jpg",
+    "height": 78
   },
   {
     "id": "anibot_castor_pollux",
@@ -2517,7 +2542,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GEM-01_avatar.jpg"
+    "avatar": "/images/anibots/GEM-01_avatar.jpg",
+    "height": 106
   },
   {
     "id": "anibot_ursa_major",
@@ -2614,7 +2640,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/URS-01_avatar.jpg"
+    "avatar": "/images/anibots/URS-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_regal_lion",
@@ -2710,7 +2737,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/LEO-01_avatar.jpg"
+    "avatar": "/images/anibots/LEO-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_swan_grace",
@@ -2806,7 +2834,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CYG-01_avatar.jpg"
+    "avatar": "/images/anibots/CYG-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_ancient_wyrm",
@@ -2902,7 +2931,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/DRC-01_avatar.jpg"
+    "avatar": "/images/anibots/DRC-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_pegasus_flight",
@@ -2998,7 +3028,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PEG-01_avatar.jpg"
+    "avatar": "/images/anibots/PEG-01_avatar.jpg",
+    "height": 94
   },
   {
     "id": "anibot_venom_stinger",
@@ -3094,7 +3125,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SCP-01_avatar.jpg"
+    "avatar": "/images/anibots/SCP-01_avatar.jpg",
+    "height": 104
   },
   {
     "id": "anibot_celestial_harp",
@@ -3190,7 +3222,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/LYR-01_avatar.jpg"
+    "avatar": "/images/anibots/LYR-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_ram_buster",
@@ -3286,7 +3319,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ARI-01_avatar.jpg"
+    "avatar": "/images/anibots/ARI-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_equilibrium_scale",
@@ -3382,7 +3416,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/LIB-01_avatar.jpg"
+    "avatar": "/images/anibots/LIB-01_avatar.jpg",
+    "height": 108
   },
   {
     "id": "anibot_martyr_chains",
@@ -3478,7 +3513,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/AND-01_avatar.jpg"
+    "avatar": "/images/anibots/AND-01_avatar.jpg",
+    "height": 86
   },
   {
     "id": "anibot_iron_jaw",
@@ -3574,7 +3610,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/HYD-01_avatar.jpg"
+    "avatar": "/images/anibots/HYD-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_zerdata",
@@ -3670,7 +3707,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-004_avatar.jpg"
+    "avatar": "/images/anibots/G0-004_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_zerdata_v2",
@@ -3766,7 +3804,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-004-B_avatar.jpg"
+    "avatar": "/images/anibots/G0-004-B_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_tigris_fury",
@@ -3775,9 +3814,9 @@
     "series": "PRIMAL",
     "archetype": "Apex Prowler Striker",
     "description": "Aggressive predatory frame designed with hyper-torque claw actuators and low-profile stalker springs for deadly ambush strikes.",
-    "preferred_chip": "chip_panthera_uncia",
+    "preferred_chip": "chip_berserker",
     "affinity": "MELEE",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Panthera Uncia Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Berserker Chip",
     "image": "/images/anibots/TGR-01.jpg",
     "parts": {
       "head": {
@@ -3863,7 +3902,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TGR-01_avatar.jpg"
+    "avatar": "/images/anibots/TGR-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_serpent_coil",
@@ -3959,7 +3999,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ANA-01_avatar.jpg"
+    "avatar": "/images/anibots/ANA-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_behemoth_tusk",
@@ -3968,9 +4009,9 @@
     "series": "PRIMAL",
     "archetype": "Siege Titan Fortress",
     "description": "Towering ultra-heavy frame plated in reinforced titanium-ceramic hide, wielding dual hydraulic tusks that demolish fortification lines.",
-    "preferred_chip": "chip_biggon",
+    "preferred_chip": "chip_phalanx",
     "affinity": "DEFENSE",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Biggon Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Phalanx Chip",
     "image": "/images/anibots/ELE-01.jpg",
     "parts": {
       "head": {
@@ -4058,7 +4099,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ELE-01_avatar.jpg"
+    "avatar": "/images/anibots/ELE-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_silverback_smash",
@@ -4155,7 +4197,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GOR-01_avatar.jpg"
+    "avatar": "/images/anibots/GOR-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_death_roll",
@@ -4251,7 +4294,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CRK-01_avatar.jpg"
+    "avatar": "/images/anibots/CRK-01_avatar.jpg",
+    "height": 114
   },
   {
     "id": "anibot_sky_raptor",
@@ -4260,9 +4304,9 @@
     "series": "PRIMAL",
     "archetype": "High-Altitude Dive Interceptor",
     "description": "Aerodynamic carbon-composite frame equipped with vector-glide wing verniers and telescopic avian targeting arrays for lethal diving strikes.",
-    "preferred_chip": "chip_harpia_harpyja",
+    "preferred_chip": "chip_pegasus",
     "affinity": "PRECISION",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Harpia Harpyja Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Pegasus Chip",
     "image": "/images/anibots/EAG-01.jpg",
     "parts": {
       "head": {
@@ -4347,7 +4391,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/EAG-01_avatar.jpg"
+    "avatar": "/images/anibots/EAG-01_avatar.jpg",
+    "height": 80
   },
   {
     "id": "anibot_apex_mauler",
@@ -4445,7 +4490,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GRZ-01_avatar.jpg"
+    "avatar": "/images/anibots/GRZ-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_chitin_cutter",
@@ -4543,7 +4589,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ANT-01_avatar.jpg"
+    "avatar": "/images/anibots/ANT-01_avatar.jpg",
+    "height": 101
   },
   {
     "id": "anibot_kabuto_horn",
@@ -4552,9 +4599,9 @@
     "series": "PRIMAL",
     "archetype": "Heavy Vanguard Flipper",
     "description": "Iconic armored coleoptera frame equipped with a pneumatic forward catapult horn designed to uproot and flip enemy center lines.",
-    "preferred_chip": "chip_agon",
+    "preferred_chip": "chip_aries",
     "affinity": "INTERCEPT",
-    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Agon Chip",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Aries Chip",
     "image": "/images/anibots/KBT-01.jpg",
     "parts": {
       "head": {
@@ -4639,7 +4686,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/KBT-01_avatar.jpg"
+    "avatar": "/images/anibots/KBT-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_kuwagata_pincer",
@@ -4735,7 +4783,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/KWG-01_avatar.jpg"
+    "avatar": "/images/anibots/KWG-01_avatar.jpg",
+    "height": 104
   },
   {
     "id": "anibot_razor_tusker",
@@ -4831,7 +4880,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BOA-01_avatar.jpg"
+    "avatar": "/images/anibots/BOA-01_avatar.jpg",
+    "height": 117
   },
   {
     "id": "anibot_gaur_colossus",
@@ -4929,7 +4979,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GAU-01_avatar.jpg"
+    "avatar": "/images/anibots/GAU-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_bone_crusher",
@@ -5025,7 +5076,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/HYN-01_avatar.jpg"
+    "avatar": "/images/anibots/HYN-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_black_death",
@@ -5123,7 +5175,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BUF-01_avatar.jpg"
+    "avatar": "/images/anibots/BUF-01_avatar.jpg",
+    "height": 119
   },
   {
     "id": "anibot_prairie_titan",
@@ -5219,7 +5272,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BSN-01_avatar.jpg"
+    "avatar": "/images/anibots/BSN-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_3m_speed",
@@ -5315,7 +5369,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/OTO-01_avatar.jpg"
+    "avatar": "/images/anibots/OTO-01_avatar.jpg",
+    "height": 105
   },
   {
     "id": "anibot_3m_armor",
@@ -5412,7 +5467,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/OTO-02_avatar.jpg"
+    "avatar": "/images/anibots/OTO-02_avatar.jpg",
+    "height": 119
   },
   {
     "id": "anibot_3m_damage",
@@ -5508,7 +5564,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/OTO-03_avatar.jpg"
+    "avatar": "/images/anibots/OTO-03_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_kogane",
@@ -5605,7 +5662,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-011_avatar.jpg"
+    "avatar": "/images/anibots/G0-011_avatar.jpg",
+    "height": 103
   },
   {
     "id": "anibot_agon",
@@ -5701,7 +5759,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-001_avatar.jpg"
+    "avatar": "/images/anibots/G0-001_avatar.jpg",
+    "height": 117
   },
   {
     "id": "anibot_grave_scarab",
@@ -5797,7 +5856,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SCB-01_avatar.jpg"
+    "avatar": "/images/anibots/SCB-01_avatar.jpg",
+    "height": 113
   },
   {
     "id": "anibot_cygon",
@@ -5893,7 +5953,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-003_avatar.jpg"
+    "avatar": "/images/anibots/G0-003_avatar.jpg",
+    "height": 105
   },
   {
     "id": "anibot_biggon",
@@ -5990,7 +6051,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-002_avatar.jpg"
+    "avatar": "/images/anibots/G0-002_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_apex_nis",
@@ -6087,7 +6149,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/APX-07_avatar.jpg"
+    "avatar": "/images/anibots/APX-07_avatar.jpg",
+    "height": 117
   },
   {
     "id": "anibot_apex_tim",
@@ -6184,6 +6247,513 @@
         ]
       }
     },
-    "avatar": "/images/anibots/APX-08_avatar.jpg"
+    "avatar": "/images/anibots/APX-08_avatar.jpg",
+    "height": 111
+  },
+  {
+    "id": "anibot_volt_pouncer",
+    "model_code": "TGR-09",
+    "name": "Volt-Pouncer",
+    "series": "PRIMAL",
+    "archetype": "Plugtail Skirmisher",
+    "description": "Volt-Pouncer (TGR-09 / ELX-01) is a fast, playful skirmisher from the Neutral Series. It uses rapid pounces, electric discharge, and disruptive feints to overwhelm opponents. Always in motion, it turns the battlefield into a playground, striking before the enemy can react.",
+    "preferred_chip": "chip_spark",
+    "affinity": "SPEED",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Spark Chip",
+    "image": "/images/anibots/TGR-09.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_tgr09_visor",
+        "name": "Spark-Pounce Sensor Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 60,
+        "payload": 0,
+        "precision": 96,
+        "execution_time": 1.0,
+        "latency": 1.4,
+        "weight": 4,
+        "cache": 4,
+        "description": "Streamlined sensor helmet with high-sensitivity ear antennas, tracking electromagnetic surges and anticipating enemy attack vectors.",
+        "affinity": [
+          "SUPPORT",
+          "SPEED"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_tgr09_plugtail",
+        "name": "Plugtail Conductor Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 135,
+        "max_loadout": 28,
+        "firewall": 10,
+        "cooling": 2.8,
+        "description": "Agile skirmisher torso equipped with the signature Plugtail Conductor\u2014a flexible power tail storing and releasing electric energy for attacks, grapples, and disruptive feints.",
+        "affinity": [
+          "DEFENSE",
+          "SPEED"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_tgr09_pounce_claw",
+        "name": "Pounce Claws (L)",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 58,
+        "payload": 36,
+        "precision": 94,
+        "execution_time": 1.1,
+        "latency": 1.5,
+        "weight": 5,
+        "cache": -1,
+        "description": "High-output claw unit with electric charge, built for tearing, deflecting, and delivering shocking melee strikes.",
+        "affinity": [
+          "MELEE",
+          "SPEED"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_tgr09_pounce_claw",
+        "name": "Pounce Claws (R)",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 58,
+        "payload": 36,
+        "precision": 94,
+        "execution_time": 1.1,
+        "latency": 1.5,
+        "weight": 5,
+        "cache": -1,
+        "description": "High-output claw unit with electric charge, built for high-speed slashing feints and stunning electric shock strikes.",
+        "affinity": [
+          "MELEE",
+          "SPEED"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_tgr09_spark_step",
+        "name": "Spark Step Legs",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 90,
+        "clock_speed": 2.2,
+        "direct_connect": 20,
+        "remote_uplink": -4,
+        "packet_loss": 15,
+        "protocol": "BIPEDAL",
+        "description": "Lightweight, high-rebound legs optimized for explosive leaps, rapid directional changes, and high-speed pouncing action.",
+        "affinity": [
+          "MOBILITY",
+          "SPEED"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/TGR-09_avatar.jpg",
+    "height": 115
+  },
+  {
+    "id": "anibot_cyan",
+    "model_code": "PLS-09",
+    "name": "Cyan",
+    "series": "KINETIC",
+    "archetype": "Rapid-Fire Assault Unit",
+    "description": "Cyan (PLS-09 / BLT-01) is a high-mobility ranged assault Anibot built for rapid-fire suppression and precision strikes. Equipped with twin kinetic firearms, Cyan overwhelms targets with sustained bullet barrages, maintaining distance while exploiting openings with high-accuracy fire.",
+    "preferred_chip": "chip_plasma",
+    "affinity": "BURST_DAMAGE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Plasma Chip",
+    "image": "/images/anibots/PLS-09.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_pls09_volt_crest",
+        "name": "Volt Crest Sensor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 55,
+        "payload": 0,
+        "precision": 96,
+        "execution_time": 1.0,
+        "latency": 1.4,
+        "weight": 4,
+        "cache": 4,
+        "description": "Amplifies electrical signals and enhances combat awareness. Streams real-time battle data through a high-sensitivity sensor array.",
+        "affinity": [
+          "SUPPORT",
+          "PRECISION"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_pls09_rapid_assault",
+        "name": "Rapid-Fire Assault Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 85,
+        "max_loadout": 30,
+        "firewall": 10,
+        "cooling": 2.8,
+        "description": "High-mobility Kinetic series chassis featuring integrated recoil compensators, micro-capacitors, and stabilized ammo feeding conduits for sustained firing barrages.",
+        "affinity": [
+          "DEFENSE",
+          "BURST_DAMAGE"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_pls09_shock_baton",
+        "name": "Shock Baton Forearm",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 60,
+        "payload": 38,
+        "precision": 92,
+        "execution_time": 1.2,
+        "latency": 1.6,
+        "weight": 6,
+        "cache": -1,
+        "description": "Reinforced forearm housing with integrated shock dampers and auxiliary ammo storage for sustained engagements.",
+        "affinity": [
+          "MELEE",
+          "SUPPORT"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_pls09_kinetic_rifle",
+        "name": "Kinetic Bullet Rifle",
+        "slot": "RIGHT_ARM",
+        "type": "RANGED",
+        "integrity": 50,
+        "payload": 42,
+        "precision": 95,
+        "execution_time": 1.2,
+        "latency": 1.7,
+        "weight": 7,
+        "cache": -1,
+        "description": "High-velocity kinetic firearm with stabilized recoil control. Capable of rapid-fire bursts and precise single shot targeting.",
+        "affinity": [
+          "SHOOTING",
+          "BURST_DAMAGE"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_pls09_surge_runner",
+        "name": "Surge Runner Legs",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 85,
+        "clock_speed": 2.1,
+        "direct_connect": 18,
+        "remote_uplink": -2,
+        "packet_loss": 16,
+        "protocol": "BIPEDAL",
+        "description": "High-traction runners with reinforced pivot joints and stabilizers for steady aiming and rapid repositioning during ranged combat.",
+        "affinity": [
+          "MOBILITY",
+          "PRECISION"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/PLS-09_avatar.jpg",
+    "height": 115
+  },
+  {
+    "id": "anibot_honey_beam",
+    "model_code": "VOI-08",
+    "name": "Honey-Beam",
+    "series": "KINETIC",
+    "archetype": "Support Cannon Tank",
+    "description": "Honey-Beam (VOI-08 / BZZ-01) is a heavily armored support frame that suppresses enemies with rapid multi-barrel pulses and provides area denial through sticky resin rounds.",
+    "preferred_chip": "chip_void",
+    "affinity": "CONTROL",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Void Chip",
+    "image": "/images/anibots/VOI-08.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_voi08_cowl_visor",
+        "name": "Honey-Cowl Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 70,
+        "payload": 0,
+        "precision": 92,
+        "execution_time": 1.2,
+        "latency": 1.8,
+        "weight": 6,
+        "cache": 4,
+        "description": "Heavy domed cowl helmet with reinforced green optical sensor and twin antenna vents, calibrating multi-barrel targeting trajectories.",
+        "affinity": [
+          "SUPPORT",
+          "CONTROL"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_voi08_skirt_tank",
+        "name": "Reinforced Skirt Frame",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 165,
+        "max_loadout": 34,
+        "firewall": 14,
+        "cooling": 2.2,
+        "description": "Armored bell-skirt tank chassis housing auxiliary resin tanks and stabilized gravitational dampers to absorb heavy pulse recoil.",
+        "affinity": [
+          "DEFENSE",
+          "CONTROL"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_voi08_pulse_cannon",
+        "name": "Resin Pulse Cannon (L)",
+        "slot": "LEFT_ARM",
+        "type": "RANGED",
+        "integrity": 65,
+        "payload": 40,
+        "precision": 90,
+        "execution_time": 1.3,
+        "latency": 1.9,
+        "weight": 8,
+        "cache": -1,
+        "description": "Triple-barrel rotary forearm cannon firing rapid suppressive bursts and sticky resin rounds for area denial.",
+        "affinity": [
+          "SHOOTING",
+          "CONTROL"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_voi08_pulse_cannon",
+        "name": "Resin Pulse Cannon (R)",
+        "slot": "RIGHT_ARM",
+        "type": "RANGED",
+        "integrity": 65,
+        "payload": 40,
+        "precision": 90,
+        "execution_time": 1.3,
+        "latency": 1.9,
+        "weight": 8,
+        "cache": -1,
+        "description": "Triple-barrel rotary forearm cannon delivering high-volume suppressing fire and disruptive kinetic shockwaves.",
+        "affinity": [
+          "SHOOTING",
+          "CONTROL"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_voi08_thruster_pods",
+        "name": "Heavy Thruster Pods",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 120,
+        "clock_speed": 1.7,
+        "direct_connect": 14,
+        "remote_uplink": 2,
+        "packet_loss": 18,
+        "protocol": "BIPEDAL",
+        "description": "Bulbous armored pod legs equipped with high-thrust vectoring nozzles for sustained hover positioning and recoil stability.",
+        "affinity": [
+          "DEFENSE",
+          "MOBILITY"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/VOI-08_avatar.jpg",
+    "height": 115
+  },
+  {
+    "id": "anibot_white_tigris_fury",
+    "model_code": "TGR-05",
+    "name": "White-Tigris-Fury",
+    "series": "PRIMAL",
+    "archetype": "Apex Prowler Striker",
+    "description": "High-precision predator unit engineered with ultra-light articulated spine metallurgy, high-frequency shredder sabre claws, and thermographic hunting optics.",
+    "preferred_chip": "chip_berserker",
+    "affinity": "MELEE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Berserker Chip",
+    "image": "/images/anibots/TGR-05.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_tgr05_tiger_mask",
+        "name": "Tiger-Mask Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 66,
+        "payload": 0,
+        "precision": 96,
+        "execution_time": 1.1,
+        "latency": 1.6,
+        "weight": 5,
+        "cache": 4,
+        "description": "Single-lens predator visor with thermographic scanner analyzing target structural weak points and enhancing tracking under dense combat conditions.",
+        "affinity": [
+          "SUPPORT",
+          "MELEE"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_tgr05_apex_prowlence",
+        "name": "Apex Prowlence Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 155,
+        "max_loadout": 30,
+        "firewall": 10,
+        "cooling": 2.8,
+        "description": "Ultra-light, flexible chassis with articulated spine and reinforced rib plating, engineered for explosive agility, torque generation, and lethal precision.",
+        "affinity": [
+          "DEFENSE",
+          "MELEE"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_tgr05_vicious_sabre",
+        "name": "Vicious Sabre Claws",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 62,
+        "payload": 42,
+        "precision": 94,
+        "execution_time": 1.2,
+        "latency": 1.7,
+        "weight": 6,
+        "cache": -1,
+        "description": "High-frequency curved composite sabre claws engineered for shredding heavy armor plating with maximum cutting efficiency.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_tgr05_dual_claw_gauntlet",
+        "name": "Dual Claw Gauntlet",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 58,
+        "payload": 38,
+        "precision": 95,
+        "execution_time": 1.0,
+        "latency": 1.5,
+        "weight": 5,
+        "cache": -1,
+        "description": "High-velocity striking gauntlets optimized for lightning rapid jabs, parries, and lethal finishing strikes.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_tgr05_stalker_prowlers",
+        "name": "Stalker Prowlers",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 95,
+        "clock_speed": 2.1,
+        "direct_connect": 20,
+        "remote_uplink": -6,
+        "packet_loss": 20,
+        "protocol": "BIPEDAL",
+        "description": "Digitigrade stalker legs with carbon spring-linkages and silent, high-traction paws built for explosive forward dashes and agile maneuvers.",
+        "affinity": [
+          "MOBILITY",
+          "MELEE"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/TGR-05_avatar.jpg",
+    "height": 114
+  },
+  {
+    "id": "anibot_panthera_tigris",
+    "model_code": "TGR-02",
+    "name": "Panthera-Tigris",
+    "series": "PRIMAL",
+    "archetype": "Apex Prowler Striker",
+    "description": "High-precision predator frame featuring reinforced dual sabre claw gauntlets, an articulated apex spine, and an enhanced low-visibility thermographic scanner.",
+    "preferred_chip": "chip_berserker",
+    "affinity": "MELEE",
+    "affinity_synergy_bonus": "+10% boost to all stats when equipped with Berserker Chip",
+    "image": "/images/anibots/TGR-02.jpg",
+    "parts": {
+      "head": {
+        "id": "part_head_tgr02_tiger_mask",
+        "name": "Tiger-Mask Visor",
+        "slot": "HEAD",
+        "type": "SUPPORT",
+        "integrity": 62,
+        "payload": 0,
+        "precision": 95,
+        "execution_time": 1.2,
+        "latency": 1.7,
+        "weight": 5,
+        "cache": 3,
+        "description": "Thermographic predator scanner with enhanced low-visibility target acquisition analyzing structural seam weaknesses.",
+        "affinity": [
+          "SUPPORT",
+          "MELEE"
+        ]
+      },
+      "torso": {
+        "id": "part_torso_tgr02_apex_prowlence",
+        "name": "Apex Prowlence Chassis",
+        "slot": "TORSO",
+        "type": "CHASSIS",
+        "integrity": 144,
+        "max_loadout": 29,
+        "firewall": 8,
+        "cooling": 2.7,
+        "description": "Ultra-light, flexible chassis with articulated spine engineered for explosive agility and lethal strike precision.",
+        "affinity": [
+          "DEFENSE",
+          "MELEE"
+        ]
+      },
+      "left_arm": {
+        "id": "part_arm_l_tgr02_dual_sabre",
+        "name": "Dual Sabre Claws",
+        "slot": "LEFT_ARM",
+        "type": "MELEE",
+        "integrity": 57,
+        "payload": 39,
+        "precision": 93,
+        "execution_time": 1.3,
+        "latency": 1.8,
+        "weight": 6,
+        "cache": -1,
+        "description": "Twin high-frequency sabre claws built for maximum cutting efficiency and versatile close-quarters combat.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "right_arm": {
+        "id": "part_arm_r_tgr02_reinforced_claw",
+        "name": "Reinforced Claw Gauntlet",
+        "slot": "RIGHT_ARM",
+        "type": "MELEE",
+        "integrity": 54,
+        "payload": 35,
+        "precision": 94,
+        "execution_time": 1.1,
+        "latency": 1.7,
+        "weight": 5,
+        "cache": -1,
+        "description": "Heavy-duty striking gauntlet with dual sabre claws optimized for high-impact slashing and grappling strikes.",
+        "affinity": [
+          "MELEE"
+        ]
+      },
+      "legs": {
+        "id": "part_legs_tgr02_stalker_prowlers",
+        "name": "Stalker Prowlers",
+        "slot": "LEGS",
+        "type": "LEGS",
+        "integrity": 87,
+        "clock_speed": 2.03,
+        "direct_connect": 19,
+        "remote_uplink": -8,
+        "packet_loss": 23,
+        "protocol": "BIPEDAL",
+        "description": "Digitigrade stalker legs with carbon spring-linkage and silent, high-traction paws for explosive dashes and agile maneuvers.",
+        "affinity": [
+          "MOBILITY",
+          "MELEE"
+        ]
+      }
+    },
+    "avatar": "/images/anibots/TGR-02_avatar.jpg",
+    "height": 114
   }
 ]

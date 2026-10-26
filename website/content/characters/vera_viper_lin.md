@@ -6,7 +6,7 @@ role: Anode Group Lieutenant & Badlands Enforcer
 age: 24
 location: The Pit Arena (Rust-Ridge Badlands)
 partner_bot: Serpent-Coil (ANA-01)
-partner_chip: Corrosive (SER-K)
+partner_chip: Corrosive
 avatar: /images/characters/vera_viper_lin_avatar.jpg
 quote: "You think your shiny city rules matter in The Pit? Let's see your machine breathe in my acid."
 order: 8

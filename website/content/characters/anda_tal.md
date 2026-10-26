@@ -6,7 +6,7 @@ role: "Student Only; Kura Ato's Academic & Peer Rival"
 age: 16
 location: Neo Metropolis (District 2 Academic Sector)
 partner_bot: Ancient-Wyrm (DRC-01)
-partner_chip: Draco (SER-S)
+partner_chip: Draco
 avatar: /images/characters/anda_tal_avatar.jpg
 quote: "I'm not here to be friends. I'm here to be ahead."
 tagline: Always one step ahead.

@@ -5,7 +5,7 @@ role: Aegis Corp Prodigy Handler
 age: 17
 location: Aegis High-Spire (District 1)
 partner_bot: Genesis-1 (GEN-01)
-partner_chip: Artificer (SER-A)
+partner_chip: Artificer
 avatar: /images/characters/soren_vance_avatar.jpg
 quote: Scrap merchants belong in the gutter, not on the podium of the World Cup.
 order: 11

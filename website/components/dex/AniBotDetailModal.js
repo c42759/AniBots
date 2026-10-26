@@ -81,7 +81,7 @@ export const AniBotDetailModal = ({ bot, onClose, onSelectChip }) => {
                 {bot.name}
               </h2>
               <p className="text-xs font-mono text-muted uppercase tracking-wider">
-                {bot.series} SERIES // {bot.affinity} AFFINITY
+                {bot.series} SERIES // {bot.affinity} AFFINITY{bot.height ? ` // ${bot.height} CM` : ''}
               </p>
             </div>
           </div>
@@ -124,10 +124,14 @@ export const AniBotDetailModal = ({ bot, onClose, onSelectChip }) => {
               </p>
             </div>
 
-            <dl className="mt-6 grid grid-cols-2 sm:grid-cols-4 border-t border-l border-border font-mono text-xs">
+            <dl className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 border-t border-l border-border font-mono text-xs">
               <div className="p-3 border-r border-b border-border bg-surface/30">
                 <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">TOTAL INTEGRITY</dt>
                 <dd className="text-foreground font-bold text-sm">{totalIntegrity} HP</dd>
+              </div>
+              <div className="p-3 border-r border-b border-border bg-surface/30">
+                <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">FRAME HEIGHT</dt>
+                <dd className="text-foreground font-bold text-sm">{bot.height ? `${bot.height} cm` : 'N/A'}</dd>
               </div>
               <div className="p-3 border-r border-b border-border bg-surface/30">
                 <dt className="text-[10px] text-muted uppercase tracking-wider block mb-1">COMBINED PAYLOAD</dt>

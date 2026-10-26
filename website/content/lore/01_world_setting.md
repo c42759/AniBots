@@ -149,16 +149,17 @@ The ancestral base of the Tirio lineage and home region of rival handler **Lucca
 Behind modern AniBot technology stands a global network of specialized scientific facilities established during early Anima Stone research.
 
 ### 1. Research Center Zero (Old Aveiro, Portugal)
-*Status: DECOMMISSIONED (Active until 2750 AD | Closed following the 176 Incident)*
+*Status: DECOMMISSIONED (Founded 2650 AD • Active until 2750 AD | Closed following the 176 Incident)*
 
 ![Research Center Zero](/images/lore/01_world_setting/research_center_zero.jpg)
 
 Built across the salt pans and tidal lagoons of Old Aveiro, Research Center Zero was humanity's premier Anima Stone laboratory:
-- **Vault 176 Annex**: Heavily fortified island bunker where all 176 Generation-0 Ancient Series chips were originally fabricated and cataloged.
+- **Origins & Founding (2650 AD)**: Founded following Samo Roy's discovery of Anima Stones (2622 AD) and the first electronic core coupling (2642 AD). In **2687 AD**, researchers here successfully built the very first AniBot in human history: **Agon** (`G0-001`).
+- **Vault 176 Annex**: Heavily fortified island bunker where all 176 Generation-0 Ancient Series chips were originally fabricated and cataloged prior to 2750 AD.
 - **Prototype Foundry**: Early core development workshops where primeval fossilized stones were first synchronized with semiconductor housings.
 - **Sealed Test Yard**: Decommissioned circular testing rings where combat algorithms and mobility protocols were evaluated prior to the facility's abandonment.
 - **Archive Docks & Salt Marsh Observatory**: Maritime access points and environmental radar monitoring stations, now decaying under salt corrosion.
-- *Historical Note*: The site where the three rogue Primordials (**Agon**, **Biggon**, **Cygon**) initiated their rebellion, liberated seven fellow animal-affinity cores (including *Vulpes Zerda*), and escaped into the badlands.
+- *Historical Note*: The site where the three rogue Primordials (**Agon**, **Biggon**, **Cygon**) initiated their rebellion in 2750 AD, liberated seven fellow animal-affinity cores (including *Vulpes Zerda*), and escaped into the badlands.
 
 ### 2. Research Center North (Old Vefsna Regionalpark, Norway)
 *Status: ACTIVE*

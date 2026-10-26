@@ -1,8 +1,8 @@
 ---
-id: 05_story_arcs_and_cup
+id: 07_story_arcs_and_cup
 title: Story Arc & The World Cup
 subtitle: From District 4 Workshop to the AniBot World Cup Grand Dome
-order: 5
+order: 7
 ---
 
 ## Narrative Progression

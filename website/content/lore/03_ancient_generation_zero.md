@@ -5,16 +5,16 @@ subtitle: The 176 Experimental Cores, Vault 7 Escape & Surviving Legends
 order: 3
 ---
 
-![Anibots Gen 0](/images/lore/anibots_brand_0.jpg)
+![Anibots Gen 0](/images/lore/03_ancient_generation_zero/anibots_brand_0.jpg)
 
 ## The 176 Ancient Series Chips
-Developed in early laboratory trials around **2750 AD**, only **176 Ancient Series Chips** were ever produced.
+Following the discovery of Anima Stones by archaeologist Samo Roy in **2622 AD** and the construction of humanity's first AniBot (**Agon**) in **2687 AD** at Research Center Zero in Aveiro, experimental laboratory trials culminated in **2750 AD** with the fabrication of exactly **176 Ancient Series Chips** (Generation 0).
 - **Hardware Specs**: Unrivaled processing headroom, massive memory banks, near-infinite adaptive potential.
 - **Unique Capability (Absorption)**: Ancient Chips can rewrite their own code by absorbing/migrating data from other AniChips. *Newer generation chips lack this capability.*
 - **Lifespan**: All AniChips have a maximum functional lifespan of **150 years**.
 
 ## The Vault 7 Rebellion
-When humanity scheduled Generation 0 for destruction due to fears of their uncapped learning curves, Lead Scientist **Dr. Aris Thorne** secretly bypassed Vault 7 security protocols. The 3 Primordial Chips went rogue, fled captivity, and saved 7 fellow Ancient Chips before vanishing into the lawless badlands.
+When humanity scheduled Generation 0 for destruction in **2750 AD** due to fears of their uncapped learning curves, Lead Scientist **Dr. Aris Thorne I** (founder of the Thorne scientific lineage) secretly bypassed Vault 7 security protocols. The 3 Primordial Chips went rogue, fled captivity, and saved 7 fellow Ancient Chips before vanishing into the lawless badlands.
 
 ```text
                             THE 10 SURVIVING ANCIENT CHIPS
