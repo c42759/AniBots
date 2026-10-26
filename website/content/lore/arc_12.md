@@ -135,9 +135,9 @@ Then she released him enough to look at his face.
 
 “Good.” Her eyes moved past him to the three Primordials. “Come inside. All of you.”
 
-Biggon ducked through the doorway. The conversations stopped again, briefly.
+Biggon stepped through the doorway. No taller than 120 centimeters, its broad, densely armored frame carried enough weight to make the floorboards creak. The conversations stopped again, briefly.
 
-Slow looked up at the giant’s shoulders.
+Slow looked down at Biggon’s thick shoulder plates, then at the space between the cabinets.
 
 “I can make more room.”
 
@@ -621,7 +621,7 @@ Kura saw the opening.
 
 “Again—”
 
-The giant caught Zerdata’s forearm.
+The heavy brawler caught Zerdata’s forearm.
 
 Its grip closed with a harsh compression of metal.
 
@@ -879,7 +879,7 @@ He stopped at the sight of the chamber.
 
 Kura turned.
 
-Luk crossed the room and gripped his shoulders. He looked at Zerdata, at the dark giant against the wall, then back at his friend.
+Luk crossed the room and gripped his shoulders. He looked at Zerdata, at Silverback-Smash’s dark, heavily armored frame against the wall, then back at his friend.
 
 “You finished it.”
 
