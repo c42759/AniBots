@@ -94,7 +94,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/RON-01_avatar.jpg"
+    "avatar": "/images/anibots/RON-01_avatar.jpg",
+    "height": 108
   },
   {
     "id": "anibot_wyrm_paladin",
@@ -192,7 +193,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/DGN-01_avatar.jpg"
+    "avatar": "/images/anibots/DGN-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_black_beard",
@@ -291,7 +293,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CSR-01_avatar.jpg"
+    "avatar": "/images/anibots/CSR-01_avatar.jpg",
+    "height": 114
   },
   {
     "id": "anibot_aegis_wall",
@@ -388,7 +391,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PLX-01_avatar.jpg"
+    "avatar": "/images/anibots/PLX-01_avatar.jpg",
+    "height": 115
   },
   {
     "id": "anibot_genesis_1",
@@ -486,7 +490,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GEN-01_avatar.jpg"
+    "avatar": "/images/anibots/GEN-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_peacemaker_6",
@@ -583,7 +588,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GSL-01_avatar.jpg"
+    "avatar": "/images/anibots/GSL-01_avatar.jpg",
+    "height": 107
   },
   {
     "id": "anibot_valhalla_fury",
@@ -680,7 +686,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BSK-01_avatar.jpg"
+    "avatar": "/images/anibots/BSK-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_holy_vanguard",
@@ -778,7 +785,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TMP-01_avatar.jpg"
+    "avatar": "/images/anibots/TMP-01_avatar.jpg",
+    "height": 115
   },
   {
     "id": "anibot_hawkeye_scout",
@@ -875,7 +883,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/RNG-01_avatar.jpg"
+    "avatar": "/images/anibots/RNG-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_colosseum_king",
@@ -972,7 +981,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GLD-01_avatar.jpg"
+    "avatar": "/images/anibots/GLD-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_symphony_prime",
@@ -1069,7 +1079,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BRD-01_avatar.jpg"
+    "avatar": "/images/anibots/BRD-01_avatar.jpg",
+    "height": 106
   },
   {
     "id": "anibot_shadow_fang",
@@ -1165,7 +1176,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SHN-01_avatar.jpg"
+    "avatar": "/images/anibots/SHN-01_avatar.jpg",
+    "height": 102
   },
   {
     "id": "anibot_circuit_breaker",
@@ -1261,7 +1273,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CKT-01_avatar.jpg"
+    "avatar": "/images/anibots/CKT-01_avatar.jpg",
+    "height": 105
   },
   {
     "id": "anibot_inferno_gorgon",
@@ -1359,7 +1372,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/MGM-01_avatar.jpg"
+    "avatar": "/images/anibots/MGM-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_glacier_zero",
@@ -1455,7 +1469,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/FRS-01_avatar.jpg"
+    "avatar": "/images/anibots/FRS-01_avatar.jpg",
+    "height": 88
   },
   {
     "id": "anibot_zephyr_storm",
@@ -1551,7 +1566,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GAL-01_avatar.jpg"
+    "avatar": "/images/anibots/GAL-01_avatar.jpg",
+    "height": 82
   },
   {
     "id": "anibot_goliath_titan",
@@ -1650,7 +1666,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TER-01_avatar.jpg"
+    "avatar": "/images/anibots/TER-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_tide_crusher",
@@ -1746,7 +1763,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TOR-01_avatar.jpg"
+    "avatar": "/images/anibots/TOR-01_avatar.jpg",
+    "height": 112
   },
   {
     "id": "anibot_bio_hazard",
@@ -1842,7 +1860,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CRS-01_avatar.jpg"
+    "avatar": "/images/anibots/CRS-01_avatar.jpg",
+    "height": 100
   },
   {
     "id": "anibot_lumen_ray",
@@ -1939,7 +1958,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PHT-01_avatar.jpg"
+    "avatar": "/images/anibots/PHT-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_singularity_core",
@@ -2035,7 +2055,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/VOI-01_avatar.jpg"
+    "avatar": "/images/anibots/VOI-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_decibel_crash",
@@ -2131,7 +2152,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SNC-01_avatar.jpg"
+    "avatar": "/images/anibots/SNC-01_avatar.jpg",
+    "height": 109
   },
   {
     "id": "anibot_solar_flare",
@@ -2227,7 +2249,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PLS-01_avatar.jpg"
+    "avatar": "/images/anibots/PLS-01_avatar.jpg",
+    "height": 85
   },
   {
     "id": "anibot_gaia_protector",
@@ -2325,7 +2348,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/FLR-01_avatar.jpg"
+    "avatar": "/images/anibots/FLR-01_avatar.jpg",
+    "height": 113
   },
   {
     "id": "anibot_nova_seeker",
@@ -2421,7 +2445,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/NOV-01_avatar.jpg"
+    "avatar": "/images/anibots/NOV-01_avatar.jpg",
+    "height": 78
   },
   {
     "id": "anibot_castor_pollux",
@@ -2517,7 +2542,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GEM-01_avatar.jpg"
+    "avatar": "/images/anibots/GEM-01_avatar.jpg",
+    "height": 106
   },
   {
     "id": "anibot_ursa_major",
@@ -2614,7 +2640,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/URS-01_avatar.jpg"
+    "avatar": "/images/anibots/URS-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_regal_lion",
@@ -2710,7 +2737,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/LEO-01_avatar.jpg"
+    "avatar": "/images/anibots/LEO-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_swan_grace",
@@ -2806,7 +2834,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CYG-01_avatar.jpg"
+    "avatar": "/images/anibots/CYG-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_ancient_wyrm",
@@ -2902,7 +2931,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/DRC-01_avatar.jpg"
+    "avatar": "/images/anibots/DRC-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_pegasus_flight",
@@ -2998,7 +3028,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PEG-01_avatar.jpg"
+    "avatar": "/images/anibots/PEG-01_avatar.jpg",
+    "height": 94
   },
   {
     "id": "anibot_venom_stinger",
@@ -3094,7 +3125,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SCP-01_avatar.jpg"
+    "avatar": "/images/anibots/SCP-01_avatar.jpg",
+    "height": 104
   },
   {
     "id": "anibot_celestial_harp",
@@ -3190,7 +3222,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/LYR-01_avatar.jpg"
+    "avatar": "/images/anibots/LYR-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_ram_buster",
@@ -3286,7 +3319,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ARI-01_avatar.jpg"
+    "avatar": "/images/anibots/ARI-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_equilibrium_scale",
@@ -3382,7 +3416,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/LIB-01_avatar.jpg"
+    "avatar": "/images/anibots/LIB-01_avatar.jpg",
+    "height": 108
   },
   {
     "id": "anibot_martyr_chains",
@@ -3478,7 +3513,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/AND-01_avatar.jpg"
+    "avatar": "/images/anibots/AND-01_avatar.jpg",
+    "height": 86
   },
   {
     "id": "anibot_iron_jaw",
@@ -3574,7 +3610,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/HYD-01_avatar.jpg"
+    "avatar": "/images/anibots/HYD-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_zerdata",
@@ -3670,7 +3707,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-004_avatar.jpg"
+    "avatar": "/images/anibots/G0-004_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_zerdata_v2",
@@ -3766,7 +3804,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-004-B_avatar.jpg"
+    "avatar": "/images/anibots/G0-004-B_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_tigris_fury",
@@ -3863,7 +3902,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TGR-01_avatar.jpg"
+    "avatar": "/images/anibots/TGR-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_serpent_coil",
@@ -3959,7 +3999,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ANA-01_avatar.jpg"
+    "avatar": "/images/anibots/ANA-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_behemoth_tusk",
@@ -4058,7 +4099,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ELE-01_avatar.jpg"
+    "avatar": "/images/anibots/ELE-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_silverback_smash",
@@ -4155,7 +4197,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GOR-01_avatar.jpg"
+    "avatar": "/images/anibots/GOR-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_death_roll",
@@ -4251,7 +4294,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/CRK-01_avatar.jpg"
+    "avatar": "/images/anibots/CRK-01_avatar.jpg",
+    "height": 114
   },
   {
     "id": "anibot_sky_raptor",
@@ -4347,7 +4391,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/EAG-01_avatar.jpg"
+    "avatar": "/images/anibots/EAG-01_avatar.jpg",
+    "height": 80
   },
   {
     "id": "anibot_apex_mauler",
@@ -4445,7 +4490,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GRZ-01_avatar.jpg"
+    "avatar": "/images/anibots/GRZ-01_avatar.jpg",
+    "height": 118
   },
   {
     "id": "anibot_chitin_cutter",
@@ -4543,7 +4589,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/ANT-01_avatar.jpg"
+    "avatar": "/images/anibots/ANT-01_avatar.jpg",
+    "height": 101
   },
   {
     "id": "anibot_kabuto_horn",
@@ -4639,7 +4686,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/KBT-01_avatar.jpg"
+    "avatar": "/images/anibots/KBT-01_avatar.jpg",
+    "height": 110
   },
   {
     "id": "anibot_kuwagata_pincer",
@@ -4735,7 +4783,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/KWG-01_avatar.jpg"
+    "avatar": "/images/anibots/KWG-01_avatar.jpg",
+    "height": 104
   },
   {
     "id": "anibot_razor_tusker",
@@ -4831,7 +4880,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BOA-01_avatar.jpg"
+    "avatar": "/images/anibots/BOA-01_avatar.jpg",
+    "height": 117
   },
   {
     "id": "anibot_gaur_colossus",
@@ -4929,7 +4979,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/GAU-01_avatar.jpg"
+    "avatar": "/images/anibots/GAU-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_bone_crusher",
@@ -5025,7 +5076,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/HYN-01_avatar.jpg"
+    "avatar": "/images/anibots/HYN-01_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_black_death",
@@ -5123,7 +5175,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BUF-01_avatar.jpg"
+    "avatar": "/images/anibots/BUF-01_avatar.jpg",
+    "height": 119
   },
   {
     "id": "anibot_prairie_titan",
@@ -5219,7 +5272,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/BSN-01_avatar.jpg"
+    "avatar": "/images/anibots/BSN-01_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_3m_speed",
@@ -5315,7 +5369,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/OTO-01_avatar.jpg"
+    "avatar": "/images/anibots/OTO-01_avatar.jpg",
+    "height": 105
   },
   {
     "id": "anibot_3m_armor",
@@ -5412,7 +5467,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/OTO-02_avatar.jpg"
+    "avatar": "/images/anibots/OTO-02_avatar.jpg",
+    "height": 119
   },
   {
     "id": "anibot_3m_damage",
@@ -5508,7 +5564,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/OTO-03_avatar.jpg"
+    "avatar": "/images/anibots/OTO-03_avatar.jpg",
+    "height": 116
   },
   {
     "id": "anibot_kogane",
@@ -5605,7 +5662,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-011_avatar.jpg"
+    "avatar": "/images/anibots/G0-011_avatar.jpg",
+    "height": 103
   },
   {
     "id": "anibot_agon",
@@ -5701,7 +5759,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-001_avatar.jpg"
+    "avatar": "/images/anibots/G0-001_avatar.jpg",
+    "height": 117
   },
   {
     "id": "anibot_grave_scarab",
@@ -5797,7 +5856,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/SCB-01_avatar.jpg"
+    "avatar": "/images/anibots/SCB-01_avatar.jpg",
+    "height": 113
   },
   {
     "id": "anibot_cygon",
@@ -5893,7 +5953,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-003_avatar.jpg"
+    "avatar": "/images/anibots/G0-003_avatar.jpg",
+    "height": 105
   },
   {
     "id": "anibot_biggon",
@@ -5990,7 +6051,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/G0-002_avatar.jpg"
+    "avatar": "/images/anibots/G0-002_avatar.jpg",
+    "height": 120
   },
   {
     "id": "anibot_apex_nis",
@@ -6087,7 +6149,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/APX-07_avatar.jpg"
+    "avatar": "/images/anibots/APX-07_avatar.jpg",
+    "height": 117
   },
   {
     "id": "anibot_apex_tim",
@@ -6184,7 +6247,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/APX-08_avatar.jpg"
+    "avatar": "/images/anibots/APX-08_avatar.jpg",
+    "height": 111
   },
   {
     "id": "anibot_volt_pouncer",
@@ -6285,7 +6349,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TGR-09_avatar.jpg"
+    "avatar": "/images/anibots/TGR-09_avatar.jpg",
+    "height": 115
   },
   {
     "id": "anibot_cyan",
@@ -6386,7 +6451,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/PLS-09_avatar.jpg"
+    "avatar": "/images/anibots/PLS-09_avatar.jpg",
+    "height": 115
   },
   {
     "id": "anibot_honey_beam",
@@ -6487,7 +6553,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/VOI-08_avatar.jpg"
+    "avatar": "/images/anibots/VOI-08_avatar.jpg",
+    "height": 115
   },
   {
     "id": "anibot_white_tigris_fury",
@@ -6586,7 +6653,8 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TGR-05_avatar.jpg"
+    "avatar": "/images/anibots/TGR-05_avatar.jpg",
+    "height": 114
   },
   {
     "id": "anibot_panthera_tigris",
@@ -6685,6 +6753,7 @@
         ]
       }
     },
-    "avatar": "/images/anibots/TGR-02_avatar.jpg"
+    "avatar": "/images/anibots/TGR-02_avatar.jpg",
+    "height": 114
   }
 ]
