@@ -6,12 +6,16 @@ import { usePathname } from 'next/navigation';
 
 export const CharacterNavList = ({ characters }) => {
   const pathname = usePathname();
+  const cleanPathname = (pathname || '').replace(/\/$/, '');
 
   return (
     <div className="space-y-1">
       {characters.map((char) => {
-        const href = `/characters/${char.slug}`;
-        const isActive = pathname === href || (pathname === '/characters' && char.slug === 'kura_ato');
+        const href = `/characters/${char.slug}/`;
+        const charPath = `/characters/${char.slug}`;
+        const isActive =
+          cleanPathname === charPath ||
+          ((cleanPathname === '/characters' || cleanPathname === '') && char.slug === 'kura_ato');
 
         return (
           <Link
@@ -19,12 +23,16 @@ export const CharacterNavList = ({ characters }) => {
             href={href}
             className={`w-full text-left p-3 rounded-xs transition-colors flex items-center gap-3.5 group border ${
               isActive
-                ? 'bg-foreground text-background border-foreground shadow-xs'
+                ? 'bg-foreground text-background border-foreground shadow-xs border-l-4 border-l-accent'
                 : 'bg-background hover:bg-surface text-foreground border-transparent hover:border-border'
             }`}
           >
             {/* Avatar Thumbnail */}
-            <div className="w-11 h-11 shrink-0 rounded-xs overflow-hidden border border-border/80 bg-surface flex items-center justify-center relative">
+            <div
+              className={`w-11 h-11 shrink-0 rounded-xs overflow-hidden border bg-surface flex items-center justify-center relative ${
+                isActive ? 'border-accent' : 'border-border/80'
+              }`}
+            >
               {char.avatar ? (
                 <img
                   src={char.avatar}
@@ -41,14 +49,18 @@ export const CharacterNavList = ({ characters }) => {
             {/* Character Info */}
             <div className="min-w-0 flex-1">
               <div className="flex items-center justify-between gap-1">
-                <span className="font-bold tracking-tight text-sm truncate">
+                <span
+                  className={`font-bold tracking-tight text-sm truncate transition-colors ${
+                    isActive ? 'text-background' : 'group-hover:text-accent'
+                  }`}
+                >
                   {char.name}
                 </span>
                 {char.age && char.age !== 'Deceased' && char.age !== 'Ancient' && (
                   <span
                     className={`font-mono text-[10px] shrink-0 px-1 py-0.2 border ${
                       isActive
-                        ? 'border-background/30 text-background'
+                        ? 'border-accent bg-accent text-white font-bold'
                         : 'border-border text-muted bg-surface'
                     }`}
                   >
