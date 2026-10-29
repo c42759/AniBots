@@ -6,7 +6,7 @@ role: "District 4 Delinquent & Bully (Trouble Crew Leader)"
 age: 16
 location: "Neo Metropolis (District 4)"
 partner_bot: Volt-Pouncer (TGR-09)
-partner_chip: Acinonyx Jubatus
+partner_chip: Spark
 avatar: /images/characters/sammy_avatar.jpg
 quote: "Don't mess with District 4 unless you're ready for trouble."
 tagline: "Trouble Crew Leader."

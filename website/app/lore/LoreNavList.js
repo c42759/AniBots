@@ -6,12 +6,16 @@ import { usePathname } from 'next/navigation';
 
 export const LoreNavList = ({ sections }) => {
   const pathname = usePathname();
+  const cleanPathname = (pathname || '').replace(/\/$/, '');
 
   return (
     <div className="space-y-1">
       {sections.map((section) => {
-        const href = `/lore/${section.slug}`;
-        const isActive = pathname === href || (pathname === '/lore' && section.slug === '01_world_setting');
+        const href = `/lore/${section.slug}/`;
+        const sectionPath = `/lore/${section.slug}`;
+        const isActive =
+          cleanPathname === sectionPath ||
+          ((cleanPathname === '/lore' || cleanPathname === '') && section.slug === '01_world_setting');
 
         return (
           <Link
@@ -19,7 +23,7 @@ export const LoreNavList = ({ sections }) => {
             href={href}
             className={`w-full text-left p-3.5 rounded-xs transition-colors flex items-start gap-3.5 group border ${
               isActive
-                ? 'bg-foreground text-background border-foreground shadow-xs'
+                ? 'bg-foreground text-background border-foreground shadow-xs border-l-4 border-l-accent'
                 : 'bg-background hover:bg-surface text-foreground border-transparent hover:border-border'
             }`}
           >
@@ -27,7 +31,7 @@ export const LoreNavList = ({ sections }) => {
             <div
               className={`w-8 h-8 shrink-0 rounded-xs border font-mono text-xs font-bold flex items-center justify-center ${
                 isActive
-                  ? 'border-background/40 bg-background/10 text-background'
+                  ? 'border-accent bg-accent text-white'
                   : 'border-border bg-surface text-accent'
               }`}
             >
@@ -36,13 +40,17 @@ export const LoreNavList = ({ sections }) => {
 
             {/* Chapter Text */}
             <div className="min-w-0 flex-1">
-              <span className="font-bold tracking-tight text-sm block truncate group-hover:text-accent transition-colors">
+              <span
+                className={`font-bold tracking-tight text-sm block truncate transition-colors ${
+                  isActive ? 'text-background' : 'group-hover:text-accent'
+                }`}
+              >
                 {section.title}
               </span>
               {section.subtitle && (
                 <p
                   className={`text-xs truncate mt-0.5 ${
-                    isActive ? 'text-background/75' : 'text-muted'
+                    isActive ? 'text-background/80' : 'text-muted'
                   }`}
                 >
                   {section.subtitle}
